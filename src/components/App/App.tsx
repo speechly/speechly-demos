@@ -16,8 +16,6 @@ import './App.css'
 
 
 export default function App() {
-  const { segment } = useSpeechContext()
-  useUpdateFlightData(segment)
   return (
 
     <FlightContextProvider>
