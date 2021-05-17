@@ -5,12 +5,11 @@ interface IFlightInformation {
     return: string,
     passengers: number,
     class: string,
-    roundTrip: Boolean
 }
 
 export type FlightContextState = {
     flightData: IFlightInformation,
-    tentativeFlightData: Object | IFlightInformation,
+    tentativeFlightData: IFlightInformation,
     setFlightData: (arg0: IFlightInformation) => void,
     setTentativeFlightData: (arg0: IFlightInformation) => void
 }

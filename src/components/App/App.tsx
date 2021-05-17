@@ -1,21 +1,20 @@
-import React, { useEffect } from 'react';
-import { SpeechProvider, useSpeechContext } from "@speechly/react-client";
+import React from 'react'
+import { SpeechProvider } from '@speechly/react-client'
 import {
   PushToTalkButton,
   PushToTalkButtonContainer,
   BigTranscript,
   BigTranscriptContainer,
   ErrorPanel
-} from "@speechly/react-ui";
-import { ChakraProvider } from "@chakra-ui/react"
-import FlightContextProvider from '../../context/flightDataContext';
-import { useUpdateFlightData } from '../../hooks/useUpdateFlightData';
+} from '@speechly/react-ui'
+import { ChakraProvider } from '@chakra-ui/react'
+import FlightContextProvider from '../../context/flightDataContext'
 
-import Form from '../Form/Form';
+import Form from '../Form/Form'
 import './App.css'
 
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
 
     <FlightContextProvider>
@@ -37,5 +36,5 @@ export default function App() {
       </ChakraProvider>
     </FlightContextProvider>
 
-  );
+  )
 }

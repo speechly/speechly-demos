@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react"
-import { Entity, SpeechSegment } from "@speechly/react-client"
-import { FlightDataContext } from "../context/flightDataContext";
-import { IFlightInformation } from "../types/type";
+import React, { useState, useEffect, useContext } from 'react'
+import { Entity, SpeechSegment } from '@speechly/react-client'
+import { FlightDataContext } from '../context/flightDataContext'
+import { IFlightInformation } from '../types/type'
 
-export const useUpdateFlightData = (segment: SpeechSegment | undefined) => {
+export const useUpdateFlightData = (segment: SpeechSegment | undefined): void => {
     const { flightData, setFlightData, setTentativeFlightData } = useContext(FlightDataContext)
     let result: IFlightInformation
 
@@ -27,5 +27,5 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined) => {
                 setFlightData(result)
             }
         }
-    }, [segment]);
+    }, [segment])
 }
