@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import { Entity, SpeechSegment } from '@speechly/react-client'
 import { FlightDataContext } from '../context/flightDataContext'
 import { IFlightInformation } from '../types/type'

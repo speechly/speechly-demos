@@ -45,25 +45,26 @@ export default function Form(): JSX.Element {
                 <VStack>
                     <FormControl id="from">
                         <FormLabel>From</FormLabel>
-                        <Input placeholder="From" value={flightData.from} size='lg' variant='outline' bg='white' />
+                        <Input id='from-input' placeholder="From" value={flightData.from} size='lg' variant='outline' bg='white' />
                     </FormControl>
                     <FormControl id="departure">
                         <FormLabel>Departure</FormLabel>
-                        <Input placeholder="Departure" value={flightData.depart} size='lg' variant='outline' bg='white' />
+                        <Input id='departure-input' placeholder="Departure" value={flightData.depart} size='lg' variant='outline' bg='white' />
                     </FormControl>
                     <FormControl id="passengers">
                         <FormLabel>Passengers</FormLabel>
-                        <Input placeholder="1" value={flightData.passengers} size='lg' variant='outline' bg='white' />
+                        <Input id='passengers-input' placeholder="1" value={flightData.passengers} size='lg' variant='outline' bg='white' />
                     </FormControl>
                 </VStack>
                 <VStack>
                     <FormControl id="to">
                         <FormLabel>To</FormLabel>
-                        <Input placeholder="To" value={flightData.to} size='lg' variant='outline' bg='white' />
+                        <Input id='to-input' placeholder="To" value={flightData.to} size='lg' variant='outline' bg='white' />
                     </FormControl>
                     <FormControl id="return">
                         <FormLabel>Returning</FormLabel>
                         <Input
+                            id='return-input'
                             placeholder="Returning"
                             isDisabled={!flightData.return}
                             value={flightData.return}
@@ -73,7 +74,7 @@ export default function Form(): JSX.Element {
                     </FormControl>
                     <FormControl id="class">
                         <FormLabel>Class</FormLabel>
-                        <Input placeholder="Economy class" value={flightData.class} size='lg' variant='outline' bg='white' />
+                        <Input id='class-input' placeholder="Economy class" value={flightData.class} size='lg' variant='outline' bg='white' />
                     </FormControl>
                 </VStack>
             </HStack>

@@ -1,0 +1,4 @@
+*.css
+*.test.js
+*.config.js
+__mocks__/*
