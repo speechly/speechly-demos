@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
-import { Input, Box, HStack, VStack, FormControl, FormLabel, ButtonGroup, Button } from '@chakra-ui/react'
+import { Input, Box, HStack, Text, VStack, ButtonGroup, Button } from '@chakra-ui/react'
 import './Form.css'
 import { FlightDataContext } from '../../context/flightDataContext'
 import { useSpeechContext } from '@speechly/react-client'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
+import { KeyboardDatePicker } from '@material-ui/pickers'
 
 export default function Form(): JSX.Element {
-    const { segment } = useSpeechContext()
+    const { segment, speechState } = useSpeechContext()
     useUpdateFlightData(segment)
-    const { flightData } = useContext(FlightDataContext)
+    const { flightData, tentativeFlightData } = useContext(FlightDataContext)
+    const formData = speechState === 'Recording' || speechState === 'Loading' ? tentativeFlightData : flightData
 
     return (
         <Box
@@ -21,61 +23,80 @@ export default function Form(): JSX.Element {
             borderRadius='5px'
             w='900px'
             h='400px'>
-            <ButtonGroup spacing={0}>
+            <ButtonGroup spacing={0} display='flex' width='600px'>
                 <Button
+                    flex={1}
+                    height='70px'
                     size='lg'
                     variant='outline'
                     borderRight='none'
                     borderRightRadius='none'
-                    color={flightData.return ? 'blue.100' : 'white'}
-                    bgColor={flightData.return ? 'white' : 'blue.600'}>
+                    borderLeftRadius='32px'
+                    color={formData?.return ? 'blue.100' : 'white'}
+                    bgColor={formData?.return ? 'white' : 'blue.600'}>
                     One way
                 </Button>
                 <Button
+                    flex={1}
+                    height='70px'
                     size='lg'
                     borderLeft='none'
                     borderLeftRadius='none'
+                    borderRightRadius='32px'
                     variant='outline'
-                    color={flightData.return ? 'white' : 'blue.100'}
-                    bgColor={flightData.return ? 'blue.600' : 'white'}>
+                    color={formData?.return ? 'white' : 'blue.100'}
+                    bgColor={formData?.return ? 'blue.600' : 'white'}>
                     Return
                 </Button>
             </ButtonGroup>
             <HStack marginTop='30px'>
                 <VStack>
-                    <FormControl id="from">
-                        <FormLabel>From</FormLabel>
-                        <Input id='from-input' placeholder="From" value={flightData.from} size='lg' variant='outline' bg='white' />
-                    </FormControl>
-                    <FormControl id="departure">
-                        <FormLabel>Departure</FormLabel>
-                        <Input id='departure-input' placeholder="Departure" value={flightData.depart} size='lg' variant='outline' bg='white' />
-                    </FormControl>
-                    <FormControl id="passengers">
-                        <FormLabel>Passengers</FormLabel>
-                        <Input id='passengers-input' placeholder="1" value={flightData.passengers} size='lg' variant='outline' bg='white' />
-                    </FormControl>
+                    <div className='inputWrapper'>
+                        <Text className='inputLabel'>From</Text>
+                        <Input id='from-input' className='input' variant='unstyled' value={formData?.from} size='lg' />
+                    </div>
+                    <div className='inputWrapper'>
+                        <Text className='inputLabel'>Departure</Text>
+                        <KeyboardDatePicker
+                            KeyboardButtonProps={{
+                                className: 'icon'
+                            }}
+                            className='dateInput'
+                            disablePast
+                            variant='inline'
+                            onChange={(d: Date | null) => console.log(d)}
+                            autoOk
+                            value={formData?.depart || null}
+                        />
+                    </div>
+                    <div className='inputWrapper'>
+                        <Text className='inputLabel'>Passengers</Text>
+                        <Input id='passengers-input' className='input' variant='unstyled' value={formData?.passengers} size='lg' />
+                    </div>
                 </VStack>
                 <VStack>
-                    <FormControl id="to">
-                        <FormLabel>To</FormLabel>
-                        <Input id='to-input' placeholder="To" value={flightData.to} size='lg' variant='outline' bg='white' />
-                    </FormControl>
-                    <FormControl id="return">
-                        <FormLabel>Returning</FormLabel>
-                        <Input
-                            id='return-input'
-                            placeholder="Returning"
-                            isDisabled={!flightData.return}
-                            value={flightData.return}
-                            size='lg'
-                            variant='outline'
-                            bg='white' />
-                    </FormControl>
-                    <FormControl id="class">
-                        <FormLabel>Class</FormLabel>
-                        <Input id='class-input' placeholder="Economy class" value={flightData.class} size='lg' variant='outline' bg='white' />
-                    </FormControl>
+                    <div className='inputWrapper'>
+                        <Text className='inputLabel'>To</Text>
+                        <Input id='to-input' className='input' variant='unstyled' value={formData?.to} size='lg' />
+                    </div>
+                    <div className='inputWrapper'>
+                        <Text className='inputLabel'>Return</Text>
+                        <KeyboardDatePicker
+                            KeyboardButtonProps={{
+                                className: 'icon'
+                            }}
+                            autoOk
+                            className='dateInput'
+                            disablePast
+                            variant='inline'
+                            onChange={(d: Date | null) => console.log(d)}
+                            value={formData?.return || null}
+                        />
+                    </div>
+                    <div className='inputWrapper'>
+                        <Text className='inputLabel'>Class</Text>
+                        <Input id='class-input' className='input' variant='unstyled' value={formData?.class} size='lg' />
+                    </div>
                 </VStack>
             </HStack>
         </Box>
