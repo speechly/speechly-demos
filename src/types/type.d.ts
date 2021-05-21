@@ -5,6 +5,7 @@ interface IFlightInformation {
     return: string,
     passengers: number,
     class: string,
+    direct: string
 }
 
 export type FlightContextState = {

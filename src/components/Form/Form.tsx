@@ -1,4 +1,4 @@
-import React, { useContext, MouseEvent } from 'react'
+import React, { useContext } from 'react'
 import {
     Input,
     Box,
@@ -142,7 +142,9 @@ export default function Form(): JSX.Element {
                 </VStack>
             </HStack>
             <div className='checkboxWrapper'>
-                <CheckCircleIcon className='checkbox' color='#0f4e92' w={16} h={16} />
+                <CheckCircleIcon
+                    className={formData?.direct === 'DIRECT' ? 'checkboxSelected' : 'checkboxNotSelected'}
+                    color={formData?.direct ? '#0f4e92' : 'white'} w={16} h={16} />
                 <Text className='checkboxLabel'>Direct Only</Text>
             </div>
         </Box>

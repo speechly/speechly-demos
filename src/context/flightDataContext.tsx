@@ -8,6 +8,7 @@ const defaultFlightInformation = {
   return: '',
   passengers: 1,
   class: '',
+  direct: ''
 }
 
 const contextDefaultValues: FlightContextState = {
