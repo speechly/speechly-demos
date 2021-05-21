@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, MouseEvent } from 'react'
 import {
     Input,
     Box,
@@ -72,7 +72,7 @@ export default function Form(): JSX.Element {
                 </Button>
             </ButtonGroup>
             <HStack marginTop='30px'>
-                <VStack>
+                <VStack spacing={8}>
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>From</Text>
                         <Input fontSize='28px' id='from-input' className='input' variant='unstyled' value={formData?.from} size='lg' />
@@ -94,7 +94,7 @@ export default function Form(): JSX.Element {
                     </div>
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>Passengers</Text>
-                        <Menu>
+                        <Menu placement='bottom'>
                             <MenuButton>
                                 {formData?.passengers}
                                 <ChevronDownIcon />
@@ -105,7 +105,7 @@ export default function Form(): JSX.Element {
                         </Menu>
                     </div>
                 </VStack>
-                <VStack>
+                <VStack spacing={8}>
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>To</Text>
                         <Input fontSize='28px' id='to-input' className='input' variant='unstyled' value={formData?.to} size='lg' />
@@ -127,9 +127,9 @@ export default function Form(): JSX.Element {
                     </div>
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>Class</Text>
-                        <Menu>
-                            <MenuButton>
-                                {formData?.class}
+                        <Menu isLazy>
+                            <MenuButton textTransform='uppercase'>
+                                {formData?.class || 'Economy'}
                                 <ChevronDownIcon />
                             </MenuButton>
                             <MenuList>
