@@ -80,6 +80,7 @@ export default function Form(): JSX.Element {
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>Departure</Text>
                         <KeyboardDatePicker
+                            id='departure-input'
                             KeyboardButtonProps={{
                                 className: 'icon'
                             }}
@@ -95,7 +96,7 @@ export default function Form(): JSX.Element {
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>Passengers</Text>
                         <Menu placement='bottom'>
-                            <MenuButton>
+                            <MenuButton id='passengers-input'>
                                 {formData?.passengers}
                                 <ChevronDownIcon />
                             </MenuButton>
@@ -113,6 +114,7 @@ export default function Form(): JSX.Element {
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>Return</Text>
                         <KeyboardDatePicker
+                            id='return-input'
                             KeyboardButtonProps={{
                                 className: 'icon'
                             }}
@@ -128,7 +130,7 @@ export default function Form(): JSX.Element {
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>Class</Text>
                         <Menu isLazy>
-                            <MenuButton textTransform='uppercase'>
+                            <MenuButton textTransform='uppercase' id='class-input'>
                                 {formData?.class || 'Economy'}
                                 <ChevronDownIcon />
                             </MenuButton>

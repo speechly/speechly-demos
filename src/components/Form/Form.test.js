@@ -2,9 +2,13 @@ import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react'
 import { create, act } from 'react-test-renderer';
 import { Input, Box, Button } from '@chakra-ui/react'
+import { FlightDataContext } from '../../context/flightDataContext';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import LuxonUtils from '@date-io/luxon';
 
 import Form from '../Form/Form'
-import { FlightDataContext } from '../../context/flightDataContext';
+
+
 
 let component
 let testInstance
@@ -12,7 +16,12 @@ let testInstance
 describe('Form tests', () => {
     beforeEach(() => {
         act(() => {
-            component = create(<ChakraProvider><Form /></ChakraProvider>)
+            component = create(
+                <MuiPickersUtilsProvider utils={LuxonUtils}>
+                    <ChakraProvider>
+                        <Form />
+                    </ChakraProvider>
+                </MuiPickersUtilsProvider>)
         })
     });
 
@@ -33,15 +42,20 @@ describe('Form tests', () => {
         expect(buttons.length).toBe(2)
     })
 
-    test('Renders 6x <Input /> component', () => {
+    test('Renders 2x <Input /> component', () => {
         testInstance = component.root
         const inputs = testInstance.findAllByType(Input)
-        expect(inputs.length).toBe(6)
+        expect(inputs.length).toBe(2)
     })
 
+    test('Renders 2x <KeyboardDatePicker /> component', () => {
+        testInstance = component.root
+        const inputs = testInstance.findAllByType(KeyboardDatePicker)
+        expect(inputs.length).toBe(2)
+    })
 
-    describe('Form data tests', () => {
-        const scenarios = [
+    describe('Form Inputs test', () => {
+        const textInputscenarios = [
             {
                 dataEntry: 'from',
                 input: 'from-input',
@@ -51,7 +65,26 @@ describe('Form tests', () => {
                 dataEntry: 'to',
                 input: 'to-input',
                 value: 'to-test-city'
-            },
+            }
+        ]
+        textInputscenarios.forEach((scenario) => {
+            test(`Updates ${scenario.dataEntry} input with value ${scenario.value}`, () => {
+                component = create(
+                    <FlightDataContext.Provider value={{ flightData: { [scenario.dataEntry]: scenario.value } }}>
+                        <MuiPickersUtilsProvider utils={LuxonUtils}>
+                            <ChakraProvider>
+                                <Form />
+                            </ChakraProvider>
+                        </MuiPickersUtilsProvider>
+                    </FlightDataContext.Provider >)
+
+                testInstance = component.root
+                const input = testInstance.findByProps({ id: scenario.input })
+                expect(input.props.value).toBe(scenario.value)
+            })
+        })
+
+        const dateInputScenarios = [
             {
                 dataEntry: 'depart',
                 input: 'departure-input',
@@ -62,29 +95,52 @@ describe('Form tests', () => {
                 input: 'return-input',
                 value: 'return-test-date'
             },
-            {
-                dataEntry: 'passengers',
-                input: 'passengers-input',
-                value: 3
-            },
-            {
-                dataEntry: 'class',
-                input: 'class-input',
-                value: 'test-class'
-            }
         ]
-        scenarios.forEach((scenario) => {
-            test(`Updates ${scenario.dataEntry} input with value ${scenario.value}`, () => {
+
+        dateInputScenarios.forEach((scenario) => {
+            test(`Updates ${scenario.dataEntry} Date input with value ${scenario.value}`, () => {
                 component = create(
                     <FlightDataContext.Provider value={{ flightData: { [scenario.dataEntry]: scenario.value } }}>
-                        <ChakraProvider>
-                            <Form />
-                        </ChakraProvider>
-                    </FlightDataContext.Provider>)
-    
+                        <MuiPickersUtilsProvider utils={LuxonUtils}>
+                            <ChakraProvider>
+                                <Form />
+                            </ChakraProvider>
+                        </MuiPickersUtilsProvider>
+                    </FlightDataContext.Provider >)
+
                 testInstance = component.root
                 const input = testInstance.findByProps({ id: scenario.input })
                 expect(input.props.value).toBe(scenario.value)
+            })
+
+            const menuInputscenarios = [
+                {
+                    dataEntry: 'passengers',
+                    input: 'passengers-input',
+                    value: 3
+                },
+                {
+                    dataEntry: 'class',
+                    input: 'class-input',
+                    value: 'test-class'
+                }
+            ]
+
+            menuInputscenarios.forEach((scenario) => {
+                test(`Updates ${scenario.dataEntry} menu with value ${scenario.value}`, () => {
+                    component = create(
+                        <FlightDataContext.Provider value={{ flightData: { [scenario.dataEntry]: scenario.value } }}>
+                            <MuiPickersUtilsProvider utils={LuxonUtils}>
+                                <ChakraProvider>
+                                    <Form />
+                                </ChakraProvider>
+                            </MuiPickersUtilsProvider>
+                        </FlightDataContext.Provider >)
+
+                    testInstance = component.root
+                    const input = testInstance.findByProps({ id: scenario.input })
+                    expect(input.props.children[0]).toBe(scenario.value)
+                })
             })
         })
     })
