@@ -14,3 +14,16 @@ export type FlightContextState = {
     setFlightData: (arg0: IFlightInformation) => void,
     setTentativeFlightData: (arg0: IFlightInformation) => void
 }
+
+type Calendar = {
+    day: number,
+    hour: number,
+    millisecond: number,
+    month: number,
+    second: number,
+    year: number
+}
+
+export type TDate = {
+    c: Calendar
+}

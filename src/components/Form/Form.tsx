@@ -18,6 +18,7 @@ import { FlightDataContext } from '../../context/flightDataContext'
 import { useSpeechContext } from '@speechly/react-client'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
 import { KeyboardDatePicker } from '@material-ui/pickers'
+import { TDate } from '../../types/type'
 
 export default function Form(): JSX.Element {
     const { segment, speechState } = useSpeechContext()
@@ -99,8 +100,7 @@ export default function Form(): JSX.Element {
                             className='dateInput'
                             disablePast
                             variant='inline'
-                            onChange={(date: TDate | null) => {
-                                const { c } = date
+                            onChange={({ c }: TDate) => {
                                 if (c === null) return
                                 const dateString = `${c.month}/${c.day}/${c.year}`
                                 setFlightData({
@@ -148,8 +148,7 @@ export default function Form(): JSX.Element {
                             KeyboardButtonProps={{
                                 className: 'icon'
                             }}
-                            onChange={(date: TDate | null) => {
-                                const { c } = date
+                            onChange={({ c }: TDate) => {
                                 if (c === null) return
                                 const dateString = `${c.month}/${c.day}/${c.year}`
                                 setFlightData({
@@ -184,7 +183,7 @@ export default function Form(): JSX.Element {
                 <CheckCircleIcon
                     onClick={() => setFlightData({
                         ...flightData,
-                        direct: !flightData.direct
+                        direct: formData?.direct === 'DIRECT' ? '' : 'DIRECT'
                     })}
                     className={formData?.direct === 'DIRECT' ? 'checkboxSelected' : 'checkboxNotSelected'}
                     color={formData?.direct ? '#0f4e92' : 'white'} w={16} h={16} />
