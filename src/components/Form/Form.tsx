@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { ChangeEvent, useContext } from 'react'
 import {
     Input,
     Box,
@@ -22,14 +22,14 @@ import { KeyboardDatePicker } from '@material-ui/pickers'
 export default function Form(): JSX.Element {
     const { segment, speechState } = useSpeechContext()
     useUpdateFlightData(segment)
-    const { flightData, tentativeFlightData } = useContext(FlightDataContext)
+    const { flightData, tentativeFlightData, setFlightData } = useContext(FlightDataContext)
     const formData = speechState === 'Recording' || speechState === 'Loading' ? tentativeFlightData : flightData
 
     const getPassengerMenuItems = () => {
 
         const items = []
         for (let i = 1; i < 10; i++) {
-            items.push(<MenuItem key={i} >{i}</MenuItem>)
+            items.push(<MenuItem onClick={() => setFlightData({ ...flightData, passengers: i })} key={i} >{i}</MenuItem>)
         }
         return items
     }
@@ -45,7 +45,7 @@ export default function Form(): JSX.Element {
             borderRadius='5px'
             w='900px'
             h='500px'>
-            <ButtonGroup spacing={0} display='flex' width='600px'>
+            <ButtonGroup isAttached display='flex' width='600px'>
                 <Button
                     flex={1}
                     height='70px'
@@ -54,6 +54,7 @@ export default function Form(): JSX.Element {
                     borderRight='none'
                     borderRightRadius='none'
                     borderLeftRadius='32px'
+                    _hover={{ background: formData?.return ? 'white' : 'blue.600' }}
                     color={formData?.return ? 'blue.100' : 'white'}
                     bgColor={formData?.return ? 'white' : 'blue.600'}>
                     One way
@@ -66,6 +67,7 @@ export default function Form(): JSX.Element {
                     borderLeftRadius='none'
                     borderRightRadius='32px'
                     variant='outline'
+                    _hover={{ background: formData?.return ? 'blue.600' : 'white' }}
                     color={formData?.return ? 'white' : 'blue.100'}
                     bgColor={formData?.return ? 'blue.600' : 'white'}>
                     Return
@@ -75,7 +77,16 @@ export default function Form(): JSX.Element {
                 <VStack spacing={8}>
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>From</Text>
-                        <Input fontSize='28px' id='from-input' className='input' variant='unstyled' value={formData?.from} size='lg' />
+                        <Input
+                            fontSize='28px'
+                            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                setFlightData({
+                                    ...flightData,
+                                    from: event.target.value
+                                })
+                            }}
+                            id='from-input'
+                            className='input' variant='unstyled' value={formData?.from} size='lg' />
                     </div>
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>Departure</Text>
@@ -84,11 +95,19 @@ export default function Form(): JSX.Element {
                             KeyboardButtonProps={{
                                 className: 'icon'
                             }}
-                            format='mm/dd/yyyy'
+                            format='MM/dd/yyyy'
                             className='dateInput'
                             disablePast
                             variant='inline'
-                            onChange={(d: Date | null) => console.log(d)}
+                            onChange={(date: TDate | null) => {
+                                const { c } = date
+                                if (c === null) return
+                                const dateString = `${c.month}/${c.day}/${c.year}`
+                                setFlightData({
+                                    ...flightData,
+                                    depart: dateString
+                                })
+                            }}
                             autoOk
                             value={formData?.depart || null}
                         />
@@ -109,7 +128,18 @@ export default function Form(): JSX.Element {
                 <VStack spacing={8}>
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>To</Text>
-                        <Input fontSize='28px' id='to-input' className='input' variant='unstyled' value={formData?.to} size='lg' />
+                        <Input
+                            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                setFlightData({
+                                    ...flightData,
+                                    to: event.target.value
+                                })
+                            }}
+                            fontSize='28px'
+                            id='to-input'
+                            className='input'
+                            variant='unstyled'
+                            value={formData?.to} size='lg' />
                     </div>
                     <div className='inputWrapper'>
                         <Text className='inputLabel'>Return</Text>
@@ -118,12 +148,20 @@ export default function Form(): JSX.Element {
                             KeyboardButtonProps={{
                                 className: 'icon'
                             }}
+                            onChange={(date: TDate | null) => {
+                                const { c } = date
+                                if (c === null) return
+                                const dateString = `${c.month}/${c.day}/${c.year}`
+                                setFlightData({
+                                    ...flightData,
+                                    return: dateString
+                                })
+                            }}
                             autoOk
                             className='dateInput'
-                            format='mm/dd/yyyy'
+                            format='MM/dd/yyyy'
                             disablePast
                             variant='inline'
-                            onChange={(d: Date | null) => console.log(d)}
                             value={formData?.return || null}
                         />
                     </div>
@@ -135,9 +173,8 @@ export default function Form(): JSX.Element {
                                 <ChevronDownIcon />
                             </MenuButton>
                             <MenuList>
-                                <MenuItem>Economy</MenuItem>
-                                <MenuItem>Business</MenuItem>
-                                <MenuItem>First Class</MenuItem>
+                                <MenuItem onClick={() => setFlightData({ ...flightData, class: 'Economy' })}>Economy</MenuItem>
+                                <MenuItem onClick={() => setFlightData({ ...flightData, class: 'Business' })}>Business</MenuItem>
                             </MenuList>
                         </Menu>
                     </div>
@@ -145,6 +182,10 @@ export default function Form(): JSX.Element {
             </HStack>
             <div className='checkboxWrapper'>
                 <CheckCircleIcon
+                    onClick={() => setFlightData({
+                        ...flightData,
+                        direct: !flightData.direct
+                    })}
                     className={formData?.direct === 'DIRECT' ? 'checkboxSelected' : 'checkboxNotSelected'}
                     color={formData?.direct ? '#0f4e92' : 'white'} w={16} h={16} />
                 <Text className='checkboxLabel'>Direct Only</Text>
