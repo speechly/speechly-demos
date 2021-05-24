@@ -23,5 +23,11 @@ module.exports = () => {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
+    devServer: {
+      headers: {
+        'Cross-Origin-Embedder-Policy': 'require-corp',
+        'Cross-Origin-Opener-Policy': 'same-origin',
+      },
+    },
   }
 }
