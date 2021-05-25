@@ -9,7 +9,7 @@ describe('App tests', () => {
         const testRenderer = create(<App />);
         const testInstance = testRenderer.root;
 
-        expect(testInstance.find(App))
+        expect(testInstance.findAllByType(App).length).toBe(1)
     })
 
 
@@ -17,7 +17,7 @@ describe('App tests', () => {
         const testRenderer = create(<App />);
         const testInstance = testRenderer.root;
 
-        expect(testInstance.findByType(Form))
+        expect(testInstance.findAllByType(Form).length).toBe(1)
     })
 
 })

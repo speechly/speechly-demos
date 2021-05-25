@@ -17,17 +17,19 @@ describe('Form tests', () => {
     beforeEach(() => {
         act(() => {
             component = create(
-                <MuiPickersUtilsProvider utils={LuxonUtils}>
-                    <ChakraProvider>
-                        <Form />
-                    </ChakraProvider>
-                </MuiPickersUtilsProvider>)
+                <FlightDataContext.Provider value={{}}>
+                    <MuiPickersUtilsProvider utils={LuxonUtils}>
+                        <ChakraProvider>
+                            <Form />
+                        </ChakraProvider>
+                    </MuiPickersUtilsProvider>
+                </FlightDataContext.Provider>)
         })
     });
 
     test('Renders <Form /> component', () => {
         testInstance = component.root
-        expect(testInstance.findByType(Form))
+        expect(testInstance.findAllByType(Form).length).toBe(1)
     })
 
     test('Renders <Box /> component', () => {
@@ -139,7 +141,7 @@ describe('Form tests', () => {
 
                     testInstance = component.root
                     const input = testInstance.findByProps({ id: scenario.input })
-                    expect(input.props.children[0]).toBe(scenario.value)
+                    expect(input.props.value).toBe(scenario.value)
                 })
             })
         })

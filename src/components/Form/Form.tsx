@@ -1,24 +1,16 @@
 import React, { ChangeEvent, useContext } from 'react'
-import {
-    Input,
-    Box,
-    HStack,
-    Text,
-    VStack,
-    ButtonGroup,
-    Button,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem
-} from '@chakra-ui/react'
-import { CheckCircleIcon, ChevronDownIcon } from '@chakra-ui/icons'
+import { Box, HStack, VStack, MenuItem } from '@chakra-ui/react'
+import TextInput from './components/TextInput/TextInput'
+
 import './Form.css'
 import { FlightDataContext } from '../../context/flightDataContext'
 import { useSpeechContext } from '@speechly/react-client'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
-import { KeyboardDatePicker } from '@material-ui/pickers'
 import { TDate } from '../../types/type'
+import RoundTripButton from './components/RoundTripButton/RoundTripButton'
+import DatePicker from './components/DatePicker/DatePicker'
+import Dropdown from './components/Dropdown/Dropdown'
+import CircleCheckBox from './components/CircleCheckBox/CircleCheckBox'
 
 export default function Form(): JSX.Element {
     const { segment, speechState } = useSpeechContext()
@@ -35,6 +27,28 @@ export default function Form(): JSX.Element {
         return items
     }
 
+    const handleTextInputChange = (entry: string, value: string) => {
+        setFlightData({
+            ...flightData,
+            [entry]: value
+        })
+    }
+
+    const handleDateInputChange = (entry: string, date: TDate) => {
+        const { c } = date
+        if (c === null) return
+        const dateString = `${c.month}/${c.day}/${c.year}`
+        setFlightData({
+            ...flightData,
+            [entry]: dateString
+        })
+    }
+
+    const handleCheckBoxChange = () => setFlightData({
+        ...flightData,
+        direct: formData?.direct === 'DIRECT' ? '' : 'DIRECT'
+    })
+
     return (
         <Box
             p={30}
@@ -46,149 +60,41 @@ export default function Form(): JSX.Element {
             borderRadius='5px'
             w='900px'
             h='500px'>
-            <ButtonGroup isAttached display='flex' width='600px'>
-                <Button
-                    flex={1}
-                    height='70px'
-                    size='lg'
-                    variant='outline'
-                    borderRight='none'
-                    borderRightRadius='none'
-                    borderLeftRadius='32px'
-                    _hover={{ background: formData?.return ? 'white' : 'blue.600' }}
-                    color={formData?.return ? 'blue.100' : 'white'}
-                    bgColor={formData?.return ? 'white' : 'blue.600'}>
-                    One way
-                </Button>
-                <Button
-                    flex={1}
-                    height='70px'
-                    size='lg'
-                    borderLeft='none'
-                    borderLeftRadius='none'
-                    borderRightRadius='32px'
-                    variant='outline'
-                    _hover={{ background: formData?.return ? 'blue.600' : 'white' }}
-                    color={formData?.return ? 'white' : 'blue.100'}
-                    bgColor={formData?.return ? 'blue.600' : 'white'}>
-                    Return
-                </Button>
-            </ButtonGroup>
+            <RoundTripButton return={Boolean(formData?.return)} />
             <HStack marginTop='30px'>
                 <VStack spacing={8}>
-                    <div className='inputWrapper'>
-                        <Text className='inputLabel'>From</Text>
-                        <Input
-                            fontSize='28px'
-                            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                                setFlightData({
-                                    ...flightData,
-                                    from: event.target.value
-                                })
-                            }}
-                            id='from-input'
-                            className='input' variant='unstyled' value={formData?.from} size='lg' />
-                    </div>
-                    <div className='inputWrapper'>
-                        <Text className='inputLabel'>Departure</Text>
-                        <KeyboardDatePicker
-                            id='departure-input'
-                            KeyboardButtonProps={{
-                                className: 'icon'
-                            }}
-                            format='MM/dd/yyyy'
-                            className='dateInput'
-                            disablePast
-                            variant='inline'
-                            onChange={({ c }: TDate) => {
-                                if (c === null) return
-                                const dateString = `${c.month}/${c.day}/${c.year}`
-                                setFlightData({
-                                    ...flightData,
-                                    depart: dateString
-                                })
-                            }}
-                            autoOk
-                            value={formData?.depart || null}
-                        />
-                    </div>
-                    <div className='inputWrapper'>
-                        <Text className='inputLabel'>Passengers</Text>
-                        <Menu placement='bottom'>
-                            <MenuButton id='passengers-input'>
-                                {formData?.passengers}
-                                <ChevronDownIcon />
-                            </MenuButton>
-                            <MenuList>
-                                {getPassengerMenuItems()}
-                            </MenuList>
-                        </Menu>
-                    </div>
+                    <TextInput
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('from', e.target.value)}
+                        label='From'
+                        id='from-input'
+                        value={formData?.from} />
+                    <DatePicker
+                        value={formData?.depart || null}
+                        onChange={(date: TDate) => handleDateInputChange('depart', date)}
+                        id='departure-input'
+                        label='Departure' />
+                    <Dropdown value={formData?.passengers} label='Passengers' id='passengers-input'>
+                        {getPassengerMenuItems()}
+                    </Dropdown>
                 </VStack>
                 <VStack spacing={8}>
-                    <div className='inputWrapper'>
-                        <Text className='inputLabel'>To</Text>
-                        <Input
-                            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                                setFlightData({
-                                    ...flightData,
-                                    to: event.target.value
-                                })
-                            }}
-                            fontSize='28px'
-                            id='to-input'
-                            className='input'
-                            variant='unstyled'
-                            value={formData?.to} size='lg' />
-                    </div>
-                    <div className='inputWrapper'>
-                        <Text className='inputLabel'>Return</Text>
-                        <KeyboardDatePicker
-                            id='return-input'
-                            KeyboardButtonProps={{
-                                className: 'icon'
-                            }}
-                            onChange={({ c }: TDate) => {
-                                if (c === null) return
-                                const dateString = `${c.month}/${c.day}/${c.year}`
-                                setFlightData({
-                                    ...flightData,
-                                    return: dateString
-                                })
-                            }}
-                            autoOk
-                            className='dateInput'
-                            format='MM/dd/yyyy'
-                            disablePast
-                            variant='inline'
-                            value={formData?.return || null}
-                        />
-                    </div>
-                    <div className='inputWrapper'>
-                        <Text className='inputLabel'>Class</Text>
-                        <Menu isLazy>
-                            <MenuButton textTransform='uppercase' id='class-input'>
-                                {formData?.class || 'Economy'}
-                                <ChevronDownIcon />
-                            </MenuButton>
-                            <MenuList>
-                                <MenuItem onClick={() => setFlightData({ ...flightData, class: 'Economy' })}>Economy</MenuItem>
-                                <MenuItem onClick={() => setFlightData({ ...flightData, class: 'Business' })}>Business</MenuItem>
-                            </MenuList>
-                        </Menu>
-                    </div>
+                    <TextInput
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('to', e.target.value)}
+                        label='To'
+                        value={formData?.to}
+                        id='to-input' />
+                    <DatePicker
+                        value={formData?.return || null}
+                        onChange={(date: TDate) => handleDateInputChange('return', date)}
+                        id='return-input'
+                        label='Return' />
+                    <Dropdown value={formData?.class || 'Economy'} label='Class' id='class-input'>
+                        <MenuItem onClick={() => setFlightData({ ...flightData, class: 'Economy' })}>Economy</MenuItem>
+                        <MenuItem onClick={() => setFlightData({ ...flightData, class: 'Business' })}>Business</MenuItem>
+                    </Dropdown>
                 </VStack>
             </HStack>
-            <div className='checkboxWrapper'>
-                <CheckCircleIcon
-                    onClick={() => setFlightData({
-                        ...flightData,
-                        direct: formData?.direct === 'DIRECT' ? '' : 'DIRECT'
-                    })}
-                    className={formData?.direct === 'DIRECT' ? 'checkboxSelected' : 'checkboxNotSelected'}
-                    color={formData?.direct ? '#0f4e92' : 'white'} w={16} h={16} />
-                <Text className='checkboxLabel'>Direct Only</Text>
-            </div>
+            <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct === 'DIRECT'} />
         </Box>
     )
 }

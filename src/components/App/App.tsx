@@ -17,7 +17,7 @@ import Form from '../Form/Form'
 import './App.css'
 
 
-export default function App(): JSX.Element {
+const App: React.FC = (): JSX.Element => {
   return (
 
     <FlightContextProvider>
@@ -43,3 +43,5 @@ export default function App(): JSX.Element {
 
   )
 }
+
+export default App
