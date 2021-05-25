@@ -9,6 +9,8 @@ interface Props {
     label: string,
     fontSize?: string,
     id: string,
+    minDate: Date,
+    minDateMessage?: string
 }
 
 const DatePicker: React.FC<Props> = (props): JSX.Element => {
@@ -22,7 +24,9 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
                 className='dateInput'
                 disablePast
                 variant='inline'
+                minDateMessage={props.minDateMessage}
                 autoOk
+                minDate={props.minDate}
                 value={props.value}
                 KeyboardButtonProps={{
                     className: 'icon'

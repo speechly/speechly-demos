@@ -69,6 +69,7 @@ export default function Form(): JSX.Element {
                         id='from-input'
                         value={formData?.from} />
                     <DatePicker
+                        minDate={new Date()}
                         value={formData?.depart || null}
                         onChange={(date: TDate) => handleDateInputChange('depart', date)}
                         id='departure-input'
@@ -84,6 +85,8 @@ export default function Form(): JSX.Element {
                         value={formData?.to}
                         id='to-input' />
                     <DatePicker
+                        minDateMessage='Date should not be before departure date'
+                        minDate={formData?.depart ? new Date(formData?.depart) : new Date()}
                         value={formData?.return || null}
                         onChange={(date: TDate) => handleDateInputChange('return', date)}
                         id='return-input'
