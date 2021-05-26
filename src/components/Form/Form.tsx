@@ -1,6 +1,9 @@
 import React, { ChangeEvent, useContext } from 'react'
 import { Box, HStack, VStack, MenuItem } from '@chakra-ui/react'
 import TextInput from './components/TextInput/TextInput'
+import {
+    TranscriptDrawer,
+} from '@speechly/react-ui/components/TranscriptDrawer'
 
 import './Form.css'
 import { FlightDataContext } from '../../context/flightDataContext'
@@ -35,8 +38,8 @@ export default function Form(): JSX.Element {
     }
 
     const handleDateInputChange = (entry: string, date: TDate) => {
+        if (date === null || date.c === null) return
         const { c } = date
-        if (c === null) return
         const dateString = `${c.month}/${c.day}/${c.year}`
         setFlightData({
             ...flightData,
@@ -52,16 +55,19 @@ export default function Form(): JSX.Element {
     return (
         <Box
             p={30}
+            paddingTop={{
+                base: '70%',
+                lg: '13%',
+            }}
             display='flex'
             flexDirection='column'
             alignItems='center'
             bgGradient="linear(to-r, blue.400, teal.50)"
-            borderWidth='1px'
-            borderRadius='5px'
-            w='900px'
-            h='500px'>
+            h='100vh'
+            w='100%'>
+            <TranscriptDrawer hint='Try "Book a flight from London to Helsinki"' />
             <RoundTripButton return={Boolean(formData?.return)} />
-            <HStack marginTop='30px'>
+            <HStack marginTop='30px' alignItems='normal'>
                 <VStack spacing={8}>
                     <TextInput
                         onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('from', e.target.value)}
@@ -77,6 +83,7 @@ export default function Form(): JSX.Element {
                     <Dropdown value={formData?.passengers} label='Passengers' id='passengers-input'>
                         {getPassengerMenuItems()}
                     </Dropdown>
+                    <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct === 'DIRECT'} />
                 </VStack>
                 <VStack spacing={8}>
                     <TextInput
@@ -85,7 +92,7 @@ export default function Form(): JSX.Element {
                         value={formData?.to}
                         id='to-input' />
                     <DatePicker
-                        minDateMessage='Date should not be before departure date'
+                        minDateMessage='Date can not be before departure date'
                         minDate={formData?.depart ? new Date(formData?.depart) : new Date()}
                         value={formData?.return || null}
                         onChange={(date: TDate) => handleDateInputChange('return', date)}
@@ -97,7 +104,6 @@ export default function Form(): JSX.Element {
                     </Dropdown>
                 </VStack>
             </HStack>
-            <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct === 'DIRECT'} />
         </Box>
     )
 }

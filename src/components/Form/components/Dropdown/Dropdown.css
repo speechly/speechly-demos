@@ -1,0 +1,15 @@
+.inputWrapper > button > span > svg {
+    position: absolute;
+}
+
+.inputWrapper > button {
+    font-weight: bold;
+    padding-left: 15px;
+    color: #0f4e92;
+    display: flex;
+    border: none;
+}
+
+.inputWrapper > button > span {
+    display: flex;
+}

@@ -1,0 +1,28 @@
+.checkboxWrapper {
+    display: flex;
+    padding-top: 10px;
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+}
+
+.checkboxSelected {
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px #000000;
+}
+
+.checkboxNotSelected {
+    background-color: #d1dcec;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #0f4e92;
+    cursor: pointer;
+}
+
+.checkboxLabel {
+    margin-left: 5px;
+    color: #0f4e92;
+    font-weight: bold;
+    text-transform: uppercase;
+}

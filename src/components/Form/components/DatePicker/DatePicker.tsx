@@ -1,7 +1,8 @@
 import React from 'react'
-import { Text } from '@chakra-ui/react'
+import { Text, Box } from '@chakra-ui/react'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import { TDate } from '../../../../types/type'
+import './DatePicker.css'
 
 interface Props {
     onChange: (date: TDate) => void,
@@ -15,8 +16,13 @@ interface Props {
 
 const DatePicker: React.FC<Props> = (props): JSX.Element => {
     return (
-        <div className='inputWrapper'>
-            <Text className='inputLabel'>{props.label}</Text>
+        <Box
+            className='inputWrapper'
+            h={{ base: '120px', lg: '70px' }}
+            w={{ base: '450px', lg: '300px' }} >
+            <Text className='inputLabel'>
+                {props.label}
+            </Text>
             <KeyboardDatePicker
                 id={props.id}
                 onChange={props.onChange}
@@ -32,7 +38,7 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
                     className: 'icon'
                 }}
             />
-        </div>
+        </Box>
     )
 }
 

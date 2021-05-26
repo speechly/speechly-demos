@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
+import './CircleCheckBox.css'
 
 interface Props {
     onChange: () => void,
@@ -14,9 +15,13 @@ const CircleCheckBox: React.FC<Props> = (props): JSX.Element => {
                 onClick={props.onChange}
                 className={props.selected ? 'checkboxSelected' : 'checkboxNotSelected'}
                 color={props.selected ? '#0f4e92' : 'white'}
-                w={16}
-                h={16} />
-            <Text className='checkboxLabel'>Direct Only</Text>
+                w={{ base: 24, lg: 16 }}
+                h={{ base: 24, lg: 16 }} />
+            <Text
+                className='checkboxLabel'
+                fontSize={{ base: '48px', lg: '28px' }}>
+                Direct Only
+            </Text>
         </div>
     )
 }

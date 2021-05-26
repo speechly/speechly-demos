@@ -1,6 +1,7 @@
 import React from 'react'
-import { Text, Menu, MenuButton, MenuList } from '@chakra-ui/react'
+import { Text, Menu, MenuButton, MenuList, Box } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
+import './Dropdown.css'
 
 interface Props {
     value: string | number,
@@ -10,18 +11,24 @@ interface Props {
 
 const Dropdown: React.FC<Props> = (props): JSX.Element => {
     return (
-        <div className='inputWrapper'>
+        <Box
+            className='inputWrapper'
+            h={{ base: '120px', lg: '70px' }}
+            w={{ base: '450px', lg: '300px' }}
+            fontSize={{ base: '38px', lg: '28px' }} >
             <Text className='inputLabel'>{props.label}</Text>
-            <Menu placement='bottom'>
-                <MenuButton id={props.id}>
+            <Menu placement='bottom' matchWidth>
+                <MenuButton
+                    id={props.id}
+                    w='300px' >
                     {props.value}
-                    <ChevronDownIcon />
+                    <ChevronDownIcon marginLeft={{ base: '350px', lg: '245px' }} />
                 </MenuButton>
                 <MenuList>
                     {props.children}
                 </MenuList>
             </Menu>
-        </div>
+        </Box >
     )
 }
 

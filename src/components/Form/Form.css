@@ -6,90 +6,18 @@
 .inputWrapper {
     border-radius: 32px;
     background-color: white;
-    width: 300px;
-    height: 70px;
-}
-
-.inputWrapper > button {
-    font-size: 28px;
-    font-weight: bold;
-    padding-left: 15px;
-    color: #0f4e92;
-    width: 285px;
-    display: flex;
-    border: none;
-}
-
-.inputWrapper > button > span > svg {
-    position: absolute;
-    margin-left: 245px;
-}
-
-.inputWrapper > button > span {
-    display: flex;
-}
-
-.dateInput {
-    margin: 0px 0px 0px 16px !important;
-}
-
-.dateInput > div {
-    color: #0f4e92 !important;
-    font-size: 26px !important;
-}
-
-.dateInput > ::after {
-    border-bottom: none !important;
-}
-
-.dateInput > ::before {
-    border-bottom: none !important;
 }
 
 .inputLabel {
     margin: 7px 0px 0px 16px;
     color: #4fa1f9;
-    font-size: 10px;
     font-weight: bold;
     text-transform: uppercase;
+    font-size: 24px;
 }
 
-.input {
-    margin: 0px 0px 0px 16px;
-    font-weight: bold;
-    color: #0f4e92;
-}
-
-.icon {
-    color: #0f4e92 !important;
-}
-
-.checkboxWrapper {
-    display: flex;
-    align-self: flex-start;
-    align-items: center;
-    margin-left: 13%;
-    padding-top: 10px;
-}
-
-.checkboxSelected {
-    cursor: pointer;
-    background-color: white;
-    border-radius: 50%;
-    box-shadow: inset 0 0 10px #000000;
-}
-
-.checkboxNotSelected {
-    background-color: #d1dcec;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #0f4e92;
-    cursor: pointer;
-}
-
-.checkboxLabel {
-    margin-left: 5px;
-    font-size: 28px;
-    color: #0f4e92;
-    font-weight: bold;
-    text-transform: uppercase;
+@media screen and (min-width: 40em) {
+    .inputLabel {
+        font-size: 10px;
+    }
 }

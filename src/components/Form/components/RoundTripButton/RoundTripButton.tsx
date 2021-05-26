@@ -7,11 +7,15 @@ interface Props {
 
 const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
     return (
-        <ButtonGroup isAttached display='flex' width='600px'>
+        <ButtonGroup
+            isAttached
+            display='flex'
+            w={{ base: '100%', lg: '600px' }} >
             <Button
                 flex={1}
-                height='70px'
+                h={{ base: '120px', lg: '70px' }}
                 size='lg'
+                fontSize='36px'
                 id='one-way-button'
                 variant='outline'
                 borderRight='none'
@@ -23,7 +27,8 @@ const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
             </Button>
             <Button
                 flex={1}
-                height='70px'
+                h={{ base: '120px', lg: '70px' }}
+                fontSize='36px'
                 size='lg'
                 borderLeft='none'
                 borderLeftRadius='none'

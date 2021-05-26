@@ -22,7 +22,7 @@
     "@emotion/styled": "^11.3.0",
     "@material-ui/pickers": "^3.3.10",
     "@speechly/react-client": "^0.0.20",
-    "@speechly/react-ui": "^1.2.9",
+    "@speechly/react-ui": "^2.0.0-beta.7",
     "framer-motion": "^4.1.16",
     "luxon": "^1.27.0",
     "react": "^17.0.2",

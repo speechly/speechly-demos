@@ -1,0 +1,36 @@
+.dateInput {
+    margin: 0px 0px 0px 16px !important;
+}
+
+.dateInput > div {
+    color: #0f4e92 !important;
+    font-size: 48px !important;
+}
+
+@media screen and (min-width: 40em) {
+    .dateInput > div {
+        font-size: 24px !important;
+    }
+  }
+
+.dateInput > ::after {
+    border-bottom: none !important;
+}
+
+.dateInput > ::before {
+    border-bottom: none !important;
+}
+
+.icon {
+    color: #0f4e92 !important;
+}
+
+.icon > span > svg {
+    font-size: 68px !important;
+}
+
+@media screen and (min-width: 40em) {
+    .icon > span > svg {
+        font-size: 24px !important;
+    }
+  }
