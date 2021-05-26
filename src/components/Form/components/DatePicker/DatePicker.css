@@ -11,14 +11,6 @@
     .dateInput > div {
         font-size: 24px !important;
     }
-  }
-
-.dateInput > ::after {
-    border-bottom: none !important;
-}
-
-.dateInput > ::before {
-    border-bottom: none !important;
 }
 
 .icon {
@@ -33,4 +25,8 @@
     .icon > span > svg {
         font-size: 24px !important;
     }
-  }
+}
+
+.mobileCalendar {
+    transform: scale(2.5);
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Box } from '@chakra-ui/react'
+import { Text, Box, useMediaQuery } from '@chakra-ui/react'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import { TDate } from '../../../../types/type'
 import './DatePicker.css'
@@ -15,6 +15,8 @@ interface Props {
 }
 
 const DatePicker: React.FC<Props> = (props): JSX.Element => {
+    const [isMobile] = useMediaQuery('(max-width: 62em)')
+    const dialogProps = isMobile ? { className: 'mobileCalendar' } : {}
     return (
         <Box
             className='inputWrapper'
@@ -28,8 +30,12 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
                 onChange={props.onChange}
                 format='MM/dd/yyyy'
                 className='dateInput'
+                InputProps={{
+                    disableUnderline: true,
+                }}
+                DialogProps={{ ...dialogProps }}
                 disablePast
-                variant='inline'
+                variant='dialog'
                 minDateMessage={props.minDateMessage}
                 autoOk
                 minDate={props.minDate}

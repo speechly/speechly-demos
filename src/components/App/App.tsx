@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { SpeechProvider } from '@speechly/react-client'
 import {
@@ -7,10 +6,8 @@ import {
   ErrorPanel
 } from '@speechly/react-ui'
 import LuxonUtils from '@date-io/luxon'
-import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { ChakraProvider } from '@chakra-ui/react'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-
 import FlightContextProvider from '../../context/flightDataContext'
 
 
@@ -19,13 +16,6 @@ import './App.css'
 
 
 const App: React.FC = (): JSX.Element => {
-  // const breakpoints = createBreakpoints({
-  //   sm: "30em",
-  //   md: "48em",
-  //   lg: "62em",
-  //   xl: "80em",
-  //   "2xl": "96em",
-  // })
 
   return (
     <FlightContextProvider>
