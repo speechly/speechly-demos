@@ -18,7 +18,7 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
             w={{ base: '450px', lg: '300px' }} >
             <Text className='inputLabel'>{props.label}</Text>
             <Input
-                fontSize={{ base: '64px', lg: '28px' }}
+                fontSize={{ base: '54px', lg: '28px' }}
                 onChange={props.onChange}
                 id={props.id}
                 className='input'

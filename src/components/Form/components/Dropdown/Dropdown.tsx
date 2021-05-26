@@ -20,9 +20,9 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
             <Menu placement='bottom' matchWidth>
                 <MenuButton
                     id={props.id}
-                    w='300px' >
+                    w={{ base: '450px', lg: '300px' }} >
                     {props.value}
-                    <ChevronDownIcon marginLeft={{ base: '350px', lg: '245px' }} />
+                    <ChevronDownIcon marginLeft={{ base: '370px', lg: '245px' }} />
                 </MenuButton>
                 <MenuList>
                     {props.children}

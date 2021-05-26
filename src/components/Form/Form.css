@@ -16,7 +16,7 @@
     font-size: 24px;
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 62em) {
     .inputLabel {
         font-size: 10px;
     }
