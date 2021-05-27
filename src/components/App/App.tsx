@@ -20,6 +20,7 @@ import './App.css'
 const App: React.FC = (): JSX.Element => {
   const [isMobile] = useMediaQuery('(max-width: 62em)')
   const transcriptFontSize = isMobile ? '3rem' : '1.5rem'
+
   return (
     <FlightContextProvider>
       <MuiPickersUtilsProvider utils={LuxonUtils}>
@@ -28,7 +29,8 @@ const App: React.FC = (): JSX.Element => {
 
 
             <div className='app'>
-              <TranscriptDrawer hint='Try "Book a flight from London to Helsinki"'
+              <TranscriptDrawer
+                hint='Try "Book a flight from London to Helsinki"'
                 fontSize={transcriptFontSize}
                 highlightColor='#0f4e92'
                 smallTextColor='#187ce7'
