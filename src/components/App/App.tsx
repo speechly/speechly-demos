@@ -5,8 +5,10 @@ import {
   PushToTalkButtonContainer,
   ErrorPanel
 } from '@speechly/react-ui'
+import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer'
+
 import LuxonUtils from '@date-io/luxon'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, useMediaQuery } from '@chakra-ui/react'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import FlightContextProvider from '../../context/flightDataContext'
 
@@ -16,7 +18,8 @@ import './App.css'
 
 
 const App: React.FC = (): JSX.Element => {
-
+  const [isMobile] = useMediaQuery('(max-width: 62em)')
+  const transcriptFontSize = isMobile ? '3rem' : '1.5rem'
   return (
     <FlightContextProvider>
       <MuiPickersUtilsProvider utils={LuxonUtils}>
@@ -25,6 +28,11 @@ const App: React.FC = (): JSX.Element => {
 
 
             <div className='app'>
+              <TranscriptDrawer hint='Try "Book a flight from London to Helsinki"'
+                fontSize={transcriptFontSize}
+                highlightColor='#0f4e92'
+                smallTextColor='#187ce7'
+                backgroundColor='rgba(162, 213, 240, 0.4)' />
               <Form />
             </div>
 

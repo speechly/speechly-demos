@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "dev": "webpack serve",
+    "build": "webpack --mode production --config ./webpack.config.js",
+    "dev": "webpack serve --mode development --progress --hot --config ./webpack.config.js",
     "test": "jest",
     "jest-watch": "jest --watch",
     "lint": "eslint src/** --ext .js,.ts,.tsx",

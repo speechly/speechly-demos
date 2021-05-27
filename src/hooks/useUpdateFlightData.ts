@@ -10,10 +10,10 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
     let result: IFlightInformation
 
     useEffect(() => {
-        if (segment && segment.entities.length > 0) {
+        if (segment && segment.entities.length > 0 && flightData) {
             segment.entities.forEach((entity: Entity) => {
                 for (const [key, value] of Object.entries(flightData)) {
-                    if (entity.type === key && entity.value !== value && entity.value !== undefined) {
+                    if (entity.type === key && entity.value !== value && entity.value !== undefined && entity.value !== '') {
                         let value = entity.value
 
                         if (entity.type === DEPART || entity.type === RETURN) {
@@ -29,10 +29,12 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
                 }
             })
 
-            setTentativeFlightData(result)
+            if (result !== undefined) {
+                setTentativeFlightData(result)
 
-            if (segment.isFinal) {
-                setFlightData(result)
+                if (segment.isFinal) {
+                    setFlightData(result)
+                }
             }
         }
     }, [segment])

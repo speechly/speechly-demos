@@ -1,15 +1,12 @@
 import React, { ChangeEvent, useContext } from 'react'
 import { Box, HStack, VStack, MenuItem } from '@chakra-ui/react'
 import TextInput from './components/TextInput/TextInput'
-import {
-    TranscriptDrawer,
-} from '@speechly/react-ui/components/TranscriptDrawer'
 
 import './Form.css'
 import { FlightDataContext } from '../../context/flightDataContext'
 import { useSpeechContext } from '@speechly/react-client'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
-import { TDate } from '../../types/type'
+import { IFlightInformation, TDate } from '../../types/type'
 import RoundTripButton from './components/RoundTripButton/RoundTripButton'
 import DatePicker from './components/DatePicker/DatePicker'
 import Dropdown from './components/Dropdown/Dropdown'
@@ -18,39 +15,57 @@ import CircleCheckBox from './components/CircleCheckBox/CircleCheckBox'
 export default function Form(): JSX.Element {
     const { segment, speechState } = useSpeechContext()
     useUpdateFlightData(segment)
-    const { flightData, tentativeFlightData, setFlightData } = useContext(FlightDataContext)
+    const { flightData, tentativeFlightData, setFlightData, setTentativeFlightData } = useContext(FlightDataContext)
     const formData = speechState === 'Recording' || speechState === 'Loading' ? tentativeFlightData : flightData
+
+    const updateFlightdata = (data: IFlightInformation): void => {
+        setFlightData(data)
+        setTentativeFlightData(data)
+    }
 
     const getPassengerMenuItems = () => {
 
         const items = []
         for (let i = 1; i < 10; i++) {
-            items.push(<MenuItem onClick={() => setFlightData({ ...flightData, passengers: i })} key={i} >{i}</MenuItem>)
+            items.push(<MenuItem onClick={() => handleMenuChange('passengers', i)} key={i} >{i}</MenuItem>)
         }
         return items
     }
 
     const handleTextInputChange = (entry: string, value: string) => {
-        setFlightData({
+        const data = {
             ...flightData,
             [entry]: value
-        })
+        }
+        updateFlightdata(data)
     }
 
     const handleDateInputChange = (entry: string, date: TDate) => {
         if (date === null || date.c === null) return
         const { c } = date
         const dateString = `${c.month}/${c.day}/${c.year}`
-        setFlightData({
+        const data = {
             ...flightData,
             [entry]: dateString
-        })
+        }
+        updateFlightdata(data)
     }
 
-    const handleCheckBoxChange = () => setFlightData({
-        ...flightData,
-        direct: formData?.direct === 'DIRECT' ? '' : 'DIRECT'
-    })
+    const handleMenuChange = (entry: string, value: string | number) => {
+        const data = {
+            ...flightData,
+            [entry]: value
+        }
+        updateFlightdata(data)
+    }
+
+    const handleCheckBoxChange = () => {
+        const data = {
+            ...flightData,
+            direct: formData?.direct === 'DIRECT' ? '' : 'DIRECT'
+        }
+        updateFlightdata(data)
+    }
 
     return (
         <Box
@@ -65,7 +80,7 @@ export default function Form(): JSX.Element {
             bgGradient="linear(to-r, blue.400, teal.50)"
             h='100vh'
             w='100%'>
-            <TranscriptDrawer hint='Try "Book a flight from London to Helsinki"' />
+
             <RoundTripButton return={Boolean(formData?.return)} />
             <HStack marginTop='30px' alignItems='normal'>
                 <VStack spacing={8}>
@@ -99,8 +114,8 @@ export default function Form(): JSX.Element {
                         id='return-input'
                         label='Return' />
                     <Dropdown value={formData?.class || 'Economy'} label='Class' id='class-input'>
-                        <MenuItem onClick={() => setFlightData({ ...flightData, class: 'Economy' })}>Economy</MenuItem>
-                        <MenuItem onClick={() => setFlightData({ ...flightData, class: 'Business' })}>Business</MenuItem>
+                        <MenuItem onClick={() => handleMenuChange('class', 'Economy')}>Economy</MenuItem>
+                        <MenuItem onClick={() => handleMenuChange('class', 'Business')}>Business</MenuItem>
                     </Dropdown>
                 </VStack>
             </HStack>

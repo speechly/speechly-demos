@@ -1,9 +1,9 @@
-const path = require('path')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = () => {
   return {
-    entry: './src/index.tsx',
-    mode: 'development',
+    entry: path.join(__dirname, 'src', 'index.tsx'),
     module: {
       rules: [
         {
@@ -23,6 +23,11 @@ module.exports = () => {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, 'index.html')
+      })
+    ],
     devServer: {
       headers: {
         'Cross-Origin-Embedder-Policy': 'require-corp',
