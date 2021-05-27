@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm test --ci & npm run lint
+npm run pre-commit-test & npm run lint
