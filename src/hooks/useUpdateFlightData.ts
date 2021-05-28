@@ -3,7 +3,8 @@ import { Entity, SpeechSegment } from '@speechly/react-client'
 import { FlightDataContext } from '../context/flightDataContext'
 import { IFlightInformation } from '../types/type'
 import { calculateDateEntity } from '../utils/dateUtils'
-import { DEPART, RETURN } from '../constants/flightDataConstants'
+import FuzzyStringMatching from '../utils/flightDataUtils'
+import { DEPART, RETURN, CLASS } from '../constants/flightDataConstants'
 
 export const useUpdateFlightData = (segment: SpeechSegment | undefined): void => {
     const { flightData, setFlightData, setTentativeFlightData } = useContext(FlightDataContext)
@@ -18,6 +19,13 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
 
                         if (entity.type === DEPART || entity.type === RETURN) {
                             value = calculateDateEntity(value)
+                        }
+
+                        if (entity.type === CLASS) {
+                            const economyMatch = FuzzyStringMatching.match(entity.value, 'Economy')
+                            const businessMatch = FuzzyStringMatching.match(entity.value, 'Business')
+                            if (economyMatch < businessMatch) value = 'Economy'
+                            else value = 'Business'
                         }
 
                         result = {
