@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "serve dist/",
     "build": "webpack --mode production --config ./webpack.config.js",
     "dev": "webpack serve --mode development --progress --hot --config ./webpack.config.js",
     "test": "jest",
