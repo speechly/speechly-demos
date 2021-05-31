@@ -26,7 +26,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/pickers": "^3.3.10",
     "@speechly/react-client": "^0.0.20",
-    "@speechly/react-ui": "^2.0.0-beta.7",
+    "@speechly/react-ui": "^2.0.0-beta.9",
     "framer-motion": "^4.1.16",
     "luxon": "^1.27.0",
     "react": "^17.0.2",

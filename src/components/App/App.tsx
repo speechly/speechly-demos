@@ -16,6 +16,16 @@ import FlightContextProvider from '../../context/flightDataContext'
 import Form from '../Form/Form'
 import './App.css'
 
+const UsageHints = [
+  'Try: "Book a return flight from London to New York"',
+  'Try: "Departing next Tuesday"',
+  'Try: "Returning next Friday"',
+  'Try: "Direct flights only"',
+  'Try: "Business class"',
+  'Try: "2 passengers"',
+  'Try: "One way"',
+  'Try: "Clear" to restart',
+]
 
 const App: React.FC = (): JSX.Element => {
   const [isMobile] = useMediaQuery('(max-width: 62em)')
@@ -30,7 +40,7 @@ const App: React.FC = (): JSX.Element => {
 
             <div className='app'>
               <TranscriptDrawer
-                hint='Try "Book a flight from London to Helsinki"'
+                hint={UsageHints}
                 fontSize={transcriptFontSize}
                 highlightColor='#0f4e92'
                 smallTextColor='#187ce7'
