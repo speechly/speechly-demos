@@ -14,11 +14,11 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
     return (
         <Box
             className='inputWrapper'
-            h={{ base: '120px', lg: '70px' }}
-            w={{ base: '450px', lg: '300px' }} >
+            h={{ base: '65px', lg: '70px' }}
+            w={{ base: '160px', lg: '300px' }} >
             <Text className='inputLabel'>{props.label}</Text>
             <Input
-                fontSize={{ base: '54px', lg: '28px' }}
+                fontSize={{ base: '22px', lg: '28px' }}
                 onChange={props.onChange}
                 id={props.id}
                 className='input'

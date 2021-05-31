@@ -1,9 +1,8 @@
 .checkboxWrapper {
     display: flex;
     padding-top: 10px;
-    display: flex;
-    align-self: flex-start;
     align-items: center;
+    align-self: baseline;
 }
 
 .checkboxSelected {
