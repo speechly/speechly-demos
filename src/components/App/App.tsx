@@ -43,7 +43,7 @@ const App: React.FC = (): JSX.Element => {
               backgroundColor='rgba(162, 213, 240, 0.4)' />
 
             <PushToTalkButtonContainer>
-              <PushToTalkButton captureKey="" />
+              <PushToTalkButton captureKey="" intro="Hold to book a flight with voice" showTime={30000}/>
               <ErrorPanel />
             </PushToTalkButtonContainer>
 
