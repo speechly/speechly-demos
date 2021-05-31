@@ -32,10 +32,10 @@ describe('Form tests', () => {
         expect(testInstance.findAllByType(Form).length).toBe(1)
     })
 
-    test('Renders 7x <Box /> component', () => {
+    test('Renders 8x <Box /> component', () => {
         testInstance = component.root
         const box = testInstance.findAllByType(Box)
-        expect(box.length).toBe(7)
+        expect(box.length).toBe(8)
     })
 
     test('Renders 2x <Button /> component', () => {

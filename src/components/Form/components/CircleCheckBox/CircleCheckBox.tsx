@@ -15,11 +15,11 @@ const CircleCheckBox: React.FC<Props> = (props): JSX.Element => {
                 onClick={props.onChange}
                 className={props.selected ? 'checkboxSelected' : 'checkboxNotSelected'}
                 color={props.selected ? '#0f4e92' : 'white'}
-                w={{ base: 24, lg: 16 }}
-                h={{ base: 24, lg: 16 }} />
+                w={{ base: 8, lg: 16 }}
+                h={{ base: 8, lg: 16 }} />
             <Text
                 className='checkboxLabel'
-                fontSize={{ base: '48px', lg: '28px' }}>
+                fontSize={{ base: '18px', lg: '28px' }}>
                 Direct Only
             </Text>
         </div>

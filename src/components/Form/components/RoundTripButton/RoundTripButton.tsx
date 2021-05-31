@@ -10,12 +10,12 @@ const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
         <ButtonGroup
             isAttached
             display='flex'
-            w={{ base: '100%', lg: '600px' }} >
+            w={{ base: '320px', lg: '600px' }} >
             <Button
                 flex={1}
-                h={{ base: '120px', lg: '70px' }}
+                h='70px'
                 size='lg'
-                fontSize='36px'
+                fontSize={{ base: '20px', lg: '38px' }}
                 id='one-way-button'
                 variant='outline'
                 borderRight='none'
@@ -27,8 +27,8 @@ const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
             </Button>
             <Button
                 flex={1}
-                h={{ base: '120px', lg: '70px' }}
-                fontSize='36px'
+                h='70px'
+                fontSize={{ base: '20px', lg: '38px' }}
                 size='lg'
                 borderLeft='none'
                 borderLeftRadius='none'

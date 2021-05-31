@@ -4,13 +4,12 @@
 
 .dateInput > div {
     color: #0f4e92 !important;
-    font-size: 48px !important;
+    font-weight: bold;
+    font-size: 20px !important;
 }
-
-@media screen and (min-width: 62em) {
-    .dateInput > div {
-        font-size: 24px !important;
-    }
+.dateInput > div > div > button {
+    padding: 0;
+    padding-right: 6px;
 }
 
 .icon {
@@ -18,15 +17,11 @@
 }
 
 .icon > span > svg {
-    font-size: 68px !important;
+    font-size: 32px !important;
 }
 
 @media screen and (min-width: 62em) {
     .icon > span > svg {
-        font-size: 24px !important;
+        font-size: 48px !important;
     }
-}
-
-.mobileCalendar {
-    transform: scale(2.5);
 }
