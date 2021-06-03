@@ -1,12 +1,26 @@
-const express = require('express')
-const path = require('path')
-const app = express()
+const path = require("path");
+const express = require("express");
+const app = express();
+const publicPath = path.join(__dirname, "dist");
+console.log(publicPath)
+console.log(path.join(publicPath, "index.html"))
+const port = process.env.PORT || 3000;
+const options = {
+    setHeaders: (res) => {
+        res.set('Cross-Origin-Embedder-Policy', 'require-corp'),
+            res.set('Cross-Origin-Opener-Policy', 'same-origin')
+    }
+};
+app.use(express.static(publicPath, options));
 
-app.use(express.static(path.join(__dirname, 'dist')))
+app.get("/", (req, res) => {
+    res.sendFile(path.join(publicPath, "index.html"));
+});
 
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'))
-})
+app.get("/flight-booking", (req, res) => {
+    res.sendFile(path.join(publicPath, "index.html"));
+});
 
-app.listen(process.env.PORT || 5000,
-    () => console.log("Server is running..."))
+app.listen(port, () => {
+    console.log("Server is up!");
+});

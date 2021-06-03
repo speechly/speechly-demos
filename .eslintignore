@@ -2,3 +2,4 @@
 *.test.js
 *.config.js
 __mocks__/*
+server.js
