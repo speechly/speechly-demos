@@ -1,8 +1,12 @@
 {
-  "name": "@speechly-demos",
+  "name": "speechly-demos",
   "private": "true",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "15.14.0",
+    "npm": "7.7.6"
+  },
   "main": "index.js",
   "workspaces": [
     "./common/*",
