@@ -12,7 +12,6 @@
     "start": "node server.js",
     "build": "webpack --mode production --config ./webpack.config.js",
     "dev": "webpack serve --mode development --progress --hot --config ./webpack.config.js",
-    "test": "jest",
     "pre-commit-test": "jest --ci --forceExit",
     "jest-watch": "jest --watch",
     "lint": "eslint src/** --ext .js,.ts,.tsx",
