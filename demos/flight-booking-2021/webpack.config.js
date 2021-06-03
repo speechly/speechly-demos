@@ -29,8 +29,6 @@ module.exports = () => {
       })
     ],
     devServer: {
-      port: 8081,
-      historyApiFallback: true,
       headers: {
         'Cross-Origin-Embedder-Policy': 'require-corp',
         'Cross-Origin-Opener-Policy': 'same-origin',
