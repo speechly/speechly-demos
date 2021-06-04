@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import { Text, Box, Select } from '@chakra-ui/react'
 import './Dropdown.css'
 
@@ -6,6 +6,7 @@ interface Props {
     value: string | number,
     label: string,
     id: string,
+    onChange: (event: ChangeEvent<HTMLSelectElement>) => void
 }
 
 const Dropdown: React.FC<Props> = (props): JSX.Element => {
@@ -17,6 +18,7 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
             fontSize={{ base: '22px', lg: '28px' }} >
             <Text className='inputLabel'>{props.label}</Text>
             <Select
+                onChange={props.onChange}
                 value={props.value}
                 variant='unstyled'
                 rootProps={{

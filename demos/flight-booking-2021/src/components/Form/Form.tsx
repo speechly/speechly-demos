@@ -1,16 +1,17 @@
 import React, { ChangeEvent, useContext } from 'react'
-import { Box, HStack, VStack, MenuItem } from '@chakra-ui/react'
-import TextInput from './components/TextInput/TextInput'
-
-import './Form.css'
-import { FlightDataContext } from '../../context/flightDataContext'
+import { Box, HStack, VStack } from '@chakra-ui/react'
 import { useSpeechContext } from '@speechly/react-client'
+
+import { FlightDataContext } from '../../context/flightDataContext'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
 import { IFlightInformation, TDate } from '../../types/type'
+
+import TextInput from './components/TextInput/TextInput'
 import RoundTripButton from './components/RoundTripButton/RoundTripButton'
 import DatePicker from './components/DatePicker/DatePicker'
 import Dropdown from './components/Dropdown/Dropdown'
 import CircleCheckBox from './components/CircleCheckBox/CircleCheckBox'
+import './Form.css'
 
 export default function Form(): JSX.Element {
     const { segment, speechState } = useSpeechContext()
@@ -27,7 +28,7 @@ export default function Form(): JSX.Element {
 
         const items = []
         for (let i = 1; i < 10; i++) {
-            items.push(<option onClick={() => handleMenuChange('passengers', i)} key={i} >{i}</option>)
+            items.push(<option key={i} >{i}</option>)
         }
         return items
     }
@@ -72,7 +73,7 @@ export default function Form(): JSX.Element {
             p='8px'
             display='flex'
             marginTop='134px'
-            marginBottom='230px'
+            marginBottom='340px'
             flexDirection='row'
             alignSelf='center'
             w={{ base: '100%', lg: '760px' }}>
@@ -97,10 +98,13 @@ export default function Form(): JSX.Element {
                             onChange={(date: TDate) => handleDateInputChange('depart', date)}
                             id='departure-input'
                             label='Departure' />
-                        <Dropdown value={formData?.passengers} label='Passengers' id='passengers-input'>
+                        <Dropdown
+                            onChange={(event: ChangeEvent<HTMLSelectElement>) => handleMenuChange('passengers', event.target.value)}
+                            value={formData?.passengers}
+                            label='Passengers'
+                            id='passengers-input'>
                             {getPassengerMenuItems()}
                         </Dropdown>
-                        <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct === 'DIRECT'} />
                     </VStack>
                     <VStack spacing={{ base: 4, lg: 8 }} alignItems='flex-start'>
                         <TextInput
@@ -115,12 +119,19 @@ export default function Form(): JSX.Element {
                             onChange={(date: TDate) => handleDateInputChange('return', date)}
                             id='return-input'
                             label='Return' />
-                        <Dropdown value={formData?.class || 'Economy Class'} label='Class' id='class-input'>
-                            <option onClick={() => handleMenuChange('class', 'Economy Class')}>Economy Class</option>
-                            <option onClick={() => handleMenuChange('class', 'Business Class')}>Business Class</option>
+                        <Dropdown
+                            onChange={(event: ChangeEvent<HTMLSelectElement>) => handleMenuChange('class', event.target.value)}
+                            value={formData?.class || 'Economy Class'}
+                            label='Class'
+                            id='class-input'>
+                            <option>Economy Class</option>
+                            <option>Business Class</option>
                         </Dropdown>
                     </VStack>
                 </HStack>
+                <Box w='100%' paddingTop='8px'>
+                    <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct === 'DIRECT'} />
+                </Box>
             </Box>
         </Box>
     )

@@ -27,9 +27,6 @@ const UsageHints = [
 ]
 
 const App: React.FC = (): JSX.Element => {
-  const [isMobile] = useMediaQuery('(max-width: 62em)')
-  const transcriptFontSize = isMobile ? '3rem' : '1.5rem'
-
   return (
     <FlightContextProvider>
       <MuiPickersUtilsProvider utils={LuxonUtils}>
@@ -37,7 +34,6 @@ const App: React.FC = (): JSX.Element => {
           <SpeechProvider appId="1ea63538-f95c-4259-b8af-923994424137" language="en-US">
             <TranscriptDrawer
               hint={UsageHints}
-              fontSize={transcriptFontSize}
               highlightColor='#0f4e92'
               smallTextColor='#187ce7'
               backgroundColor='rgba(162, 213, 240, 0.4)' />
