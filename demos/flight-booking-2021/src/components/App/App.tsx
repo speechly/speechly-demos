@@ -8,7 +8,7 @@ import {
 import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer'
 
 import LuxonUtils from '@date-io/luxon'
-import { ChakraProvider, useMediaQuery } from '@chakra-ui/react'
+import { ChakraProvider, useMediaQuery, Center } from '@chakra-ui/react'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import FlightContextProvider from '../../context/flightDataContext'
 
@@ -34,7 +34,7 @@ const App: React.FC = (): JSX.Element => {
     <FlightContextProvider>
       <MuiPickersUtilsProvider utils={LuxonUtils}>
         <ChakraProvider>
-          <SpeechProvider appId="26569795-9f37-435e-8b44-78caa7f10dff" language="en-US">
+          <SpeechProvider appId="1ea63538-f95c-4259-b8af-923994424137" language="en-US">
             <TranscriptDrawer
               hint={UsageHints}
               fontSize={transcriptFontSize}
@@ -47,7 +47,14 @@ const App: React.FC = (): JSX.Element => {
               <ErrorPanel />
             </PushToTalkButtonContainer>
 
-            <Form />
+            <Center
+              display='flex'
+              flexDirection='row'
+              alignItems='center'
+              bgGradient="linear(150deg, #53A3F9 17.8%, #75DFFF 48.54%, #DBFFF6 78.65%)"
+              h='100vh'>
+              <Form />
+            </Center>
 
           </SpeechProvider>
         </ChakraProvider>

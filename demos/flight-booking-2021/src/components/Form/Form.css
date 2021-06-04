@@ -9,15 +9,9 @@
 }
 
 .inputLabel {
-    margin: 7px 0px 0px 16px;
+    padding: 12px 0px 0px 28px;
     color: #4fa1f9;
     font-weight: bold;
     text-transform: uppercase;
-      font-size: 10px;
-}
-
-@media screen and (min-width: 62em) {
-    .inputLabel {
-        font-size: 10px;
-    }
+    font-size: 11px;
 }

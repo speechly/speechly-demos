@@ -2,8 +2,6 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const publicPath = path.join(__dirname, "dist");
-console.log(publicPath)
-console.log(path.join(publicPath, "index.html"))
 const port = process.env.PORT || 3000;
 const options = {
     setHeaders: (res) => {
@@ -11,6 +9,7 @@ const options = {
             res.set('Cross-Origin-Opener-Policy', 'same-origin')
     }
 };
+
 app.use(express.static(publicPath, options));
 
 app.get("/", (req, res) => {

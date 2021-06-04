@@ -1,6 +1,5 @@
 import React from 'react'
-import { Text, Menu, MenuButton, MenuList, Box } from '@chakra-ui/react'
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { Text, Box, Select } from '@chakra-ui/react'
 import './Dropdown.css'
 
 interface Props {
@@ -14,20 +13,24 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
         <Box
             className='inputWrapper'
             h={{ base: '65px', lg: '70px' }}
-            w={{ base: '160px', lg: '300px' }}
+            w='100%'
             fontSize={{ base: '22px', lg: '28px' }} >
             <Text className='inputLabel'>{props.label}</Text>
-            <Menu placement='bottom' matchWidth>
-                <MenuButton
-                    id={props.id}
-                    w={{ base: '160px', lg: '300px' }} >
-                    {props.value}
-                    <ChevronDownIcon marginLeft={{ base: '105px', lg: '245px' }} />
-                </MenuButton>
-                <MenuList>
-                    {props.children}
-                </MenuList>
-            </Menu>
+            <Select
+                value={props.value}
+                variant='unstyled'
+                rootProps={{
+                    paddingLeft: '39px',
+                    right: '14px',
+                    bottom: '6px',
+                }}
+                color='#0f4e92'
+                fontFamily='Roboto Condensed, sans-serif'
+                fontSize={{ base: '22px', lg: '28px' }}
+                textTransform='uppercase'
+                paddingRight='8px'>
+                {props.children}
+            </Select>
         </Box >
     )
 }

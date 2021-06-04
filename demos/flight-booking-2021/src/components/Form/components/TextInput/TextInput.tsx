@@ -15,16 +15,18 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
         <Box
             className='inputWrapper'
             h={{ base: '65px', lg: '70px' }}
-            w={{ base: '160px', lg: '300px' }} >
+            w='100%' >
             <Text className='inputLabel'>{props.label}</Text>
             <Input
+                textTransform='uppercase'
+                fontFamily='Roboto Condensed, sans-serif'
                 fontSize={{ base: '22px', lg: '28px' }}
                 onChange={props.onChange}
                 id={props.id}
                 className='input'
                 variant='unstyled'
                 value={props.value}
-                size='lg' />
+                size='sm' />
         </Box>
     )
 }

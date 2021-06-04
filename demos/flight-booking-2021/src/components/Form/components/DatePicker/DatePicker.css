@@ -1,15 +1,25 @@
 .dateInput {
-    margin: 0px 0px 0px 16px !important;
+    padding: 0px 0px 0px 28px !important;
+    bottom: 8px;
 }
 
 .dateInput > div {
     color: #0f4e92 !important;
     font-weight: bold;
-    font-size: 20px !important;
+    font-size: 22px !important;
 }
+
+@media screen and (min-width: 62em) {
+    .dateInput > div {
+        font-size: 28px !important;
+    }
+}
+
+
 .dateInput > div > div > button {
     padding: 0;
-    padding-right: 6px;
+    padding-right: 13px;
+    padding-bottom: 20px;
 }
 
 .icon {
