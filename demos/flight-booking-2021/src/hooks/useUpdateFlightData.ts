@@ -1,10 +1,10 @@
 import { useEffect, useContext } from 'react'
 import { Entity, SpeechSegment } from '@speechly/react-client'
-import { FlightDataContext } from '../context/flightDataContext'
+import { FlightDataContext, defaultFlightInformation } from '../context/flightDataContext'
 import { IFlightInformation } from '../types/type'
 import { calculateDateEntity } from '../utils/dateUtils'
 import FuzzyStringMatching from '../utils/flightDataUtils'
-import { DEPART, RETURN, CLASS } from '../constants/flightDataConstants'
+import { DEPART, RETURN, CLASS, CLEAR, ECONOMY, BUSINESS } from '../constants/flightDataConstants'
 
 export const useUpdateFlightData = (segment: SpeechSegment | undefined): void => {
     const { flightData, setFlightData, setTentativeFlightData } = useContext(FlightDataContext)
@@ -22,16 +22,20 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
                         }
 
                         if (entity.type === CLASS) {
-                            const economyMatch = FuzzyStringMatching.match(entity.value, 'Economy')
-                            const businessMatch = FuzzyStringMatching.match(entity.value, 'Business')
-                            if (economyMatch < businessMatch) value = 'Economy Class'
-                            else value = 'Business Class'
+                            const economyMatch = FuzzyStringMatching.match(entity.value, ECONOMY)
+                            const businessMatch = FuzzyStringMatching.match(entity.value, BUSINESS)
+                            if (economyMatch < businessMatch) value = ECONOMY
+                            else value = BUSINESS
                         }
 
                         result = {
                             ...flightData,
                             ...result,
                             [entity.type]: value
+                        }
+
+                        if (entity.type === CLEAR) {
+                            result = defaultFlightInformation
                         }
                     }
                 }

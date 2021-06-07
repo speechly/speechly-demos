@@ -5,6 +5,7 @@ import { useSpeechContext } from '@speechly/react-client'
 import { FlightDataContext } from '../../context/flightDataContext'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
 import { IFlightInformation, TDate } from '../../types/type'
+import { BUSINESS, ECONOMY } from '../../constants/flightDataConstants'
 
 import TextInput from './components/TextInput/TextInput'
 import RoundTripButton from './components/RoundTripButton/RoundTripButton'
@@ -12,6 +13,8 @@ import DatePicker from './components/DatePicker/DatePicker'
 import Dropdown from './components/Dropdown/Dropdown'
 import CircleCheckBox from './components/CircleCheckBox/CircleCheckBox'
 import './Form.css'
+import { getTomorrowsDate } from '../../utils/dateUtils'
+
 
 export default function Form(): JSX.Element {
     const { segment, speechState } = useSpeechContext()
@@ -68,26 +71,37 @@ export default function Form(): JSX.Element {
         updateFlightdata(data)
     }
 
+    const handleButtonChange = (value: boolean) => {
+        const result = value ? getTomorrowsDate() : null
+        const data = {
+            ...flightData,
+            return: result
+        }
+        updateFlightdata(data)
+    }
+
     return (
         <Box
             p='8px'
             display='flex'
             marginTop='134px'
-            marginBottom='340px'
+            marginBottom='345px'
             flexDirection='row'
             alignSelf='center'
             w={{ base: '100%', lg: '760px' }}>
             <Box
                 display='flex'
                 flexDirection='column'
-                alignItems='center'
-                w={{ base: '100%', lg: '760px' }}>
+                alignItems='center'>
                 <Box marginTop={{ base: '30%', lg: '13%' }} w='100%'>
-                    <RoundTripButton return={Boolean(formData?.return)} />
+                    <RoundTripButton
+                        return={Boolean(formData?.return)}
+                        onClick={(value: boolean) => handleButtonChange(value)} />
                 </Box>
                 <HStack marginTop='30px' alignItems='normal'>
                     <VStack spacing={{ base: 4, lg: 8 }} alignItems='flex-end'>
                         <TextInput
+                            placeholder='New York'
                             onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('from', e.target.value)}
                             label='From'
                             id='from-input'
@@ -108,11 +122,13 @@ export default function Form(): JSX.Element {
                     </VStack>
                     <VStack spacing={{ base: 4, lg: 8 }} alignItems='flex-start'>
                         <TextInput
+                            placeholder='Helsinki'
                             onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('to', e.target.value)}
                             label='To'
                             value={formData?.to}
                             id='to-input' />
                         <DatePicker
+                            disabled={formData?.return === '' || formData?.return === null}
                             minDateMessage='Date can not be before departure date'
                             minDate={formData?.depart ? new Date(formData?.depart) : new Date()}
                             value={formData?.return || null}
@@ -121,11 +137,11 @@ export default function Form(): JSX.Element {
                             label='Return' />
                         <Dropdown
                             onChange={(event: ChangeEvent<HTMLSelectElement>) => handleMenuChange('class', event.target.value)}
-                            value={formData?.class || 'Economy Class'}
+                            value={formData?.class || ECONOMY}
                             label='Class'
                             id='class-input'>
-                            <option>Economy Class</option>
-                            <option>Business Class</option>
+                            <option>{ECONOMY}</option>
+                            <option>{BUSINESS}</option>
                         </Dropdown>
                     </VStack>
                 </HStack>

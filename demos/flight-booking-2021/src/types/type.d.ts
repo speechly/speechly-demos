@@ -1,8 +1,8 @@
 interface IFlightInformation {
     from: string,
     to: string,
-    depart: string,
-    return: string,
+    depart: string | Date | null,
+    return: string | Date | null,
     passengers: number,
     class: string,
     direct: string

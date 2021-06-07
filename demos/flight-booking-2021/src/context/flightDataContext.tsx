@@ -1,7 +1,7 @@
 import React, { useState, FC, createContext } from 'react'
 import { IFlightInformation, FlightContextState } from '../types/type'
 
-const defaultFlightInformation = {
+export const defaultFlightInformation = {
   from: '',
   to: '',
   depart: '',

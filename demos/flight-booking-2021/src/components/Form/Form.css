@@ -8,6 +8,11 @@
     background-color: white;
 }
 
+.disabledInputWrapper {
+    border-radius: 32px;
+    background-color: #ccd3dd;
+}
+
 .inputLabel {
     padding: 12px 0px 0px 28px;
     color: #4fa1f9;

@@ -26,3 +26,10 @@ export function calculateDateEntity(dateString: string): string {
 
     return result
 }
+
+export function getTomorrowsDate(): Date {
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    return tomorrow
+}

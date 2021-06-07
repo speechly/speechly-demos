@@ -3,6 +3,7 @@ import { ButtonGroup, Button } from '@chakra-ui/react'
 
 interface Props {
     return: boolean,
+    onClick: (value: boolean) => void
 }
 
 const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
@@ -12,6 +13,7 @@ const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
             display='flex'
             w={{ base: '100%' }} >
             <Button
+                onClick={() => props.onClick(false)}
                 flex={1}
                 h='70px'
                 w='100%'
@@ -29,6 +31,7 @@ const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
                 One way
             </Button>
             <Button
+                onClick={() => props.onClick(true)}
                 flex={1}
                 h='70px'
                 w='100%'
@@ -44,7 +47,7 @@ const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
                 _hover={{ background: props.return ? 'blue.600' : 'white' }}
                 color={props.return ? 'white' : 'blue.100'}
                 bgColor={props.return ? 'blue.600' : 'white'}>
-                Return
+                Round trip
             </Button>
         </ButtonGroup>
     )

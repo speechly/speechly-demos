@@ -8,7 +8,7 @@ import {
 import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer'
 
 import LuxonUtils from '@date-io/luxon'
-import { ChakraProvider, useMediaQuery, Center } from '@chakra-ui/react'
+import { ChakraProvider, Center } from '@chakra-ui/react'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import FlightContextProvider from '../../context/flightDataContext'
 
@@ -33,6 +33,7 @@ const App: React.FC = (): JSX.Element => {
         <ChakraProvider>
           <SpeechProvider appId="1ea63538-f95c-4259-b8af-923994424137" language="en-US">
             <TranscriptDrawer
+              height='6rem'
               hint={UsageHints}
               highlightColor='#0f4e92'
               smallTextColor='#187ce7'

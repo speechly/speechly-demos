@@ -6,26 +6,29 @@ import './DatePicker.css'
 
 interface Props {
     onChange: (date: TDate) => void,
-    value: string | null,
+    value: string | Date | null,
     label: string,
     fontSize?: string,
     id: string,
     minDate: Date,
-    minDateMessage?: string
+    minDateMessage?: string,
+    disabled?: boolean
 }
 
 const DatePicker: React.FC<Props> = (props): JSX.Element => {
     const [isMobile] = useMediaQuery('(max-width: 24em)')
     const dateFormat = isMobile ? 'MM/dd/yy' : 'MM/dd/yyyy'
+
     return (
         <Box
-            className='inputWrapper'
+            className={props.disabled ? 'disabledInputWrapper' : 'inputWrapper'}
             h={{ base: '65px', lg: '70px' }}
             w='100%' >
             <Text className='inputLabel'>
                 {props.label}
             </Text>
             <KeyboardDatePicker
+                disabled={props.disabled}
                 id={props.id}
                 onChange={props.onChange}
                 format={dateFormat}

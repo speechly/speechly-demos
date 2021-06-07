@@ -8,6 +8,7 @@ interface Props {
     label: string,
     fontSize?: string,
     id: string,
+    placeholder?: string
 }
 
 const TextInput: React.FC<Props> = (props): JSX.Element => {
@@ -18,6 +19,7 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
             w='100%' >
             <Text className='inputLabel'>{props.label}</Text>
             <Input
+                placeholder={props.placeholder}
                 textTransform='uppercase'
                 fontFamily='Roboto Condensed, sans-serif'
                 fontSize={{ base: '22px', lg: '28px' }}
