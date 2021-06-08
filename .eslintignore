@@ -1,5 +1,5 @@
 *.css
 *.test.js
 *.config.js
-__mocks__/*
+styleMock.js
 server.js

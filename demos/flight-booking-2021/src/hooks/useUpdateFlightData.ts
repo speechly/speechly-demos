@@ -11,35 +11,37 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
     let result: IFlightInformation
 
     useEffect(() => {
-        if (segment && segment.entities.length > 0 && flightData) {
-            segment.entities.forEach((entity: Entity) => {
-                for (const [key, value] of Object.entries(flightData)) {
-                    if (entity.type === key && entity.value !== value && entity.value !== undefined && entity.value !== '') {
-                        let value = entity.value
+        if (segment && flightData) {
+            if (segment.entities.length > 0 && flightData) {
+                segment.entities.forEach((entity: Entity) => {
+                    for (const [key, value] of Object.entries(flightData)) {
+                        if (entity.type === key && entity.value !== value && entity.value !== undefined && entity.value !== '') {
+                            let value = entity.value
 
-                        if (entity.type === DEPART || entity.type === RETURN) {
-                            value = calculateDateEntity(value)
-                        }
+                            if (entity.type === DEPART || entity.type === RETURN) {
+                                value = calculateDateEntity(value)
+                            }
 
-                        if (entity.type === CLASS) {
-                            const economyMatch = FuzzyStringMatching.match(entity.value, ECONOMY)
-                            const businessMatch = FuzzyStringMatching.match(entity.value, BUSINESS)
-                            if (economyMatch < businessMatch) value = ECONOMY
-                            else value = BUSINESS
-                        }
+                            if (entity.type === CLASS) {
+                                const economyMatch = FuzzyStringMatching.match(entity.value, ECONOMY)
+                                const businessMatch = FuzzyStringMatching.match(entity.value, BUSINESS)
+                                if (economyMatch < businessMatch) value = ECONOMY
+                                else value = BUSINESS
+                            }
 
-                        result = {
-                            ...flightData,
-                            ...result,
-                            [entity.type]: value
-                        }
-
-                        if (entity.type === CLEAR) {
-                            result = defaultFlightInformation
+                            result = {
+                                ...flightData,
+                                ...result,
+                                [entity.type]: value
+                            }
                         }
                     }
-                }
-            })
+                })
+            }
+
+            if (segment?.intent && segment.intent.intent === CLEAR) {
+                result = defaultFlightInformation
+            }
 
             if (result !== undefined) {
                 setTentativeFlightData(result)

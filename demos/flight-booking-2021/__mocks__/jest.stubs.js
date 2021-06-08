@@ -11,8 +11,8 @@ jest.mock('@speechly/react-client', () => {
                 </div>
             )
         },
-    };
-});
+    }
+})
 
 jest.mock('@speechly/react-ui/components/TranscriptDrawer', () => ({
     TranscriptDrawer: () => {
@@ -22,4 +22,4 @@ jest.mock('@speechly/react-ui/components/TranscriptDrawer', () => ({
             </div>
         )
     },
-}));
+}))

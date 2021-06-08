@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(publicPath, "index.html"));
 });
 
-app.get("/flight-booking", (req, res) => {
+app.get("*", (req, res) => {
     res.sendFile(path.join(publicPath, "index.html"));
 });
 

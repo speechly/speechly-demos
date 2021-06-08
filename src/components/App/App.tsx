@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import FlightBookingDemo from 'flight-booking-demo/src/components/App/App'
+import VoicePickingDemo from 'voice-picking-demo/src/components/App/App'
 
 const App: React.FC = (): JSX.Element => {
 
@@ -16,6 +17,9 @@ const App: React.FC = (): JSX.Element => {
               <li>
                 <Link to="/flight-booking">Flight Booking Demo</Link>
               </li>
+              <li>
+                <Link to="/voice-picking">Voice Picking</Link>
+              </li>
             </ul>
             <hr />
             <div>
@@ -25,6 +29,9 @@ const App: React.FC = (): JSX.Element => {
         </Route>
         <Route path="/flight-booking">
           <FlightBookingDemo />
+        </Route>
+        <Route path='/voice-picking'>
+          <VoicePickingDemo />
         </Route>
       </Switch>
     </Router>

@@ -85,7 +85,7 @@ export default function Form(): JSX.Element {
             p='8px'
             display='flex'
             marginTop='134px'
-            marginBottom='345px'
+            paddingBottom='345px'
             flexDirection='row'
             alignSelf='center'
             w={{ base: '100%', lg: '760px' }}>
