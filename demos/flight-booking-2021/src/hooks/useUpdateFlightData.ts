@@ -4,7 +4,7 @@ import { FlightDataContext, defaultFlightInformation } from '../context/flightDa
 import { IFlightInformation } from '../types/type'
 import { calculateDateEntity } from '../utils/dateUtils'
 import FuzzyStringMatching from '../utils/flightDataUtils'
-import { DEPART, RETURN, CLASS, CLEAR, ECONOMY, BUSINESS } from '../constants/flightDataConstants'
+import { DEPART, RETURN, CLASS, CLEAR, ECONOMY, BUSINESS, DIRECT } from '../constants/flightDataConstants'
 
 export const useUpdateFlightData = (segment: SpeechSegment | undefined): void => {
     const { flightData, setFlightData, setTentativeFlightData } = useContext(FlightDataContext)
@@ -16,7 +16,7 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
                 segment.entities.forEach((entity: Entity) => {
                     for (const [key, value] of Object.entries(flightData)) {
                         if (entity.type === key && entity.value !== value && entity.value !== undefined && entity.value !== '') {
-                            let value = entity.value
+                            let value: string | boolean | number = entity.value
 
                             if (entity.type === DEPART || entity.type === RETURN) {
                                 value = calculateDateEntity(value)
@@ -27,6 +27,10 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
                                 const businessMatch = FuzzyStringMatching.match(entity.value, BUSINESS)
                                 if (economyMatch < businessMatch) value = ECONOMY
                                 else value = BUSINESS
+                            }
+
+                            if (entity.type === DIRECT) {
+                                value = true
                             }
 
                             result = {

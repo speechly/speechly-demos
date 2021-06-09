@@ -66,7 +66,7 @@ export default function Form(): JSX.Element {
     const handleCheckBoxChange = () => {
         const data = {
             ...flightData,
-            direct: formData?.direct === 'DIRECT' ? '' : 'DIRECT'
+            direct: !formData?.direct
         }
         updateFlightdata(data)
     }
@@ -147,7 +147,7 @@ export default function Form(): JSX.Element {
                     </VStack>
                 </HStack>
                 <Box w='100%' paddingTop='8px'>
-                    <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct === 'DIRECT'} />
+                    <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct} />
                 </Box>
             </Box>
         </Box>
