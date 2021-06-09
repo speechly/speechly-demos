@@ -6,11 +6,13 @@
 .inputWrapper {
     border-radius: 32px;
     background-color: white;
+    box-shadow: 0px 6px 12px 0px #388DE95E;
 }
 
 .disabledInputWrapper {
     border-radius: 32px;
     background-color: #ccd3dd;
+    box-shadow: 0px 6px 12px 0px #388DE95E;
 }
 
 .inputLabel {

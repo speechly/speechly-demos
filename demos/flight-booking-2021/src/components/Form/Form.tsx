@@ -107,6 +107,7 @@ export default function Form(): JSX.Element {
                             id='from-input'
                             value={formData?.from} />
                         <DatePicker
+                            placeholder='"TOMORROW"'
                             minDate={new Date()}
                             value={formData?.depart || null}
                             onChange={(date: TDate) => handleDateInputChange('depart', date)}

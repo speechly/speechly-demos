@@ -12,8 +12,10 @@ interface Props {
     id: string,
     minDate: Date,
     minDateMessage?: string,
-    disabled?: boolean
+    disabled?: boolean,
+    placeholder?: string
 }
+
 
 const DatePicker: React.FC<Props> = (props): JSX.Element => {
     const [isMobile] = useMediaQuery('(max-width: 24em)')
@@ -34,6 +36,7 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
                 format={dateFormat}
                 className='dateInput'
                 InputProps={{
+                    placeholder: props.placeholder,
                     disableUnderline: true,
                 }}
                 disablePast

@@ -26,7 +26,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@speechly/react-client": "^0.0.20",
+    "@speechly/react-client": "^0.0.21",
     "@speechly/react-ui": "^2.0.0-beta.9",
     "express": "^4.17.1",
     "react": "^17.0.2",
