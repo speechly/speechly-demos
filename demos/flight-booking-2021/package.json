@@ -27,7 +27,6 @@
     "@material-ui/pickers": "^3.3.10",
     "framer-motion": "^4.1.16",
     "luxon": "^1.27.0",
-    "serve": "^11.3.2",
     "typescript": "^4.2.4"
   },
   "devDependencies": {

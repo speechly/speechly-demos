@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import { Text, Box, Select } from '@chakra-ui/react'
+import CommonDropdown from '@speechly-demos/ui/components/Dropdown/Dropdown'
 import './Dropdown.css'
 
 interface Props {
@@ -11,29 +11,36 @@ interface Props {
 
 const Dropdown: React.FC<Props> = (props): JSX.Element => {
     return (
-        <Box
-            className='inputWrapper'
-            h={{ base: '65px', lg: '70px' }}
-            w='100%'
-            fontSize={{ base: '22px', lg: '28px' }} >
-            <Text className='inputLabel'>{props.label}</Text>
-            <Select
-                onChange={props.onChange}
-                value={props.value}
-                variant='unstyled'
-                rootProps={{
+        <CommonDropdown
+            wrapperProps={{
+                className: 'inputWrapper',
+                height: { base: '65px', lg: '70px' },
+                width: '100%'
+            }}
+            labelProps={{
+                label: props.label,
+                className: 'inputLabel'
+            }}
+            selectProps={{
+                onChange: props.onChange,
+                value: props.value,
+                variant: 'unstyled',
+                rootProps: {
                     paddingLeft: '39px',
                     right: '14px',
                     bottom: '6px',
-                }}
-                color='#0f4e92'
-                fontFamily='Roboto Condensed, sans-serif'
-                fontSize={{ base: '22px', lg: '28px' }}
-                textTransform='uppercase'
-                paddingRight='8px'>
-                {props.children}
-            </Select>
-        </Box >
+                    paddingRight: '8px'
+                },
+                id: props.id
+            }}
+            fontProps={{
+                color: '#0f4e92',
+                fontFamily: 'Roboto Condensed, sans-serif',
+                textTransform: 'uppercase',
+                fontSize: { base: '22px', lg: '28px' }
+            }}>
+            { props.children}
+        </CommonDropdown >
     )
 }
 

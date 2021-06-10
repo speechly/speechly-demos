@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import { Text, Input, Box } from '@chakra-ui/react'
+import CommonTextInput from '@speechly-demos/ui/components/TextInput/TextInput'
 import './TextInput.css'
 
 interface Props {
@@ -13,23 +13,32 @@ interface Props {
 
 const TextInput: React.FC<Props> = (props): JSX.Element => {
     return (
-        <Box
-            className='inputWrapper'
-            h={{ base: '65px', lg: '70px' }}
-            w='100%' >
-            <Text className='inputLabel'>{props.label}</Text>
-            <Input
-                placeholder={props.placeholder}
-                textTransform='uppercase'
-                fontFamily='Roboto Condensed, sans-serif'
-                fontSize={{ base: '22px', lg: '28px' }}
-                onChange={props.onChange}
-                id={props.id}
-                className='input'
-                variant='unstyled'
-                value={props.value}
-                size='sm' />
-        </Box>
+        <CommonTextInput
+            wrapperProps={{
+                className: 'inputWrapper',
+                height: {
+                    base: '65px',
+                    lg: '70px'
+                },
+                width: '100%'
+            }}
+            labelProps={{
+                label: props.label,
+                className: 'inputLabel'
+            }}
+            inputProps={{
+                onChange: props.onChange,
+                id: props.id,
+                className: 'input',
+                variant: 'unstyled',
+                value: props.value
+            }}
+            fontProps={{
+                textTransform: 'uppercase',
+                fontFamily: 'Roboto Condensed, sans-serif',
+                fontSize: { base: '22px', lg: '28px' }
+            }}
+        />
     )
 }
 

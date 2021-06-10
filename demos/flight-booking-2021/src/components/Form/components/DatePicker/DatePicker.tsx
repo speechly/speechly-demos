@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text, Box, useMediaQuery } from '@chakra-ui/react'
-import { KeyboardDatePicker } from '@material-ui/pickers'
+import { useMediaQuery } from '@chakra-ui/react'
 import { TDate } from '../../../../types/type'
+import CommonDatePicker from '@speechly-demos/ui/components/DatePicker/DatePicker'
 import './DatePicker.css'
 
 interface Props {
@@ -22,34 +22,35 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
     const dateFormat = isMobile ? 'MM/dd/yy' : 'MM/dd/yyyy'
 
     return (
-        <Box
-            className={props.disabled ? 'disabledInputWrapper' : 'inputWrapper'}
-            h={{ base: '65px', lg: '70px' }}
-            w='100%' >
-            <Text className='inputLabel'>
-                {props.label}
-            </Text>
-            <KeyboardDatePicker
-                disabled={props.disabled}
-                id={props.id}
-                onChange={props.onChange}
-                format={dateFormat}
-                className='dateInput'
-                InputProps={{
+        <CommonDatePicker
+            wrapperProps={{
+                className: props.disabled ? 'disabledInputWrapper' : 'inputWrapper',
+                height: { base: '65px', lg: '70px' },
+                width: '100%'
+            }}
+            labelProps={{
+                className: 'inputLabel',
+                label: props.label
+            }}
+            datePickerProps={{
+                onChange: props.onChange,
+                value: props.value,
+                variant: 'dialog',
+                format: dateFormat,
+                disabled: props.disabled,
+                id: props.id,
+                className: 'dateInput',
+                inputProps: {
                     placeholder: props.placeholder,
-                    disableUnderline: true,
-                }}
-                disablePast
-                variant='dialog'
-                minDateMessage={props.minDateMessage}
-                autoOk
-                minDate={props.minDate}
-                value={props.value}
-                KeyboardButtonProps={{
-                    className: 'icon'
-                }}
-            />
-        </Box>
+                    disableUnderline: true
+                },
+                disablePast: true,
+                minDateMessage: props.minDateMessage,
+                autoOk: true,
+                minDate: props.minDate,
+                buttonProps: { className: 'icon' }
+            }}
+        />
     )
 }
 
