@@ -15,7 +15,7 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
     return (
         <CommonTextInput
             wrapperProps={{
-                className: 'inputWrapper',
+                className: 'voicePickingInputWrapper',
                 height: {
                     base: '65px',
                     lg: '70px'
@@ -24,12 +24,12 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
             }}
             labelProps={{
                 label: props.label,
-                className: 'inputLabel'
+                className: 'voicePickingInputLabel'
             }}
             inputProps={{
                 onChange: props.onChange,
                 id: props.id,
-                className: 'input',
+                className: 'voicePickingInput',
                 variant: 'unstyled',
                 value: props.value,
                 placeholder: props.placeholder

@@ -1,8 +1,8 @@
-.inputWrapper > button > span > svg {
+.voicePickingInputWrapper > button > span > svg {
     position: absolute;
 }
 
-.inputWrapper > button {
+.voicePickingInputWrapper > button {
     font-weight: bold;
     padding-left: 28px;
     color: black;
@@ -12,6 +12,6 @@
     position: relative;
 }
 
-.inputWrapper > button > span {
+.voicePickingInputWrapper > button > span {
     display: flex;
 }

@@ -13,13 +13,13 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
     return (
         <CommonDropdown
             wrapperProps={{
-                className: 'inputWrapper',
+                className: 'voicePickingInputWrapper',
                 height: { base: '65px', lg: '70px' },
                 width: '100%'
             }}
             labelProps={{
                 label: props.label,
-                className: 'inputLabel'
+                className: 'voicePickingInputLabel'
             }}
             selectProps={{
                 onChange: props.onChange,
