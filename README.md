@@ -11,22 +11,23 @@ Monorepo containing Speechly Application demos
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/speechly/flight-booking-2021.git
+   git clone https://github.com/speechly/speechly-demos.git
    ```
 2. Install NPM packages
    ```sh
    npm ci
    ```
-3. Run following command in command line`
+3. Run following command in command line
    ```sh
    npm run dev
    ```
-
+4. Open `localhost:8081` in the browser
 
 ### Creating a new demo
-template-speechly-demos folder can be found from repository root that contains a simple skeleton for a new speechly demo application
 
-package.json file has "generate-project" script that creates a new folder inside demos folder with given name and copies the contents of template-speechly-demos folder inside it
+`template-speechly-demos` folder can be found from repository root that contains a simple skeleton for a new speechly demo application
+
+package.json file has `generate-project` script that creates a new folder inside demos folder with given name and copies the contents of template-speechly-demos folder inside it
 
 You can create a new demo with following steps:
 
@@ -40,13 +41,16 @@ You can create a new demo with following steps:
    cd demos/example-speechly-app
    ```
 3. Edit "name" field in package.json file of the new demo to for example "example-speechly-app"
- {
+
+```
+{
     "name": "to-be-filled" --> name: "example-speechly-app"
     "version": "1.0.0",
     "description": "",
     "main": "./index.js",
 ....
 }
+```
 
 4. Navigate to speechly-demos repository root and run
     ```sh
@@ -54,7 +58,7 @@ You can create a new demo with following steps:
    ```
    so that npm detects that generated demo is a workspace
    
-5. Edit root applications App.tsx file by adding a new link and route for generated demo
+5. Edit root applications App.tsx file by adding a new link and route for generated demo. Be sure to start the import with the `name` used in the demo's `package.json`.
     ```JSX
     import React from 'react'
     import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
