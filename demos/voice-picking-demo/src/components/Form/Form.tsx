@@ -4,10 +4,11 @@ import { useSpeechContext } from '@speechly/react-client'
 
 import { useUpdatePalletData } from '../../hooks/useUpdatePalletData'
 import { PalletDataContext } from '../../context/palletContext'
-import { IPalletData } from '../../types/types'
+import { IPalletData, TDate } from '../../types/types'
 
 import TextInput from './components/TextInput/TextInput'
 import Dropdown from './components/Dropdown/Dropdown'
+import DatePicker from './components/DatePicker/DatePicker'
 
 export default function Form(): JSX.Element {
     const { segment, speechState } = useSpeechContext()
@@ -32,6 +33,17 @@ export default function Form(): JSX.Element {
         const data = {
             ...palletData,
             [entry]: value
+        }
+        updatePalletData(data)
+    }
+
+    const handleDateInputChange = (entry: string, date: TDate) => {
+        if (date === null || date.c === null) return
+        const { c } = date
+        const dateString = `${c.month}/${c.day}/${c.year}`
+        const data = {
+            ...palletData,
+            [entry]: dateString
         }
         updatePalletData(data)
     }
@@ -63,13 +75,14 @@ export default function Form(): JSX.Element {
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('lot', e.target.value)}
                                 value={formData?.lot}
                                 id='test'
-                                label='lot (number)'
-                                placeholder='"Lot 12"' />
-                            <TextInput
-                                onChange={() => { console.log('test') }}
-                                value={formData?.date}
-                                id='test'
-                                label='date (of code)' />
+                                label='lot (number)' />
+                            <DatePicker
+                                placeholder='"Date Jan 1st 2021"'
+                                minDate={new Date()}
+                                value={formData?.date || null}
+                                onChange={(date: TDate) => handleDateInputChange('date', date)}
+                                id='date-input'
+                                label='Date (of code)' />
                         </VStack>
                         <VStack>
                             <Divider orientation='vertical' />

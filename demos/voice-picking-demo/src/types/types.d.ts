@@ -14,3 +14,16 @@ export type PalletContextState = {
     setPalletData: (arg0: IPalletData) => void,
     setTentativePalletData: (arg0: IPalletData) => void
 }
+
+type Calendar = {
+    day: number,
+    hour: number,
+    millisecond: number,
+    month: number,
+    second: number,
+    year: number
+}
+
+export type TDate = {
+    c: Calendar
+}
