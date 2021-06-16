@@ -79,10 +79,9 @@ const App: React.FC = (): JSX.Element => {
                             </Box>
 
                             <Center
-                                paddingTop={{ base: '120px', lg: '0px' }}
                                 paddingBottom={{ base: '300px', lg: '320px' }}
                                 display='flex'
-                                bgGradient="linear(180deg, #777777 0%, #212121 100%)"
+                                bgGradient="linear(180deg, #777777 0%, #212121 67%)"
                                 height='100%'>
                                 <Form />
                             </Center>

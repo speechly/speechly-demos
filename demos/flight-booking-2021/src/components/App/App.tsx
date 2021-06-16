@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext, useCallback } from 'react'
 import {
   SpeechProvider,
   SpeechSegment,
@@ -17,7 +17,7 @@ import { useLocation } from 'react-router'
 import LuxonUtils from '@date-io/luxon'
 import { ChakraProvider, Center } from '@chakra-ui/react'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import FlightContextProvider from '../../context/flightDataContext'
+import FlightContextProvider, { defaultFlightInformation, FlightDataContext } from '../../context/flightDataContext'
 
 
 import Form from '../Form/Form'
@@ -58,33 +58,23 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
   const [mockSegment, setMockSegment] = useState<SpeechSegment | undefined>()
   const [demoMode, setDemoMode] = useState(true)
   const { speechState } = useSpeechContext()
+  const { setFlightData } = useContext(FlightDataContext)
+
+  window.addEventListener('message', (e) => {
+    if (e.data.type === 'interactive') {
+      stopDemoMode()
+    }
+  })
 
   function useQuery() {
     return new URLSearchParams(useLocation().search)
   }
 
-
-  window.addEventListener('message', (e) => {
-    if (e.data.type === 'interactive') {
-      setDemoMode(false)
-      stopDemoMode()
-    }
-  })
-
-  const query = useQuery()
-  const heroMode = query.get('hero') === 'true'
-  const hidePushToTalkButton = heroMode && demoMode
-
-  useEffect(() => {
-    startDemoMode()
-  }, [])
-
-  useEffect(() => {
-    if (speechState === SpeechState.Recording) {
-      stopDemoMode()
-      setDemoMode(false)
-    }
-  }, [speechState])
+  const stopDemoMode = useCallback(() => {
+    setDemoMode(false)
+    setFlightData(defaultFlightInformation)
+    stopDemo()
+  }, [setFlightData])
 
   const startDemoMode = () => {
     startDemo(DemoStrings, (s: SpeechSegment) => {
@@ -94,10 +84,21 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
       }
     })
   }
+  const query = useQuery()
+  const heroMode = query.get('hero') === 'true'
+  const hidePushToTalkButton = heroMode && demoMode
 
-  const stopDemoMode = () => {
-    stopDemo()
-  }
+  useEffect(() => {
+    startDemoMode()
+  }, [])
+
+  useEffect(() => {
+    if (speechState === SpeechState.Recording && demoMode) {
+      stopDemoMode()
+    }
+  }, [speechState, stopDemoMode, demoMode])
+
+
 
   useUpdateFlightData(mockSegment)
 
