@@ -4,11 +4,11 @@
 
 .inputWrapper > button {
     font-weight: bold;
-    padding-left: 28px;
+    padding-left: 1rem;
     color: #0f4e92;
     display: flex;
     border: none;
-    bottom: 6px;
+    bottom: 0.375rem;
     position: relative;
 }
 

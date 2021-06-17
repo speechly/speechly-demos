@@ -1,6 +1,6 @@
 .voicePickingDateInput {
-    padding: 0px 0px 0px 28px !important;
-    bottom: 8px;
+    padding: 0px 0px 0px 1.25rem !important;
+    bottom: 0.5rem;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */

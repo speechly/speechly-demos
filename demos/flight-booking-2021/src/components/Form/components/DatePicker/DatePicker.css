@@ -1,6 +1,6 @@
 .dateInput {
-    padding: 0px 0px 0px 28px !important;
-    bottom: 8px;
+    padding: 0px 0px 0px 1.25rem !important;
+    bottom: 0.5rem;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -19,20 +19,14 @@
 .dateInput > div {
     color: #0f4e92 !important;
     font-weight: bold;
-    font-size: 22px !important;
-}
-
-@media screen and (min-width: 62em) {
-    .dateInput > div {
-        font-size: 28px !important;
-    }
+    font-size: 1.375rem !important;
 }
 
 
 .dateInput > div > div > button {
     padding: 0;
-    padding-right: 13px;
-    padding-bottom: 20px;
+    padding-right: 0.8rem;
+    padding-bottom: 0.8rem;
 }
 
 .icon {
@@ -40,12 +34,6 @@
 }
 
 .icon > span > svg {
-    font-size: 32px !important;
-}
-
-@media screen and (min-width: 62em) {
-    .icon > span > svg {
-        font-size: 48px !important;
-    }
+    font-size: 2rem !important;
 }
 

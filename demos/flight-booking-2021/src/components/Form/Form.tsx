@@ -99,7 +99,7 @@ export default function Form(): JSX.Element {
                         onClick={(value: boolean) => handleButtonChange(value)} />
                 </Box>
                 <HStack marginTop='30px' alignItems='normal'>
-                    <VStack spacing={{ base: 4, lg: 8 }} alignItems='flex-end'>
+                    <VStack spacing='1.5rem' alignItems='flex-end'>
                         <TextInput
                             placeholder='New York'
                             onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('from', e.target.value)}
@@ -121,7 +121,7 @@ export default function Form(): JSX.Element {
                             {getPassengerMenuItems()}
                         </Dropdown>
                     </VStack>
-                    <VStack spacing={{ base: 4, lg: 8 }} alignItems='flex-start'>
+                    <VStack spacing='1.5rem' alignItems='flex-start'>
                         <TextInput
                             placeholder='Helsinki'
                             onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('to', e.target.value)}

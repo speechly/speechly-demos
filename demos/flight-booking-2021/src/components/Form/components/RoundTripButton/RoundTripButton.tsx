@@ -15,17 +15,17 @@ const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
             <Button
                 onClick={() => props.onClick(false)}
                 flex={1}
-                h='70px'
+                h='4rem'
                 w='100%'
                 size='lg'
                 textTransform='uppercase'
                 fontFamily='Roboto Condensed, sans-serif'
-                fontSize={{ base: '30px' }}
+                fontSize={{ base: '1.375rem' }}
                 id='one-way-button'
                 variant='outline'
                 borderRight='none'
                 borderRightRadius='none'
-                borderLeftRadius='32px'
+                borderLeftRadius='36px'
                 color={props.return ? 'blue.100' : 'white'}
                 bgColor={props.return ? 'white' : 'blue.600'}>
                 One way
@@ -33,15 +33,15 @@ const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
             <Button
                 onClick={() => props.onClick(true)}
                 flex={1}
-                h='70px'
+                h='4rem'
                 w='100%'
                 textTransform='uppercase'
                 fontFamily='Roboto Condensed, sans-serif'
-                fontSize={{ base: '30px' }}
+                fontSize={{ base: '1.375rem' }}
                 size='lg'
                 borderLeft='none'
                 borderLeftRadius='none'
-                borderRightRadius='32px'
+                borderRightRadius='36px'
                 id='return-button'
                 variant='outline'
                 _hover={{ background: props.return ? 'blue.600' : 'white' }}

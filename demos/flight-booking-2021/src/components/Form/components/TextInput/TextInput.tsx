@@ -16,9 +16,9 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
         <CommonTextInput
             wrapperProps={{
                 className: 'inputWrapper',
+                // @ts-ignore
                 height: {
-                    base: '65px',
-                    lg: '70px'
+                    base: '4rem',
                 },
                 width: '100%'
             }}
@@ -36,7 +36,8 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
             fontProps={{
                 textTransform: 'uppercase',
                 fontFamily: 'Roboto Condensed, sans-serif',
-                fontSize: { base: '22px', lg: '28px' }
+                // @ts-ignore
+                fontSize: { base: '1.375rem' }
             }}
         />
     )

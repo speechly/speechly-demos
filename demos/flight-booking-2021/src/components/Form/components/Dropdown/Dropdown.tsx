@@ -14,7 +14,10 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
         <CommonDropdown
             wrapperProps={{
                 className: 'inputWrapper',
-                height: { base: '65px', lg: '70px' },
+                // @ts-ignore
+                height: {
+                    base: '4rem',
+                },
                 width: '100%'
             }}
             labelProps={{
@@ -26,10 +29,10 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
                 value: props.value,
                 variant: 'unstyled',
                 rootProps: {
-                    paddingLeft: '39px',
-                    right: '14px',
-                    bottom: '6px',
-                    paddingRight: '8px'
+                    paddingLeft: '2rem',
+                    right: '1rem',
+                    bottom: '0.5rem',
+                    paddingRight: '0.75rem'
                 },
                 id: props.id
             }}
@@ -37,9 +40,10 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
                 color: '#0f4e92',
                 fontFamily: 'Roboto Condensed, sans-serif',
                 textTransform: 'uppercase',
-                fontSize: { base: '22px', lg: '28px' }
+                // @ts-ignore
+                fontSize: { base: '1.375rem' }
             }}>
-            { props.children}
+            {props.children}
         </CommonDropdown >
     )
 }

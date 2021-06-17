@@ -25,7 +25,8 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
         <CommonDatePicker
             wrapperProps={{
                 className: props.disabled ? 'disabledInputWrapper' : 'inputWrapper',
-                height: { base: '65px', lg: '70px' },
+                // @ts-ignore
+                height: '4rem',
                 width: '100%'
             }}
             labelProps={{
@@ -42,7 +43,7 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
                 className: 'dateInput',
                 inputProps: {
                     placeholder: props.placeholder,
-                    disableUnderline: true
+                    disableUnderline: true,
                 },
                 disablePast: true,
                 minDateMessage: props.minDateMessage,
