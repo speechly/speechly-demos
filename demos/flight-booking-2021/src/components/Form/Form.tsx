@@ -95,7 +95,7 @@ export default function Form(): JSX.Element {
                 alignItems='center'>
                 <Box marginTop={{ base: '30%', lg: '13%' }} w='100%'>
                     <RoundTripButton
-                        return={Boolean(formData?.return)}
+                        return={Boolean(formData?.round_trip || formData?.return)}
                         onClick={(value: boolean) => handleButtonChange(value)} />
                 </Box>
                 <HStack marginTop='30px' alignItems='normal'>
@@ -129,7 +129,7 @@ export default function Form(): JSX.Element {
                             value={formData?.to}
                             id='to-input' />
                         <DatePicker
-                            disabled={formData?.return === '' || formData?.return === null}
+                            disabled={(formData?.return === '' || formData?.return === null) && !formData?.round_trip}
                             minDateMessage='Date can not be before departure date'
                             minDate={formData?.depart ? new Date(formData?.depart) : new Date()}
                             value={formData?.return || null}

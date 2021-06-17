@@ -8,7 +8,9 @@ export const defaultFlightInformation = {
   return: '',
   passengers: 1,
   class: '',
-  direct: false
+  direct: false,
+  round_trip: false,
+  one_way: true
 }
 
 const contextDefaultValues: FlightContextState = {

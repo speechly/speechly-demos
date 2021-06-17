@@ -4,7 +4,7 @@ import { FlightDataContext, defaultFlightInformation } from '../context/flightDa
 import { IFlightInformation } from '../types/type'
 import { calculateDateEntity } from '../utils/dateUtils'
 import FuzzyStringMatching from '../utils/flightDataUtils'
-import { DEPART, RETURN, CLASS, CLEAR, ECONOMY, BUSINESS, DIRECT } from '../constants/flightDataConstants'
+import * as types from '../constants/flightDataConstants'
 
 export const useUpdateFlightData = (segment: SpeechSegment | undefined): void => {
     const { flightData, setFlightData, setTentativeFlightData } = useContext(FlightDataContext)
@@ -17,19 +17,29 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
                     for (const [key, value] of Object.entries(flightData)) {
                         if (entity.type === key && entity.value !== value && entity.value !== undefined && entity.value !== '') {
                             let value: string | boolean | number = entity.value
-
-                            if (entity.type === DEPART || entity.type === RETURN) {
+                            if (entity.type === types.DEPART || entity.type === types.RETURN) {
                                 value = calculateDateEntity(value)
                             }
 
-                            if (entity.type === CLASS) {
-                                const economyMatch = FuzzyStringMatching.match(entity.value, ECONOMY)
-                                const businessMatch = FuzzyStringMatching.match(entity.value, BUSINESS)
-                                if (economyMatch < businessMatch) value = ECONOMY
-                                else value = BUSINESS
+                            if (entity.type === types.CLASS) {
+                                const economyMatch = FuzzyStringMatching.match(entity.value, types.ECONOMY)
+                                const businessMatch = FuzzyStringMatching.match(entity.value, types.BUSINESS)
+                                if (economyMatch < businessMatch) value = types.ECONOMY
+                                else value = types.BUSINESS
                             }
 
-                            if (entity.type === DIRECT) {
+                            if (entity.type === types.DIRECT) {
+                                value = true
+                            }
+
+                            if (entity.type === types.ONE_WAY) {
+                                flightData.round_trip = false
+                                flightData.return = null
+                                value = true
+                            }
+
+                            if (entity.type === types.ROUND_TRIP) {
+                                flightData.one_way = false
                                 value = true
                             }
 
@@ -43,7 +53,7 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
                 })
             }
 
-            if (segment?.intent && segment.intent.intent === CLEAR) {
+            if (segment?.intent && segment.intent.intent === types.CLEAR) {
                 result = defaultFlightInformation
             }
 
