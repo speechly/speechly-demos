@@ -17,10 +17,10 @@ import { getTomorrowsDate } from '../../utils/dateUtils'
 
 
 export default function Form(): JSX.Element {
-    const { segment, speechState } = useSpeechContext()
+    const { segment } = useSpeechContext()
     useUpdateFlightData(segment)
     const { flightData, tentativeFlightData, setFlightData, setTentativeFlightData } = useContext(FlightDataContext)
-    const formData = speechState === 'Recording' || speechState === 'Loading' ? tentativeFlightData : flightData
+    const formData = segment?.isFinal ? flightData : tentativeFlightData
 
     const updateFlightdata = (data: IFlightInformation): void => {
         setFlightData(data)
