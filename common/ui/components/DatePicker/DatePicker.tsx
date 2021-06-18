@@ -5,7 +5,7 @@ import { TDate } from 'flight-booking-demo/src/types/type'
 
 interface WrapperProps {
     className: string,
-    height: {
+    height: string | {
         base: string,
         lg: string
     },

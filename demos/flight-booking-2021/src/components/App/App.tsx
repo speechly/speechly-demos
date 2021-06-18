@@ -10,6 +10,7 @@ import {
   PushToTalkButtonContainer,
   ErrorPanel
 } from '@speechly/react-ui'
+import theme from '@speechly-demos/ui/constants/theme'
 import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer'
 import { startDemo, stopDemo } from '@speechly/browser-ui/demomode'
 import { useLocation } from 'react-router'
@@ -22,7 +23,7 @@ import FlightContextProvider, { defaultFlightInformation, FlightDataContext } fr
 
 import Form from '../Form/Form'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
-
+import './App.css'
 
 const UsageHints = [
   'Try: "Book a return flight from London to New York"',
@@ -106,10 +107,10 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
     <>
       <TranscriptDrawer
         mockSegment={mockSegment}
-        height='6rem'
+        height={theme.transcriptDrawer.defaultHeight}
         hint={UsageHints}
-        highlightColor='#0f4e92'
-        smallTextColor='#187ce7'
+        highlightColor={theme.colors.yaleBlue}
+        smallTextColor={theme.colors.deepSkyBlue}
         backgroundColor='rgba(162, 213, 240, 0.4)' />
 
       {!hidePushToTalkButton &&

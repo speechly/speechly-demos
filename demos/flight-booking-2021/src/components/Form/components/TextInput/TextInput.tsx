@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import CommonTextInput from '@speechly-demos/ui/components/TextInput/TextInput'
 import './TextInput.css'
+import theme from '@speechly-demos/ui/constants/theme'
 
 interface Props {
     onChange: (event: ChangeEvent<HTMLInputElement>) => void,
@@ -16,10 +17,7 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
         <CommonTextInput
             wrapperProps={{
                 className: 'inputWrapper',
-                // @ts-ignore
-                height: {
-                    base: '4rem',
-                },
+                height: theme.inputs.defaultHeight,
                 width: '100%'
             }}
             labelProps={{
@@ -35,9 +33,8 @@ const TextInput: React.FC<Props> = (props): JSX.Element => {
             }}
             fontProps={{
                 textTransform: 'uppercase',
-                fontFamily: 'Roboto Condensed, sans-serif',
-                // @ts-ignore
-                fontSize: { base: '1.375rem' }
+                fontFamily: theme.fonts.default,
+                fontSize: theme.fonts.defaultFontSize
             }}
         />
     )

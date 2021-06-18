@@ -1,6 +1,8 @@
 import React, { ChangeEvent } from 'react'
+import theme from '@speechly-demos/ui/constants/theme'
 import CommonDropdown from '@speechly-demos/ui/components/Dropdown/Dropdown'
 import './Dropdown.css'
+
 
 interface Props {
     value: string | number,
@@ -14,10 +16,7 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
         <CommonDropdown
             wrapperProps={{
                 className: 'inputWrapper',
-                // @ts-ignore
-                height: {
-                    base: '4rem',
-                },
+                height: theme.inputs.defaultHeight,
                 width: '100%'
             }}
             labelProps={{
@@ -37,11 +36,10 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
                 id: props.id
             }}
             fontProps={{
-                color: '#0f4e92',
-                fontFamily: 'Roboto Condensed, sans-serif',
+                color: theme.colors.yaleBlue,
+                fontFamily: theme.fonts.default,
                 textTransform: 'uppercase',
-                // @ts-ignore
-                fontSize: { base: '1.375rem' }
+                fontSize: theme.fonts.defaultFontSize
             }}>
             {props.children}
         </CommonDropdown >

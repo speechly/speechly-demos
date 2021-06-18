@@ -25,7 +25,6 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
         <CommonDatePicker
             wrapperProps={{
                 className: props.disabled ? 'disabledInputWrapper' : 'inputWrapper',
-                // @ts-ignore
                 height: '4rem',
                 width: '100%'
             }}

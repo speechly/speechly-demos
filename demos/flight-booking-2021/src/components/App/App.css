@@ -1,0 +1,39 @@
+@media (max-width: 688px) {
+  html {
+    font-size: 85%;
+  }
+
+  main {
+    width: 100%;
+  }
+}
+
+@media (min-width: 688px) and (max-width: 992px) {
+  html {
+    font-size: 100%;
+  }
+
+  main {
+    width: 640px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1312px) {
+  html {
+    font-size: 100%;
+  }
+
+  main {
+    width: 720px;
+  }
+}
+
+@media (min-width: 1312px) {
+  html {
+    font-size: 120%;
+  }
+
+  main {
+    width: 800px;
+  }
+}

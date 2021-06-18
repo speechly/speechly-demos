@@ -5,6 +5,7 @@ import {
     PushToTalkButtonContainer,
     ErrorPanel
 } from '@speechly/react-ui'
+import theme from '@speechly-demos/ui/constants/theme'
 import LuxonUtils from '@date-io/luxon'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer'
@@ -27,7 +28,7 @@ const App: React.FC = (): JSX.Element => {
                     <SpeechProvider appId="05f512b2-4270-46ad-8838-456cfd3a446c" language="en-US">
                         <TranscriptDrawer
                             hint={UsageHints}
-                            height='6rem'
+                            height={theme.transcriptDrawer.defaultHeight}
                             backgroundColor='#FF9900'
                             smallTextColor='black'
                             highlightColor='white' />
@@ -41,7 +42,7 @@ const App: React.FC = (): JSX.Element => {
 
                         <div style={{ height: '100vh' }}>
                             <Center
-                                paddingTop='100px'
+                                paddingTop='6.25rem'
                                 display='flex'
                                 flexDirection='row'
                                 alignItems='center'
@@ -53,15 +54,15 @@ const App: React.FC = (): JSX.Element => {
                             <Box height={{ base: '9vh', lg: '5vh' }} background='#3f3f3f' display='flex'>
                                 <Box
                                     style={{
-                                        paddingTop: '12px',
+                                        paddingTop: '0.75rem',
                                         color: 'white',
                                         fontWeight: 700,
-                                        fontSize: '24px',
-                                        lineHeight: '28px',
-                                        fontFamily: 'Roboto Condensed, sans-serif',
-                                        marginLeft: '30px',
+                                        fontSize: '1.5rem',
+                                        lineHeight: '1.75rem',
+                                        fontFamily: theme.fonts.default,
+                                        marginLeft: '1.875rem',
                                         background: '#777777',
-                                        width: '176px',
+                                        width: '11rem',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center',

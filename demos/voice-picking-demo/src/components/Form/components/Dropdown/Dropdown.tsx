@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react'
 import CommonDropdown from '@speechly-demos/ui/components/Dropdown/Dropdown'
+import theme from '@speechly-demos/ui/constants/theme'
 import './Dropdown.css'
 
 interface Props {
@@ -14,7 +15,7 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
         <CommonDropdown
             wrapperProps={{
                 className: 'voicePickingInputWrapper',
-                height: { base: '65px', lg: '70px' },
+                height: theme.inputs.defaultHeight,
                 width: '100%'
             }}
             labelProps={{
@@ -35,9 +36,9 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
             }}
             fontProps={{
                 color: 'black',
-                fontFamily: 'Roboto Condensed, sans-serif',
+                fontFamily: theme.fonts.default,
                 textTransform: 'uppercase',
-                fontSize: { base: '22px', lg: '28px' }
+                fontSize: theme.fonts.defaultFontSize
             }}>
             {props.children}
         </CommonDropdown >

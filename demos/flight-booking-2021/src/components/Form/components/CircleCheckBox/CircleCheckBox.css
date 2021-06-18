@@ -1,6 +1,6 @@
 .checkboxWrapper {
     display: flex;
-    padding-top: 10px;
+    padding-top: 0.625rem;
     align-items: center;
     align-self: baseline;
     padding-left: 2px;
@@ -16,7 +16,7 @@
 .checkboxNotSelected {
     background-color: #d1dcec;
     border-radius: 50%;
-    box-shadow: 0 0 10px #0f4e92;
+    box-shadow: 0 0 0.625rem #0f4e92;
     cursor: pointer;
 }
 

@@ -6,6 +6,7 @@ import { FlightDataContext } from '../../context/flightDataContext'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
 import { IFlightInformation, TDate } from '../../types/type'
 import { BUSINESS, ECONOMY } from '../../constants/flightDataConstants'
+import { getTomorrowsDate } from '../../utils/dateUtils'
 
 import TextInput from './components/TextInput/TextInput'
 import RoundTripButton from './components/RoundTripButton/RoundTripButton'
@@ -13,7 +14,7 @@ import DatePicker from './components/DatePicker/DatePicker'
 import Dropdown from './components/Dropdown/Dropdown'
 import CircleCheckBox from './components/CircleCheckBox/CircleCheckBox'
 import './Form.css'
-import { getTomorrowsDate } from '../../utils/dateUtils'
+
 
 
 export default function Form(): JSX.Element {
@@ -82,13 +83,13 @@ export default function Form(): JSX.Element {
 
     return (
         <Box
-            p='8px'
+            p='0.5rem'
             display='flex'
-            marginTop='134px'
-            paddingBottom='345px'
+            marginTop='8.375rem'
+            paddingBottom='21.5rem'
             flexDirection='row'
             alignSelf='center'
-            w={{ base: '100%', lg: '760px' }}>
+            w='47.5rem'>
             <Box
                 display='flex'
                 flexDirection='column'
@@ -98,7 +99,7 @@ export default function Form(): JSX.Element {
                         return={Boolean(formData?.round_trip || formData?.return)}
                         onClick={(value: boolean) => handleButtonChange(value)} />
                 </Box>
-                <HStack marginTop='30px' alignItems='normal'>
+                <HStack marginTop='1.875rem' alignItems='normal'>
                     <VStack spacing='1.5rem' alignItems='flex-end'>
                         <TextInput
                             placeholder='New York'
@@ -146,7 +147,7 @@ export default function Form(): JSX.Element {
                         </Dropdown>
                     </VStack>
                 </HStack>
-                <Box w='100%' paddingTop='8px'>
+                <Box w='100%' paddingTop='0.5rem'>
                     <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct} />
                 </Box>
             </Box>

@@ -3,7 +3,7 @@ import { Text, Select, Box } from '@chakra-ui/react'
 
 interface WrapperProps {
     className: string,
-    height: {
+    height: string | {
         base: string,
         lg: string
     },
@@ -18,7 +18,7 @@ interface LabelProps {
 interface FontProps {
     textTransform: 'uppercase' | 'none'
     fontFamily: string
-    fontSize: {
+    fontSize: string | {
         base: string,
         lg: string
     },
