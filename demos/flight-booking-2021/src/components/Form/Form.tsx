@@ -87,18 +87,11 @@ export default function Form(): JSX.Element {
             display='flex'
             marginTop='8.375rem'
             paddingBottom='21.5rem'
-            flexDirection='row'
-            alignSelf='center'
             w='47.5rem'>
-            <Box
-                display='flex'
-                flexDirection='column'
-                alignItems='center'>
-                <Box marginTop={{ base: '30%', lg: '13%' }} w='100%'>
-                    <RoundTripButton
-                        return={Boolean(formData?.round_trip || formData?.return)}
-                        onClick={(value: boolean) => handleButtonChange(value)} />
-                </Box>
+            <Box display='flex' flexDirection='column'>
+                <RoundTripButton
+                    return={Boolean(formData?.round_trip || formData?.return)}
+                    onClick={(value: boolean) => handleButtonChange(value)} />
                 <HStack marginTop='1.875rem' alignItems='normal'>
                     <VStack spacing='1.5rem' alignItems='flex-end'>
                         <TextInput
@@ -147,9 +140,7 @@ export default function Form(): JSX.Element {
                         </Dropdown>
                     </VStack>
                 </HStack>
-                <Box w='100%' paddingTop='0.5rem'>
-                    <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct} />
-                </Box>
+                <CircleCheckBox onChange={handleCheckBoxChange} selected={formData?.direct} />
             </Box>
         </Box>
     )

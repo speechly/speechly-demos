@@ -1,15 +1,23 @@
-import React, { useEffect, useState, useContext, useCallback } from 'react'
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useCallback
+} from 'react'
+
 import {
   SpeechProvider,
   SpeechSegment,
   SpeechState,
   useSpeechContext
 } from '@speechly/react-client'
+
 import {
   PushToTalkButton,
   PushToTalkButtonContainer,
   ErrorPanel
 } from '@speechly/react-ui'
+
 import theme from '@speechly-demos/ui/constants/theme'
 import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer'
 import { startDemo, stopDemo } from '@speechly/browser-ui/demomode'
@@ -121,6 +129,7 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
       }
 
       <Center
+        pointerEvents={demoMode ? 'none' : 'all'}
         display='flex'
         flexDirection='row'
         alignItems='center'
