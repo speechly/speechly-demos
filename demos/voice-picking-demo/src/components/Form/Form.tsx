@@ -12,10 +12,10 @@ import DatePicker from './components/DatePicker/DatePicker'
 import { platformTypes } from '../../constants/palletDataConstants'
 
 export default function Form(): JSX.Element {
-    const { segment, speechState } = useSpeechContext()
+    const { segment } = useSpeechContext()
     useUpdatePalletData(segment)
     const { palletData, tentativePalletData, setPalletData, setTentativePalletData } = useContext(PalletDataContext)
-    const formData = speechState === 'Recording' || speechState === 'Loading' ? tentativePalletData : palletData
+    const formData = segment?.isFinal ? palletData : tentativePalletData
 
     const updatePalletData = (data: IPalletData): void => {
         setPalletData(data)
