@@ -25,7 +25,7 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
         <CommonDatePicker
             wrapperProps={{
                 className: props.disabled ? 'disabledInputWrapper' : 'voicePickingInputWrapper',
-                height: { base: '65px', lg: '70px' },
+                height: '4rem',
                 width: '100%'
             }}
             labelProps={{

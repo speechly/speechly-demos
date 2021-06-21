@@ -27,10 +27,10 @@ const Dropdown: React.FC<Props> = (props): JSX.Element => {
                 value: props.value,
                 variant: 'unstyled',
                 rootProps: {
-                    paddingLeft: '39px',
-                    right: '14px',
-                    bottom: '6px',
-                    paddingRight: '8px'
+                    paddingLeft: '2rem',
+                    right: '1rem',
+                    bottom: '0.5rem',
+                    paddingRight: '0.75rem'
                 },
                 id: props.id
             }}

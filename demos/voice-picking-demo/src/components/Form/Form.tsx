@@ -1,5 +1,5 @@
 import React, { useContext, ChangeEvent } from 'react'
-import { Box, HStack, VStack, Divider, Center } from '@chakra-ui/react'
+import { Box, HStack, VStack, Center } from '@chakra-ui/react'
 import { useSpeechContext } from '@speechly/react-client'
 
 import { useUpdatePalletData } from '../../hooks/useUpdatePalletData'
@@ -9,6 +9,7 @@ import { IPalletData, TDate } from '../../types/types'
 import TextInput from './components/TextInput/TextInput'
 import Dropdown from './components/Dropdown/Dropdown'
 import DatePicker from './components/DatePicker/DatePicker'
+import { platformTypes } from '../../constants/palletDataConstants'
 
 export default function Form(): JSX.Element {
     const { segment, speechState } = useSpeechContext()
@@ -56,8 +57,8 @@ export default function Form(): JSX.Element {
             paddingTop={{ base: '100px', lg: '0px' }}
             flexDirection='row'
             alignSelf='center'
-            h={{ lg: '100%' }}
-            w={{ lg: '100%' }}>
+            h='100%'
+            w='100%'>
             <Box
                 h='100%'
                 w='100%'
@@ -66,7 +67,7 @@ export default function Form(): JSX.Element {
                 display='flex'
                 flexDirection='column'
                 alignItems='center'>
-                <Center id='form-center' h='100%' paddingLeft='4px' paddingRight='4px'>
+                <Center id='form-center' h='100%' w='100%' paddingLeft='4px' paddingRight='4px'>
                     <HStack alignItems='normal' h='100%' w={{ base: '100%', lg: '760px' }} id='form-hstack'>
                         <VStack
                             paddingTop={{ base: '40px', lg: '80px' }}
@@ -84,8 +85,7 @@ export default function Form(): JSX.Element {
                                 label='Platform type'
                                 id='platform-dropdown'
                                 onChange={(event: ChangeEvent<HTMLSelectElement>) => handleMenuChange('platform', event.target.value)}>
-                                <option>WOODEN</option>
-                                <option>METAL</option>
+                                {platformTypes.map((type) => (<option key={type}>{type}</option>))}
                             </Dropdown>
                             <TextInput
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('lot', e.target.value)}
@@ -107,7 +107,7 @@ export default function Form(): JSX.Element {
                             w={{ base: '35%', lg: '30%' }}
                             id='form-vstack-2'
                             paddingTop={{ base: '40px', lg: '80px' }}
-                            paddingBottom='15px'
+                            paddingBottom='13px'
                             paddingRight='9px'
                             paddingLeft='2px' >
                             <TextInput

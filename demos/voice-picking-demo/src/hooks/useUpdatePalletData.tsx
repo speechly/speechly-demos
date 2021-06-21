@@ -1,7 +1,9 @@
 import { useEffect, useContext } from 'react'
 import { Entity, SpeechSegment } from '@speechly/react-client'
-import { PalletDataContext } from '../context/palletContext'
+import FuzzyStringMatching from '@speechly-demos/ui/utils/distanceUtils'
+import { defaultPalletData, PalletDataContext } from '../context/palletContext'
 import { IPalletData } from '../types/types'
+import { platformTypes } from '../constants/palletDataConstants'
 
 export const useUpdatePalletData = (segment: SpeechSegment | undefined): void => {
     const { palletData, setPalletData, setTentativePalletData } = useContext(PalletDataContext)
@@ -13,7 +15,12 @@ export const useUpdatePalletData = (segment: SpeechSegment | undefined): void =>
                 segment.entities.forEach((entity: Entity) => {
                     for (const [key, value] of Object.entries(palletData)) {
                         if (entity.type === key && entity.value !== value && entity.value !== undefined && entity.value !== '') {
-                            const value: string | boolean | number = entity.value
+                            let value: string | boolean | number = entity.value
+
+                            if (entity.type === 'platform') {
+                                value = FuzzyStringMatching.getClosestMatch(entity.value, platformTypes)
+                            }
+
 
                             result = {
                                 ...palletData,
@@ -23,6 +30,10 @@ export const useUpdatePalletData = (segment: SpeechSegment | undefined): void =>
                         }
                     }
                 })
+            }
+
+            if (segment?.intent && segment.intent.intent === 'clear') {
+                result = defaultPalletData
             }
 
             if (result !== undefined) {
