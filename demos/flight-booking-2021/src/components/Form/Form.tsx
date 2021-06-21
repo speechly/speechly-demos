@@ -83,12 +83,21 @@ export default function Form(): JSX.Element {
 
     return (
         <Box
-            p='0.5rem'
+            paddingLeft='0.5rem'
+            paddingRight='0.5rem'
             display='flex'
-            marginTop='8.375rem'
-            paddingBottom='21.5rem'
-            w='47.5rem'>
-            <Box display='flex' flexDirection='column'>
+            height='100vh'
+            paddingTop='6.25rem'
+            paddingBottom='18rem'>
+            <Box
+                height='100%'
+                display='flex'
+                flexDirection='column'
+                justifyContent='flex-start'
+                overflowY='auto'
+                overflowX='hidden'
+                position='relative'
+                top='28%'>
                 <RoundTripButton
                     return={Boolean(formData?.round_trip || formData?.return)}
                     onClick={(value: boolean) => handleButtonChange(value)} />

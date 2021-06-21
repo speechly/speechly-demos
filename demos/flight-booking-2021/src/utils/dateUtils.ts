@@ -15,10 +15,21 @@ export function nextDate(dayIndex: number): Date {
 }
 
 export function calculateDateEntity(dateString: string): string {
-    const parsedDate = Date.parse(dateString)
-    const weekdayIndex = new Date(parsedDate).getDay()
-    const wantedTime = nextDate(weekdayIndex)
+    const now = new Date()
+    const utteredDate = new Date(dateString)
 
+    let wantedTime
+
+    if (utteredDate > now) {
+        wantedTime = utteredDate
+    }
+    // if past date is uttered, calculate next date with 
+    // same weekday index
+    else {
+        const parsedDate = Date.parse(dateString)
+        const weekdayIndex = new Date(parsedDate).getDay()
+        wantedTime = nextDate(weekdayIndex)
+    }
 
     const result = `${appendLeadingZeroes(wantedTime.getMonth() + 1)}/${appendLeadingZeroes(
         wantedTime.getDate()

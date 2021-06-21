@@ -21,7 +21,7 @@ const RoundTripButton: React.FC<Props> = (props): JSX.Element => {
     }
 
     return (
-        <Box marginTop={{ base: '30%', lg: '13%' }} w='100%'>
+        <Box w='100%'>
             <ButtonGroup
                 isAttached
                 display='flex'
