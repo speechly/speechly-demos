@@ -49,7 +49,10 @@ const UsageHints = [
 ]
 
 const DemoStrings = [
-  '*book Book a return flight from London(from) to [New York](to)',
+  '*book Book a [return](round_trip) flight from London(from) to [New York](to)',
+  '*book For 2(passengers) passengers',
+  '*book In business(class) class',
+  '*book Direct(direct) flights only',
   '*clear clear',
 ]
 
@@ -143,8 +146,8 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
       }
 
       <Center
-        paddingTop='7rem'
-        paddingBottom='8rem'
+        paddingTop='5rem'
+        paddingBottom='6rem'
         pointerEvents={demoMode ? 'none' : 'all'}
         display='flex'
         flexDirection='column'
