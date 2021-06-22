@@ -4,7 +4,7 @@ body {
 
 @media (max-width: 688px) {
   html {
-    font-size: 85%;
+    font-size: 80%;
   }
 
   main {
@@ -40,4 +40,21 @@ body {
   main {
     width: 800px;
   }
+}
+
+.placementBottom {
+  --voffset: 28px;
+  --size: 72px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--size) + var(--voffset));
+  max-height: 100vh;
+  pointer-events: none;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 50;
 }

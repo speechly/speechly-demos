@@ -134,7 +134,7 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
       }
 
       {!hidePushToTalkButton &&
-        <PushToTalkButtonContainer>
+        <div className="placementBottom">
           <PushToTalkButton
             captureKey=""
             intro="Hold to talk"
@@ -142,11 +142,11 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
             size="72px"
           />
           <ErrorPanel />
-        </PushToTalkButtonContainer>
+        </div>
       }
 
       <Center
-        paddingTop='5rem'
+        paddingTop='4.5rem'
         paddingBottom='6rem'
         pointerEvents={demoMode ? 'none' : 'all'}
         display='flex'
