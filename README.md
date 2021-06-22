@@ -111,4 +111,14 @@ You can create a new demo with following steps:
    and navigate to localhost:8081 in browser
    Link to your new demo should be displayed in list
    
-   
+## Publishing to Heroku
+
+### Requirements
+
+- Heroku CLI app from https://devcenter.heroku.com/articles/heroku-command-line
+
+```
+heroku login
+git remote add heroku https://git.heroku.com/speechly-demos.git
+git push heroku main
+```

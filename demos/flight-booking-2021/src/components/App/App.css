@@ -1,4 +1,18 @@
-@media (max-width: 688px) {
+body {
+  background-color: transparent !important;
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 80%;
+  }
+
+  main {
+    width: 100%;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 400px) {
   html {
     font-size: 85%;
   }
@@ -8,9 +22,19 @@
   }
 }
 
+@media (min-width: 400px) and (max-width: 688px) {
+  html {
+    font-size: 90%;
+  }
+
+  main {
+    width: 100%;
+  }
+}
+
 @media (min-width: 688px) and (max-width: 992px) {
   html {
-    font-size: 100%;
+    font-size: 90%;
   }
 
   main {
@@ -20,7 +44,7 @@
 
 @media (min-width: 992px) and (max-width: 1312px) {
   html {
-    font-size: 100%;
+    font-size: 90%;
   }
 
   main {
@@ -30,10 +54,27 @@
 
 @media (min-width: 1312px) {
   html {
-    font-size: 120%;
+    font-size: 100%;
   }
 
   main {
     width: 800px;
   }
+}
+
+.placementBottom {
+  --voffset: 28px;
+  --size: 72px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--size) + var(--voffset));
+  max-height: 100vh;
+  pointer-events: none;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 50;
 }
