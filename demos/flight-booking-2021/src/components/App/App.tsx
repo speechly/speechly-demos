@@ -18,6 +18,9 @@ import {
   ErrorPanel
 } from '@speechly/react-ui'
 
+import { Router } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+
 import theme from '@speechly-demos/ui/constants/theme'
 import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer'
 import { startDemo, stopDemo } from '@speechly/browser-ui/demomode'
@@ -50,16 +53,19 @@ const DemoStrings = [
 ]
 
 const App: React.FC = (): JSX.Element => {
+  const history = createBrowserHistory()
   return (
-    <FlightContextProvider>
-      <MuiPickersUtilsProvider utils={LuxonUtils}>
-        <ChakraProvider>
-          <SpeechProvider appId="1ea63538-f95c-4259-b8af-923994424137" language="en-US">
-            <SpeechlyApp />
-          </SpeechProvider>
-        </ChakraProvider>
-      </MuiPickersUtilsProvider>
-    </FlightContextProvider>
+    <Router {...{ history }}>
+      <FlightContextProvider>
+        <MuiPickersUtilsProvider utils={LuxonUtils}>
+          <ChakraProvider>
+            <SpeechProvider appId="1ea63538-f95c-4259-b8af-923994424137" language="en-US">
+              <SpeechlyApp />
+            </SpeechProvider>
+          </ChakraProvider>
+        </MuiPickersUtilsProvider>
+      </FlightContextProvider>
+    </Router>
   )
 }
 
