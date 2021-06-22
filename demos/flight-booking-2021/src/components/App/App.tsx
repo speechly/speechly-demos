@@ -24,7 +24,7 @@ import { startDemo, stopDemo } from '@speechly/browser-ui/demomode'
 import { useLocation } from 'react-router'
 
 import LuxonUtils from '@date-io/luxon'
-import { ChakraProvider, Center } from '@chakra-ui/react'
+import { ChakraProvider, Center, Box } from '@chakra-ui/react'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import FlightContextProvider, { defaultFlightInformation, FlightDataContext } from '../../context/flightDataContext'
 
@@ -112,7 +112,7 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
   useUpdateFlightData(mockSegment)
 
   return (
-    <>
+    <Box h='100vh' overflowY='auto'>
       <TranscriptDrawer
         mockSegment={mockSegment}
         height={theme.transcriptDrawer.defaultHeight}
@@ -129,15 +129,17 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
       }
 
       <Center
+        paddingTop='8rem'
+        paddingBottom='10rem'
         pointerEvents={demoMode ? 'none' : 'all'}
         display='flex'
         flexDirection='row'
         alignItems='center'
         bgGradient="linear(150deg, #53A3F9 17.8%, #75DFFF 48.54%, #DBFFF6 78.65%)"
-        h='100%'>
+        minH='100%'>
         <Form />
       </Center>
-    </>
+    </Box>
   )
 }
 
