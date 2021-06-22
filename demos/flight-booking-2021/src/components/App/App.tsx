@@ -129,7 +129,7 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
 
       {!hidePushToTalkButton &&
         <PushToTalkButtonContainer>
-          <PushToTalkButton captureKey="" intro="Hold to book a flight with voice" showTime={30000} />
+          <PushToTalkButton captureKey=" " intro="Hold to book a flight with voice" showTime={30000} />
           <ErrorPanel />
         </PushToTalkButtonContainer>
       }
