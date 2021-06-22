@@ -19,7 +19,6 @@ export function calculateDateEntity(dateString: string): string {
     const utteredDate = new Date(dateString)
 
     let wantedTime
-
     if (utteredDate > now) {
         wantedTime = utteredDate
     }
@@ -31,9 +30,9 @@ export function calculateDateEntity(dateString: string): string {
         wantedTime = nextDate(weekdayIndex)
     }
 
-    const result = `${appendLeadingZeroes(wantedTime.getMonth() + 1)}/${appendLeadingZeroes(
-        wantedTime.getDate()
-    )}/${appendLeadingZeroes(wantedTime.getFullYear())}`
+    const result = `${appendLeadingZeroes(wantedTime.getUTCMonth() + 1)}/${appendLeadingZeroes(
+        wantedTime.getUTCDate()
+    )}/${appendLeadingZeroes(wantedTime.getUTCFullYear())}`
 
     return result
 }

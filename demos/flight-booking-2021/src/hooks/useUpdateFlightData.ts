@@ -1,9 +1,10 @@
 import { useEffect, useContext } from 'react'
 import { Entity, SpeechSegment } from '@speechly/react-client'
+import FuzzyStringMatching from '@speechly-demos/ui/utils/distanceUtils'
 import { FlightDataContext, defaultFlightInformation } from '../context/flightDataContext'
 import { IFlightInformation } from '../types/type'
 import { calculateDateEntity } from '../utils/dateUtils'
-import FuzzyStringMatching from '../utils/flightDataUtils'
+
 import * as types from '../constants/flightDataConstants'
 
 export const useUpdateFlightData = (segment: SpeechSegment | undefined): void => {
