@@ -141,7 +141,7 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
         display='flex'
         flexDirection='row'
         alignItems='center'
-        bgGradient="linear(150deg, #53A3F9 17.8%, #75DFFF 48.54%, #DBFFF6 78.65%)"
+        bgGradient={heroMode ? undefined : "linear(150deg, #53A3F9 17.8%, #75DFFF 48.54%, #DBFFF6 78.65%)"}
         minH='100%'>
         <Form />
       </Center>

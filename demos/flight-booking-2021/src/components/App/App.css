@@ -1,3 +1,7 @@
+body {
+  background-color: transparent !important;
+}
+
 @media (max-width: 688px) {
   html {
     font-size: 85%;
