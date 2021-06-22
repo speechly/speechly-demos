@@ -136,7 +136,7 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
       {!hidePushToTalkButton &&
         <div className="placementBottom">
           <PushToTalkButton
-            captureKey=""
+            captureKey=" "
             intro="Hold to talk"
             showTime={30000}
             size="72px"
