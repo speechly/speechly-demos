@@ -15,7 +15,8 @@ import {
 import {
   PushToTalkButton,
   PushToTalkButtonContainer,
-  ErrorPanel
+  ErrorPanel,
+  BigTranscript
 } from '@speechly/react-ui'
 
 import { Router } from 'react-router-dom'
@@ -118,32 +119,49 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
   useUpdateFlightData(mockSegment)
 
   return (
-    <Box h='100vh' overflowY='auto'>
-      <TranscriptDrawer
-        mockSegment={mockSegment}
-        height={theme.transcriptDrawer.defaultHeight}
-        hint={UsageHints}
-        highlightColor={theme.colors.yaleBlue}
-        smallTextColor={theme.colors.deepSkyBlue}
-        backgroundColor='rgba(162, 213, 240, 0.4)' />
+    <Box h='100vh' overflowY='auto' overflowX='hidden'>
+      {!(heroMode && hidePushToTalkButton) &&
+        <TranscriptDrawer
+          mockSegment={mockSegment}
+          height={theme.transcriptDrawer.defaultHeight}
+          hint={UsageHints}
+          highlightColor={theme.colors.yaleBlue}
+          smallTextColor={theme.colors.deepSkyBlue}
+          backgroundColor='rgba(162, 213, 240, 0.4)' />
+      }
 
       {!hidePushToTalkButton &&
         <PushToTalkButtonContainer>
-          <PushToTalkButton captureKey="" intro="Hold to book a flight with voice" showTime={30000} />
+          <PushToTalkButton
+            captureKey=""
+            intro="Hold to talk"
+            showTime={30000}
+            size="72px"
+          />
           <ErrorPanel />
         </PushToTalkButtonContainer>
       }
 
       <Center
-        paddingTop='8rem'
-        paddingBottom='10rem'
+        paddingTop='7rem'
+        paddingBottom='8rem'
         pointerEvents={demoMode ? 'none' : 'all'}
         display='flex'
-        flexDirection='row'
+        flexDirection='column'
         alignItems='center'
         bgGradient={heroMode ? undefined : "linear(150deg, #53A3F9 17.8%, #75DFFF 48.54%, #DBFFF6 78.65%)"}
         minH='100%'>
-        <Form />
+        <Box w='100%' flex='1' display='flex' alignItems='center' justifyContent='center'>
+          <Box display='flex' minH='100%' flexDir='column' margin='0.4rem' alignItems='center' alignContent='center'>
+            {(heroMode && hidePushToTalkButton) &&
+              <div style={{width: '100%', minHeight: '6rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end'}}>
+                <BigTranscript highlightColor={theme.colors.yaleBlue} backgroundColor='transparent' marginBottom='2.5rem' mockSegment={mockSegment}>
+                </BigTranscript>
+              </div>
+              }
+            <Form />
+          </Box>
+        </Box>
       </Center>
     </Box>
   )
