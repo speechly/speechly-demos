@@ -16,7 +16,7 @@
 .checkboxNotSelected {
     background-color: #d1dcec;
     border-radius: 50%;
-    box-shadow: 0 0 0.625rem #0f4e92;
+    box-shadow: 0px 6px 12px 0px #388DE95E;
     cursor: pointer;
 }
 
