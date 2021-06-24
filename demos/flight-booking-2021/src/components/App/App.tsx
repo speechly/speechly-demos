@@ -160,7 +160,16 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
             paddingRight='0.4rem'
           >
             {(heroMode && hidePushToTalkButton) &&
-              <div style={{ boxSizing: 'border-box', width: '100%', padding: '0 0.4rem', minHeight: '6.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+              <div
+                style={{
+                  boxSizing: 'border-box',
+                  width: '100%',
+                  padding: '0 0.4rem',
+                  minHeight: '6.5rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end'
+                }}>
                 <BigTranscript highlightColor={theme.colors.yaleBlue} backgroundColor='transparent' marginBottom='2.5rem' mockSegment={mockSegment}>
                 </BigTranscript>
               </div>

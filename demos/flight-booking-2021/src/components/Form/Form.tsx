@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useContext } from 'react'
-import { Box, HStack, VStack } from '@chakra-ui/react'
+import { HStack, VStack } from '@chakra-ui/react'
 import { useSpeechContext } from '@speechly/react-client'
 
 import { FlightDataContext } from '../../context/flightDataContext'
