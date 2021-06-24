@@ -57,7 +57,7 @@ const App: React.FC = (): JSX.Element => {
                             <Box
                                 paddingBottom='6rem'
                                 display='flex'
-                                flex='2'
+                                flex='9'
                                 bgGradient="linear(180deg, #777777 0%, #212121 67%)">
                                 <Form />
                             </Box>
