@@ -64,7 +64,7 @@ body {
 
 .placementBottom {
   --voffset: 28px;
-  --size: 72px;
+  --size: 5.5rem;
   position: fixed;
   bottom: 0;
   left: 0;

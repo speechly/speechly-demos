@@ -111,7 +111,7 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
   }, [])
 
   useEffect(() => {
-    if (speechState === SpeechState.Recording && demoMode) {
+    if (speechState !== SpeechState.Idle && demoMode) {
       stopDemoMode()
     }
   }, [speechState, stopDemoMode, demoMode])
@@ -138,15 +138,14 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
             captureKey=" "
             intro="Hold to talk"
             showTime={30000}
-            size="72px"
+            size="5.5rem"
+            backgroundColor={theme.colors.yaleBlue}
           />
           <ErrorPanel />
         </div>
       }
 
       <Center
-        paddingTop='4.5rem'
-        paddingBottom='6rem'
         pointerEvents={demoMode ? 'none' : 'all'}
         display='flex'
         flexDirection='column'
@@ -154,9 +153,14 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
         bgGradient={heroMode ? undefined : 'linear(150deg, #53A3F9 17.8%, #75DFFF 48.54%, #DBFFF6 78.65%)'}
         minH='100%'>
         <Box w='100%' flex='1' display='flex' alignItems='center' justifyContent='center'>
-          <Box display='flex' minH='100%' flexDir='column' margin='0.4rem' alignItems='center' alignContent='center'>
+          <Box display='flex' minH='100%' flexDir='column' alignItems='center' alignContent='center'
+            paddingTop={(heroMode && hidePushToTalkButton) ? '0' : '6.5rem'}
+            paddingBottom={(heroMode && hidePushToTalkButton) ? '2.5rem' : '7rem'}
+            paddingLeft='0.4rem'
+            paddingRight='0.4rem'
+          >
             {(heroMode && hidePushToTalkButton) &&
-              <div style={{ width: '100%', minHeight: '6rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+              <div style={{ boxSizing: 'border-box', width: '100%', padding: '0 0.4rem', minHeight: '6.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                 <BigTranscript highlightColor={theme.colors.yaleBlue} backgroundColor='transparent' marginBottom='2.5rem' mockSegment={mockSegment}>
                 </BigTranscript>
               </div>
