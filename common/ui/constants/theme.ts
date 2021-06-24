@@ -6,7 +6,9 @@ const theme = {
     },
     colors: {
         yaleBlue: '#0F4E92',
-        deepSkyBlue: '#187ce7'
+        deepSkyBlue: '#187ce7',
+        vitaminC: '#FF9900',
+        bauhaus: '#3f3f3f'
     },
     inputs: {
         defaultHeight: '4rem'

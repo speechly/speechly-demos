@@ -10,6 +10,7 @@ import TextInput from './components/TextInput/TextInput'
 import Dropdown from './components/Dropdown/Dropdown'
 import DatePicker from './components/DatePicker/DatePicker'
 import { platformTypes } from '../../constants/palletDataConstants'
+import './Form.css'
 
 export default function Form(): JSX.Element {
     const { segment } = useSpeechContext()
@@ -53,26 +54,20 @@ export default function Form(): JSX.Element {
         <Box
             id='form-box'
             display='flex'
-            paddingBottom={{ base: '260px', lg: '350px' }}
-            paddingTop={{ base: '100px', lg: '0px' }}
             flexDirection='row'
-            alignSelf='center'
-            h='100%'
+            paddingBottom='6rem'
             w='100%'>
             <Box
-                h='100%'
                 w='100%'
                 borderBottom='1px solid #0000004D'
                 id='form-flex'
                 display='flex'
-                flexDirection='column'
-                alignItems='center'>
-                <Center id='form-center' h='100%' w='100%' paddingLeft='4px' paddingRight='4px'>
-                    <HStack alignItems='normal' h='100%' w={{ base: '100%', lg: '760px' }} id='form-hstack'>
+                flexDirection='column'>
+                <Center id='form-center' w='100%' paddingLeft='4px' paddingRight='4px'>
+                    <HStack alignItems='normal' w='47rem' id='form-hstack'>
                         <VStack
                             paddingTop={{ base: '40px', lg: '80px' }}
                             paddingRight='9px'
-                            paddingBottom='15px'
                             paddingLeft='4px'
                             spacing={{ base: 4, lg: 8 }}
                             alignItems='flex-end'
@@ -107,7 +102,6 @@ export default function Form(): JSX.Element {
                             w={{ base: '35%', lg: '30%' }}
                             id='form-vstack-2'
                             paddingTop={{ base: '40px', lg: '80px' }}
-                            paddingBottom='13px'
                             paddingRight='9px'
                             paddingLeft='2px' >
                             <TextInput

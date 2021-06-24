@@ -3,6 +3,7 @@ import { useMediaQuery } from '@chakra-ui/react'
 import { TDate } from '../../../../types/types'
 import CommonDatePicker from '@speechly-demos/ui/components/DatePicker/DatePicker'
 import './DatePicker.css'
+import theme from '@speechly-demos/ui/constants/theme'
 
 interface Props {
     onChange: (date: TDate) => void,
@@ -24,8 +25,8 @@ const DatePicker: React.FC<Props> = (props): JSX.Element => {
     return (
         <CommonDatePicker
             wrapperProps={{
-                className: props.disabled ? 'disabledInputWrapper' : 'voicePickingInputWrapper',
-                height: '4rem',
+                className: 'voicePickingInputWrapper',
+                height: theme.inputs.defaultHeight,
                 width: '100%'
             }}
             labelProps={{

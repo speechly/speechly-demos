@@ -14,7 +14,6 @@ import {
 
 import {
   PushToTalkButton,
-  PushToTalkButtonContainer,
   ErrorPanel,
   BigTranscript
 } from '@speechly/react-ui'

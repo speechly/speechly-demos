@@ -2,13 +2,13 @@ import React, { useContext, ChangeEvent } from 'react'
 import { Center } from '@chakra-ui/react'
 import { useSpeechContext } from '@speechly/react-client'
 
-import { useUpdatePalletData } from '../../../../hooks/useUpdatePalletData'
-import { PalletDataContext } from '../../../../context/palletContext'
-import { IPalletData } from '../../../../types/types'
+import { useUpdatePalletData } from '../../hooks/useUpdatePalletData'
+import { PalletDataContext } from '../../context/palletContext'
+import { IPalletData } from '../../types/types'
 
-import TextInput from './../../components/TextInput/TextInput'
+import TextInput from '../Form/components/TextInput/TextInput'
 
-export default function Form(): JSX.Element {
+const Header: React.FC = (): JSX.Element => {
     const { segment, speechState } = useSpeechContext()
     useUpdatePalletData(segment)
     const { palletData, tentativePalletData, setPalletData, setTentativePalletData } = useContext(PalletDataContext)
@@ -29,7 +29,7 @@ export default function Form(): JSX.Element {
 
 
     return (
-        <Center p={{ base: '10px', lg: '0px' }} w={{ base: '100%', lg: '760px' }}>
+        <Center p='0.75rem' w='47.5rem'>
             <TextInput
                 onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('pid', e.target.value)}
                 value={formData?.pid}
@@ -39,3 +39,5 @@ export default function Form(): JSX.Element {
         </Center>
     )
 }
+
+export default Header

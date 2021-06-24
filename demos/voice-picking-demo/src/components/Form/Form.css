@@ -1,0 +1,21 @@
+
+.voicePickingInput {
+    margin: 0px 0px 0px 1.25rem;
+    bottom: 0.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.voicePickingInputWrapper {
+    background-color: white;
+    box-shadow: 0px 6px 12px 0px #0000005E;
+}
+
+
+.voicePickingInputLabel {
+    padding: 0.75rem 0px 0px 1.25rem;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
