@@ -23,7 +23,7 @@ const App: React.FC = (): JSX.Element => {
     ]
 
     return (
-        <Box overflowY='auto' height='100vh' display='flex' flexDir='column'>
+        <Box overflowY='auto' overflowX='hidden' height='100vh' display='flex' flexDir='column'>
             <PalletContextProvider>
                 <MuiPickersUtilsProvider utils={LuxonUtils}>
                     <ChakraProvider>

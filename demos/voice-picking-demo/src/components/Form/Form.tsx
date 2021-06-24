@@ -59,15 +59,15 @@ export default function Form(): JSX.Element {
             <Center
                 id='form-center'
                 w='100%'
-                paddingLeft='4px'
-                paddingRight='4px'
+                paddingLeft='0.25rem'
+                paddingRight='0.25rem'
                 borderBottom='1px solid #0000004D'>
                 <HStack alignItems='normal' w='47rem' id='form-hstack'>
                     <VStack
-                        paddingTop='40px'
-                        paddingBottom='40px'
-                        paddingRight='9px'
-                        paddingLeft='4px'
+                        paddingTop='2.5rem'
+                        paddingBottom='2.5rem'
+                        paddingRight='0.5rem'
+                        paddingLeft='0.25rem'
                         spacing={{ base: 4, lg: 8 }}
                         alignItems='flex-end'
                         display='flex'
@@ -95,15 +95,15 @@ export default function Form(): JSX.Element {
                             label='Date (of code)' />
                     </VStack>
                     <VStack
-                        paddingTop='40px'
-                        paddingBottom='40px'
-                        spacing={{ base: 4, lg: 8 }}
+                        paddingTop='2.5rem'
+                        paddingBottom='2.5rem'
+                        paddingRight='0.5rem'
+                        paddingLeft='0.125rem'
                         alignItems='flex-start'
                         display='flex'
                         w={{ base: '35%', lg: '30%' }}
                         id='form-vstack-2'
-                        paddingRight='9px'
-                        paddingLeft='2px' >
+                        spacing={{ base: 4, lg: 8 }}>
                         <TextInput
                             onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInputChange('ti', e.target.value)}
                             value={formData?.ti}

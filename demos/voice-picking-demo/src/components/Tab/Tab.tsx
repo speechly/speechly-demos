@@ -24,8 +24,8 @@ const Tab: React.FC = (): JSX.Element => (
             1st stack
             <span
                 style={{
-                    fontSize: '14px',
-                    lineHeight: '20px'
+                    fontSize: '0.875rem',
+                    lineHeight: '1.25rem'
                 }}>
                 0 Cases total
             </span>
