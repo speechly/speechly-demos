@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 
 interface Props {
     index: number,
+    id: string,
     transcript: string,
     name: string,
-    selected: boolean
+    selected: boolean,
+    onDelete: (arg0: string) => void
 }
 
 const Product: React.FC<Props> = (props) => {
@@ -20,7 +22,7 @@ const Product: React.FC<Props> = (props) => {
                         <div className={props.selected ? 'itemstacknumber selected' : 'itemstacknumber'}>
                             {props.index}. {props.transcript}
                         </div>
-                        <div className="itemremovepanel" onClick={onClick}>
+                        <div className="itemremovepanel" onClick={() => { props.onDelete(props.id) }}>
                             <div className="small-remove-button">
                                 &#x2715;
                             </div>

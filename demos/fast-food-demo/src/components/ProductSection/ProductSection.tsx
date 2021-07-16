@@ -39,6 +39,13 @@ export default function ProductSection(props: Props): JSX.Element {
         })
     }, [setProducts, getName])
 
+    const handleDelete = useCallback((id: string) => {
+        setProducts((draft) => {
+            const index = draft.findIndex(product => product.id === id)
+            if (index !== -1) draft.splice(index, 1)
+        })
+    }, [setProducts])
+
     useEffect(() => {
         if (segment?.entities) {
             segment.entities.forEach((entity) => {
@@ -55,10 +62,12 @@ export default function ProductSection(props: Props): JSX.Element {
                 return (
                     <Product
                         key={product.id}
+                        id={product.id}
                         transcript={product.transcript}
                         name={product.name}
                         selected={false}
                         index={index + 1}
+                        onDelete={handleDelete}
                     />
                 )
             })}
