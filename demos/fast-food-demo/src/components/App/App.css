@@ -1,0 +1,749 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,800');
+
+body {
+  user-select: none;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+}
+
+a {
+  text-decoration     : none;
+}
+div {
+  -webkit-text-size-adjust: none;
+}
+.background {
+  background-color    : #E0FEFF;
+  background: linear-gradient(130deg, #E0FEFF 25%, #CFB6CF 90%);
+  top:0;
+  left:0;
+  width               : 100vw;
+  height              : 100vh;
+  position            : fixed;
+  margin              : 0;
+  opacity             : 1.0;
+}
+
+.items {
+  width: 100%;
+  position:relative;
+  margin:70px 0 160px 0;
+  box-shadow: 0px 0px 10px rgba(0,0,0, 0.25);
+}
+
+.item {
+  background-color    : rgba(255,255,255,0.0);
+  width               : 100%;
+  position            : relative;
+  margin              : 0;
+}
+
+
+.item .itempanel {
+  background-color    : rgba(255, 255, 255, 1.0);
+  box-sizing          : border-box;
+  width               : 100%;
+  position            : relative;
+  margin              : 0;
+  border-style        : solid;
+  border-width        : 1px 0 0 0;
+  border-color        : rgba(0, 0, 0, 0.2);
+  opacity             : 1.0;
+  display             : flex;
+  flex-direction      : row;
+  flex-wrap           : nowrap;
+}
+.item .imagepanel {
+  background-color    : rgba(192, 192, 192, 1.0);
+  background-size: cover;
+  background-position: 50% 50%;
+  min-width           : 108px;
+  max-width           : 108px;
+  margin              : 0;
+  opacity             : 1.0;
+}
+
+.item .textpanel {
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.notification {
+  background-color: #007AFF;
+  font-family         : "Arial", Helvetica, Arial, serif;
+  font-weight         : 400;
+  font-style          : normal;
+  font-size           : 17.0px;
+  color               : #ffffff;
+  text-align          : center;
+  letter-spacing      : -0.41px;
+  line-height         : 20.0px;
+  padding: 13px 13px;
+  box-sizing          : border-box;
+  min-height: 40px;
+  overflow: hidden;
+}
+
+div.itemtoppanel {
+  margin: 0px 0 3px 0;
+  display             : flex;
+  flex-direction      : row;
+  flex-wrap           : nowrap;
+  flex-grow: 0.3;
+}
+
+.item .itemstacknumber {
+  margin              : 5px 0 0 12px;
+  opacity             : 1.0;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 17.0px;
+  color               : rgba(189, 189, 189, 1.0);
+  text-align          : left;
+  letter-spacing      : -0.6px;
+  line-height         : 21px;
+  user-select: none;
+}
+
+.item .itemstacknumber.selected  {
+  background: linear-gradient(30deg, #5080d0 0%, #e05CF3 50%, #5080d0 100%);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+	animation: gradient 2s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.item .itemremovepanel {
+  margin              : 8px 14px 0 auto;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 17.0px;
+  color               : rgba(189, 189, 189, 1.0);
+}
+
+
+div.itemnamepanel {
+  flex-grow: 0;
+  margin: 0px 0 3px 0;
+  display             : flex;
+  flex-direction      : row;
+  flex-wrap           : nowrap;
+}
+
+.item .itemstacktitle {
+  opacity             : 1.0;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 800;
+  font-style          : normal;
+  font-size           : 22.5px;
+  color               : rgba(0, 0, 0, 1.0);
+  margin              : 0 0 0 14px;
+  text-align          : left;
+  letter-spacing      : -0.6px;
+  line-height         : 27.5px;
+  user-select: none;
+}
+
+.item .itemstackprice {
+  opacity             : 1.0;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 22.5px;
+  color               : rgba(0, 0, 0, 1.0);
+  margin              : 0 14px 0 auto;
+  letter-spacing      : -0.6px;
+  line-height         : 27.5px;
+  user-select: none;
+}
+
+.item .itemstacktagpanel {
+  box-sizing          : border-box;
+  margin              : 0 70px 11px 11px;
+  opacity             : 1.0;
+  display             : flex;
+  flex-direction      : row;
+  flex-wrap           : wrap;
+  justify-content     : flex-start;
+  align-items: center;
+  flex-grow: 0.7;
+}
+
+.item .itemstacktag {
+  background-color    : rgba(0, 0, 0, 0.1);
+  top                 : 0px;
+  height              : 20px;
+  margin              : 0;
+  border-radius       : 10px;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  font-family         : "Arial", Helvetica, Arial, serif;
+  font-weight         : 400;
+  font-style          : normal;
+  font-size           : 12.0px;
+  color               : black;
+  text-align          : center;
+  letter-spacing      : -0.41px;
+  line-height         : 21.0px;
+  padding: 0px 10px;
+  margin: 2px 1px;
+  display             : flex;
+  flex-wrap           : nowrap;
+  flex-direction      : row;
+  justify-content     : center;
+  align-items: center;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.item .itemstacktag.block  {
+  color               : rgb(160, 10, 10);
+}
+
+.item i.block {
+  margin: 0 2px 0 -4px;
+  font-size: 16px;
+}
+
+.item .subitems {
+  width               : 100%;
+  overflow:hidden;
+}
+.item .subitempanel {
+  background-color    : rgba(255, 255, 255, 0.65);
+  height              : 52px;
+  box-sizing          : border-box;
+  width               : 100%;
+  margin              : 0;
+  border-style        : solid;
+  border-width        : 1px 0 0 0;
+  border-color        : rgba(0, 0, 0, 0.2);
+  opacity             : 1.0;
+  overflow: auto;
+  overflow-y: hidden;
+  display             : flex;
+  flex-direction      : row;
+  justify-content     : flex-start;
+  align-items: center;
+  padding: 0 11px;
+  position: relative;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.subitempanel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.subitempanel {
+  -ms-overflow-style: none;
+}
+
+.clickassist-vertical {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  padding: 15px 0px;
+  margin: -15px 0px;
+}
+
+.clickassist-hv {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  padding: 15px 15px;
+  margin: -15px -15px;
+}
+
+.smallpill {
+  background-color    : rgba(152, 153, 153, 0);
+  height              : 26px;
+  border-radius       : 13px;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  font-family         : "Arial", Helvetica, Arial, serif;
+  font-weight         : 400;
+  font-style          : normal;
+  font-size           : 17.0px;
+  color               : rgba(0, 91, 255, 1.0);
+  text-align          : center;
+  letter-spacing      : -0.41px;
+  line-height         : 20.0px;
+  padding: 0px 13px;
+  margin: 0px 1px;
+  display             : flex;
+  flex-direction      : column;
+  justify-content     : center;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.smallpill.active  {
+  background-color    : rgba(0, 122, 255, 1.0);
+  color               : rgba(255, 255, 255, 1.0);
+}
+
+.small-remove-button {
+  position: relative;
+  background-color    : rgba(152, 153, 153, 0);
+  height              : 26px;
+  width: 26px;
+  border-radius       : 15px;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  font-family         : "Arial", Helvetica, Arial, serif;
+  font-weight         : 400;
+  font-style          : normal;
+  font-size           : 15.0px;
+  color: rgba(189, 189, 189, 1.0);
+  text-align          : center;
+  letter-spacing      : -0.41px;
+  line-height         : 20.0px;
+  padding: 2px 2px;
+  margin: -6px -8px;
+  display             : flex;
+  flex-direction      : column;
+  justify-content     : center;
+  user-select: none;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.small-remove-button:hover, .small-remove-button:active  {
+  background-color    : #e85478;
+  color               : rgba(255, 255, 255, 1.0);
+  transition: 0.3s;
+}
+
+.lowerpanel {
+  background-color    : rgba(255,255,255,1.0);
+  bottom                 : 0px;
+  left: 0px;
+  height              : 100px;
+  width               : 100vw;
+  position            : fixed;
+  margin              : 0;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  box-shadow: 0px 0px 10px rgba(0,0,0, 0.25);
+}
+.toppanel {
+  background-color    : rgba(255, 255, 255, 1.0);
+  top                 : 0px;
+  height              : 70px;
+  width               : 100vw;
+  position            : fixed;
+  margin              : 0;
+  left                : 0px;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  box-shadow: 0px 0px 10px rgba(0,0,0, 0.25);
+  z-index: 2;
+}
+.tilaukseni {
+  top                 : 23px;
+  width               : 100vw;
+  position            : absolute;
+  opacity             : 1.0;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 22.5px;
+  color               : rgba(0, 0, 0, 1.0);
+  text-align          : center;
+  letter-spacing      : -0.6px;
+  line-height         : 27.5px;
+  user-select: none;
+}
+
+.transscript {
+  top                 : 0;
+  box-sizing: border-box;
+  width               : 100vw;
+  height              : 70px;
+  position            : absolute;
+  margin              : 0;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 17px;
+  color               : #007AFF;
+  text-align          : center;
+  letter-spacing      : -0.6px;
+  line-height         : 21px;
+  user-select: none;
+  display             : flex;
+  flex-direction      : column;
+  justify-content     : center;
+  margin: 0;
+  padding:  6px 14px;
+}
+
+.undo {
+  top                 : 24px;
+  width               : 160px;
+  position            : absolute;
+  margin              : 0;
+  left                : 18px;
+  opacity             : 1.0;
+}
+
+.checkout {
+  top                 : 24px;
+  width               : 160px;
+  position            : absolute;
+  margin              : 0;
+  right                : 18px;
+  opacity             : 1.0;
+}
+
+.button-text-large {
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 22.5px;
+  letter-spacing      : -0.6px;
+  line-height         : 30.0px;
+  color               : rgba(0, 122, 255, 1.0);
+  user-select: none;
+}
+
+.button-text-small {
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-size           : 17.0px;
+  color               : rgba(0, 122, 255, 1.0);
+  text-align          : left;
+  letter-spacing      : -0.6px;
+  line-height         : 20.0px;
+  user-select: none;
+}
+
+.micpanel {
+  background-color    : rgba(255,0,0,0.0);
+  left: 0;
+  bottom                 : 0px;
+  height              : 147px;
+  width               : 100vw;
+  position            : fixed;
+  margin              : 0;
+  opacity             : 1.0;
+  pointer-events:none;
+}
+
+.micbutton {
+  background-color    : rgba(255,255,0,0.0);
+  height              : 95px;
+  width               : 95px;
+  position            : relative;
+  margin              : 0;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  pointer-events: auto;
+}
+.micbutton .oval {
+  top                 : 0px;
+  left                : 0px;
+  height              : 95px;
+  width               : 95px;
+  position            : absolute;
+  margin              : 0;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  pointer-events: none;
+}
+.micbutton .micfx {
+  top                 : -76px;
+  left                : -76px;
+  height              : 247px;
+  width               : 247px;
+  position            : absolute;
+  margin              : 0;
+  transform           : rotate(0deg);
+  pointer-events:none;
+}
+
+.micbutton .micicon {
+  background-color    : rgba(255,255,255,0.0);
+  top                 : 22px;
+  height              : 56px;
+  width               : 39px;
+  position            : absolute;
+  margin              : 0;
+  left                : 28px;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  pointer-events:none;
+  transition: 0.25s;
+}
+
+.text-micicon {
+  display: inline-block;
+  height              : 24px;
+  padding: 0 3px;
+  width: auto;
+  vertical-align: -4px;
+  pointer-events:none;
+}
+
+.micbutton.sleep .micicon {
+  animation: mic-opacity-pulse 4.5s infinite;
+  transition: 0.25s;
+}
+
+.micbutton.busy .micicon {
+  animation: mic-opacity-pulse 1.0s infinite;
+  transition: 0.25s;
+}
+
+@keyframes mic-opacity-pulse {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.25; }
+  100% { opacity: 0.1; }
+  }
+
+
+.valign-text-middle {
+  display             : flex;
+  flex-direction      : column;
+  justify-content     : center;
+}
+.flex-align-center {
+  display             : flex;
+  flex-direction      : row;
+  justify-content     : center;
+}
+.text-align-right {
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .miccolorfx {
+    animation: miccolor-spin infinite 2.5s linear;
+  }
+}
+
+@keyframes miccolor-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.listening-container {
+  position: absolute;
+  display             : flex;
+  flex-direction      : row;
+  flex-wrap           : nowrap;
+  align-items      : center;
+  justify-content     : center;
+  width: 100%;
+  height              : 70px;
+}
+
+.listening-fx {
+  width: 6px;
+  height: 0px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  background-color: #007AFF;
+  border-radius: 3px;
+  margin:2px;
+  animation-name: waves;
+  animation-duration: 1.0s;
+  animation-timing-function: ease-in-out;
+}
+
+/* The animation code */
+@keyframes waves {
+  0%  {height: 0px;}
+  25%  {height: 30px;}
+  50%  {height: 0px;}
+  75%  {height: 15px;}
+  100%  {height: 0px;}
+}
+
+.overlay {
+  background: linear-gradient(160deg, #5080d0 25%, #e05CF3 90%);
+  left: 0px;
+  top                 : 0px;
+  height              : 100%;
+  width               : 100%;
+  position            : fixed;
+  margin              : 0;
+  opacity             : 1.0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.welcomepanel {
+  height              : 100%;
+  width               : 100%;
+  opacity             : 1.0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.flexspacer {
+  user-select: none;
+  flex-grow: 0.0;
+}
+
+.welcometitle {
+  color               : #ffffff;
+  padding              : 12px 24px;
+  opacity             : 1.0;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 40.0px;
+  letter-spacing      : -0.6px;
+  text-align          : center;
+  line-height         : 40.5px;
+  user-select: none;
+  flex-grow: 0.0;
+  flex-shrink: 0;
+}
+
+.welcomemessage {
+  color               : #ffffff;
+  padding              : 12px 0px;
+  width: 340px;
+  opacity             : 1.0;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 17px;
+  font-size           : 22.5px;
+  letter-spacing      : -0.6px;
+  text-align          : center;
+  line-height         : 30.0px;
+  user-select: none;
+  flex-grow: 0.0;
+  flex-shrink: 0;
+}
+
+.button-big-rounded {
+  background-color: #ffffff;
+  color: #007AFF;
+  min-width: 280px;
+  min-height              : 56px;
+  border-radius       : 28px;
+  margin              : 0;
+  transform           : rotate(0deg);
+  opacity             : 1.0;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 22.5px;
+  text-align          : center;
+  letter-spacing      : -0.6px;
+  line-height         : 27.5px;
+
+  padding: 0px 13px;
+  display             : flex;
+  flex-direction      : column;
+  justify-content     : center;
+  user-select: none;
+  white-space: nowrap;
+  flex-grow: 0.0;
+  flex-shrink: 0;
+  transition: 0.25s;
+}
+
+.button-big-rounded:active {
+  transform: scale(0.95);
+  transform-origin: 50% 50%;
+  transition: 0.25s;
+}
+
+/* --- Console --- */
+
+div.react-console-container {
+  font-size: 0.85em;
+  font-family: "Menlo", "Consolas", "DejaVu Sans Mono", monospace;
+  width: 100%;
+  box-sizing: border-box;
+  height: 6em;
+  background: #efefef;
+  padding: 0.5em;
+  overflow: auto;
+  white-space: pre;
+  position: relative;
+  z-index: 1;
+  border-top: #ccc 1px solid;
+ }
+
+div.react-console-prompt-box {
+  color: #444; }
+
+span.react-console-prompt-label {
+  font-weight: bold; }
+
+div.react-console-focus span.react-console-cursor {
+  background: #333;
+  color: #eee; }
+
+div.react-console-nofocus span.react-console-cursor {
+  background: none;
+  color: #444;
+  outline: 0.1em solid #333;
+  outline-offset: -0.1em; }
+
+div.react-console-focus span.react-console-cursor-idle {
+  animation: react-console-cursor-animation 1s infinite; }
+
+@keyframes react-console-cursor-animation {
+  0% {
+    background: #333;
+    color: #eee; }
+  50% {
+    background: #333;
+    color: #eee; }
+  51% {
+    background: none;
+    color: #444; }
+  100% {
+    background: none;
+    color: #444; } }
+
+div.react-console-message {
+  color: #999;
+  padding: 0.1em; }
+
+.visually-hidden { 
+    position: absolute !important;
+    height: 1px; 
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+/* --- Console --- */
