@@ -1,16 +1,27 @@
-import React, { MouseEventHandler } from 'react'
+import React, { MouseEventHandler, useCallback } from 'react'
+import { ICollection } from '../../../../../buildconfig'
+import OptionCloud from '../OptionCloud/OptionCloud'
+import ProductOptions from '../ProductOptions/ProductOptions'
 
 interface Props {
     index: number,
     id: string,
     transcript: string,
     name: string,
+    options: string[],
+    tags: string[],
     selected: boolean,
-    onDelete: (arg0: string) => void
+    onDelete: (arg0: string) => void,
+    productModel: { [key: string]: ICollection }
 }
 
 const Product: React.FC<Props> = (props) => {
-    const onClick = () => console.log('click')
+    const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation()
+        e.preventDefault()
+        console.log('cilcketi')
+    }
+
     return (
         <div className="item">
             <div className="itempanel" onClick={onClick}>
@@ -30,7 +41,6 @@ const Product: React.FC<Props> = (props) => {
                     </div>
                     <div className="itemnamepanel">
                         <div className="itemstacktitle">
-                            {/* {ProductModelTools.getName(props.productModel)} */}
                             {props.name}
                         </div>
                         <div className="itemstackprice">
@@ -39,50 +49,48 @@ const Product: React.FC<Props> = (props) => {
                         </div>
                     </div>
                     <div className="itemstacktagpanel">
-                        {/* < OptionCloud productModel={props.productModel} /> */}
-                        Options
+                        {/* <OptionCloud productModel={props.productModel} /> */}
                     </div>
                 </div>
             </div>
 
-            {/* <animated.div style={detailSpring} className="subitems" onClick={onToggleDetails}>
+            <div className="subitems">
 
-                {ProductModelTools.getProductSkin(props.productModel) === "Pizza" && (
+                {props.tags.includes('Hamburger') && (
                     <>
                         <div className="subitempanel">
-                            {commonOptionResizeListener}
-                            <ProductOptions options='PizzaSize' productModel={props.productModel} />
-                            <ProductOptions options='PizzaCheese' productModel={props.productModel} />
+                            {/* {commonOptionResizeListener} */}
+                            <ProductOptions options='BurgerSize' productModel={props.productModel} />
+
                         </div>
                         <div style={{ position: 'relative' }}>
-                            {extraOptionResizeListener}
-                            <div className="subitempanel"><ProductOptions options='PizzaDough' productModel={props.productModel} /></div>
-                            <div className="subitempanel"><ProductOptions options='PizzaSauce' productModel={props.productModel} /></div>
-                            <div className="subitempanel"><ProductOptions options='PizzaTopping' productModel={props.productModel} /></div>
+                            {/* {extraOptionResizeListener} */}
+                            <div className="subitempanel">
+                                <ProductOptions options='BurgerIngredients' productModel={props.productModel} />
+                            </div>
                         </div>
-                )}
                     </>
                 )}
 
-                {ProductModelTools.getProductSkin(props.productModel) === "Drink" && (
+                {props.tags.includes('Drink') && (
                     <>
                         <div className="subitempanel">
-                            {commonOptionResizeListener}
+                            {/* {commonOptionResizeListener} */}
                             <ProductOptions options='DrinkSize' productModel={props.productModel} />
                         </div>
                     </>
                 )}
 
-                {ProductModelTools.getProductSkin(props.productModel) === "Icecream" && (
+                {props.tags.includes('Side') && (
                     <>
                         <div className="subitempanel">
-                            {commonOptionResizeListener}
-                            <ProductOptions options='IcecreamSize' productModel={props.productModel} />
+                            {/* {commonOptionResizeListener} */}
+                            <ProductOptions options='SidesSize' productModel={props.productModel} />
                         </div>
                     </>
                 )}
 
-            </animated.div> */}
+            </div>
         </div>
     )
 }
