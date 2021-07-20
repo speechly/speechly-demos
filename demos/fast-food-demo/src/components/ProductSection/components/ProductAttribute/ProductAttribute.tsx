@@ -13,14 +13,9 @@ const ProductAttribute: FunctionComponent<IProductAttribute> = (props) => {
         event.stopPropagation()
     }
 
-    function isActive() {
-        if (!props.optionState) return false;
-        return props.optionState.amount > 0
-    }
-
     return (
         <div className="clickassist-vertical" onClick={onToggleOption}>
-            <div className={isActive() ? "smallpill active" : "smallpill"}>
+            <div className={props.active ? "smallpill active" : "smallpill"}>
                 {props.children}
             </div>
         </div>

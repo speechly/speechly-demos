@@ -5,6 +5,7 @@ import ProductAttribute from '../ProductAttribute/ProductAttribute'
 
 interface Props {
     options: string;
+    selectedOptions: string[]
     productModel: { [key: string]: ICollection }
 }
 
@@ -12,11 +13,11 @@ type ProductAttribute = {
     Keys: string[]
 }
 
-const ProductOptions: React.FC<Props> = (props) => {
+const ProductOptions: React.FC<Props> = ({ options, selectedOptions, productModel }) => {
     return (
         <>
-            {props.productModel[props.options].ItemDefs.map((option: ProductAttribute) => (
-                <ProductAttribute key={option.Keys[0]}>
+            {productModel[options].ItemDefs.map((option: ProductAttribute) => (
+                <ProductAttribute key={option.Keys[0]} active={selectedOptions.includes(option.Keys[0])}>
                     {option.Keys[0]}
                 </ProductAttribute>
             ))}

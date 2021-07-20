@@ -60,13 +60,13 @@ const Product: React.FC<Props> = (props) => {
                     <>
                         <div className="subitempanel">
                             {/* {commonOptionResizeListener} */}
-                            <ProductOptions options='BurgerSize' productModel={props.productModel} />
+                            <ProductOptions options='BurgerSize' productModel={props.productModel} selectedOptions={props.options} />
 
                         </div>
                         <div style={{ position: 'relative' }}>
                             {/* {extraOptionResizeListener} */}
                             <div className="subitempanel">
-                                <ProductOptions options='BurgerIngredients' productModel={props.productModel} />
+                                <ProductOptions options='BurgerIngredients' productModel={props.productModel} selectedOptions={props.options} />
                             </div>
                         </div>
                     </>
@@ -76,7 +76,7 @@ const Product: React.FC<Props> = (props) => {
                     <>
                         <div className="subitempanel">
                             {/* {commonOptionResizeListener} */}
-                            <ProductOptions options='DrinkSize' productModel={props.productModel} />
+                            <ProductOptions options='DrinkSize' productModel={props.productModel} selectedOptions={props.options} />
                         </div>
                     </>
                 )}
@@ -85,7 +85,7 @@ const Product: React.FC<Props> = (props) => {
                     <>
                         <div className="subitempanel">
                             {/* {commonOptionResizeListener} */}
-                            <ProductOptions options='SidesSize' productModel={props.productModel} />
+                            <ProductOptions options='SidesSize' productModel={props.productModel} selectedOptions={props.options} />
                         </div>
                     </>
                 )}
