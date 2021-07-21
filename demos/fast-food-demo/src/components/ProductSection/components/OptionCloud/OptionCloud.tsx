@@ -1,37 +1,26 @@
 import React from 'react'
-import { ICollection } from '../../../../../buildconfig'
 
 
 interface Props {
-    productModel: { [key: string]: ICollection }
+    options: string[]
+    defaultOptions: string[]
 }
 
 const OptionCloud: React.FC<Props> = (props) => {
-    console.log(props)
     return (
         <>
-            {Object.keys(props.productModel.productOptions).map((key) => {
+            {
+                (props.options).map((key) => {
+                    return (
+                        <>
+                            {
+                                !props.defaultOptions.includes(key) && <div key={key} className="itemstacktag">{key}</div>
+                            }
 
-                // @ts-ignore
-                const productOptions = props.productModel.productOptions[key]
-                if (productOptions.originalAmount) {
-                    if (productOptions.amount < productOptions.originalAmount && !productOptions.radio) {
-                        return (
-                            <div key={key} className="itemstacktag block"><i className="material-icons block">block</i>{key}</div>
-                        )
-                    }
-                } else {
-                    if (productOptions.radio) {
-                        return (
-                            <div key={key} className="itemstacktag">{key}</div>
-                        )
-                    } else {
-                        return (
-                            <div key={key} className="itemstacktag">+ {key}</div>
-                        )
-                    }
-                }
-            })}
+                        </>
+                    )
+                })
+            }
         </>
     )
 }

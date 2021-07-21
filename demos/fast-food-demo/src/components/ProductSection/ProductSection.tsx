@@ -13,6 +13,7 @@ type Product = {
     transcript: string,
     name: string,
     options: string[],
+    defaultOptions: string[],
     tags: string[]
 }
 
@@ -24,27 +25,37 @@ export default function ProductSection(props: Props): JSX.Element {
     const { segment } = useSpeechContext()
     const [products, setProducts] = useImmer<Product[]>([])
 
-    const getProduct = useCallback((entity: Entity): WritableDraft<Product> => {
-        const searchResult = findBestInventoryMatch(entity.value, props.productModel?.Product?.ItemDefs)
-        const { productConfig } = searchResult
-        const id = `product_${Math.random()}`
-        return {
-            id,
-            transcript: entity.value,
-            name: productConfig?.Keys[0] || '',
-            options: productConfig?.Options || [],
-            tags: productConfig?.Tags || []
-
-        }
-    }, [props.productModel])
-
     const handleAdd = useCallback((entity: Entity) => {
         setProducts((draft) => {
+            const searchResult = findBestInventoryMatch(entity.value, props.productModel?.Product?.ItemDefs)
+            const { productConfig } = searchResult
+            const id = `product_${Math.random()}`
             draft.push({
-                ...getProduct(entity)
+                id,
+                transcript: entity.value,
+                name: productConfig?.Keys[0] || '',
+                options: productConfig?.Options || [],
+                defaultOptions: productConfig?.Options || [],
+                tags: productConfig?.Tags || []
+
             })
         })
-    }, [setProducts, getProduct])
+    }, [setProducts, props.productModel])
+
+    const handleOptionChange = useCallback((id: string, option: string, active: boolean) => {
+        setProducts((draft) => {
+            const index = draft.findIndex(product => product.id === id)
+
+            let newOptions = draft[index].options
+            if (active) {
+                newOptions = newOptions.filter(optn => optn !== option)
+            } else {
+                newOptions.push(option)
+            }
+            draft[index] = { ...draft[index], options: newOptions }
+        })
+    }, [setProducts])
+
 
     const handleDelete = useCallback((id: string) => {
         setProducts((draft) => {
@@ -66,7 +77,6 @@ export default function ProductSection(props: Props): JSX.Element {
     return (
         <div className="background" onClick={() => console.log('backgroundclick')}>
             {products.map((product, index) => {
-                console.log(product)
                 return (
                     <Product
                         key={product.id}
@@ -74,10 +84,12 @@ export default function ProductSection(props: Props): JSX.Element {
                         transcript={product.transcript}
                         name={product.name}
                         options={product.options}
+                        defaultOptions={product.defaultOptions}
                         tags={product.tags}
                         selected={false}
                         index={index + 1}
                         onDelete={handleDelete}
+                        onChange={handleOptionChange}
                         productModel={props.productModel}
                     />
                 )

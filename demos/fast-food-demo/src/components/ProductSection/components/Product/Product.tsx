@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useCallback } from 'react'
+import React from 'react'
 import { ICollection } from '../../../../../buildconfig'
 import OptionCloud from '../OptionCloud/OptionCloud'
 import ProductOptions from '../ProductOptions/ProductOptions'
@@ -9,9 +9,11 @@ interface Props {
     transcript: string,
     name: string,
     options: string[],
+    defaultOptions: string[],
     tags: string[],
     selected: boolean,
     onDelete: (arg0: string) => void,
+    onChange: (arg0: string, arg1: string, arg2: boolean) => void,
     productModel: { [key: string]: ICollection }
 }
 
@@ -49,7 +51,7 @@ const Product: React.FC<Props> = (props) => {
                         </div>
                     </div>
                     <div className="itemstacktagpanel">
-                        {/* <OptionCloud productModel={props.productModel} /> */}
+                        <OptionCloud defaultOptions={props.defaultOptions} options={props.options} />
                     </div>
                 </div>
             </div>
@@ -59,14 +61,23 @@ const Product: React.FC<Props> = (props) => {
                 {props.tags.includes('Hamburger') && (
                     <>
                         <div className="subitempanel">
-                            {/* {commonOptionResizeListener} */}
-                            <ProductOptions options='BurgerSize' productModel={props.productModel} selectedOptions={props.options} />
+                            <ProductOptions
+                                onChange={props.onChange}
+                                options='BurgerSize'
+                                productId={props.id}
+                                productModel={props.productModel}
+                                selectedOptions={props.options} />
 
                         </div>
                         <div style={{ position: 'relative' }}>
                             {/* {extraOptionResizeListener} */}
                             <div className="subitempanel">
-                                <ProductOptions options='BurgerIngredients' productModel={props.productModel} selectedOptions={props.options} />
+                                <ProductOptions
+                                    onChange={props.onChange}
+                                    options='BurgerIngredients'
+                                    productId={props.id}
+                                    productModel={props.productModel}
+                                    selectedOptions={props.options} />
                             </div>
                         </div>
                     </>
@@ -75,8 +86,12 @@ const Product: React.FC<Props> = (props) => {
                 {props.tags.includes('Drink') && (
                     <>
                         <div className="subitempanel">
-                            {/* {commonOptionResizeListener} */}
-                            <ProductOptions options='DrinkSize' productModel={props.productModel} selectedOptions={props.options} />
+                            <ProductOptions
+                                onChange={props.onChange}
+                                options='DrinkSize'
+                                productId={props.id}
+                                productModel={props.productModel}
+                                selectedOptions={props.options} />
                         </div>
                     </>
                 )}
@@ -84,8 +99,12 @@ const Product: React.FC<Props> = (props) => {
                 {props.tags.includes('Side') && (
                     <>
                         <div className="subitempanel">
-                            {/* {commonOptionResizeListener} */}
-                            <ProductOptions options='SidesSize' productModel={props.productModel} selectedOptions={props.options} />
+                            <ProductOptions
+                                onChange={props.onChange}
+                                options='SidesSize'
+                                productId={props.id}
+                                productModel={props.productModel}
+                                selectedOptions={props.options} />
                         </div>
                     </>
                 )}
