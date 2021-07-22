@@ -13,7 +13,7 @@ interface Props {
     tags: string[],
     selected: boolean,
     onDelete: (arg0: string) => void,
-    onChange: (arg0: string, arg1: string, arg2: boolean) => void,
+    onChange: (arg0: string, arg1: string, arg2: boolean, arg3: string, arg4?: boolean) => void,
     productModel: { [key: string]: ICollection }
 }
 
@@ -62,6 +62,7 @@ const Product: React.FC<Props> = (props) => {
                     <>
                         <div className="subitempanel">
                             <ProductOptions
+                                radio
                                 onChange={props.onChange}
                                 options='BurgerSize'
                                 productId={props.id}
@@ -70,7 +71,6 @@ const Product: React.FC<Props> = (props) => {
 
                         </div>
                         <div style={{ position: 'relative' }}>
-                            {/* {extraOptionResizeListener} */}
                             <div className="subitempanel">
                                 <ProductOptions
                                     onChange={props.onChange}
@@ -87,6 +87,7 @@ const Product: React.FC<Props> = (props) => {
                     <>
                         <div className="subitempanel">
                             <ProductOptions
+                                radio
                                 onChange={props.onChange}
                                 options='DrinkSize'
                                 productId={props.id}
@@ -100,6 +101,7 @@ const Product: React.FC<Props> = (props) => {
                     <>
                         <div className="subitempanel">
                             <ProductOptions
+                                radio
                                 onChange={props.onChange}
                                 options='SidesSize'
                                 productId={props.id}

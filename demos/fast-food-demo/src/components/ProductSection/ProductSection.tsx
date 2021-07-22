@@ -6,7 +6,6 @@ import ButtonCheckout from './components/ButtonCheckout/ButtonCheckout'
 import Product from './components/Product/Product'
 import { ICollection } from '../../../buildconfig'
 import { findBestInventoryMatch } from '../../utils/inventoryUtils'
-import { WritableDraft } from 'immer/dist/internal'
 
 type Product = {
     id: string,
@@ -29,6 +28,7 @@ export default function ProductSection(props: Props): JSX.Element {
         setProducts((draft) => {
             const searchResult = findBestInventoryMatch(entity.value, props.productModel?.Product?.ItemDefs)
             const { productConfig } = searchResult
+
             const id = `product_${Math.random()}`
             draft.push({
                 id,
@@ -42,7 +42,7 @@ export default function ProductSection(props: Props): JSX.Element {
         })
     }, [setProducts, props.productModel])
 
-    const handleOptionChange = useCallback((id: string, option: string, active: boolean) => {
+    const handleOptionChange = useCallback((id: string, option: string, active: boolean, type: string, radio?: boolean) => {
         setProducts((draft) => {
             const index = draft.findIndex(product => product.id === id)
 
@@ -50,11 +50,19 @@ export default function ProductSection(props: Props): JSX.Element {
             if (active) {
                 newOptions = newOptions.filter(optn => optn !== option)
             } else {
+                if (radio) {
+                    const optionsToFilter = props.productModel.Option.ItemDefs.map((optn) => {
+                        if (optn.Tags.includes(type)) {
+                            if (newOptions.includes(optn.Keys[0])) return optn.Keys[0]
+                        }
+                    })
+                    newOptions = newOptions.filter(optn => !optionsToFilter.includes(optn))
+                }
                 newOptions.push(option)
             }
             draft[index] = { ...draft[index], options: newOptions }
         })
-    }, [setProducts])
+    }, [setProducts, props.productModel])
 
 
     const handleDelete = useCallback((id: string) => {
