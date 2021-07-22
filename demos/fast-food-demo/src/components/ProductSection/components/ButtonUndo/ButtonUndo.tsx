@@ -8,7 +8,7 @@ const ButtonUndo = (): JSX.Element => {
                 Undo
             </div>
             <div className="button-text-small">
-                LAST ACTIION
+                Last action
             </div>
         </div>
     )
