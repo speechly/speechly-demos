@@ -1,0 +1,839 @@
+[
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Big Mac"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Big Mac Bacon",
+      "Bacon Big Mac"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Double Big Mac"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Chili Feast"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Double Quarter Pounder"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Quarter Pounder With Cheese",
+      "Cheese Quarter Pounder"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Mc Feast"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Double Cheeseburger"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Cheeseburger"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "El Maco"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Triple Cheeseburger"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Hamburger"
+    ],
+    "Keys": [
+      "Campfire Beef"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Hamburger",
+      "Ingredients"
+    ],
+    "Keys": [
+      "Pickle Slices"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Hamburger",
+      "Ingredients"
+    ],
+    "Keys": [
+      "Onions"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Hamburger",
+      "Ingredients"
+    ],
+    "Keys": [
+      "Tomato"
+    ],
+    "Options": [
+      "Medium",
+      "Pickle Slices",
+      "Tomato",
+      "Onions"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Hamburger",
+      "Size"
+    ],
+    "Keys": [
+      "Medium",
+      "Medium*",
+      "Size Medium",
+      "Normal*"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Hamburger",
+      "Size"
+    ],
+    "Keys": [
+      "Large",
+      "Large*",
+      "Size Large"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Drink"
+    ],
+    "Keys": [
+      "Water"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Drink"
+    ],
+    "Keys": [
+      "Sparkling Water",
+      "Sparkling*"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Drink"
+    ],
+    "Keys": [
+      "Coca-cola Light",
+      "Coke Light",
+      "Coca Cola Light*"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Drink"
+    ],
+    "Keys": [
+      "Coca-cola",
+      "Coke",
+      "Coca Cola*"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Drink"
+    ],
+    "Keys": [
+      "Coca-cola Zero",
+      "Coke Zero",
+      "Coca Cola Zero*"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Drink"
+    ],
+    "Keys": [
+      "Fanta Orange",
+      "Fanta*",
+      "Orange Fanta*"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Drink"
+    ],
+    "Keys": [
+      "Fanta Exotic",
+      "Fanta Exotic*",
+      "Exotic Fanta*"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Drink"
+    ],
+    "Keys": [
+      "Sprite Zero",
+      "Sprite Zero*"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Drink"
+    ],
+    "Keys": [
+      "Sprite",
+      "Sprite*"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Icecream"
+    ],
+    "Keys": [
+      "Chocolate Shake"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Icecream"
+    ],
+    "Keys": [
+      "Vanilla Shake"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Icecream"
+    ],
+    "Keys": [
+      "Strawberry Shake"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Icecream"
+    ],
+    "Keys": [
+      "Sundae",
+      "Sunday"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Icecream"
+    ],
+    "Keys": [
+      "Daim McFlurry"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Icecream"
+    ],
+    "Keys": [
+      "Oreo McFlurry"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Icecream"
+    ],
+    "Keys": [
+      "Smarties McFlurry"
+    ],
+    "Options": [
+      "Small"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Side"
+    ],
+    "Keys": [
+      "French Fries",
+      null,
+      null,
+      null,
+      "French*"
+    ],
+    "Options": [
+      "Normal"
+    ]
+  },
+  {
+    "Tags": [
+      "Product",
+      "Side"
+    ],
+    "Keys": [
+      "Potato Chips",
+      null,
+      null,
+      null,
+      "Chips*"
+    ],
+    "Options": [
+      "Normal"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Drink",
+      "Size"
+    ],
+    "Keys": [
+      "Small",
+      "Small",
+      "Small*",
+      "Thirty three*"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Drink",
+      "Size"
+    ],
+    "Keys": [
+      "Medium",
+      "Medium",
+      "Medium*",
+      "Half Litre*",
+      "Half a Litre*",
+      "Zero Point Five"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Drink",
+      "Size"
+    ],
+    "Keys": [
+      "Large",
+      "Big",
+      "Big*",
+      "One Point Five*",
+      "One and a Half*"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Icecream",
+      "Flavour"
+    ],
+    "Keys": [
+      "Caramel"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Icecream",
+      "Flavour"
+    ],
+    "Keys": [
+      "Chocolate"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Icecream",
+      "Flavour"
+    ],
+    "Keys": [
+      "Strawberry"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Side",
+      "Size"
+    ],
+    "Keys": [
+      "Normal"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Side",
+      "Size"
+    ],
+    "Keys": [
+      "Large"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Icecream",
+      "Size"
+    ],
+    "Keys": [
+      "Small",
+      "Small*",
+      "Hundred Mil*"
+    ]
+  },
+  {
+    "Tags": [
+      "Option",
+      "Icecream",
+      "Size"
+    ],
+    "Keys": [
+      "Big",
+      "Big*",
+      "Five Hundred Mil*"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      1,
+      "one",
+      "single",
+      "once",
+      "one time"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      2,
+      "two",
+      "double",
+      "two times"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      3,
+      "three",
+      "triple",
+      "three times"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      4,
+      "four"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      5,
+      "five"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      6,
+      "six"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      7,
+      "seven"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      8,
+      "eight"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      9,
+      "nine"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      10,
+      "ten"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      11,
+      "eleven"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      12,
+      "twelve"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      13,
+      "thirteen"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      14,
+      "fourteen"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      15,
+      "fifteen"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      16,
+      "sixteen"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      17,
+      "seventeen"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      18,
+      "eighteen"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      19,
+      "nineteen"
+    ]
+  },
+  {
+    "Tags": [
+      "Amount"
+    ],
+    "Keys": [
+      20,
+      "twelve"
+    ]
+  },
+  {
+    "Tags": [
+      "Category"
+    ],
+    "Keys": [
+      "Ice Cream",
+      "Ice Creams"
+    ]
+  },
+  {
+    "Tags": [
+      "Category"
+    ],
+    "Keys": [
+      "Drink",
+      "Drinks"
+    ]
+  },
+  {
+    "Tags": [
+      "Category"
+    ],
+    "Keys": [
+      "Sides"
+    ]
+  }
+]

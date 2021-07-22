@@ -1,0 +1,85 @@
+[
+  {
+    "CollectionID": "Product",
+    "OptionTags": [
+      "Product"
+    ]
+  },
+  {
+    "CollectionID": "Option",
+    "OptionTags": [
+      "Option"
+    ]
+  },
+  {
+    "CollectionID": "Amount",
+    "OptionTags": [
+      "Amount"
+    ]
+  },
+  {
+    "CollectionID": "BurgerSize",
+    "Constraint": "Radio",
+    "ProductTags": [
+      "Product",
+      "Hamburger"
+    ],
+    "OptionTags": [
+      "Option",
+      "Hamburger",
+      "Size"
+    ]
+  },
+  {
+    "CollectionID": "BurgerIngredients",
+    "Constraint": "Radio",
+    "ProductTags": [
+      "Product",
+      "Hamburger"
+    ],
+    "OptionTags": [
+      "Option",
+      "Hamburger",
+      "Ingredients"
+    ]
+  },
+  {
+    "CollectionID": "SidesSize",
+    "Constraint": "Radio",
+    "ProductTags": [
+      "Product",
+      "Side"
+    ],
+    "OptionTags": [
+      "Option",
+      "Side",
+      "Size"
+    ]
+  },
+  {
+    "CollectionID": "IcecreamSize",
+    "Constraint": "Radio",
+    "ProductTags": [
+      "Product",
+      "Icecream"
+    ],
+    "OptionTags": [
+      "Option",
+      "Icecream",
+      "Size"
+    ]
+  },
+  {
+    "CollectionID": "DrinkSize",
+    "Constraint": "Radio",
+    "ProductTags": [
+      "Product",
+      "Drink"
+    ],
+    "OptionTags": [
+      "Option",
+      "Drink",
+      "Size"
+    ]
+  }
+]
