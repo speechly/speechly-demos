@@ -19,7 +19,10 @@ const App: React.FC = (): JSX.Element => {
                 <Link to="/flight-booking">Flight Booking Demo</Link>
               </li>
               <li>
-                <Link to="/voice-picking">Voice Picking</Link>
+                <Link to="/voice-picking">Voice Picking Demo</Link>
+              </li>
+              <li>
+                <Link to="/fast-food">Fast Food Demo</Link>
               </li>
             </ul>
             <hr />
