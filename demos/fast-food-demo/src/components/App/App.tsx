@@ -36,7 +36,7 @@ const App: React.FC = (): JSX.Element => {
     ]
 
     return (
-        <SpeechProvider appId="69e73fc4-ce1a-41a9-a0b3-828a24874961" language="en-US">
+        <SpeechProvider appId="368c4548-dac5-4395-9279-46e1434cb447" language="en-US">
             <TranscriptDrawer hint={UsageHints} />
 
             <PushToTalkButtonContainer>

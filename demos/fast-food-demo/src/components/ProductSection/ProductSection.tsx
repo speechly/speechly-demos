@@ -7,11 +7,14 @@ import Product from './components/Product/Product'
 import { ICollection } from '../../../buildconfig'
 import { findBestInventoryMatch } from '../../utils/inventoryUtils'
 
+
 type Product = {
     id: string,
     transcript: string,
     name: string,
     options: string[],
+    size: string,
+    amount: number | string,
     defaultOptions: string[],
     tags: string[]
 }
@@ -24,20 +27,69 @@ export default function ProductSection(props: Props): JSX.Element {
     const { segment } = useSpeechContext()
     const [products, setProducts] = useImmer<Product[]>([])
 
-    const handleAdd = useCallback((entity: Entity) => {
+    const handleAdd = useCallback((segment, entities: Entity[]) => {
         setProducts((draft) => {
-            const searchResult = findBestInventoryMatch(entity.value, props.productModel?.Product?.ItemDefs)
-            const { productConfig } = searchResult
+            let amount = '0'
+            let size = ''
+            let name = ''
+            entities.forEach((entity) => {
+                const { type } = entity
+                const id = `${segment.contextId}_${segment.id}`
+                let searchResult
+                let productConfig
+                let transcript
+                switch (type) {
+                    case 'product':
+                        searchResult = findBestInventoryMatch(entity.value, props.productModel?.Product?.ItemDefs)
 
-            const id = `product_${Math.random()}`
-            draft.push({
-                id,
-                transcript: entity.value,
-                name: productConfig?.Keys[0] || '',
-                options: productConfig?.Options || [],
-                defaultOptions: productConfig?.Options || [],
-                tags: productConfig?.Tags || []
+                        productConfig = searchResult.productConfig
+                        name = productConfig?.Keys[0] || ''
+                        break
+                    case 'amount':
+                        amount = entity.value
+                        break
+                    case 'size':
+                        size = entity.value
+                        break
+                    default:
+                        break
+                }
 
+                const productIndex = draft.findIndex(product => product.id === id)
+
+                const product: Product = {
+                    id,
+                    name,
+                    size,
+                    transcript: entity.value,
+                    amount,
+                    options: productConfig?.Options || [],
+                    defaultOptions: productConfig?.Options || [],
+                    tags: productConfig?.Tags || []
+                }
+
+                if (productIndex === -1) {
+                    draft.push({
+                        ...product
+                    })
+
+                } else {
+                    transcript = `${draft[productIndex].transcript} ${entity.value}`
+                    const arr = transcript.split(' ')
+                    const unique: string[] = []
+
+                    arr.forEach((word) => {
+                        if (!unique.includes(word)) {
+                            unique.push(word)
+                        }
+                    })
+
+                    draft[productIndex] = {
+                        ...draft[productIndex],
+                        ...product,
+                        transcript: unique.join(' ')
+                    }
+                }
             })
         })
     }, [setProducts, props.productModel])
@@ -73,12 +125,8 @@ export default function ProductSection(props: Props): JSX.Element {
     }, [setProducts])
 
     useEffect(() => {
-        if (segment?.entities) {
-            segment.entities.forEach((entity) => {
-                if (segment.isFinal && entity.isFinal) {
-                    handleAdd(entity)
-                }
-            })
+        if (segment?.intent.intent === 'add') {
+            handleAdd(segment, segment.entities)
         }
     }, [segment, handleAdd])
 
@@ -101,7 +149,7 @@ export default function ProductSection(props: Props): JSX.Element {
                         productModel={props.productModel}
                     />
                 )
-            })}
+            }).reverse()}
 
 
 
@@ -109,6 +157,7 @@ export default function ProductSection(props: Props): JSX.Element {
                 <ButtonUndo />
                 <ButtonCheckout />
             </div>
+
         </div>
     )
 }

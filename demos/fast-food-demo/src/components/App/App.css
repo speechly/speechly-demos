@@ -18,10 +18,11 @@ div {
   top:0;
   left:0;
   width               : 100vw;
-  height              : 100vh;
+  height              : 91vh;
   position            : fixed;
   margin              : 0;
   opacity             : 1.0;
+  overflow-y: auto;
 }
 
 .items {
@@ -246,6 +247,10 @@ div.itemnamepanel {
   position: relative;
 }
 
+@keyframes example {
+  0%   { left:0px; top:5px;}
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .subitempanel::-webkit-scrollbar {
   display: none;
@@ -343,6 +348,7 @@ div.itemnamepanel {
   transform           : rotate(0deg);
   opacity             : 1.0;
   box-shadow: 0px 0px 10px rgba(0,0,0, 0.25);
+  z-index: 10;
 }
 .toppanel {
   background-color    : rgba(255, 255, 255, 1.0);

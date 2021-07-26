@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ICollection } from '../../../../../buildconfig'
 import OptionCloud from '../OptionCloud/OptionCloud'
 import ProductOptions from '../ProductOptions/ProductOptions'
@@ -18,10 +18,11 @@ interface Props {
 }
 
 const Product: React.FC<Props> = (props) => {
+    const [isOpen, toggleOpen] = useState(true)
     const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
         e.preventDefault()
-        console.log('cilcketi')
+        toggleOpen(!isOpen)
     }
 
     return (
@@ -57,8 +58,7 @@ const Product: React.FC<Props> = (props) => {
             </div>
 
             <div className="subitems">
-
-                {props.tags.includes('Hamburger') && (
+                {props.tags.includes('Hamburger') && isOpen && (
                     <>
                         <div className="subitempanel">
                             <ProductOptions
@@ -83,7 +83,7 @@ const Product: React.FC<Props> = (props) => {
                     </>
                 )}
 
-                {props.tags.includes('Drink') && (
+                {props.tags.includes('Drink') && isOpen && (
                     <>
                         <div className="subitempanel">
                             <ProductOptions
@@ -97,7 +97,7 @@ const Product: React.FC<Props> = (props) => {
                     </>
                 )}
 
-                {props.tags.includes('Side') && (
+                {props.tags.includes('Side') && isOpen && (
                     <>
                         <div className="subitempanel">
                             <ProductOptions
