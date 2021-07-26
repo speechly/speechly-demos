@@ -8,6 +8,8 @@ interface Props {
     id: string,
     transcript: string,
     name: string,
+    size: string,
+    amount: string | number,
     options: string[],
     defaultOptions: string[],
     tags: string[],
@@ -67,7 +69,7 @@ const Product: React.FC<Props> = (props) => {
                                 options='BurgerSize'
                                 productId={props.id}
                                 productModel={props.productModel}
-                                selectedOptions={props.options} />
+                                selectedOptions={[props.size]} />
 
                         </div>
                         <div style={{ position: 'relative' }}>
@@ -92,7 +94,7 @@ const Product: React.FC<Props> = (props) => {
                                 options='DrinkSize'
                                 productId={props.id}
                                 productModel={props.productModel}
-                                selectedOptions={props.options} />
+                                selectedOptions={[props.size]} />
                         </div>
                     </>
                 )}
@@ -106,7 +108,7 @@ const Product: React.FC<Props> = (props) => {
                                 options='SidesSize'
                                 productId={props.id}
                                 productModel={props.productModel}
-                                selectedOptions={props.options} />
+                                selectedOptions={[props.size]} />
                         </div>
                     </>
                 )}

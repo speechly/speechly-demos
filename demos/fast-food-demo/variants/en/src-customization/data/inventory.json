@@ -260,10 +260,9 @@
       "Size"
     ],
     "Keys": [
-      "Medium",
+      "Normal",
       "Medium*",
-      "Size Medium",
-      "Normal*"
+      "Size Medium"
     ]
   },
   {
@@ -527,7 +526,7 @@
       "Size"
     ],
     "Keys": [
-      "Medium",
+      "Normal",
       "Medium",
       "Medium*",
       "Half Litre*",

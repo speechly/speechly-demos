@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { ICollection } from '../../../../../buildconfig';
+import { ICollection } from '../../../../../buildconfig'
 import ProductAttribute from '../ProductAttribute/ProductAttribute'
 
 interface Props {
@@ -35,12 +35,13 @@ const ProductOptions: React.FC<Props> = ({
                     key={option.Keys[0]}
                     productId={productId}
                     id={option.Keys[0]}
-                    active={selectedOptions.includes(option.Keys[0])}>
+                    active={selectedOptions.map((word) => { return word.toUpperCase() }).includes(option.Keys[0].toUpperCase())}>
 
                     {option.Keys[0]}
 
                 </ProductAttribute>
-            ))}
+            )
+            )}
         </>
     )
 }

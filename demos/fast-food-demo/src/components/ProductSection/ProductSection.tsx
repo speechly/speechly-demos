@@ -30,7 +30,7 @@ export default function ProductSection(props: Props): JSX.Element {
     const handleAdd = useCallback((segment, entities: Entity[]) => {
         setProducts((draft) => {
             let amount = '0'
-            let size = ''
+            let size = 'Normal'
             let name = ''
             entities.forEach((entity) => {
                 const { type } = entity
@@ -98,21 +98,33 @@ export default function ProductSection(props: Props): JSX.Element {
         setProducts((draft) => {
             const index = draft.findIndex(product => product.id === id)
 
-            let newOptions = draft[index].options
-            if (active) {
-                newOptions = newOptions.filter(optn => optn !== option)
-            } else {
-                if (radio) {
-                    const optionsToFilter = props.productModel.Option.ItemDefs.map((optn) => {
-                        if (optn.Tags.includes(type)) {
-                            if (newOptions.includes(optn.Keys[0])) return optn.Keys[0]
+            switch (type.toLowerCase()) {
+                case 'size':
+                    draft[index].size = option
+                    break
+                case 'amount':
+                    draft[index].amount = option
+                    break
+                default: {
+                    let newOptions = draft[index].options
+                    if (active && !radio) {
+                        newOptions = newOptions.filter(optn => optn !== option)
+                    }
+                    else {
+                        if (radio) {
+                            const optionsToFilter = props.productModel.Option.ItemDefs.map((optn) => {
+                                if (optn.Tags.includes(type)) {
+                                    if (newOptions.includes(optn.Keys[0])) return optn.Keys[0]
+                                }
+                            })
+                            newOptions = newOptions.filter(optn => !optionsToFilter.includes(optn))
                         }
-                    })
-                    newOptions = newOptions.filter(optn => !optionsToFilter.includes(optn))
+                        newOptions.push(option)
+                    }
+                    draft[index] = { ...draft[index], options: newOptions }
+                    break
                 }
-                newOptions.push(option)
             }
-            draft[index] = { ...draft[index], options: newOptions }
         })
     }, [setProducts, props.productModel])
 
@@ -139,6 +151,8 @@ export default function ProductSection(props: Props): JSX.Element {
                         id={product.id}
                         transcript={product.transcript}
                         name={product.name}
+                        size={product.size}
+                        amount={product.amount}
                         options={product.options}
                         defaultOptions={product.defaultOptions}
                         tags={product.tags}
