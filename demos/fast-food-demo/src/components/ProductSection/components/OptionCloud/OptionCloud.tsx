@@ -6,16 +6,32 @@ interface Props {
     defaultOptions: string[]
 }
 
-const OptionCloud: React.FC<Props> = (props) => {
+const OptionCloud: React.FC<Props> = ({ options, defaultOptions }) => {
     return (
         <>
             {
-                (props.options).map((key) => {
+                (options).map((key) => {
                     return (
                         <>
                             {
-                                !props.defaultOptions.includes(key) && <div key={key} className="itemstacktag">{key}</div>
+                                !defaultOptions.includes(key) && <div key={key} className="itemstacktag">{key}</div>
                             }
+
+
+
+                        </>
+                    )
+                })
+            }
+            {
+                (defaultOptions).map((key) => {
+                    return (
+                        <>
+                            {
+                                !options.includes(key) && key !== 'Normal' && <div key={key} className="itemstacktag">- {key}</div>
+                            }
+
+
 
                         </>
                     )

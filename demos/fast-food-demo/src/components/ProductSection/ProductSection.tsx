@@ -29,7 +29,7 @@ export default function ProductSection(props: Props): JSX.Element {
 
     const handleAdd = useCallback((segment, entities: Entity[]) => {
         setProducts((draft) => {
-            let amount = '0'
+            let amount = '1'
             let size = 'Normal'
             let name = ''
             entities.forEach((entity) => {

@@ -149,6 +149,8 @@ div.itemnamepanel {
 }
 
 .item .itemstacktitle {
+  display: flex;
+  flex: 1;
   opacity             : 1.0;
   font-family         : "Montserrat", Helvetica, Arial, serif;
   font-weight         : 800;
@@ -157,6 +159,39 @@ div.itemnamepanel {
   color               : rgba(0, 0, 0, 1.0);
   margin              : 0 0 0 14px;
   text-align          : left;
+  letter-spacing      : -0.6px;
+  line-height         : 27.5px;
+  user-select: none;
+}
+
+.itemstackamount {
+  display: flex;
+  align-self: flex-end;
+  border: 1px solid black;
+  align-items: center;
+  justify-content: center;
+  opacity             : 1.0;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 22.5px;
+  color               : rgba(0, 0, 0, 1.0);
+  margin              : 0 19px 0 auto;
+  letter-spacing      : -0.6px;
+  line-height         : 27.5px;
+  user-select: none;
+  width: 5rem;
+  height: 2rem;
+}
+
+.itemstackunit {
+  opacity             : 0.8;
+  font-family         : "Montserrat", Helvetica, Arial, serif;
+  font-weight         : 300;
+  font-style          : normal;
+  font-size           : 1rem;
+  color               : rgba(0, 0, 0, 1.0);
+  margin              : 0 0 0 0.75rem;
   letter-spacing      : -0.6px;
   line-height         : 27.5px;
   user-select: none;

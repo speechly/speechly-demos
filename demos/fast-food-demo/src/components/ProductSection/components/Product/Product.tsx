@@ -48,13 +48,20 @@ const Product: React.FC<Props> = (props) => {
                         <div className="itemstacktitle">
                             {props.name}
                         </div>
+                        <div className="itemstackamount">
+                            {/* {ProductModelTools.getPriceString(props.productModel)} */}
+                            {props.amount}
+                            <div className='itemstackunit'>
+                                PCS
+                            </div>
+                        </div>
                         <div className="itemstackprice">
                             {/* {ProductModelTools.getPriceString(props.productModel)} */}
                             Price
                         </div>
                     </div>
                     <div className="itemstacktagpanel">
-                        <OptionCloud defaultOptions={props.defaultOptions} options={props.options} />
+                        <OptionCloud defaultOptions={props.defaultOptions} options={[...props.options, props.size]} />
                     </div>
                 </div>
             </div>
