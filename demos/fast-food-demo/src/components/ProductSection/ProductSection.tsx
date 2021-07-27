@@ -14,7 +14,8 @@ type Product = {
     name: string,
     options: string[],
     size: string,
-    amount: number | string,
+    price: number,
+    amount: number,
     defaultOptions: string[],
     tags: string[]
 }
@@ -29,9 +30,10 @@ export default function ProductSection(props: Props): JSX.Element {
 
     const handleAdd = useCallback((segment, entities: Entity[]) => {
         setProducts((draft) => {
-            let amount = '1'
+            let amount = 1
             let size = 'Normal'
             let name = ''
+            let price = 0
             entities.forEach((entity) => {
                 const { type } = entity
                 const id = `${segment.contextId}_${segment.id}`
@@ -44,9 +46,10 @@ export default function ProductSection(props: Props): JSX.Element {
 
                         productConfig = searchResult.productConfig
                         name = productConfig?.Keys[0] || ''
+                        price = productConfig?.Price?.[1] || 0
                         break
                     case 'amount':
-                        amount = entity.value
+                        amount = parseInt(entity.value)
                         break
                     case 'size':
                         size = entity.value
@@ -56,11 +59,11 @@ export default function ProductSection(props: Props): JSX.Element {
                 }
 
                 const productIndex = draft.findIndex(product => product.id === id)
-
                 const product: Product = {
                     id,
                     name,
                     size,
+                    price: amount * price,
                     transcript: entity.value,
                     amount,
                     options: productConfig?.Options || [],
@@ -103,7 +106,12 @@ export default function ProductSection(props: Props): JSX.Element {
                     draft[index].size = option
                     break
                 case 'amount':
-                    draft[index].amount = option
+                    if (isNaN(parseInt(option))) {
+                        draft[index].amount = 0
+                    }
+                    else {
+                        draft[index].amount = parseInt(option)
+                    }
                     break
                 default: {
                     let newOptions = draft[index].options
@@ -152,6 +160,7 @@ export default function ProductSection(props: Props): JSX.Element {
                         transcript={product.transcript}
                         name={product.name}
                         size={product.size}
+                        price={product.price}
                         amount={product.amount}
                         options={product.options}
                         defaultOptions={product.defaultOptions}

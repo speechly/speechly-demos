@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, ChangeEventHandler } from 'react'
 import { ICollection } from '../../../../../buildconfig'
 import OptionCloud from '../OptionCloud/OptionCloud'
 import ProductOptions from '../ProductOptions/ProductOptions'
@@ -9,7 +9,8 @@ interface Props {
     transcript: string,
     name: string,
     size: string,
-    amount: string | number,
+    price: number,
+    amount: number,
     options: string[],
     defaultOptions: string[],
     tags: string[],
@@ -50,14 +51,21 @@ const Product: React.FC<Props> = (props) => {
                         </div>
                         <div className="itemstackamount">
                             {/* {ProductModelTools.getPriceString(props.productModel)} */}
-                            {props.amount}
+                            <input
+                                type='text'
+                                id='amount'
+                                name='amount'
+                                value={props.amount}
+                                onChange={(event: React.FormEvent<HTMLInputElement>) => {
+                                    props.onChange(props.id, event.currentTarget.value, false, 'amount')
+                                }} />
                             <div className='itemstackunit'>
                                 PCS
                             </div>
                         </div>
                         <div className="itemstackprice">
                             {/* {ProductModelTools.getPriceString(props.productModel)} */}
-                            Price
+                            {props.amount > 0 ? props.amount * props.price : 0.00} €
                         </div>
                     </div>
                     <div className="itemstacktagpanel">
