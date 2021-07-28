@@ -31,13 +31,8 @@ const App: React.FC = (): JSX.Element => {
         setupProductModel()
     }, [setupProductModel])
 
-    const UsageHints = [
-        'Add usage hints',
-    ]
-
     return (
         <SpeechProvider appId="368c4548-dac5-4395-9279-46e1434cb447" language="en-US">
-            <TranscriptDrawer hint={UsageHints} />
 
             <PushToTalkButtonContainer>
                 <PushToTalkButton captureKey="" intro="" showTime={30000} />
