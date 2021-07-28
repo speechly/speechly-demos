@@ -56,6 +56,10 @@ const Product: React.FC<Props> = (props) => {
                                 id='amount'
                                 name='amount'
                                 value={props.amount}
+                                onClick={(e: React.MouseEvent<HTMLInputElement>) => {
+                                    e.stopPropagation()
+                                    e.preventDefault()
+                                }}
                                 onChange={(event: React.FormEvent<HTMLInputElement>) => {
                                     props.onChange(props.id, event.currentTarget.value, false, 'amount')
                                 }} />
@@ -65,7 +69,7 @@ const Product: React.FC<Props> = (props) => {
                         </div>
                         <div className="itemstackprice">
                             {/* {ProductModelTools.getPriceString(props.productModel)} */}
-                            {props.amount > 0 ? props.amount * props.price : 0.00} €
+                            {props.amount > 0 ? (props.amount * props.price).toFixed(2) : 0.00} €
                         </div>
                     </div>
                     <div className="itemstacktagpanel">

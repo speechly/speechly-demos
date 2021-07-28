@@ -6,6 +6,7 @@ import ButtonCheckout from './components/ButtonCheckout/ButtonCheckout'
 import Product from './components/Product/Product'
 import { ICollection } from '../../../buildconfig'
 import { findBestInventoryMatch } from '../../utils/inventoryUtils'
+import { current } from 'immer'
 
 
 type Product = {
@@ -150,6 +151,14 @@ export default function ProductSection(props: Props): JSX.Element {
         }
     }, [segment, handleAdd])
 
+    const getTotalPrice = useCallback(() => {
+        const totalPrice = products.reduce((prev, current) => {
+            const result = prev + current.amount * current.price
+            return result
+        }, 0)
+        return totalPrice
+    }, [products])
+
     return (
         <div className="background" onClick={() => console.log('backgroundclick')}>
             {products.map((product, index) => {
@@ -178,7 +187,7 @@ export default function ProductSection(props: Props): JSX.Element {
 
             <div className="lowerpanel">
                 <ButtonUndo />
-                <ButtonCheckout />
+                <ButtonCheckout totalPrice={getTotalPrice()} />
             </div>
 
         </div>
