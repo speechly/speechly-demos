@@ -217,7 +217,6 @@ export default function ProductSection(props: Props): JSX.Element {
 
     useEffect(() => {
         if (segment?.intent.intent === 'add' && segment?.entities.length > 0) {
-            console.log(segment)
             handleAdd(segment, segment.entities)
         }
     }, [segment, handleAdd])
