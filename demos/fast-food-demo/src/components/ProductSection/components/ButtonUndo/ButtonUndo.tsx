@@ -1,9 +1,12 @@
 import React from 'react'
 
+interface Props {
+    onClick: () => void
+}
 
-const ButtonUndo = (): JSX.Element => {
+const ButtonUndo: React.FC<Props> = ({ onClick }): JSX.Element => {
     return (
-        <div className="undo" onClick={() => console.log('click')}>
+        <div className="undo" onClick={onClick}>
             <div className="button-text-large">
                 Undo
             </div>

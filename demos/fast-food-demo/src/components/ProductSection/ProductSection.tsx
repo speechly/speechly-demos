@@ -6,7 +6,8 @@ import ButtonCheckout from './components/ButtonCheckout/ButtonCheckout'
 import Product from './components/Product/Product'
 import { ICollection } from '../../../buildconfig'
 import { findBestInventoryMatch } from '../../utils/inventoryUtils'
-import { current } from 'immer'
+import { Segment } from '@speechly/browser-client'
+
 
 
 type Product = {
@@ -18,7 +19,8 @@ type Product = {
     price: number,
     amount: number,
     defaultOptions: string[],
-    tags: string[]
+    tags: string[],
+    detailVisibility: number
 }
 
 interface Props {
@@ -26,7 +28,7 @@ interface Props {
 }
 
 export default function ProductSection(props: Props): JSX.Element {
-    const { segment } = useSpeechContext()
+    const { segment, speechState } = useSpeechContext()
     const [products, setProducts] = useImmer<Product[]>([])
 
     const handleAdd = useCallback((segment, entities: Entity[]) => {
@@ -35,6 +37,7 @@ export default function ProductSection(props: Props): JSX.Element {
             let size = 'Normal'
             let name = ''
             let price = 0
+
             entities.forEach((entity) => {
                 const { type } = entity
                 const id = `${segment.contextId}_${segment.id}`
@@ -60,6 +63,7 @@ export default function ProductSection(props: Props): JSX.Element {
                 }
 
                 const productIndex = draft.findIndex(product => product.id === id)
+                const tentativeProductIndex = draft.findIndex(product => product.id === 'tentative-product')
                 const product: Product = {
                     id,
                     name,
@@ -69,15 +73,21 @@ export default function ProductSection(props: Props): JSX.Element {
                     amount,
                     options: productConfig?.Options || [],
                     defaultOptions: productConfig?.Options || [],
-                    tags: productConfig?.Tags || []
+                    tags: productConfig?.Tags || [],
+                    detailVisibility: 1
+                }
+
+                if (tentativeProductIndex !== -1 && productIndex === -1) {
+                    draft[tentativeProductIndex] = {
+                        ...product
+                    }
                 }
 
                 if (productIndex === -1) {
-                    draft.push({
-                        ...product
-                    })
+                    draft.push(product)
+                }
 
-                } else {
+                else {
                     transcript = `${draft[productIndex].transcript} ${entity.value}`
                     const arr = transcript.split(' ')
                     const unique: string[] = []
@@ -137,11 +147,65 @@ export default function ProductSection(props: Props): JSX.Element {
         })
     }, [setProducts, props.productModel])
 
-
     const handleDelete = useCallback((id: string) => {
         setProducts((draft) => {
             const index = draft.findIndex(product => product.id === id)
             if (index !== -1) draft.splice(index, 1)
+        })
+    }, [setProducts])
+
+    const clearList = useCallback(() => {
+        setProducts([])
+    }, [setProducts])
+
+    // // @ts-ignore
+    // useEffect((prev) => {
+    //     console.log(prev)
+    //     const id = 'tentative-product'
+    //     const productIndex = products.findIndex(product => product.id === id)
+    //     if (speechState === 'Recording') {
+    //         if (productIndex === -1) {
+    //             const tentativeProduct: Product = {
+    //                 id,
+    //                 name: '',
+    //                 size: '',
+    //                 price: 0,
+    //                 transcript: '',
+    //                 amount: 1,
+    //                 options: [],
+    //                 defaultOptions: [],
+    //                 tags: []
+    //             }
+    //             setProducts((previ) => {
+    //                 console.log(previ[productIndex])
+    //                 return [...products, tentativeProduct]
+    //             })
+    //         }
+    //     }
+    //     if (speechState !== 'Recording' && productIndex) {
+    //         handleDelete('tentative-product')
+    //     }
+    // }, [segment, products, setProducts, speechState, handleDelete])
+
+    const toggleRow = useCallback((id: string) => {
+        setProducts((draft) => {
+            const index = draft.findIndex(product => product.id === id)
+            if (index === -1) return
+            const { detailVisibility } = draft[index]
+
+            switch (detailVisibility) {
+                case 0:
+                    draft[index].detailVisibility = 2
+                    break
+                case 1:
+                    draft[index].detailVisibility = 2
+                    break
+                case 2:
+                    draft[index].detailVisibility = 0
+                    break
+                default:
+                    break
+            }
         })
     }, [setProducts])
 
@@ -162,6 +226,7 @@ export default function ProductSection(props: Props): JSX.Element {
     return (
         <div className="background" onClick={() => console.log('backgroundclick')}>
             {products.map((product, index) => {
+                console.log(product)
                 return (
                     <Product
                         key={product.id}
@@ -178,7 +243,9 @@ export default function ProductSection(props: Props): JSX.Element {
                         index={index + 1}
                         onDelete={handleDelete}
                         onChange={handleOptionChange}
+                        toggleRow={toggleRow}
                         productModel={props.productModel}
+                        detailVisibility={product.detailVisibility}
                     />
                 )
             }).reverse()}
@@ -186,7 +253,7 @@ export default function ProductSection(props: Props): JSX.Element {
 
 
             <div className="lowerpanel">
-                <ButtonUndo />
+                <ButtonUndo onClick={clearList} />
                 <ButtonCheckout totalPrice={getTotalPrice()} />
             </div>
 

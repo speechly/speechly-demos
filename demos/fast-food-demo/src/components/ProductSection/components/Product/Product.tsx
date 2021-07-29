@@ -1,4 +1,5 @@
-import React, { useState, ChangeEventHandler } from 'react'
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { ICollection } from '../../../../../buildconfig'
 import OptionCloud from '../OptionCloud/OptionCloud'
 import ProductOptions from '../ProductOptions/ProductOptions'
@@ -17,15 +18,17 @@ interface Props {
     selected: boolean,
     onDelete: (arg0: string) => void,
     onChange: (arg0: string, arg1: string, arg2: boolean, arg3: string, arg4?: boolean) => void,
-    productModel: { [key: string]: ICollection }
+    toggleRow: (arg0: string) => void,
+    productModel: { [key: string]: ICollection },
+    detailVisibility: number
 }
 
 const Product: React.FC<Props> = (props) => {
-    const [isOpen, toggleOpen] = useState(true)
+
     const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
         e.preventDefault()
-        toggleOpen(!isOpen)
+        props.toggleRow(props.id)
     }
 
     return (
@@ -78,8 +81,8 @@ const Product: React.FC<Props> = (props) => {
                 </div>
             </div>
 
-            <div className="subitems">
-                {props.tags.includes('Hamburger') && isOpen && (
+            <motion.div animate={{ x: 0 }} className="subitems">
+                {props.tags.includes('Hamburger') && props.detailVisibility > 0 && (
                     <>
                         <div className="subitempanel">
                             <ProductOptions
@@ -91,20 +94,23 @@ const Product: React.FC<Props> = (props) => {
                                 selectedOptions={[props.size]} />
 
                         </div>
-                        <div style={{ position: 'relative' }}>
-                            <div className="subitempanel">
-                                <ProductOptions
-                                    onChange={props.onChange}
-                                    options='BurgerIngredients'
-                                    productId={props.id}
-                                    productModel={props.productModel}
-                                    selectedOptions={props.options} />
-                            </div>
-                        </div>
                     </>
                 )}
 
-                {props.tags.includes('Drink') && isOpen && (
+                {props.tags.includes('Hamburger') && props.detailVisibility > 1 && (
+                    <div style={{ position: 'relative' }}>
+                        <div className="subitempanel">
+                            <ProductOptions
+                                onChange={props.onChange}
+                                options='BurgerIngredients'
+                                productId={props.id}
+                                productModel={props.productModel}
+                                selectedOptions={props.options} />
+                        </div>
+                    </div>
+                )}
+
+                {props.tags.includes('Drink') && (
                     <>
                         <div className="subitempanel">
                             <ProductOptions
@@ -118,7 +124,7 @@ const Product: React.FC<Props> = (props) => {
                     </>
                 )}
 
-                {props.tags.includes('Side') && isOpen && (
+                {props.tags.includes('Side') && (
                     <>
                         <div className="subitempanel">
                             <ProductOptions
@@ -132,7 +138,7 @@ const Product: React.FC<Props> = (props) => {
                     </>
                 )}
 
-            </div>
+            </motion.div>
         </div>
     )
 }
