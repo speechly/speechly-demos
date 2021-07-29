@@ -6,7 +6,7 @@ import ButtonCheckout from './components/ButtonCheckout/ButtonCheckout'
 import Product from './components/Product/Product'
 import { ICollection } from '../../../buildconfig'
 import { findBestInventoryMatch } from '../../utils/inventoryUtils'
-import { Segment } from '@speechly/browser-client'
+
 
 
 
@@ -77,14 +77,17 @@ export default function ProductSection(props: Props): JSX.Element {
                     detailVisibility: 1
                 }
 
-                if (tentativeProductIndex !== -1 && productIndex === -1) {
+                if (tentativeProductIndex !== -1 && !segment.isFinal) {
                     draft[tentativeProductIndex] = {
-                        ...product
+                        ...product,
+                        id: 'tentative-product'
                     }
                 }
 
                 if (productIndex === -1) {
-                    draft.push(product)
+                    draft[tentativeProductIndex] = {
+                        ...product,
+                    }
                 }
 
                 else {
@@ -158,34 +161,29 @@ export default function ProductSection(props: Props): JSX.Element {
         setProducts([])
     }, [setProducts])
 
-    // // @ts-ignore
-    // useEffect((prev) => {
-    //     console.log(prev)
-    //     const id = 'tentative-product'
-    //     const productIndex = products.findIndex(product => product.id === id)
-    //     if (speechState === 'Recording') {
-    //         if (productIndex === -1) {
-    //             const tentativeProduct: Product = {
-    //                 id,
-    //                 name: '',
-    //                 size: '',
-    //                 price: 0,
-    //                 transcript: '',
-    //                 amount: 1,
-    //                 options: [],
-    //                 defaultOptions: [],
-    //                 tags: []
-    //             }
-    //             setProducts((previ) => {
-    //                 console.log(previ[productIndex])
-    //                 return [...products, tentativeProduct]
-    //             })
-    //         }
-    //     }
-    //     if (speechState !== 'Recording' && productIndex) {
-    //         handleDelete('tentative-product')
-    //     }
-    // }, [segment, products, setProducts, speechState, handleDelete])
+    useEffect(() => {
+        const id = 'tentative-product'
+        const productIndex = products.findIndex(product => product.id === id)
+
+        if (productIndex === -1) {
+            if (!segment && speechState === 'Recording' || segment?.entities.length === 0 && segment.words.length > 0) {
+                console.log('here')
+                const tentativeProduct: Product = {
+                    id,
+                    name: '',
+                    size: '',
+                    price: 0,
+                    transcript: '',
+                    amount: 1,
+                    options: [],
+                    defaultOptions: [],
+                    tags: [],
+                    detailVisibility: 1
+                }
+                setProducts([...products, tentativeProduct])
+            }
+        }
+    }, [segment, products, setProducts, speechState, handleDelete])
 
     const toggleRow = useCallback((id: string) => {
         setProducts((draft) => {
@@ -226,7 +224,6 @@ export default function ProductSection(props: Props): JSX.Element {
     return (
         <div className="background" onClick={() => console.log('backgroundclick')}>
             {products.map((product, index) => {
-                console.log(product)
                 return (
                     <Product
                         key={product.id}
