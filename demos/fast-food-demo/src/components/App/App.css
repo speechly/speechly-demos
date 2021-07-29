@@ -184,7 +184,7 @@ div.itemnamepanel {
   height: 2rem;
 }
 
-input[type=text], input:focus {
+input[id=amount] {
   font-family         : "Montserrat", Helvetica, Arial, serif;
   font-weight         : 300;
   font-style          : normal;
