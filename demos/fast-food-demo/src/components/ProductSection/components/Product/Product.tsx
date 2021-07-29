@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ICollection } from '../../../../../buildconfig'
 import OptionCloud from '../OptionCloud/OptionCloud'
 import ProductOptions from '../ProductOptions/ProductOptions'
@@ -81,10 +81,21 @@ const Product: React.FC<Props> = (props) => {
                 </div>
             </div>
 
-            <motion.div animate={{ x: 0 }} className="subitems">
-                {props.tags.includes('Hamburger') && props.detailVisibility > 0 && (
-                    <>
-                        <div className="subitempanel">
+            <div
+                className="subitems">
+                <AnimatePresence>
+                    {props.tags.includes('Hamburger') && props.detailVisibility > 0 && (
+                        <motion.section
+                            key="burger-size"
+                            initial="collapsed"
+                            animate="open"
+                            exit="collapsed"
+                            variants={{
+                                open: { opacity: 1, height: '52px' },
+                                collapsed: { opacity: 0, height: 0 }
+                            }}
+                            transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+                            className="subitempanel">
                             <ProductOptions
                                 radio
                                 onChange={props.onChange}
@@ -93,26 +104,42 @@ const Product: React.FC<Props> = (props) => {
                                 productModel={props.productModel}
                                 selectedOptions={[props.size]} />
 
-                        </div>
-                    </>
-                )}
+                        </motion.section>
+
+                    )}
+                </AnimatePresence>
 
                 {props.tags.includes('Hamburger') && props.detailVisibility > 1 && (
                     <div style={{ position: 'relative' }}>
-                        <div className="subitempanel">
+                        <motion.div
+                            initial={{ y: -20, visibility: 'hidden' }}
+                            animate={{ y: 0, visibility: 'visible' }}
+                            transition={{ duration: 0.3 }}
+                            className="subitempanel">
                             <ProductOptions
                                 onChange={props.onChange}
                                 options='BurgerIngredients'
                                 productId={props.id}
                                 productModel={props.productModel}
                                 selectedOptions={props.options} />
-                        </div>
+                        </motion.div>
                     </div>
                 )}
 
-                {props.tags.includes('Drink') && (
-                    <>
-                        <div className="subitempanel">
+                <AnimatePresence>
+                    {props.tags.includes('Drink') && props.detailVisibility > 0 && (
+
+                        <motion.section
+                            key="drink-size"
+                            initial="collapsed"
+                            animate="open"
+                            exit="collapsed"
+                            variants={{
+                                open: { opacity: 1, height: '52px' },
+                                collapsed: { opacity: 0, height: 0 }
+                            }}
+                            transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+                            className="subitempanel">
                             <ProductOptions
                                 radio
                                 onChange={props.onChange}
@@ -120,13 +147,24 @@ const Product: React.FC<Props> = (props) => {
                                 productId={props.id}
                                 productModel={props.productModel}
                                 selectedOptions={[props.size]} />
-                        </div>
-                    </>
-                )}
+                        </motion.section>
 
-                {props.tags.includes('Side') && (
-                    <>
-                        <div className="subitempanel">
+                    )}
+                </AnimatePresence>
+
+                <AnimatePresence>
+                    {props.tags.includes('Side') && props.detailVisibility > 0 && (
+                        <motion.section
+                            key="side-size"
+                            initial="collapsed"
+                            animate="open"
+                            exit="collapsed"
+                            variants={{
+                                open: { opacity: 1, height: '52px' },
+                                collapsed: { opacity: 0, height: 0 }
+                            }}
+                            transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+                            className="subitempanel">
                             <ProductOptions
                                 radio
                                 onChange={props.onChange}
@@ -134,11 +172,11 @@ const Product: React.FC<Props> = (props) => {
                                 productId={props.id}
                                 productModel={props.productModel}
                                 selectedOptions={[props.size]} />
-                        </div>
-                    </>
-                )}
+                        </motion.section>
+                    )}
+                </AnimatePresence>
 
-            </motion.div>
+            </div>
         </div>
     )
 }

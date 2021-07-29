@@ -6,6 +6,7 @@ import ButtonCheckout from './components/ButtonCheckout/ButtonCheckout'
 import Product from './components/Product/Product'
 import { ICollection } from '../../../buildconfig'
 import { findBestInventoryMatch } from '../../utils/inventoryUtils'
+import { motion } from 'framer-motion'
 
 
 
@@ -37,10 +38,12 @@ export default function ProductSection(props: Props): JSX.Element {
             let size = 'Normal'
             let name = ''
             let price = 0
+            const id = `${segment.contextId}_${segment.id}`
+            const productIndex = draft.findIndex(product => product.id === id)
+            const tentativeProductIndex = draft.findIndex(product => product.id === 'tentative-product')
 
             entities.forEach((entity) => {
                 const { type } = entity
-                const id = `${segment.contextId}_${segment.id}`
                 let searchResult
                 let productConfig
                 let transcript
@@ -62,8 +65,6 @@ export default function ProductSection(props: Props): JSX.Element {
                         break
                 }
 
-                const productIndex = draft.findIndex(product => product.id === id)
-                const tentativeProductIndex = draft.findIndex(product => product.id === 'tentative-product')
                 const product: Product = {
                     id,
                     name,
@@ -85,9 +86,7 @@ export default function ProductSection(props: Props): JSX.Element {
                 }
 
                 if (productIndex === -1) {
-                    draft[tentativeProductIndex] = {
-                        ...product,
-                    }
+                    draft.push(product)
                 }
 
                 else {
@@ -106,6 +105,7 @@ export default function ProductSection(props: Props): JSX.Element {
                         ...product,
                         transcript: unique.join(' ')
                     }
+
                 }
             })
         })
@@ -161,43 +161,26 @@ export default function ProductSection(props: Props): JSX.Element {
         setProducts([])
     }, [setProducts])
 
-    useEffect(() => {
-        const id = 'tentative-product'
-        const productIndex = products.findIndex(product => product.id === id)
 
-        if (productIndex === -1) {
-            if (!segment && speechState === 'Recording' || segment?.entities.length === 0 && segment.words.length > 0) {
-                console.log('here')
-                const tentativeProduct: Product = {
-                    id,
-                    name: '',
-                    size: '',
-                    price: 0,
-                    transcript: '',
-                    amount: 1,
-                    options: [],
-                    defaultOptions: [],
-                    tags: [],
-                    detailVisibility: 1
-                }
-                setProducts([...products, tentativeProduct])
-            }
-        }
-    }, [segment, products, setProducts, speechState, handleDelete])
 
     const toggleRow = useCallback((id: string) => {
         setProducts((draft) => {
             const index = draft.findIndex(product => product.id === id)
             if (index === -1) return
             const { detailVisibility } = draft[index]
-
             switch (detailVisibility) {
                 case 0:
                     draft[index].detailVisibility = 2
                     break
-                case 1:
-                    draft[index].detailVisibility = 2
-                    break
+                case 1: {
+                    if (draft[index].tags.includes('Hamburger')) {
+                        draft[index].detailVisibility = 2
+                        break
+                    } else {
+                        draft[index].detailVisibility = 0
+                        break
+                    }
+                }
                 case 2:
                     draft[index].detailVisibility = 0
                     break
@@ -208,7 +191,33 @@ export default function ProductSection(props: Props): JSX.Element {
     }, [setProducts])
 
     useEffect(() => {
-        if (segment?.intent.intent === 'add') {
+        const id = 'tentative-product'
+        setProducts((draft) => {
+            const tentativeProductIndex = draft.findIndex(product => product.id === id)
+
+            if (tentativeProductIndex === -1) {
+                if (!segment && speechState === 'Recording' || segment?.entities.length === 0 && segment.words.length > 0) {
+                    const tentativeProduct: Product = {
+                        id,
+                        name: '',
+                        size: '',
+                        price: 0,
+                        transcript: '',
+                        amount: 1,
+                        options: [],
+                        defaultOptions: [],
+                        tags: [],
+                        detailVisibility: 1
+                    }
+                    draft[tentativeProductIndex] = tentativeProduct
+                }
+            }
+        })
+    }, [segment, setProducts, speechState, handleDelete])
+
+    useEffect(() => {
+        if (segment?.intent.intent === 'add' && segment?.entities.length > 0) {
+            console.log(segment)
             handleAdd(segment, segment.entities)
         }
     }, [segment, handleAdd])
@@ -225,25 +234,30 @@ export default function ProductSection(props: Props): JSX.Element {
         <div className="background" onClick={() => console.log('backgroundclick')}>
             {products.map((product, index) => {
                 return (
-                    <Product
-                        key={product.id}
-                        id={product.id}
-                        transcript={product.transcript}
-                        name={product.name}
-                        size={product.size}
-                        price={product.price}
-                        amount={product.amount}
-                        options={product.options}
-                        defaultOptions={product.defaultOptions}
-                        tags={product.tags}
-                        selected={false}
-                        index={index + 1}
-                        onDelete={handleDelete}
-                        onChange={handleOptionChange}
-                        toggleRow={toggleRow}
-                        productModel={props.productModel}
-                        detailVisibility={product.detailVisibility}
-                    />
+                    <motion.div
+                        initial={{ y: -100, visibility: 'hidden' }}
+                        animate={{ y: 0, visibility: 'visible' }}
+                        transition={{ duration: 0.4 }} >
+                        <Product
+                            key={product.id}
+                            id={product.id}
+                            transcript={product.transcript}
+                            name={product.name}
+                            size={product.size}
+                            price={product.price}
+                            amount={product.amount}
+                            options={product.options}
+                            defaultOptions={product.defaultOptions}
+                            tags={product.tags}
+                            selected={false}
+                            index={index + 1}
+                            onDelete={handleDelete}
+                            onChange={handleOptionChange}
+                            toggleRow={toggleRow}
+                            productModel={props.productModel}
+                            detailVisibility={product.detailVisibility}
+                        />
+                    </motion.div>
                 )
             }).reverse()}
 

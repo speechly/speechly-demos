@@ -8,10 +8,7 @@ const ButtonUndo: React.FC<Props> = ({ onClick }): JSX.Element => {
     return (
         <div className="undo" onClick={onClick}>
             <div className="button-text-large">
-                Undo
-            </div>
-            <div className="button-text-small">
-                Last action
+                Clear List
             </div>
         </div>
     )
