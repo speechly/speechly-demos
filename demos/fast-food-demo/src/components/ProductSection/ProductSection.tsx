@@ -8,9 +8,6 @@ import { ICollection } from '../../../buildconfig'
 import { findBestInventoryMatch } from '../../utils/inventoryUtils'
 import { motion } from 'framer-motion'
 
-
-
-
 type Product = {
     id: string,
     transcript: string,
@@ -75,7 +72,7 @@ export default function ProductSection(props: Props): JSX.Element {
                     options: productConfig?.Options || [],
                     defaultOptions: productConfig?.Options || [],
                     tags: productConfig?.Tags || [],
-                    detailVisibility: 1
+                    detailVisibility: 0
                 }
 
                 if (tentativeProductIndex !== -1 && !segment.isFinal) {
@@ -170,7 +167,7 @@ export default function ProductSection(props: Props): JSX.Element {
             const { detailVisibility } = draft[index]
             switch (detailVisibility) {
                 case 0:
-                    draft[index].detailVisibility = 2
+                    draft[index].detailVisibility = 1
                     break
                 case 1: {
                     if (draft[index].tags.includes('Hamburger')) {
@@ -231,11 +228,11 @@ export default function ProductSection(props: Props): JSX.Element {
 
     return (
         <div className="background" onClick={() => console.log('backgroundclick')}>
-            {products.map((product, index) => {
+            {products.map((product) => {
                 return (
                     <motion.div
-                        initial={{ y: -100, visibility: 'hidden' }}
-                        animate={{ y: 0, visibility: 'visible' }}
+                        initial={{ y: -100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.4 }} >
                         <Product
                             key={product.id}
@@ -249,7 +246,6 @@ export default function ProductSection(props: Props): JSX.Element {
                             defaultOptions={product.defaultOptions}
                             tags={product.tags}
                             selected={false}
-                            index={index + 1}
                             onDelete={handleDelete}
                             onChange={handleOptionChange}
                             toggleRow={toggleRow}
@@ -267,6 +263,6 @@ export default function ProductSection(props: Props): JSX.Element {
                 <ButtonCheckout totalPrice={getTotalPrice()} />
             </div>
 
-        </div>
+        </div >
     )
 }

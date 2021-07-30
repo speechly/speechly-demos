@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ICollection } from '../../../../../buildconfig'
 import OptionCloud from '../OptionCloud/OptionCloud'
 import ProductOptions from '../ProductOptions/ProductOptions'
 
 interface Props {
-    index: number,
     id: string,
     transcript: string,
     name: string,
@@ -40,7 +39,7 @@ const Product: React.FC<Props> = (props) => {
                 <div className="textpanel">
                     <div className="itemtoppanel">
                         <div className={props.selected ? 'itemstacknumber selected' : 'itemstacknumber'}>
-                            {props.index}. {props.transcript}
+                            {props.transcript}
                         </div>
                         <div className="itemremovepanel" onClick={() => { props.onDelete(props.id) }}>
                             <div className="small-remove-button">
@@ -173,6 +172,7 @@ const Product: React.FC<Props> = (props) => {
                                 productModel={props.productModel}
                                 selectedOptions={[props.size]} />
                         </motion.section>
+
                     )}
                 </AnimatePresence>
 
