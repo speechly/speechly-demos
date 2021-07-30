@@ -87,11 +87,11 @@ export default function ProductSection(props: Props): JSX.Element {
                 }
 
                 else {
-                    transcript = `${draft[productIndex].transcript} ${entity.value}`
+                    transcript = segment.words.map((word: { [key: string]: string | number }) => word.value).join(' ')
                     const arr = transcript.split(' ')
                     const unique: string[] = []
 
-                    arr.forEach((word) => {
+                    arr.forEach((word: string) => {
                         if (!unique.includes(word)) {
                             unique.push(word)
                         }
@@ -100,7 +100,7 @@ export default function ProductSection(props: Props): JSX.Element {
                     draft[productIndex] = {
                         ...draft[productIndex],
                         ...product,
-                        transcript: unique.join(' ')
+                        transcript
                     }
 
                 }
@@ -231,6 +231,7 @@ export default function ProductSection(props: Props): JSX.Element {
             {products.map((product) => {
                 return (
                     <motion.div
+                        key={product.id}
                         initial={{ y: -100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.4 }} >
