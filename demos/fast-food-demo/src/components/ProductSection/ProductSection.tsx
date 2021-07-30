@@ -26,7 +26,7 @@ interface Props {
 }
 
 export default function ProductSection(props: Props): JSX.Element {
-    const { segment, speechState } = useSpeechContext()
+    const { segment, tentativeIntent, tentativeEntities } = useSpeechContext()
     const [products, setProducts] = useImmer<Product[]>([])
 
     const handleAdd = useCallback((segment, entities: Entity[]) => {
@@ -37,13 +37,12 @@ export default function ProductSection(props: Props): JSX.Element {
             let price = 0
             const id = `${segment.contextId}_${segment.id}`
             const productIndex = draft.findIndex(product => product.id === id)
-            const tentativeProductIndex = draft.findIndex(product => product.id === 'tentative-product')
 
             entities.forEach((entity) => {
                 const { type } = entity
                 let searchResult
                 let productConfig
-                let transcript
+
                 switch (type) {
                     case 'product':
                         searchResult = findBestInventoryMatch(entity.value, props.productModel?.Product?.ItemDefs)
@@ -75,26 +74,19 @@ export default function ProductSection(props: Props): JSX.Element {
                     detailVisibility: 0
                 }
 
-                if (tentativeProductIndex !== -1 && !segment.isFinal) {
-                    draft[tentativeProductIndex] = {
-                        ...product,
-                        id: 'tentative-product'
-                    }
-                }
+
 
                 if (productIndex === -1) {
                     draft.push(product)
                 }
 
-                else {
-                    transcript = segment.words.map((word: { [key: string]: string }) => word.value.toLowerCase()).join(' ')
 
+                else {
                     draft[productIndex] = {
                         ...draft[productIndex],
                         ...product,
-                        transcript
+                        transcript: segment.words.map((word: { [key: string]: string }) => word.value.toLowerCase()).join(' ')
                     }
-
                 }
             })
         })
@@ -179,36 +171,37 @@ export default function ProductSection(props: Props): JSX.Element {
         })
     }, [setProducts])
 
-    useEffect(() => {
-        const id = 'tentative-product'
+    const addTentativeProduct = useCallback((intent) => {
+        const id = `${intent?.contextId}_${intent?.segmentId}`
+        const tentativeProduct: Product = {
+            id,
+            name: '',
+            size: '',
+            price: 0,
+            transcript: '',
+            amount: 1,
+            options: [],
+            defaultOptions: [],
+            tags: [],
+            detailVisibility: 1
+        }
+
         setProducts((draft) => {
             const tentativeProductIndex = draft.findIndex(product => product.id === id)
-
             if (tentativeProductIndex === -1) {
-                if (!segment && speechState === 'Recording' || segment?.entities.length === 0 && segment.words.length > 0) {
-                    const tentativeProduct: Product = {
-                        id,
-                        name: '',
-                        size: '',
-                        price: 0,
-                        transcript: '',
-                        amount: 1,
-                        options: [],
-                        defaultOptions: [],
-                        tags: [],
-                        detailVisibility: 1
-                    }
-                    draft[tentativeProductIndex] = tentativeProduct
-                }
+                draft.push(tentativeProduct)
             }
         })
-    }, [segment, setProducts, speechState, handleDelete])
+    }, [setProducts])
 
     useEffect(() => {
-        if (segment?.intent.intent === 'add' && segment?.entities.length > 0) {
+        if (tentativeIntent) {
+            addTentativeProduct(tentativeIntent)
+        }
+        if (segment && segment?.entities.length > 0) {
             handleAdd(segment, segment.entities)
         }
-    }, [segment, handleAdd])
+    }, [segment, addTentativeProduct, tentativeIntent, tentativeEntities, handleAdd])
 
     const getTotalPrice = useCallback(() => {
         const totalPrice = products.reduce((prev, current) => {
