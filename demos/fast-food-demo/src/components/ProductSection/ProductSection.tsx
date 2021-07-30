@@ -76,7 +76,7 @@ export default function ProductSection(props: Props): JSX.Element {
 
 
 
-                if (productIndex === -1) {
+                if (productIndex === -1 && type === 'product') {
                     draft.push(product)
                 }
 
