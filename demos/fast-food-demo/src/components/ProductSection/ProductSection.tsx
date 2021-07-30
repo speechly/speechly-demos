@@ -159,16 +159,16 @@ export default function ProductSection(props: Props): JSX.Element {
             const { detailVisibility } = draft[index]
             switch (detailVisibility) {
                 case 0:
-                    draft[index].detailVisibility = 1
-                    break
-                case 1: {
                     if (draft[index].tags.includes('Hamburger')) {
                         draft[index].detailVisibility = 2
                         break
                     } else {
-                        draft[index].detailVisibility = 0
+                        draft[index].detailVisibility = 1
                         break
                     }
+                case 1: {
+                    draft[index].detailVisibility = 0
+                    break
                 }
                 case 2:
                     draft[index].detailVisibility = 0
