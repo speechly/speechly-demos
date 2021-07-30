@@ -232,43 +232,45 @@ export default function ProductSection(props: Props): JSX.Element {
     }, [products])
 
     return (
-        <div className="background" onClick={() => console.log('backgroundclick')}>
-            {products.map((product) => {
-                return (
-                    <motion.div
-                        key={product.id}
-                        initial={{ y: -100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.4 }} >
-                        <Product
+        <div className="background">
+            <div className="items">
+                {products.map((product) => {
+                    return (
+                        <motion.div
                             key={product.id}
-                            id={product.id}
-                            transcript={product.transcript}
-                            name={product.name}
-                            size={product.size}
-                            price={product.price}
-                            amount={product.amount}
-                            options={product.options}
-                            defaultOptions={product.defaultOptions}
-                            tags={product.tags}
-                            selected={false}
-                            onDelete={handleDelete}
-                            onChange={handleOptionChange}
-                            toggleRow={toggleRow}
-                            productModel={props.productModel}
-                            detailVisibility={product.detailVisibility}
-                        />
-                    </motion.div>
-                )
-            }).reverse()}
+                            initial={{ y: -100, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.4 }} >
+                            <Product
+                                key={product.id}
+                                id={product.id}
+                                transcript={product.transcript}
+                                name={product.name}
+                                size={product.size}
+                                price={product.price}
+                                amount={product.amount}
+                                options={product.options}
+                                defaultOptions={product.defaultOptions}
+                                tags={product.tags}
+                                selected={false}
+                                onDelete={handleDelete}
+                                onChange={handleOptionChange}
+                                toggleRow={toggleRow}
+                                productModel={props.productModel}
+                                detailVisibility={product.detailVisibility}
+                            />
+                        </motion.div>
+                    )
+                }).reverse()}
 
 
 
-            <div className="lowerpanel">
-                <ButtonUndo onClick={clearList} />
-                <ButtonCheckout totalPrice={getTotalPrice()} />
+                <div className="lowerpanel">
+                    <ButtonUndo onClick={clearList} />
+                    <ButtonCheckout totalPrice={getTotalPrice()} />
+                </div>
+
             </div>
-
         </div >
     )
 }
