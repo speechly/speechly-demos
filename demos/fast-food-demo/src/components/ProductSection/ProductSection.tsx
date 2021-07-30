@@ -88,7 +88,7 @@ export default function ProductSection(props: Props): JSX.Element {
 
                 else {
                     transcript = segment.words.map((word: { [key: string]: string }) => word.value.toLowerCase()).join(' ')
-                    transcript = transcript.charAt(0).toUpperCase() + transcript.slice(1)
+
                     draft[productIndex] = {
                         ...draft[productIndex],
                         ...product,
