@@ -29,6 +29,19 @@ export default function ProductSection(props: Props): JSX.Element {
     const { segment, tentativeIntent, tentativeEntities } = useSpeechContext()
     const [products, setProducts] = useImmer<Product[]>([])
 
+    const getPriceBySize = useCallback((prices: number[] = [], size: string): number => {
+        switch (size.toLowerCase()) {
+            case 'small':
+                return prices[0]
+            case 'normal':
+                return prices[1]
+            case 'large':
+                return prices[2]
+            default:
+                return 0
+        }
+    }, [])
+
     const handleAdd = useCallback((segment, entities: Entity[]) => {
         setProducts((draft) => {
             let amount = 1
@@ -48,11 +61,13 @@ export default function ProductSection(props: Props): JSX.Element {
                         searchResult = findBestInventoryMatch(entity.value, props.productModel?.Product?.ItemDefs)
 
                         productConfig = searchResult.productConfig
+
                         name = productConfig?.Keys[0] || ''
                         price = productConfig?.Price?.[1] || 0
                         break
                     case 'amount':
                         amount = parseInt(entity.value)
+                        price = amount * price
                         break
                     case 'size':
                         size = entity.value
@@ -65,7 +80,7 @@ export default function ProductSection(props: Props): JSX.Element {
                     id,
                     name,
                     size,
-                    price: amount * price,
+                    price: getPriceBySize(productConfig?.Price, size),
                     transcript: entity.value,
                     amount,
                     options: productConfig?.Options || [],
@@ -90,16 +105,21 @@ export default function ProductSection(props: Props): JSX.Element {
                 }
             })
         })
-    }, [setProducts, props.productModel])
+    }, [setProducts, props.productModel, getPriceBySize])
 
     const handleOptionChange = useCallback((id: string, option: string, active: boolean, type: string, radio?: boolean) => {
         setProducts((draft) => {
             const index = draft.findIndex(product => product.id === id)
 
             switch (type.toLowerCase()) {
-                case 'size':
+                case 'size': {
+                    const searchResult = findBestInventoryMatch(draft[index].name, props.productModel?.Product?.ItemDefs)
+
+                    const productConfig = searchResult.productConfig
                     draft[index].size = option
+                    draft[index].price = getPriceBySize(productConfig?.Price, option.toLowerCase())
                     break
+                }
                 case 'amount':
                     if (isNaN(parseInt(option))) {
                         draft[index].amount = 0
