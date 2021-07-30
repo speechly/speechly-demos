@@ -3,6 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ICollection } from '../../../../../buildconfig'
 import OptionCloud from '../OptionCloud/OptionCloud'
 import ProductOptions from '../ProductOptions/ProductOptions'
+// @ts-ignore
+import burgerImg from '../../../../assets/images/burger.png'
+// @ts-ignore
+import sidesImg from '../../../../assets/images/sides.png'
+// @ts-ignore
+import drinkImg from '../../../../assets/images/drink.png'
+// @ts-ignore
+import iceCreamImg from '../../../../assets/images/icecream.png'
 
 interface Props {
     id: string,
@@ -30,11 +38,27 @@ const Product: React.FC<Props> = (props) => {
         props.toggleRow(props.id)
     }
 
+
+    const getImageByType = (): string => {
+        const type = props.tags[1]
+        switch (type) {
+            case 'Hamburger':
+                return burgerImg
+            case 'Side':
+                return sidesImg
+            case 'Drink':
+                return drinkImg
+            case 'Icecream':
+                return iceCreamImg
+            default:
+                return ''
+        }
+    }
+
     return (
         <div className="item">
             <div className="itempanel" onClick={onClick}>
-                <div className="imagepanel" style={{ backgroundImage: '' }}>
-                </div>
+                <img className="imagepanel" src={getImageByType()} />
 
                 <div className="textpanel">
                     <div className="itemtoppanel">
