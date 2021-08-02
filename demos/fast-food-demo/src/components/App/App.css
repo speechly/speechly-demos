@@ -157,7 +157,7 @@ div.itemnamepanel {
   font-style          : normal;
   font-size           : 22.5px;
   color               : rgba(0, 0, 0, 1.0);
-  margin              : 0 0 0 14px;
+  margin              : 0 0 0 0.5rem;
   text-align          : left;
   letter-spacing      : -0.6px;
   line-height         : 27.5px;
@@ -176,7 +176,7 @@ div.itemnamepanel {
   font-style          : normal;
   font-size           : 22.5px;
   color               : rgb(0, 0, 0);
-  margin              : 0 1rem 0 0;
+  margin              : 0 1rem 0 0.75rem;
   letter-spacing      : -0.6px;
   line-height         : 27.5px;
   user-select: none;
@@ -214,7 +214,7 @@ input[id=amount] {
   font-style          : normal;
   font-size           : 22.5px;
   color               : rgba(0, 0, 0, 1.0);
-  margin              : 0 14px 0 auto;
+  margin              : 0px;
   letter-spacing      : -0.6px;
   line-height         : 27.5px;
   user-select: none;
