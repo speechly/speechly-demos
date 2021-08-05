@@ -13,7 +13,7 @@ body, textarea {
 
 .pageMargin {
   box-sizing: border-box;
-  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  padding: 0;
   width: 100%;
   min-height: 100%;
 
@@ -47,7 +47,7 @@ textarea {
   background: linear-gradient(#302865, #302865 20%);
   color: #fffc;
   caret-color: #fff;
-  border-radius: 0.5rem;
+  border-radius: 0rem;
 }
 
 textarea:focus {
