@@ -48,7 +48,7 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
   return (
     <div className="pageMargin">
       <main>
-        <textarea placeholder="TRY SPEECHLY WEB SPEECH-TO-TEXT!" onChange={e => setText(e.target.value)} value={tentativeTextContent} />
+        <textarea placeholder="TRY SPEECHLY SPEECH-TO-TEXT!" onChange={e => setText(e.target.value)} value={tentativeTextContent} />
       </main>
     </div>
   )
