@@ -11,13 +11,13 @@ const App: React.FC = (): JSX.Element => {
   
   return (
     <SpeechProvider appId="6f1c7eaa-53fa-495e-9319-4ceacfa88cfe" language="en-US">
-    <PushToTalkButtonContainer>
-    <PushToTalkButton captureKey=" " intro="Hold to dictate" showTime={30000} />
-    <ErrorPanel />
-    </PushToTalkButtonContainer>
-    
-    <SpeechlyApp/>
-    
+      <PushToTalkButtonContainer voffset="1.75rem">
+        <PushToTalkButton captureKey=" " intro="Hold to dictate" showTime={0} />
+        <ErrorPanel />
+      </PushToTalkButtonContainer>
+      
+      <SpeechlyApp/>
+      
     </SpeechProvider>
   )
 }
@@ -48,7 +48,7 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
   return (
     <div className="pageMargin">
       <main>
-        <textarea onChange={e => setText(e.target.value)} value={tentativeTextContent} />
+        <textarea placeholder="Hold the mic button to dictate" onChange={e => setText(e.target.value)} value={tentativeTextContent} />
       </main>
     </div>
   )
