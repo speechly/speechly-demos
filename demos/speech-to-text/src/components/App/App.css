@@ -44,7 +44,6 @@ textarea {
   width: 100%;
   flex-grow: 1;
   border: 0;
-  background: linear-gradient(#302865, #302865 20%);
   color: #fffc;
   caret-color: #fff;
   border-radius: 0rem;

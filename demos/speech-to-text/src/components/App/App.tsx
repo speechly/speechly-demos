@@ -7,12 +7,27 @@ import {
 } from '@speechly/react-ui'
 import './App.css'
 
+// http://localhost:3000/?backgroundColor=%23ff00ff&zoom=0.5&zoomPan=false
+const params = new URLSearchParams(window.location.search)
+
+const queryParams = {
+  backgroundColor: params.get('backgroundColor') || '#302865',
+  backgroundHighlightColor: params.get('backgroundHighlightColor') || '#494287',
+  intro: params.get('intro') || 'Hold to talk',
+  placeholder: params.get('placeholder') || 'TRY SPEECHLY SPEECH-TO-TEXT!',
+  padding: params.get('padding') || '2rem',
+  //zoom: Number(QueryString.parse(window.location.search).zoom || 0.9),
+  //zoomPan: !(QueryString.parse(window.location.search).zoomPan === "false"),
+}
+
+console.log("Bg color:", queryParams.padding)
+
 const App: React.FC = (): JSX.Element => {
   
   return (
     <SpeechProvider appId="6f1c7eaa-53fa-495e-9319-4ceacfa88cfe" language="en-US">
       <PushToTalkButtonContainer voffset="calc(1rem + 4vh)" size="5rem">
-        <PushToTalkButton size="5rem" backgroundColor="#494287" captureKey=" " intro="Hold to dictate" showTime={0} />
+        <PushToTalkButton size="5rem" backgroundColor={queryParams.backgroundHighlightColor} captureKey=" " intro={queryParams.intro} showTime={0} />
         <ErrorPanel />
       </PushToTalkButtonContainer>
       
@@ -46,11 +61,14 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
   }, [segment])
   
   return (
-    <div className="pageMargin">
-      <main>
-        <textarea placeholder="TRY SPEECHLY SPEECH-TO-TEXT!" onChange={e => setText(e.target.value)} value={tentativeTextContent} />
-      </main>
-    </div>
+    <>
+
+      <div className="pageMargin">
+        <main>
+          <textarea style={{padding: queryParams.padding, backgroundColor: queryParams.backgroundColor}} placeholder={queryParams.placeholder} onChange={e => setText(e.target.value)} value={tentativeTextContent} />
+        </main>
+      </div>
+    </>
   )
 }
     
