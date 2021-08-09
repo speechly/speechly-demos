@@ -4,6 +4,7 @@ import FlightBookingDemo from 'flight-booking-demo/src/components/App/App'
 import VoicePickingDemo from 'voice-picking-demo/src/components/App/App'
 import FastFoodDemo from 'fast-food-demo/src/components/App/App'
 import SpeechToTextDemo from 'speech-to-text/src/components/App/App'
+import EcommerceCheckout from 'ecommerce-checkout/src/components/App/App'
 
 const App: React.FC = (): JSX.Element => {
 
@@ -28,6 +29,9 @@ const App: React.FC = (): JSX.Element => {
               <li>
                 <Link to="/speech-to-text">Speech-to-Text Demo</Link>
               </li>
+              <li>
+                <Link to="/ecommerce-checkout">Ecommerce Checkout Demo</Link>
+              </li>
             </ul>
             <hr />
             <div>
@@ -46,6 +50,9 @@ const App: React.FC = (): JSX.Element => {
         </Route>
         <Route exact path='/speech-to-text'>
           <SpeechToTextDemo />
+        </Route>
+        <Route exact path='/ecommerce-checkout'>
+          <EcommerceCheckout />
         </Route>
       </Switch>
     </Router>
