@@ -101,6 +101,58 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
   const [appState, setAppState] = useState(DefaultAppState)
   const {focused, setFocused, refMap, uiState} = useContext(VGUIContext)
 
+  /*
+  useEffect(() => {
+    if (segment && segment.intent.intent === 'fill') {
+      let i = segment.entities.length - 1
+      while (i > 0) {
+        const entity = segment.entities[i]
+        updateField(
+          entity.type,
+          entity.value,
+          entity.isFinal,
+          i === segment.entities.length - 1
+        )
+        i--
+      }
+    }
+  }, [segment])
+  */
+
+  const updateField = (appState: IAppState, field_name: string, value: string, tentative: boolean): IAppState => {
+    console.log(field_name, ':', value)
+
+    // if (value) {
+      let translatedValue: string | number = value
+      if (Dictionaries[field_name]) {
+        translatedValue = Dictionaries[field_name][value.toLowerCase()] || value
+      } else {
+        if (typeof translatedValue === 'string') {
+          translatedValue = translatedValue.slice(0,1).toUpperCase()+translatedValue.slice(1)
+        }
+      }
+      uiState.current.fieldEdited = true
+
+      return {...appState, [field_name]: translatedValue}
+    /* } else {
+      // Hacky 'streaming simulation'
+      if (!refMap.get(field_name).dataset['nostream']) {
+        const dictation = Dictation.getDictation(segment)
+        if (Dictionaries[field_name]) {
+          dictation.forEach(w => {
+            const replacement = Dictionaries[field_name][w.word.toLowerCase()]
+            if (replacement !== undefined) {
+              w.word = replacement as string
+            }
+          })
+        }
+        const translatedValue = Dictation.toText(dictation.slice(1))
+        uiState.current.fieldEdited = translatedValue.length > 0
+        return {...appState, [field_name]: translatedValue}
+      }
+    } */
+  }
+
   // This effect is fired whenever there's a new speech segment available
   useEffect(() => {
     uiState.current.lastSegment = segment
@@ -125,62 +177,41 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
 
   // Create a modified app state by applying the speech segment info to the base state
   const alterAppState = useCallback((segment: SpeechSegment) => {
-    console.log(segment)
-    if (uiState.current.preFocused) {
-      const newValue = [appState[uiState.current.preFocused], ...segment.words.map(w => w.value)].filter(w => w).join(' ')
-      if (newValue === appState[uiState.current.preFocused]) {
+    // Handle voice input when field is focused
+    if (uiState.current.widgetFocused) {
+      const newValue = [appState[uiState.current.widgetFocused], ...segment.words.map(w => w.value)].filter(w => w).join(' ')
+      if (newValue === appState[uiState.current.widgetFocused]) {
         uiState.current.fieldEdited = false
       } else {
         uiState.current.fieldEdited = true
       }
-      const newState = {...appState, [uiState.current.preFocused]: newValue}
+      const newState = {...appState, [uiState.current.widgetFocused]: newValue}
       return newState
-    } else {
-      switch (segment.intent.intent) {
-        case 'email':
-        case 'phone':
-        case 'contact':
-        case 'deal_size':
-        case 'probability':
-        case 'stage':
-        {
-          const field_name = segment.intent.intent! as string
-          setFocused({id: field_name, finalId: segment.intent.isFinal ? field_name : null, voiceInitiated: true})
+    }
     
-          const value = segment.entities
-            .find((entity) => entity.type === field_name)
-            ?.value
-          if (value) {
-            let translatedValue: string | number = value
-            if (Dictionaries[field_name]) {
-              translatedValue = Dictionaries[field_name][value.toLowerCase()] || value
-            } else {
-              if (typeof translatedValue === 'string') {
-                translatedValue = translatedValue.slice(0,1).toUpperCase()+translatedValue.slice(1)
-              }
-            }
-            uiState.current.fieldEdited = true
+    // Handle voice input if no field is focused
+    switch (segment.intent.intent) {
+      case 'fill':
+      {
+        let alteredState = appState
+        let i = 0
+        while (i < segment.entities.length) {
+          const entity = segment.entities[i]
+          if (i === segment.entities.length - 1)
+            setFocused({id: entity.type, finalId: segment.intent.isFinal ? entity.type : null, voiceInitiated: true})
 
-            return {...appState, [field_name]: translatedValue}
-          } else {
-            // Hacky 'streaming simulation'
-            if (!refMap.get(field_name).dataset['nostream']) {
-              const dictation = Dictation.getDictation(segment)
-              if (Dictionaries[field_name]) {
-                dictation.forEach(w => {
-                  const replacement = Dictionaries[field_name][w.word.toLowerCase()]
-                  if (replacement !== undefined) {
-                    w.word = replacement as string
-                  }
-                })
-              }
-              const translatedValue = Dictation.toText(dictation.slice(1))
-              uiState.current.fieldEdited = translatedValue.length > 0
-              return {...appState, [field_name]: translatedValue}
-            }
-          }
-          break
+          alteredState = updateField(
+            alteredState,
+            entity.type,
+            entity.value,
+            entity.isFinal
+          )
+          i++
         }
+        return alteredState
+        break
+      }
+/*
         case 'noop':
         case 'tasks':
         case 'notes':
@@ -240,34 +271,7 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
 
           return {...appState, [collection]: [...appState[collection] as [], {value: dictation, key}] }
         }
-/*        case 'update':
-          // console.log('Update', selectedWidget.selectedWidget)
-          const newFocus = segment.entities
-            .find((entity) => entity.type === 'focus')
-            ?.value.toLowerCase()
-          if (newFocus) {
-            // console.log('Update: Focused', newFocus)
-            const inputElement = refMap.get(newFocus)
-            // console.log('Update: Focused ref', inputElement)
-            if (inputElement) {
-              uiState.current.initialVoiceEdit = newFocus
-              uiState.current.keyboardEditStarted = false
-              uiState.current.programmaticFocusChange = true
-              inputElement.focus()
-              uiState.current.lastEdit = null
-              setSelectedWidget({selectedWidget: newFocus, voiceInitiated: true})
-              return appState
-            } else {
-              if (uiState.current.focusedElement) {
-                uiState.current.programmaticFocusChange = true
-                uiState.current.focusedElement.blur()
-              }
-              setSelectedWidget(NoSelection)
-              return appState
-            }
-          }
-          break
-        */     }
+*/
     }
     return appState
   }, [appState, focused])

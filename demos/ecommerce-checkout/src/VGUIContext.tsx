@@ -29,7 +29,7 @@ export type IVGUIContextProps = {
 }
 
 export type IUIAuxState = {
-  preFocused: string | null,
+  widgetFocused: string | null,
   keyboardEditStarted: boolean,
   focusedElement: HTMLElement | null
   programmaticFocusChange: boolean
@@ -39,7 +39,7 @@ export type IUIAuxState = {
 }
 
 const DefaultAuxState: IUIAuxState = {
-  preFocused: null,
+  widgetFocused: null,
   fieldEdited: false,
   keyboardEditStarted: false,
   focusedElement: null,
@@ -216,7 +216,7 @@ export const VGUIContextProvider: React.FC<IVGUIContextProps> = ({
   // Control prefocus
   useEffect(() => {
     if (speechState === SpeechState.Recording) {
-      uiState.current.preFocused = focused.id
+      uiState.current.widgetFocused = focused.id
     }
   }, [speechState])
   
