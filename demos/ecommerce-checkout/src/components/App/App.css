@@ -1,0 +1,289 @@
+* {
+  scroll-margin: 10rem;
+}
+
+main {
+  box-sizing: border-box;
+  width: 22rem;
+  min-height: 100vh;
+  padding: 2.5rem 0 14rem 0;
+  margin: 0 auto 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.group {
+  width: 100%;
+}
+
+label {
+  position: absolute;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+  display: block;
+  margin: 0rem 0 0 0.60rem;
+  padding: 0 0.2rem 0 0.2rem;
+  background-color: #fff;
+  color: #00000090;
+  user-select: none;
+  border-radius: 0.25rem;
+  transition: 0.3s;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: inherit;
+  padding: 1rem 0.75rem 0.75rem 0.75rem;
+  margin: 0.4rem 0 0 0;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: #00000030;
+  border-radius: 0.1rem;
+
+  overflow: auto;
+  resize: none;
+  transition: 0.3s;
+}
+
+input[type=checkbox] {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0.2rem;
+  padding: 0rem;
+}
+
+input[type=text], textarea {
+  width: 100%;
+}
+
+ul {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 6.0rem;
+  font-size: 1.5rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #00000030;
+  border-radius: 0.1rem;
+
+  flex-direction: column;
+  margin: 0.4rem 0 0 0;
+  padding: 0.8rem 0.35rem;
+  transition: 0.3s;
+}
+
+li {
+  list-style-type: none;
+
+  display: flex;
+  margin: 0.1rem 0.10rem;
+  padding: 0.2rem 0.15rem;
+  font-size: 1rem;
+
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  transition: 0.3s;
+}
+
+li:hover {
+  background-color: #00000010;
+}
+
+.endadornment {
+  margin-left: auto;
+
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.startadornment {
+  margin-right: 0.35rem;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+li p {
+  margin: 0.2rem 0.2rem;
+}
+
+.badge {
+  background-color: #00000018;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  margin: 0;
+  border-radius: 0.25rem;
+  user-select: none;
+  white-space: pre;
+  min-width: 3.5rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  flex-grow: 0;
+}
+
+.smallbutton {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  border-radius: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  user-select:none;
+  border: 0;
+  background-color: transparent;
+  color: #0003;
+
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.smallbutton:hover {
+  color: #000f;
+}
+
+.dashboard {
+  margin: 0 0;
+}
+
+.big {
+  font-size: 2em;
+}
+
+.medium {
+  font-size: 1.25em;
+}
+
+.shylabel label {
+  visibility: hidden;
+  margin-top: -1rem;
+}
+
+.shylabel:hover label {
+  visibility: visible;
+}
+
+.borderless {
+  border: 0;
+  padding: 0.2rem 0.2rem;
+  margin: 0 0rem;
+}
+
+.dashboardrow {
+  margin: 0.75rem 0;
+  font-size: 1.5rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.progress {
+  gap: 0;
+}
+
+.dashboardwidget {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2.0rem;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+}
+
+.dashboard label {
+  width: 100%;
+  position: relative;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+.DictationEntity {
+  font-weight: bold;
+}
+
+.highlight {
+  transition: all 0.5s ease-in-out;
+}
+
+
+.highlight input, .highlight textarea, li.highlight, .highlight.dashboardwidget, .highlight label, .highlight .progressarrow.active {
+  color: #4060c0;
+}
+
+.highlight input, .highlight textarea, li.highlight {
+  background-color: #0080f040;
+}
+
+.highlight ul {
+  background-color: #0080f018;
+}
+
+.highlight input, .highlight textarea, .highlight ul {
+  border-color: #4060c0;
+}
+
+.progressarrow {
+  display: inline-block;
+  position: relative;
+  width: 74px;
+  height: 47px;
+  margin-left: -0.35rem;
+  transition: 0.3s;
+}
+
+.progressarrow.active {
+  color: #4C9E21;
+}
+
+.progressarrow.inactive {
+  color: #00000018;
+}
+
+.highlight .progressarrow.inactive {
+  color: #00000018;
+}
+
+.progressarrow label {
+  top: -0.25rem;
+  bottom: 0;
+  left: 0.0em;
+  right: 0.0em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.progressarrow.inactive label {
+  color: #00000040;
+}
