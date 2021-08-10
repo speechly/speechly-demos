@@ -15,7 +15,6 @@ import Input from '../Input'
 import Group from '../Group'
 import EditableElement from '../EditableElement'
 import Dictation from '@speechly-demos/ui/utils/Dictation'
-import NotificationIcon from '../../images/notification.svg'
 
 const DEBUG_STATUSLINE = false
 
@@ -456,8 +455,8 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
                 </div>
                 <EditableElement name={item['key']} label={item['key']} value={item['value']} sal='free' onChange={change}/>
                 <div className='endadornment'>
-                  <div className='badge'><NotificationIcon/>{item['due']}</div>
-                  <button name={item['key']} className='smallbutton' onClick={removeFromList}>&times</button>
+                  <div className='badge'><img src='/images/notification.svg' alt=''/>{item['due']}</div>
+                  <button name={item['key']} className='smallbutton' onClick={removeFromList}>&times;</button>
                 </div>
               </li>
             ))}
@@ -471,7 +470,7 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
               <li key={`${item['key']}`} className={focused.id === item['key'] ? 'highlight' : ''}>
                 <EditableElement name={item['key']} label={item['key']} value={item['value']} sal='free' onChange={change}/>
                 <div className='endadornment'>
-                  <button name={item['key']} className='smallbutton' onClick={removeFromList}>&times</button>
+                  <button name={item['key']} className='smallbutton' onClick={removeFromList}>&times;</button>
                 </div>
               </li>
             ))}

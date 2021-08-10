@@ -62,7 +62,10 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
     <>
       <div className="pageMargin">
         <main>
-          <textarea style={{padding: queryParams.padding, backgroundColor: queryParams.backgroundColor}} placeholder={queryParams.placeholder} onChange={e => setText(e.target.value)} value={tentativeTextContent} />
+          <textarea
+            style={{padding: queryParams.padding, backgroundColor: queryParams.backgroundColor}}
+            placeholder={queryParams.placeholder}
+            onChange={e => setText(e.target.value)} value={tentativeTextContent} />
         </main>
       </div>
     </>

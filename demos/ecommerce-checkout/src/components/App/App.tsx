@@ -42,7 +42,7 @@ const App: React.FC = (): JSX.Element => {
 
   return (
     <HttpsRedirect>
-      <div className='App'>
+      <div className='App CheckoutApp'>
         <SpeechProvider
           appId={Sals[sal]!}
         >

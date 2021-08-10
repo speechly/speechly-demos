@@ -1,8 +1,8 @@
-* {
+.CheckoutApp * {
   scroll-margin: 10rem;
 }
 
-main {
+.CheckoutApp main {
   box-sizing: border-box;
   width: 22rem;
   min-height: 100vh;
@@ -18,11 +18,11 @@ main {
   gap: 1rem;
 }
 
-.group {
+.CheckoutApp .group {
   width: 100%;
 }
 
-label {
+.CheckoutApp label {
   position: absolute;
   font-size: 0.75rem;
   margin-right: 0.5rem;
@@ -36,7 +36,8 @@ label {
   transition: 0.3s;
 }
 
-input, textarea {
+.CheckoutApp input,
+.CheckoutApp textarea {
   box-sizing: border-box;
   font-size: 1rem;
   font-family: inherit;
@@ -53,18 +54,18 @@ input, textarea {
   transition: 0.3s;
 }
 
-input[type=checkbox] {
+.CheckoutApp input[type=checkbox] {
   width: 1.2rem;
   height: 1.2rem;
   margin: 0.2rem;
   padding: 0rem;
 }
 
-input[type=text], textarea {
+.CheckoutApp input[type=text], textarea {
   width: 100%;
 }
 
-ul {
+.CheckoutApp ul {
   display: flex;
   box-sizing: border-box;
   width: 100%;
@@ -81,7 +82,7 @@ ul {
   transition: 0.3s;
 }
 
-li {
+.CheckoutApp li {
   list-style-type: none;
 
   display: flex;
@@ -95,11 +96,11 @@ li {
   transition: 0.3s;
 }
 
-li:hover {
+.CheckoutApp li:hover {
   background-color: #00000010;
 }
 
-.endadornment {
+.CheckoutApp .endadornment {
   margin-left: auto;
 
   display:flex;
@@ -109,7 +110,7 @@ li:hover {
   gap: 0.2rem;
 }
 
-.startadornment {
+.CheckoutApp .startadornment {
   margin-right: 0.35rem;
   display:flex;
   flex-direction: row;
@@ -118,11 +119,11 @@ li:hover {
   gap: 0.5rem;
 }
 
-li p {
+.CheckoutApp li p {
   margin: 0.2rem 0.2rem;
 }
 
-.badge {
+.CheckoutApp .badge {
   background-color: #00000018;
   font-size: 0.75rem;
   padding: 0.2rem 0.4rem;
@@ -140,7 +141,7 @@ li p {
   flex-grow: 0;
 }
 
-.smallbutton {
+.CheckoutApp .smallbutton {
   font-size: 1.5rem;
   padding: 0;
   margin: 0;
@@ -158,38 +159,38 @@ li p {
   align-items: center;
 }
 
-.smallbutton:hover {
+.CheckoutApp .smallbutton:hover {
   color: #000f;
 }
 
-.dashboard {
+.CheckoutApp .dashboard {
   margin: 0 0;
 }
 
-.big {
+.CheckoutApp .big {
   font-size: 2em;
 }
 
-.medium {
+.CheckoutApp .medium {
   font-size: 1.25em;
 }
 
-.shylabel label {
+.CheckoutApp .shylabel label {
   visibility: hidden;
   margin-top: -1rem;
 }
 
-.shylabel:hover label {
+.CheckoutApp .shylabel:hover label {
   visibility: visible;
 }
 
-.borderless {
+.CheckoutApp .borderless {
   border: 0;
   padding: 0.2rem 0.2rem;
   margin: 0 0rem;
 }
 
-.dashboardrow {
+.CheckoutApp .dashboardrow {
   margin: 0.75rem 0;
   font-size: 1.5rem;
 
@@ -200,11 +201,11 @@ li p {
   gap: 2rem;
 }
 
-.progress {
+.CheckoutApp .progress {
   gap: 0;
 }
 
-.dashboardwidget {
+.CheckoutApp .dashboardwidget {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -215,7 +216,7 @@ li p {
   transition: all 0.5s ease-in-out;
 }
 
-.dashboard label {
+.CheckoutApp .dashboard label {
   width: 100%;
   position: relative;
   font-weight: normal;
@@ -223,32 +224,42 @@ li p {
   padding: 0;
 }
 
-.DictationEntity {
+.CheckoutApp .DictationEntity {
   font-weight: bold;
 }
 
-.highlight {
+.CheckoutApp .highlight {
   transition: all 0.5s ease-in-out;
 }
 
 
-.highlight input, .highlight textarea, li.highlight, .highlight.dashboardwidget, .highlight label, .highlight .progressarrow.active {
+.CheckoutApp .highlight input,
+.CheckoutApp .highlight textarea,
+.CheckoutApp li.highlight,
+.CheckoutApp .highlight.dashboardwidget,
+.CheckoutApp .highlight label,
+.CheckoutApp .highlight
+.CheckoutApp .progressarrow.active {
   color: #4060c0;
 }
 
-.highlight input, .highlight textarea, li.highlight {
+.CheckoutApp .highlight input,
+.CheckoutApp .highlight textarea,
+.CheckoutApp li.highlight {
   background-color: #0080f040;
 }
 
-.highlight ul {
+.CheckoutApp .highlight ul {
   background-color: #0080f018;
 }
 
-.highlight input, .highlight textarea, .highlight ul {
+.CheckoutApp .highlight input,
+.CheckoutApp .highlight textarea,
+.CheckoutApp .highlight ul {
   border-color: #4060c0;
 }
 
-.progressarrow {
+.CheckoutApp .progressarrow {
   display: inline-block;
   position: relative;
   width: 74px;
@@ -257,19 +268,19 @@ li p {
   transition: 0.3s;
 }
 
-.progressarrow.active {
+.CheckoutApp .progressarrow.active {
   color: #4C9E21;
 }
 
-.progressarrow.inactive {
+.CheckoutApp .progressarrow.inactive {
   color: #00000018;
 }
 
-.highlight .progressarrow.inactive {
+.CheckoutApp .highlight .progressarrow.inactive {
   color: #00000018;
 }
 
-.progressarrow label {
+.CheckoutApp .progressarrow label {
   top: -0.25rem;
   bottom: 0;
   left: 0.0em;
@@ -284,6 +295,6 @@ li p {
   margin: 0;
 }
 
-.progressarrow.inactive label {
+.CheckoutApp .progressarrow.inactive label {
   color: #00000040;
 }
