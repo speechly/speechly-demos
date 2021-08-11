@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SpeechProvider, useSpeechContext } from '@speechly/react-client'
 import {
   PushToTalkButton,
@@ -19,8 +19,6 @@ const queryParams = {
   //zoom: Number(QueryString.parse(window.location.search).zoom || 0.9),
   //zoomPan: !(QueryString.parse(window.location.search).zoomPan === "false"),
 }
-
-console.log("Bg color:", queryParams.padding)
 
 const App: React.FC = (): JSX.Element => {
   
@@ -62,10 +60,12 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
   
   return (
     <>
-
       <div className="pageMargin">
         <main>
-          <textarea style={{padding: queryParams.padding, backgroundColor: queryParams.backgroundColor}} placeholder={queryParams.placeholder} onChange={e => setText(e.target.value)} value={tentativeTextContent} />
+          <textarea
+            style={{padding: queryParams.padding, backgroundColor: queryParams.backgroundColor}}
+            placeholder={queryParams.placeholder}
+            onChange={e => setText(e.target.value)} value={tentativeTextContent} />
         </main>
       </div>
     </>

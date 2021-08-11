@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = () => {
   return {
@@ -34,6 +35,11 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'index.html')
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: "demos/ecommerce-checkout/assets/images", to: "images" },
+        ]
       })
     ],
     devServer: {

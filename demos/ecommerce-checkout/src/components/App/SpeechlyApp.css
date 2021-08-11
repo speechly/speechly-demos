@@ -1,0 +1,315 @@
+.CheckoutApp * {
+  scroll-margin: 10rem;
+}
+
+.CheckoutApp form {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  gap: 1rem;
+}
+
+.CheckoutApp .group {
+  width: 100%;
+}
+
+.CheckoutApp label {
+  position: absolute;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+  display: block;
+  margin: -0.15rem 0 0 0.60rem;
+  padding: 0 0.2rem 0 0.2rem;
+  background-color: #fff;
+  color: #00000090;
+  user-select: none;
+  border-radius: 0.25rem;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+.CheckoutApp input,
+.CheckoutApp textarea {
+  box-sizing: border-box;
+  font-size: 1.15rem;
+  font-family: inherit;
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  margin: 0.4rem 0 0 0;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: #00000030;
+  border-radius: 0.1rem;
+
+  overflow: auto;
+  resize: none;
+  transition: 0.3s;
+}
+
+.CheckoutApp input[type=checkbox] {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0.2rem;
+  padding: 0rem;
+}
+
+.CheckoutApp input[type=text], textarea {
+  width: 100%;
+}
+
+.CheckoutApp ul {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 6.0rem;
+  font-size: 1.5rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #00000030;
+  border-radius: 0.1rem;
+
+  flex-direction: column;
+  margin: 0.4rem 0 0 0;
+  padding: 0.8rem 0.35rem;
+  transition: 0.3s;
+}
+
+.CheckoutApp li {
+  list-style-type: none;
+
+  display: flex;
+  margin: 0.1rem 0.10rem;
+  padding: 0.2rem 0.15rem;
+  font-size: 1rem;
+
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  transition: 0.3s;
+}
+
+.CheckoutApp li:hover {
+  background-color: #00000010;
+}
+
+.CheckoutApp .endadornment {
+  margin-left: auto;
+
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.CheckoutApp .startadornment {
+  margin-right: 0.35rem;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.CheckoutApp li p {
+  margin: 0.2rem 0.2rem;
+}
+
+.CheckoutApp .badge {
+  background-color: #00000018;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  margin: 0;
+  border-radius: 0.25rem;
+  user-select: none;
+  white-space: pre;
+  min-width: 3.5rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  flex-grow: 0;
+}
+
+.CheckoutApp .smallbutton {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  border-radius: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  user-select:none;
+  border: 0;
+  background-color: transparent;
+  color: #0003;
+
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.CheckoutApp .smallbutton:hover {
+  color: #000f;
+}
+
+.CheckoutApp .dashboard {
+  margin: 0 0;
+}
+
+.CheckoutApp .big {
+  font-size: 2em;
+}
+
+.CheckoutApp .medium {
+  font-size: 1.25em;
+}
+
+.CheckoutApp .shylabel label {
+  visibility: hidden;
+  margin-top: -1rem;
+}
+
+.CheckoutApp .shylabel:hover label {
+  visibility: visible;
+}
+
+.CheckoutApp .borderless {
+  border: 0;
+  padding: 0.2rem 0.2rem;
+  margin: 0 0rem;
+}
+
+.CheckoutApp .dashboardrow {
+  margin: 0.75rem 0;
+  font-size: 1.5rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.CheckoutApp .progress {
+  gap: 0;
+}
+
+.CheckoutApp .dashboardwidget {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2.0rem;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+}
+
+.CheckoutApp .dashboard label {
+  width: 100%;
+  position: relative;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+.CheckoutApp .DictationEntity {
+  font-weight: bold;
+}
+
+.CheckoutApp .highlight {
+  transition: all 0.5s ease-in-out;
+}
+
+
+.CheckoutApp .highlight input,
+.CheckoutApp .highlight textarea,
+.CheckoutApp li.highlight,
+.CheckoutApp .highlight.dashboardwidget,
+.CheckoutApp .highlight label,
+.CheckoutApp .highlight
+.CheckoutApp .progressarrow.active {
+  color: #4060c0;
+}
+
+.CheckoutApp .highlight input,
+.CheckoutApp .highlight textarea,
+.CheckoutApp li.highlight {
+  background-color: #0080f040;
+}
+
+.CheckoutApp .highlight ul {
+  background-color: #0080f018;
+}
+
+.CheckoutApp .highlight input,
+.CheckoutApp .highlight textarea,
+.CheckoutApp .highlight ul {
+  border-color: #4060c0;
+}
+
+.CheckoutApp .progressarrow {
+  display: inline-block;
+  position: relative;
+  width: 74px;
+  height: 47px;
+  margin-left: -0.35rem;
+  transition: 0.3s;
+}
+
+.CheckoutApp .progressarrow.active {
+  color: #4C9E21;
+}
+
+.CheckoutApp .progressarrow.inactive {
+  color: #00000018;
+}
+
+.CheckoutApp .highlight .progressarrow.inactive {
+  color: #00000018;
+}
+
+.CheckoutApp .progressarrow label {
+  top: -0.25rem;
+  bottom: 0;
+  left: 0.0em;
+  right: 0.0em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.CheckoutApp .progressarrow.inactive label {
+  color: #00000040;
+}
+
+.CheckoutApp h1,
+.CheckoutApp h2,
+.CheckoutApp h3
+{
+  padding: 0;
+  margin: 0;
+  margin-bottom: 0.75em;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.CheckoutApp .inverseText * {
+  color: #A4F1FE !important;
+}
