@@ -53,6 +53,28 @@ body, textarea {
   justify-content: flex-start;
 }
 
+.CheckoutApp h1,
+.CheckoutApp h2,
+.CheckoutApp h3
+{
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.CheckoutApp .headerTopGap {
+  margin-top: 0.75em;
+}
+
+.CheckoutApp .headerBottomGap {
+  margin-bottom: 0.75em;
+}
+
+.CheckoutApp .inverseText * {
+  color: #A4F1FE !important;
+}
+
 @media (max-width: 360px) {
   html {
     font-size: 100%;

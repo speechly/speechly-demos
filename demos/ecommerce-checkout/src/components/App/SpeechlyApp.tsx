@@ -11,6 +11,7 @@ import VGUIContext, { NoSelection } from '../../VGUIContext'
 import TextField from '../TextField'
 import './SpeechlyApp.css'
 import countries from '../../countries.json'
+import Group from '../Group'
 
 const DEBUG_STATUSLINE = false
 
@@ -229,57 +230,63 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
           {props.capture ? ' HOTKEY' : ''}{' SAL:'}{props.sal}{focused.id !== null ? ` FIELD:${focused.id}` : ''}
         </div>
       }
-      <h2>Shipping Details</h2>
       <form>
-      <TextField
-        name='name'
-        label='Name'
-        value={tentativeAppState.name as string}
-        sal='free'
-        onChange={change}
-      />
-      <TextField
-        name='email'
-        label='Email'
-        value={tentativeAppState.email as string}
-        sal='free'
-        onChange={change}
-      />
-      <TextField
-        name='zip'
-        label='Zip'
-        value={tentativeAppState.zip as string}
-        sal='free'
-        onChange={change}
-      />
-      <TextField
-        name='phone'
-        label='Phone'
-        value={tentativeAppState.phone as string}
-        sal='phone'
-        onChange={change}
-      />
-      <TextField
-        name='address'
-        label='Address'
-        value={tentativeAppState.address as string}
-        sal='free'
-        onChange={change}
-      />
-      <TextField
-        name='country'
-        label='Country'
-        value={tentativeAppState.country as string}
-        sal='free'
-        onChange={change}
-      />
-      <TextField
-        name='city'
-        label='City'
-        value={tentativeAppState.city as string}
-        sal='free'
-        onChange={change}
-      />
+        <h3>Personal Details</h3>
+        <div className="group">
+          <TextField
+            name='name'
+            label='Name'
+            value={tentativeAppState.name as string}
+            sal='free'
+            onChange={change}
+          />
+          <TextField
+            name='phone'
+            label='Phone'
+            value={tentativeAppState.phone as string}
+            sal='phone'
+            onChange={change}
+          />
+          <TextField
+            name='email'
+            label='Email'
+            value={tentativeAppState.email as string}
+            sal='free'
+            onChange={change}
+          />
+        </div>
+
+        <h3 className='headerTopGap'>Shipping Details</h3>
+        <div className="group">
+          <TextField
+            name='address'
+            label='Address'
+            value={tentativeAppState.address as string}
+            sal='free'
+            onChange={change}
+          />
+          <TextField
+            name='city'
+            label='City'
+            value={tentativeAppState.city as string}
+            sal='free'
+            onChange={change}
+          />
+          <TextField
+            name='zip'
+            label='Zip'
+            value={tentativeAppState.zip as string}
+            sal='free'
+            onChange={change}
+          />
+          <TextField
+            name='country'
+            label='Country'
+            value={tentativeAppState.country as string}
+            sal='free'
+            onChange={change}
+          />
+        </div>
       </form>
     </>
   )

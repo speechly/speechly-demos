@@ -6,7 +6,7 @@ const TextField: React.FC<ISpeechlyWidget> = ({borderless = false, ...props}) =>
   const { isFocused, focus, blur, refMap } = useContext(VGUIContext)
 
   return (
-    <div className={`group ${borderless && 'shylabel'} ${isFocused(props.name) && 'highlight'}`}>
+    <div className={`widgetGroup ${borderless && 'shylabel'} ${isFocused(props.name) && 'highlight'}`}>
       <label className={`${borderless && 'borderless'}`}>{props.label}</label>
       <input
         type='text'

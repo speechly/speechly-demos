@@ -6,7 +6,7 @@ const EditableElement: React.FC<ISpeechlyWidget> = (props) => {
   const { isFocused, focus, blur, refMap } = useContext(VGUIContext)
   
   return (
-    <div className={'group'}>
+    <div className={'widgetGroup'}>
       <p
         contentEditable
         suppressContentEditableWarning
