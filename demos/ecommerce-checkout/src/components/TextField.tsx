@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import VGUIContext, { ISpeechlyWidget } from '../VGUIContext'
 
-const Input: React.FC<ISpeechlyWidget & {type: string}> = ({borderless = false, ...props}) => {
+const TextField: React.FC<ISpeechlyWidget> = ({borderless = false, ...props}) => {
 
   const { isFocused, focus, blur, refMap } = useContext(VGUIContext)
 
@@ -9,7 +9,7 @@ const Input: React.FC<ISpeechlyWidget & {type: string}> = ({borderless = false, 
     <div className={`group ${borderless && 'shylabel'} ${isFocused(props.name) && 'highlight'}`}>
       <label className={`${borderless && 'borderless'}`}>{props.label}</label>
       <input
-        type={props.type}
+        type='text'
         data-name={props.name}
         className={`${props.classes}
         ${borderless && 'borderless'}`}
@@ -24,4 +24,4 @@ const Input: React.FC<ISpeechlyWidget & {type: string}> = ({borderless = false, 
   )
 }
 
-export default Input
+export default TextField

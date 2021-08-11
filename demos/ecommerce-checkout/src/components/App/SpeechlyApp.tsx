@@ -6,94 +6,24 @@ import {
 } from '@speechly/react-client'
 
 import './App.css'
-import produce from 'immer'
-import { v1 as uuidv1 } from 'uuid'
 import { SpeechlyUiEvents } from '@speechly/react-ui/types'
 import VGUIContext, { NoSelection } from '../../VGUIContext'
-import Textarea from '../Textarea'
-import Input from '../Input'
-import Group from '../Group'
-import EditableElement from '../EditableElement'
-import Dictation from '@speechly-demos/ui/utils/Dictation'
+import TextField from '../TextField'
+import countries from '../../countries.json'
 
 const DEBUG_STATUSLINE = false
 
 type IAppState = IKeys<string | number | null | undefined | Array<any>>
 
-const TaskDefaults = {
-  checked: false,
-  due: 'Today',
-}
-
 const DefaultAppState: IAppState = {
-  company: 'Acme Corp',
-  contact: 'Edwin Collins',
-  phone: '',
+  name: '',
   email: '',
-  probability: 50,
-  deal_size: 10,
-  stage: 1,
-  tasks: [
-    {value: 'Meet Edwin', checked: false, due: 'Today', key: 'tasks.1'},
-//    {value: 'Send the deck', checked: false, due: 'Today', key: 'tasks.2'},
-//    {value: 'Book a meeting with Peter for next week', checked: false, due: 'Today', key: 'tasks.3'},
-//    {value: 'Follow up with Edwin by 15th of April', checked: false, due: 'Apr. 15', key: 'tasks.4'},
-  ],
-  notes: [
-//    {value: 'Edwin was very interested in our solution for the web.', key: 'notes.1'},
-//    {value: 'Had problems integrating existing solutions.', key: 'notes.2'},
-//    {value: 'Will decide next month.', key: 'notes.3'},
-//    {value: 'Peter Smith mentioned as the technical contact point.', key: 'notes.4'},
-//    {value: 'His email is peter.smith@acme.com', key: 'notes.5'},
-  ],
+  zip: '',
+  phone: '',
+  address: '',
+  country: '',
+  city: '',
 }
-
-const Dictionaries: IKeys<IKeys<string | number>> = {
-  'phone': {
-    'plus': '+',
-    'zero': 0,
-    'oh': 0,
-    'one': 1,
-    'two': 2,
-    'three': 3,
-    'four': 4,
-    'five': 5,
-    'six': 6,
-    'seven': 7,
-    'eight': 8,
-    'nine': 9,
-  },
-  'email': {
-    'dot': '.',
-    'at': '@',
-  },
-  'stage': {
-    'send proposal': 3,
-    'one': 1,
-    'two': 2,
-    'three': 3,
-    'four': 4,
-    'five': 5,
-    'meet': 1,
-    'follow up': 2,
-    'proposal': 3,
-    'negotiation': 4,
-    'signed': 5,
-  },
-}
-
-const stages = [
-  'Meet',
-  'Follow up',
-  'Proposal',
-  'Negotiation',
-  'Signed',
-]
-
-const monthAbbreviations = [
-  'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June',
-  'July', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.',
-]
 
 const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props) => {
   const { segment, speechState } = useSpeechContext()
@@ -101,56 +31,9 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
   const [appState, setAppState] = useState(DefaultAppState)
   const {focused, setFocused, refMap, uiState} = useContext(VGUIContext)
 
-  /*
-  useEffect(() => {
-    if (segment && segment.intent.intent === 'fill') {
-      let i = segment.entities.length - 1
-      while (i > 0) {
-        const entity = segment.entities[i]
-        updateField(
-          entity.type,
-          entity.value,
-          entity.isFinal,
-          i === segment.entities.length - 1
-        )
-        i--
-      }
-    }
-  }, [segment])
-  */
-
   const updateField = (appState: IAppState, field_name: string, value: string, tentative: boolean): IAppState => {
-    console.log(field_name, ':', value)
-
-    // if (value) {
-      let translatedValue: string | number = value
-      if (Dictionaries[field_name]) {
-        translatedValue = Dictionaries[field_name][value.toLowerCase()] || value
-      } else {
-        if (typeof translatedValue === 'string') {
-          translatedValue = translatedValue.slice(0,1).toUpperCase()+translatedValue.slice(1)
-        }
-      }
-      uiState.current.fieldEdited = true
-
-      return {...appState, [field_name]: translatedValue}
-    /* } else {
-      // Hacky 'streaming simulation'
-      if (!refMap.get(field_name).dataset['nostream']) {
-        const dictation = Dictation.getDictation(segment)
-        if (Dictionaries[field_name]) {
-          dictation.forEach(w => {
-            const replacement = Dictionaries[field_name][w.word.toLowerCase()]
-            if (replacement !== undefined) {
-              w.word = replacement as string
-            }
-          })
-        }
-        const translatedValue = Dictation.toText(dictation.slice(1))
-        uiState.current.fieldEdited = translatedValue.length > 0
-        return {...appState, [field_name]: translatedValue}
-      }
-    } */
+    uiState.current.fieldEdited = true
+    return {...appState, [field_name]: value}
   }
 
   // This effect is fired whenever there's a new speech segment available
@@ -163,7 +46,7 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
         // Remove focus after edit
         console.log('Final state: ',alteredState)
         setTentativeAppState(alteredState)
-        finalEffects(alteredState, segment)
+        selectAllWidgetText()
         // Store the final app state as basis of next utterance
         setAppState(alteredState)
   
@@ -277,7 +160,7 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
   }, [appState, focused])
 
   // Side-effects of state sets
-  const finalEffects = useCallback((newState: IAppState, segment: SpeechSegment) => {
+  const selectAllWidgetText = () => {
     if (focused.id) {
       const inputElement = refMap.get(focused.id)
       if (inputElement) {
@@ -285,20 +168,7 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
         inputElement.selectionEnd = inputElement.value.length
       }
     }
-    switch (segment.intent.intent) {
-      case 'email':
-      case 'phone':
-      case 'contact':
-      case 'deal_size':
-      case 'probability':
-      case 'stage':
-        if (segment.entities.length === 0 && !uiState.current.fieldEdited) {
-          let title = segment.intent.intent.replace(/_/g, ' ')
-          title = title.slice(0,1).toUpperCase()+title.slice(1).toLowerCase()
-          PubSub.publish(SpeechlyUiEvents.Notification, {message: `Please go on: '${title} ...'`})
-        }
-    }
-  }, [])
+  }
 
   // Help out in case of completely failed utterance
   useEffect(() => {
@@ -340,38 +210,12 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
       return
     }
 
-    // Restore hotkey in some conditions
+    // Enable hotkey when possible: In case of an empty field
     if (value.length === 0) {
       props.setCapture(true)
     }
     const newState = {...appState, [name]: value}
     console.log(newState)
-    setTentativeAppState(newState)
-    setAppState(newState)
-  }
-
-  const toggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const fieldName = e.target.name
-    const fieldPath = e.target.name.split('.')
-    const newState = produce(appState, (draft) => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const listItems = draft[fieldPath[0]]! as any[]
-      const listItem = listItems.find(item => item['key'] === fieldName) as any
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      (listItem!['checked'] as boolean) = !listItem!['checked']
-    })
-
-    setTentativeAppState(newState)
-    setAppState(newState)
-  }
-
-  const removeFromList = (e: any) => {
-    const fieldName = e.target.name
-    const fieldPath = e.target.name.split('.')
-    const newState = produce(appState, (draft) => {
-      draft[fieldPath[0]] = (draft[fieldPath[0]]! as []).filter(item => item['key'] !== fieldName)
-    })
-
     setTentativeAppState(newState)
     setAppState(newState)
   }
@@ -386,113 +230,59 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
       }
 
       <main>
-        <div className='group'>
-          <Textarea borderless name='company' label='Company' value={tentativeAppState.company as string} sal='free' onChange={change} classes='big'/>
-          <Input
-            borderless
-            type='text'
-            name='contact'
-            label='Contact'
-            value={tentativeAppState.contact as string}
-            sal='phone'
-            onChange={change}
-            classes='medium'
-          />
-        </div>
-        <Input type='text' name='phone' label='Phone' value={tentativeAppState.phone as string} sal='phone' onChange={change}/>
-        <Input type='text' name='email' label='Email' value={tentativeAppState.email as string} sal='free' onChange={change}/>
-        <div className='dashboard'>
-          <div className='dashboardrow'>
-            <div
-              data-name='deal_size'
-              data-nostream
-              className={['dashboardwidget', focused.id === 'deal_size' ? 'highlight' : ''].join(' ')}
-              ref={ref => ref && refMap.set(ref.dataset['name']!, ref)}
-            >
-              <label>
-                Deal size
-              </label>
-              ${tentativeAppState.deal_size}k
-            </div>
-            <div
-              data-name='probability'
-              data-nostream
-              className={['dashboardwidget', focused.id === 'probability' ? 'highlight' : ''].join(' ')}
-              ref={ref => ref && refMap.set(ref.dataset['name']!, ref)}
-            >
-              <label>
-                Probability
-              </label>
-              {tentativeAppState.probability}%
-            </div>
-          </div>
-          <div
-            data-name='stage'
-            data-nostream
-            className={['dashboardwidget', focused.id === 'stage' ? 'highlight' : ''].join(' ')}
-            ref={ref => ref && refMap.set(ref.dataset['name']!, ref)}
-          >
-            <label style={{textAlign: 'center', marginBottom: '0.2rem'}}>Stage</label>
-            <div className='progress'>
-              {
-                [...Array(5)].map((e, i) =>
-                  <div
-                    key={`stage-${i}`}
-                    className={`progressarrow ${i < (tentativeAppState.stage as number) ? 'active' : 'inactive'}`}
-                    style={{transitionDelay: `${i*0.05}s`}}
-                  >
-                    {Arrow}
-                    <label>
-                      {stages[i]}
-                    </label>
-                  </div>
-                )}
-            </div>
-          </div>
-        </div>
-        <Group name='tasks' label='Tasks'>
-          <ul>
-            {(tentativeAppState.tasks! as []).map(item => (
-              <li key={item['key']} className={focused.id === item['key'] ? 'highlight' : ''}>
-                <div className='startadornment'>
-                  <input type='checkbox' name={item['key']} checked={item['checked']} onChange={toggle}/>
-                </div>
-                <EditableElement name={item['key']} label={item['key']} value={item['value']} sal='free' onChange={change}/>
-                <div className='endadornment'>
-                  <div className='badge'><img src='/images/notification.svg' alt=''/>{item['due']}</div>
-                  <button name={item['key']} className='smallbutton' onClick={removeFromList}>&times;</button>
-                </div>
-              </li>
-            ))}
-            <li><div className='endadornment'><div className='smallbutton'>+</div></div></li>
-          </ul>
-        </Group>
- 
-        <Group name='notes' label='Notes'>
-          <ul>
-            {(tentativeAppState.notes! as []).map(item => (
-              <li key={`${item['key']}`} className={focused.id === item['key'] ? 'highlight' : ''}>
-                <EditableElement name={item['key']} label={item['key']} value={item['value']} sal='free' onChange={change}/>
-                <div className='endadornment'>
-                  <button name={item['key']} className='smallbutton' onClick={removeFromList}>&times;</button>
-                </div>
-              </li>
-            ))}
-            <li><div className='endadornment'><div className='smallbutton'>+</div></div></li>
-          </ul>
-        </Group>
-       </main>
+        <TextField
+          name='name'
+          label='Name'
+          value={tentativeAppState.name as string}
+          sal='free'
+          onChange={change}
+        />
+        <TextField
+          name='email'
+          label='Email'
+          value={tentativeAppState.email as string}
+          sal='free'
+          onChange={change}
+        />
+        <TextField
+          name='zip'
+          label='Zip'
+          value={tentativeAppState.zip as string}
+          sal='free'
+          onChange={change}
+        />
+        <TextField
+          name='phone'
+          label='Phone'
+          value={tentativeAppState.phone as string}
+          sal='phone'
+          onChange={change}
+        />
+        <TextField
+          name='address'
+          label='Address'
+          value={tentativeAppState.address as string}
+          sal='free'
+          onChange={change}
+        />
+        <TextField
+          name='country'
+          label='Country'
+          value={tentativeAppState.country as string}
+          sal='free'
+          onChange={change}
+        />
+        <TextField
+          name='city'
+          label='City'
+          value={tentativeAppState.city as string}
+          sal='free'
+          onChange={change}
+        />
+
+      </main>
     </>
   )
 }
-
-const Arrow =
-  <svg
-    width='74'
-    height='47'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path d='M0 47l10.61-23.5L0 0h63.39L74 23.5 63.39 47z' fill='currentColor' fillRule='evenodd'/>
-  </svg>
 
 export default SpeechlyApp

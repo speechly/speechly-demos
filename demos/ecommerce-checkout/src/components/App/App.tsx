@@ -50,7 +50,9 @@ const App: React.FC = (): JSX.Element => {
             <BigTranscriptContainer>
               <BigTranscript />
             </BigTranscriptContainer>
-            <SpeechlyApp capture={capture} setCapture={setCapture} sal={sal}/>
+            <div className='pageMargin'>
+              <SpeechlyApp capture={capture} setCapture={setCapture} sal={sal}/>
+            </div>
             <PushToTalkButtonContainer>
               <PushToTalkButton captureKey={capture ? CAPTURE_KEY : undefined} />
               <ErrorPanel/>
