@@ -50,13 +50,19 @@ const App: React.FC = (): JSX.Element => {
             <BigTranscriptContainer>
               <BigTranscript />
             </BigTranscriptContainer>
-            <div className='pageMargin'>
-              <SpeechlyApp capture={capture} setCapture={setCapture} sal={sal}/>
+            <div className='pageLayout'>
+              <main>
+                <SpeechlyApp capture={capture} setCapture={setCapture} sal={sal}/>
+              </main>
+              <div className='sidePanel inverseText'>
+                <h3>Purchase summary</h3>
+              </div>
             </div>
-            <PushToTalkButtonContainer>
-              <PushToTalkButton captureKey={capture ? CAPTURE_KEY : undefined} />
-              <ErrorPanel/>
+            <PushToTalkButtonContainer voffset="calc(1rem + 4vh)" size="5rem">
+              <PushToTalkButton captureKey={capture ? CAPTURE_KEY : undefined} showTime={0} />
+              <ErrorPanel />
             </PushToTalkButtonContainer>
+
           </VGUIContextProvider>
         </SpeechProvider>
       </div>
