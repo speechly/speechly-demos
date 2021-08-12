@@ -59,7 +59,7 @@ const App: React.FC = (): JSX.Element => {
                 <div className="cartSummary">
                   <ul>
                     <li>
-                      <h2>Order Summary</h2>
+                      <h2>My Order</h2>
                       <span className='endadornment'>
                       <div className="cartItemCount">
                         <svg className="ShoppingCartButton" viewBox="0 0 512 512">
@@ -81,7 +81,7 @@ c0-9.9,8.1-18,18-18c9.9,0,18,8.1,18,18C398.4,437.6,390.4,445.7,380.4,445.7z"
                       </span>
 
                     </li>
-                    <li>Samsung 70" S6 4k LED TV<span className='endadornment'>$735</span></li>
+                    <li>Samsung 70" 4k LED TV<span className='endadornment'>$735</span></li>
                     <li>Total<span className='endadornment'>$735</span></li>
                   </ul>
                 </div>
