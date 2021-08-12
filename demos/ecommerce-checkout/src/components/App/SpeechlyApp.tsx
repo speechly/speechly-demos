@@ -41,11 +41,16 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
   const updateField = (appState: IAppState, field_name: string, value: string, tentative: boolean): IAppState => {
     uiState.current.fieldEdited = true
 
-    // Hack while waiting for refactoring
+    // Hack while waiting for formatter property refactoring
     if (field_name === 'card_expiration') {
       // 2021-03-11 -> 21/03
       value = value.replace(/\d\d(\d+)-(\d+).*/, '$2/$1')
     }
+
+    if (field_name === 'card_number') {
+      value = value.replace(/(\d\d\d\d)/g, '$1 ').trim()
+    }
+
     return {...appState, [field_name]: value}
   }
 
