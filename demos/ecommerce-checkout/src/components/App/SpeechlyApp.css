@@ -145,13 +145,13 @@
   list-style-type: none;
 
   display: flex;
-  margin: 0.1rem 0.10rem;
-  padding: 0.2rem 0.15rem;
+  margin: 0.0rem 0.10rem;
+  padding: 0.1rem 0.15rem;
   font-size: 1rem;
 
   flex-direction: row;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: center;
   transition: 0.3s;
 }
 
@@ -180,24 +180,6 @@
 
 .CheckoutApp li p {
   margin: 0.2rem 0.2rem;
-}
-
-.CheckoutApp .badge {
-  background-color: #00000018;
-  font-size: 0.75rem;
-  padding: 0.2rem 0.4rem;
-  margin: 0;
-  border-radius: 0.25rem;
-  user-select: none;
-  white-space: pre;
-  min-width: 3.5rem;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3rem;
-  flex-grow: 0;
 }
 
 .CheckoutApp button {

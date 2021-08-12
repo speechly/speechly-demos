@@ -43,7 +43,7 @@ body, textarea {
   box-sizing: border-box;
   width: 100%;
   min-height: 8rem;
-  background-color: #0F4BBB;
+  background: linear-gradient(160deg, #A4E3FE -10%, #3E68E1 20%, #152668 100%);
   padding: 1rem 0.75rem 1rem 0.75rem;
 
   display: flex;
@@ -61,7 +61,7 @@ body, textarea {
   padding: 0;
   margin: 0;
   text-transform: uppercase;
-  color: #333;
+  color: #0F4BBB;
 }
 
 .CheckoutApp h3
@@ -69,7 +69,7 @@ body, textarea {
   padding: 0;
   margin: 0;
   text-transform: uppercase;
-  color: #aaa;
+  color: #00000090;
 }
 
 .CheckoutApp .headerTopGap {

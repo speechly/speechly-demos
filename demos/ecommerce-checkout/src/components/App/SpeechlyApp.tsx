@@ -40,6 +40,12 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
 
   const updateField = (appState: IAppState, field_name: string, value: string, tentative: boolean): IAppState => {
     uiState.current.fieldEdited = true
+
+    // Hack while waiting for refactoring
+    if (field_name === 'card_expiration') {
+      // 2021-03-11 -> 21/03
+      value = value.replace(/\d\d(\d+)-(\d+).*/, '$2/$1')
+    }
     return {...appState, [field_name]: value}
   }
 
@@ -327,12 +333,18 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
               value={tentativeAppState.card_expiration as string}
               sal='free'
               onChange={change}
+              formatter={input => input.replace(/\d\d(\d+)-(\d+).*/, '$2/$1')}
             />
           </div>
         </div>
 
         <div className="group headerTopGap">
-          <Button name='place_order' onClick={() => alert('Thank you for trying Speechly Express Checkout!\n\nPlease visit speechly.com for more information.')}>Place the order</Button>
+          <Button name='place_order' onClick={
+              () => alert('Thank you for trying out Speechly Express Checkout demo!\n\nPlease visit speechly.com for more information.')
+            }
+          >
+            Place the order
+          </Button>
         </div>
 
       </form>

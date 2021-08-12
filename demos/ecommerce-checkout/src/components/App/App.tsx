@@ -88,7 +88,7 @@ c0-9.9,8.1-18,18-18c9.9,0,18,8.1,18,18C398.4,437.6,390.4,445.7,380.4,445.7z"
               </div>
             </div>
             <PushToTalkButtonContainer voffset="calc(1rem + 4vh)" size="5rem">
-              <PushToTalkButton backgroundColor='#1458c8' captureKey={capture ? CAPTURE_KEY : undefined} showTime={0} />
+              <PushToTalkButton size='96px' backgroundColor='#1458c8' captureKey={capture ? CAPTURE_KEY : undefined} showTime={0} />
               <ErrorPanel />
             </PushToTalkButtonContainer>
 
