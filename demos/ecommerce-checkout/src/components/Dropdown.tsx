@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import VGUIContext, { ISpeechlyWidget } from '../VGUIContext'
 
-const TextField: React.FC<ISpeechlyWidget & {options: string[]}> = ({borderless = false, ...props}) => {
+const TextField: React.FC<ISpeechlyWidget & {options: (string | string[])[]}> = ({borderless = false, ...props}) => {
 
   const { isFocused, focus, blur, refMap } = useContext(VGUIContext)
 
@@ -20,9 +20,16 @@ const TextField: React.FC<ISpeechlyWidget & {options: string[]}> = ({borderless 
         value={props.value}
       >
         {props.options.map(option => {
-          const key = option.toUpperCase()
+          let key, displayName: string
+          if (Array.isArray(option)) {
+            key = option[0]
+            displayName = option[1]
+          } else {
+            key = option.toUpperCase()
+            displayName = option
+          }
           return (
-            <option value={key}>{option}</option>
+            <option value={key}>{displayName}</option>
           )
         })}
       </select>

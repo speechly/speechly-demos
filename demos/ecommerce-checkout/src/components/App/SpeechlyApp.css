@@ -66,6 +66,8 @@
   overflow: auto;
   resize: none;
   transition: 0.3s;
+
+  background-color: #ffffff;
 }
 
 .CheckoutApp select
@@ -79,8 +81,8 @@
   --dropdown-handle-size: 0.35rem;  
 
   background-image:
-    linear-gradient(45deg, transparent 50%, gray 50%),
-    linear-gradient(135deg, gray 50%, transparent 50%);
+    linear-gradient(45deg, transparent 50%, #00000080 50%),
+    linear-gradient(135deg, #00000080 50%, transparent 50%);
   background-position:
     calc(100% - var(--dropdown-handle-size) - 1rem) calc(50%),
     calc(100% - 1rem) calc(50%),
@@ -273,6 +275,7 @@
 
 .CheckoutApp .highlight input,
 .CheckoutApp .highlight textarea,
+.CheckoutApp .highlight select,
 .CheckoutApp li.highlight,
 .CheckoutApp .highlight.dashboardwidget,
 .CheckoutApp .highlight label,
@@ -283,6 +286,7 @@
 
 .CheckoutApp .highlight input,
 .CheckoutApp .highlight textarea,
+.CheckoutApp .highlight select,
 .CheckoutApp li.highlight {
   background-color: #0080f040;
 }
@@ -293,6 +297,7 @@
 
 .CheckoutApp .highlight input,
 .CheckoutApp .highlight textarea,
+.CheckoutApp .highlight select,
 .CheckoutApp .highlight ul {
   border-color: #4060c0;
 }
