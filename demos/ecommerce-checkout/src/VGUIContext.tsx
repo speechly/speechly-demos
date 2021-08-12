@@ -14,6 +14,7 @@ export type ISpeechlyWidget = {
   sal: string
   borderless?: boolean
   classes?: string
+  style?: any
 }
 
 export type IFocus = {

@@ -11,7 +11,7 @@ import VGUIContext, { NoSelection } from '../../VGUIContext'
 import TextField from '../TextField'
 import './SpeechlyApp.css'
 import countries from '../../countries.json'
-import Group from '../Group'
+import Dropdown from '../Dropdown'
 
 const DEBUG_STATUSLINE = false
 
@@ -23,7 +23,7 @@ const DefaultAppState: IAppState = {
   zip: '',
   phone: '',
   address: '',
-  country: '',
+  country: 'FINLAND',
   city: '',
 }
 
@@ -185,9 +185,8 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
           const segment = uiState.current.lastSegment
           if (!segment || segment.words.length === 0) {
             const tips = [
-              'Try: \'Contact: John Smith\'',
+              'Try: \'Name: John Smith\'',
               'Try: \'Phone: +1 123 123 123\'',
-              'Try: \'Finished the task\'',
             ]
             const tip = tips[Math.floor(Math.random() * tips.length)]
             PubSub.publish(SpeechlyUiEvents.Notification, {message: 'Please say again', footnote: tip})
@@ -231,6 +230,7 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
         </div>
       }
       <form>
+        <h2>Speechly Express Checkout</h2>
         <h3>Personal Details</h3>
         <div className="group">
           <TextField
@@ -279,7 +279,8 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
             sal='free'
             onChange={change}
           />
-          <TextField
+          <Dropdown
+            options={countries}
             name='country'
             label='Country'
             value={tentativeAppState.country as string}
