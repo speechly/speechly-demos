@@ -1,18 +1,17 @@
 import React, { useContext } from 'react'
 import VGUIContext, { ISpeechlyWidget } from '../VGUIContext'
 
-const Button: React.FC<ISpeechlyWidget> = ({borderless = false, ...props}) => {
+const Button: React.FC<{name: string, onClick: any}> = (props) => {
 
   const { isFocused, focus, blur, refMap } = useContext(VGUIContext)
 
   return (
-    <button data-name={props.name}
-        className={`${props.classes} ${borderless && 'borderless'}`}
-        onFocus={focus}
-        onBlur={blur}
-        data-sal={props.sal}
-        ref={ref => ref && refMap.set(props.name, ref)}
-        value={props.value}
+    <button
+      type='button'
+      onClick={props.onClick}
+      onFocus={focus}
+      onBlur={blur}
+      ref={ref => ref && refMap.set(props.name, ref)}
     >{props.children}</button>
   )
 }

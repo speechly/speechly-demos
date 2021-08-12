@@ -12,6 +12,7 @@ import TextField from '../TextField'
 import './SpeechlyApp.css'
 import countries from '../../countries.json'
 import Dropdown from '../Dropdown'
+import Button from '../Button'
 
 const DEBUG_STATUSLINE = false
 
@@ -329,6 +330,11 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
             />
           </div>
         </div>
+
+        <div className="group headerTopGap">
+          <Button name='place_order' onClick={() => alert('Thank you for trying Speechly Express Checkout!\n\nPlease visit speechly.com for more information.')}>Place the order</Button>
+        </div>
+
       </form>
     </>
   )

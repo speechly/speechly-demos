@@ -43,7 +43,7 @@ body, textarea {
   box-sizing: border-box;
   width: 100%;
   min-height: 8rem;
-  background-color: #ddd;
+  background-color: #0F4BBB;
   padding: 1rem 0.75rem 1rem 0.75rem;
 
   display: flex;
@@ -81,7 +81,7 @@ body, textarea {
 }
 
 .CheckoutApp .lightText * {
-  color: #888 !important;
+  color: #eef !important;
 }
 
 .CheckoutApp .purchasePreviewImage {

@@ -81,6 +81,14 @@
   background-color: #ffffff;
 }
 
+.CheckoutApp input:hover,
+.CheckoutApp textarea:hover,
+.CheckoutApp select:hover
+{
+  background-color: #eee;
+}
+
+
 .CheckoutApp select
 {
   /* reset */
@@ -192,26 +200,30 @@
   flex-grow: 0;
 }
 
-.CheckoutApp .smallbutton {
-  font-size: 1.5rem;
-  padding: 0;
-  margin: 0;
-  border-radius: 1rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  user-select:none;
-  border: 0;
-  background-color: transparent;
-  color: #0003;
+.CheckoutApp button {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1.15rem;
+  font-family: inherit;
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  margin: 0.4rem 0 0 0;
 
-  display:flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #00000030;
+  border-radius: 0.1rem;
+
+  overflow: auto;
+  resize: none;
+  transition: 0.3s;
+
+  color: #ffffff;
+  background-color: #0F4BBB;
+  text-transform: uppercase;
 }
 
-.CheckoutApp .smallbutton:hover {
-  color: #000f;
+.CheckoutApp button:hover {
+  background-color: #003080;
 }
 
 .CheckoutApp .dashboard {
