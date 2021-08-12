@@ -42,14 +42,16 @@ body, textarea {
 .CheckoutApp .sidePanel {
   box-sizing: border-box;
   width: 100%;
-  min-height: 14rem;
-  background-color: #26B1CE;
+  min-height: 8rem;
+  background-color: #ddd;
   padding: 1rem 0.75rem 1rem 0.75rem;
 
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: flex-start;
+
+  gap: 1vw;
 }
 
 .CheckoutApp h1,
@@ -78,8 +80,8 @@ body, textarea {
   margin-bottom: 0.75em;
 }
 
-.CheckoutApp .inverseText * {
-  color: #A4F1FE !important;
+.CheckoutApp .lightText * {
+  color: #888 !important;
 }
 
 .CheckoutApp .purchasePreviewImage {
@@ -89,14 +91,30 @@ body, textarea {
 }
 
 .CheckoutApp .cartSummary {
-  color: 000;
-  opacity: 0.35;
+  text-transform: uppercase;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.CheckoutApp .cartItemCount {
   text-transform: uppercase;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.CheckoutApp .cartSummaryImage {
+  box-sizing: border-box;
+  padding: 1em;
+  max-width: 50%;
+  max-height: 14rem;
 }
 
 .CheckoutApp .ShoppingCartButton {
@@ -158,16 +176,22 @@ body, textarea {
   .CheckoutApp .sidePanel {
     position: fixed;
     right: 0;
-    width: 22rem;
+    width: 20rem;
     min-height: 100%;
     align-self: stretch;
     padding: 3rem 1rem 12rem 1rem;
+    flex-direction: column;
   }
 
   .CheckoutApp main {
     width: 720px;
     padding: 3rem 27rem 12rem 5rem;
   }
+
+  .CheckoutApp .cartSummaryImage {
+    max-width: 100%;
+  }
+
 }
 
 @media (min-width: 1312px) {
@@ -182,14 +206,20 @@ body, textarea {
   .CheckoutApp .sidePanel {
     position: fixed;
     right: 0;
-    width: 26rem;
+    width: 22rem;
     min-height: 100%;
     align-self: stretch;
     padding: 3rem 1rem 12rem 1rem;
+    flex-direction: column;
   }
 
   .CheckoutApp main {
     width: 800px;
     padding: 4rem 32rem 12rem 6rem;
   }
+
+  .CheckoutApp .cartSummaryImage {
+    max-width: 100%;
+  }
+  
 }

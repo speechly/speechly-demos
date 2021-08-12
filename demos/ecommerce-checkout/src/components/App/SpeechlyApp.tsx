@@ -25,6 +25,10 @@ const DefaultAppState: IAppState = {
   address: '',
   country: 'FINLAND',
   city: '',
+  card_name: '',
+  card_number: '',
+  card_cvc: '',
+  card_expiration: '',
 }
 
 const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props) => {
@@ -231,7 +235,7 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
       }
       <form>
         <h2>Speechly Express Checkout</h2>
-        <h3>Personal Details</h3>
+        <h3>Recipient Details</h3>
         <div className="group">
           <TextField
             name='name'
@@ -272,21 +276,58 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
             sal='free'
             onChange={change}
           />
+
+          <div className='multiFieldRow'>
+            <TextField
+              name='zip'
+              label='Zip'
+              value={tentativeAppState.zip as string}
+              sal='free'
+              onChange={change}
+            />
+            <Dropdown
+              options={countries}
+              name='country'
+              label='Country'
+              value={tentativeAppState.country as string}
+              sal='free'
+              onChange={change}
+            />
+          </div>
+        </div>
+
+        <h3 className='headerTopGap'>Payment Details</h3>
+        <div className="group">
           <TextField
-            name='zip'
-            label='Zip'
-            value={tentativeAppState.zip as string}
+            name='card_name'
+            label='Name on card'
+            value={tentativeAppState.card_name as string}
             sal='free'
             onChange={change}
           />
-          <Dropdown
-            options={countries}
-            name='country'
-            label='Country'
-            value={tentativeAppState.country as string}
+          <TextField
+            name='card_number'
+            label='Credit card number'
+            value={tentativeAppState.card_number as string}
             sal='free'
             onChange={change}
           />
+          <div className='multiFieldRow'>
+            <TextField
+              name='card_cvc'
+              label='CVC'
+              value={tentativeAppState.card_cvc as string}
+              sal='free'
+              onChange={change}
+            />
+            <TextField
+              name='card_expiration'
+              label='Expiration date'
+              value={tentativeAppState.card_expiration as string}
+              sal='free'
+              onChange={change}
+            />
+          </div>
         </div>
       </form>
     </>
