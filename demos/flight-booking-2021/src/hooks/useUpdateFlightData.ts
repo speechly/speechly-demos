@@ -23,10 +23,12 @@ export const useUpdateFlightData = (segment: SpeechSegment | undefined): void =>
                             }
 
                             if (entity.type === types.CLASS) {
-                                const economyMatch = FuzzyStringMatching.match(entity.value, types.ECONOMY)
-                                const businessMatch = FuzzyStringMatching.match(entity.value, types.BUSINESS)
-                                if (economyMatch < businessMatch) value = types.ECONOMY
-                                else value = types.BUSINESS
+                                const options = [
+                                    types.ECONOMY,
+                                    types.BUSINESS,
+                                    types.FIRST,
+                                ]
+                                value = FuzzyStringMatching.getClosestMatch(entity.value, options)
                             }
 
                             if (entity.type === types.DIRECT) {

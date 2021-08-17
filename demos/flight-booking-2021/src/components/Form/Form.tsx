@@ -5,7 +5,7 @@ import { useSpeechContext } from '@speechly/react-client'
 import { FlightDataContext } from '../../context/flightDataContext'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
 import { IFlightInformation, TDate } from '../../types/type'
-import { BUSINESS, ECONOMY } from '../../constants/flightDataConstants'
+import { FIRST, BUSINESS, ECONOMY } from '../../constants/flightDataConstants'
 import { getTomorrowsDate } from '../../utils/dateUtils'
 
 import TextInput from './components/TextInput/TextInput'
@@ -131,6 +131,7 @@ export default function Form(): JSX.Element {
                         id='class-input'>
                         <option>{ECONOMY}</option>
                         <option>{BUSINESS}</option>
+                        <option>{FIRST}</option>
                     </Dropdown>
                 </VStack>
             </HStack>
