@@ -131,6 +131,7 @@ export default function Form(): JSX.Element {
                         id='class-input'>
                         <option>{ECONOMY}</option>
                         <option>{BUSINESS}</option>
+                        <option>{FIRST}</option>
                     </Dropdown>
                 </VStack>
             </HStack>
