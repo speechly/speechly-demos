@@ -8,3 +8,4 @@ export const ROUND_TRIP = 'round_trip'
 
 export const ECONOMY = 'Economy'
 export const BUSINESS = 'Business'
+export const FIRST = 'First'
