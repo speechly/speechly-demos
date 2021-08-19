@@ -6,6 +6,8 @@ import {
   ErrorPanel
 } from '@speechly/react-ui'
 import './App.css'
+import HttpsRedirect from '@speechly-demos/common/ui/components/HttpsRedirect'
+import AnalyticsWrapper from '@speechly-demos/common/utils/AnalyticsWrapper'
 
 // http://localhost:3000/?backgroundColor=%23ff00ff&zoom=0.5&zoomPan=false
 const params = new URLSearchParams(window.location.search)
@@ -23,15 +25,20 @@ const queryParams = {
 const App: React.FC = (): JSX.Element => {
   
   return (
-    <SpeechProvider appId="6f1c7eaa-53fa-495e-9319-4ceacfa88cfe" language="en-US">
-      <PushToTalkButtonContainer voffset="calc(1rem + 4vh)" size="5rem">
-        <PushToTalkButton size="5rem" backgroundColor={queryParams.backgroundHighlightColor} captureKey=" " intro={queryParams.intro} showTime={0} />
-        <ErrorPanel />
-      </PushToTalkButtonContainer>
-      
-      <SpeechlyApp/>
-      
-    </SpeechProvider>
+    <HttpsRedirect>
+      <SpeechProvider appId="6f1c7eaa-53fa-495e-9319-4ceacfa88cfe" language="en-US">
+        <AnalyticsWrapper appName='speech-to-text' appVersion={100}>
+          <PushToTalkButtonContainer voffset="calc(1rem + 4vh)" size="5rem">
+            <PushToTalkButton
+              size="5rem" backgroundColor={queryParams.backgroundHighlightColor} captureKey=" " intro={queryParams.intro} showTime={0} 
+            />
+            <ErrorPanel />
+          </PushToTalkButtonContainer>
+          
+          <SpeechlyApp/>
+        </AnalyticsWrapper>
+      </SpeechProvider>
+    </HttpsRedirect>
   )
 }
   
@@ -47,7 +54,6 @@ const SpeechlyApp: React.FC = (): JSX.Element => {
   }
   
   useEffect(() => {
-    console.log(segment)
     if (segment) {
       const plainString = segment.words.filter(w => w.value).map(w => w.value).join(' ')
       const alteredTextContent = textContent ? [textContent, plainString].join(' ') : plainString

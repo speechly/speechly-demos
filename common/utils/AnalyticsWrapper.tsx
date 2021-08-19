@@ -2,7 +2,9 @@ import React, { createContext, useEffect, useState } from 'react'
 import { SpeechSegment, SpeechState, useSpeechContext } from '@speechly/react-client'
 import Analytics from './analytics'
 
-const queryParams = new URLSearchParams(window.location.search)
+const search = location.search.substring(1)
+const queryParams = !search ? {} :
+  JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}', (key, value) => { return key===''?value:decodeURIComponent(value) })
 
 export type AnalyticsContextProps = {
   track: (intent: string, segment: SpeechSegment, numChanges: number) => void,
@@ -16,7 +18,7 @@ export const AnalyticsContext = createContext<AnalyticsContextProps>(
   contextDefaultValues
 )
 
-export const AnalyticsWrapper: React.FC<{appName: string, appVersion: number}> = (props) => {
+const AnalyticsWrapper: React.FC<{appName: string, appVersion: number}> = (props) => {
   const [launched, setLaunched] = useState(false)
   const [initializationAttempted, setInitializationAttempted] = useState(false)
   const { speechState, segment } = useSpeechContext()
@@ -75,3 +77,5 @@ export const AnalyticsWrapper: React.FC<{appName: string, appVersion: number}> =
     </AnalyticsContext.Provider>
   )
 }
+
+export default AnalyticsWrapper

@@ -10,7 +10,7 @@ import {
 import { SAL_DEFAULT, VGUIContextProvider } from '../../VGUIContext'
 import SpeechlyApp from './SpeechlyApp'
 import HttpsRedirect from '@speechly-demos/common/ui/components/HttpsRedirect'
-import { AnalyticsWrapper } from '@speechly-demos/common/utils/AnalyticsWrapper'
+import AnalyticsWrapper from '@speechly-demos/common/utils/AnalyticsWrapper'
 
 const CAPTURE_KEY = ' '
 
