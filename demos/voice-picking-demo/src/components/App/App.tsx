@@ -5,7 +5,7 @@ import {
     PushToTalkButtonContainer,
     ErrorPanel
 } from '@speechly/react-ui'
-import theme from '@speechly-demos/ui/constants/theme'
+import theme from '@speechly-demos/common/ui/constants/theme'
 import LuxonUtils from '@date-io/luxon'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer'

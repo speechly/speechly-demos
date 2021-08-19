@@ -1,6 +1,6 @@
 import React from 'react'
 import { ButtonGroup, Button, ButtonProps, Box } from '@chakra-ui/react'
-import theme from '@speechly-demos/ui/constants/theme'
+import theme from '@speechly-demos/common/ui/constants/theme'
 
 interface Props {
     return: boolean,

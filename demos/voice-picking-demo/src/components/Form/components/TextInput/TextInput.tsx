@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react'
-import CommonTextInput from '@speechly-demos/ui/components/TextInput/TextInput'
-import theme from '@speechly-demos/ui/constants/theme'
+import CommonTextInput from '@speechly-demos/common/ui/components/TextInput/TextInput'
+import theme from '@speechly-demos/common/ui/constants/theme'
 import './TextInput.css'
 
 

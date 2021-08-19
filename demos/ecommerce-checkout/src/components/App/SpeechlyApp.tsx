@@ -13,6 +13,7 @@ import './SpeechlyApp.css'
 import countries from '../../countries.json'
 import Dropdown from '../Dropdown'
 import Button from '../Button'
+import { AnalyticsContext } from '@speechly-demos/common/utils/AnalyticsWrapper'
 
 const DEBUG_STATUSLINE = false
 
@@ -37,6 +38,7 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
   const [tentativeAppState, setTentativeAppState] = useState(DefaultAppState)
   const [appState, setAppState] = useState(DefaultAppState)
   const {focused, setFocused, refMap, uiState} = useContext(VGUIContext)
+  const {trackIntent} = useContext(AnalyticsContext)
 
   const updateField = (appState: IAppState, field_name: string, value: string, tentative: boolean): IAppState => {
     uiState.current.fieldEdited = true
@@ -62,12 +64,11 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
       // Set current app state
       if (segment.isFinal) {
         // Remove focus after edit
-        console.log('Final state: ',alteredState)
         setTentativeAppState(alteredState)
         selectAllWidgetText()
         // Store the final app state as basis of next utterance
         setAppState(alteredState)
-  
+        trackIntent(segment.intent.intent, segment, segment.entities.length)
       } else {
         // console.log('Tentative state: ',alteredState)
         setTentativeAppState(alteredState)

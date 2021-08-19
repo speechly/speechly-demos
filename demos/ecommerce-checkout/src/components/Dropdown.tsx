@@ -29,7 +29,7 @@ const TextField: React.FC<ISpeechlyWidget & {options: (string | string[])[]}> = 
             displayName = option
           }
           return (
-            <option value={key}>{displayName}</option>
+            <option key={key} value={key}>{displayName}</option>
           )
         })}
       </select>
