@@ -1,7 +1,7 @@
 import { SpeechSegment } from '@speechly/react-client'
 
 class Analytics {
-  private static LOG_ANALYTICS = true; // process.env.NODE_ENV === 'production';
+  private static LOG_ANALYTICS = process.env.NODE_ENV === 'production';
   private static DEBUG_LOG_ANALYTICS = process.env.NODE_ENV !== 'production';
 
   // For app version, use Major * 100 + Minor in two digits: v1.12 would become 112
