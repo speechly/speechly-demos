@@ -1,7 +1,7 @@
 import { SpeechSegment } from '@speechly/react-client'
 
 class Analytics {
-  private static LOG_ANALYTICS = process.env.NODE_ENV === 'production';
+  private static LOG_ANALYTICS = true; // process.env.NODE_ENV === 'production';
   private static DEBUG_LOG_ANALYTICS = process.env.NODE_ENV !== 'production';
 
   // For app version, use Major * 100 + Minor in two digits: v1.12 would become 112
@@ -13,8 +13,16 @@ class Analytics {
     })
   }
 
+  public static trackStarting(appName: string, appVersion: number): void {
+    this.track('Speechly starting', {
+      appName,
+      appVersion
+    })
+  }
+
+
   public static trackInitialized(appName: string, appVersion: number, success: boolean, status: string): void {
-    this.track('Speechly initialized', {
+    this.track(success ? 'Speechly initialized' : 'Speechly failed', {
       success,
       status,
       appName,
@@ -23,25 +31,25 @@ class Analytics {
   }
 
   public static trackIntent(
-    appName: string, appVersion: number,
-    effectiveIntent: string,
+    appName: string,
+    appVersion: number,
     segment: SpeechSegment,
-    numChanges: number,
   ): void {
     this.track('Intent', {
-      intent: effectiveIntent,
+      intent: segment.intent.intent,
       entities: segment.entities.map((entity) => ({
         type: entity.type,
         value: entity.value,
       })),
-      numChanges,
-      transcript: segment.words.map(word => word.value).join(' '),
+      transcript: segment.words.map(word => word.value).join(' ').trim(),
+      numEntities: segment.entities.length, // A proxy of whether an utterance did anything
+      numChanges: segment.entities.length,  // @deprecated backwards compability only; remove in beginning of 2022
       appName,
       appVersion
     })
   }
 
-  private static track(eventName: string, eventParams: any) {
+  public static track(eventName: string, eventParams: any): void {
     if (Analytics.DEBUG_LOG_ANALYTICS) {
       console.log(`[ANALYTICS] ${eventName}`, eventParams)
     }

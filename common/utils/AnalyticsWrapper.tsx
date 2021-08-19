@@ -5,11 +5,11 @@ import Analytics from './analytics'
 const queryParams = new URLSearchParams(window.location.search)
 
 export type AnalyticsContextProps = {
-  trackIntent: (intent: string, segment: SpeechSegment, numChanges: number) => void,
+  track: (intent: string, segment: SpeechSegment, numChanges: number) => void,
 }
 
 const contextDefaultValues: AnalyticsContextProps = {
-  trackIntent: () => ({})
+  track: () => ({})
 }
 
 export const AnalyticsContext = createContext<AnalyticsContextProps>(
@@ -19,7 +19,7 @@ export const AnalyticsContext = createContext<AnalyticsContextProps>(
 export const AnalyticsWrapper: React.FC<{appName: string, appVersion: number}> = (props) => {
   const [launched, setLaunched] = useState(false)
   const [initializationAttempted, setInitializationAttempted] = useState(false)
-  const { speechState } = useSpeechContext()
+  const { speechState, segment } = useSpeechContext()
 
   useEffect(() => {
     if (!launched) {
@@ -31,6 +31,9 @@ export const AnalyticsWrapper: React.FC<{appName: string, appVersion: number}> =
   useEffect(() => {
     if (!initializationAttempted) {
       switch(speechState) {
+        case SpeechState.Connecting:
+          Analytics.trackStarting(props.appName, props.appVersion)
+          break
         case SpeechState.NoBrowserSupport:
         case SpeechState.NoAudioConsent:
         case SpeechState.Failed:
@@ -45,14 +48,27 @@ export const AnalyticsWrapper: React.FC<{appName: string, appVersion: number}> =
     }
   }, [speechState, initializationAttempted, props.appName, props.appVersion])
 
-  const trackIntent = (intent: string, segment: SpeechSegment, numChanges: number) => {
-    Analytics.trackIntent(props.appName, props.appVersion, intent, segment, numChanges)
+  useEffect(() => {
+    if (segment && segment.isFinal) {
+      Analytics.trackIntent(props.appName, props.appVersion, segment)
+    }
+  }, [segment, props.appName, props.appVersion])
+
+  const track = (eventName: string, params: any): void => {
+    Analytics.track(
+      eventName,
+      {
+        ...params,
+        appName: props.appName,
+        appVersion: props.appVersion
+      }
+    )
   }
 
   return (
     <AnalyticsContext.Provider
       value={{
-        trackIntent
+        track
       }}
     >
       {props.children}

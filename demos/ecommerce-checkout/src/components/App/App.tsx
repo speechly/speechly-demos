@@ -43,12 +43,11 @@ const App: React.FC = (): JSX.Element => {
 
   return (
     <HttpsRedirect>
-      <AnalyticsWrapper appName='ecommerce-checkout' appVersion={100}>
-        <div className='App CheckoutApp'>
-          <SpeechProvider
-            appId={Sals[sal]!}
-          >
-            <VGUIContextProvider setSal={setSal} setCapture={setCapture} hotKey={CAPTURE_KEY}>
+      <SpeechProvider appId={Sals[sal]!}>
+        <AnalyticsWrapper appName='ecommerce-checkout' appVersion={100}>
+          <VGUIContextProvider setSal={setSal} setCapture={setCapture} hotKey={CAPTURE_KEY}>
+            <div className='App CheckoutApp'>
+
               <BigTranscriptContainer>
                 <BigTranscript />
               </BigTranscriptContainer>
@@ -94,10 +93,10 @@ const App: React.FC = (): JSX.Element => {
                 <ErrorPanel />
               </PushToTalkButtonContainer>
 
-            </VGUIContextProvider>
-          </SpeechProvider>
-        </div>
-      </AnalyticsWrapper>
+            </div>
+          </VGUIContextProvider>
+        </AnalyticsWrapper>
+      </SpeechProvider>
     </HttpsRedirect>
   )
 }
