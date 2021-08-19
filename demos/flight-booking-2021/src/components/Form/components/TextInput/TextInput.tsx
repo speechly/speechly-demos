@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
-import CommonTextInput from '@speechly-demos/ui/components/TextInput/TextInput'
+import CommonTextInput from '@speechly-demos/common/ui/components/TextInput/TextInput'
 import './TextInput.css'
-import theme from '@speechly-demos/ui/constants/theme'
+import theme from '@speechly-demos/common/ui/constants/theme'
 
 interface Props {
     onChange: (event: ChangeEvent<HTMLInputElement>) => void,

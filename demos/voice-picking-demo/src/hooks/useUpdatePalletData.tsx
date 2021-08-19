@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react'
 import { Entity, SpeechSegment } from '@speechly/react-client'
-import FuzzyStringMatching from '@speechly-demos/ui/utils/distanceUtils'
+import FuzzyStringMatching from '@speechly-demos/common/ui/utils/distanceUtils'
 import { defaultPalletData, PalletDataContext } from '../context/palletContext'
 import { IPalletData } from '../types/types'
 import { platformTypes } from '../constants/palletDataConstants'

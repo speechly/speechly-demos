@@ -5,8 +5,8 @@ const publicPath = path.join(__dirname, "dist");
 const port = process.env.PORT || 3000;
 const options = {
     setHeaders: (res) => {
-        res.set('Cross-Origin-Embedder-Policy', 'require-corp'),
-            res.set('Cross-Origin-Opener-Policy', 'same-origin')
+        res.set('Cross-Origin-Embedder-Policy', 'require-corp')
+        res.set('Cross-Origin-Opener-Policy', 'same-origin')
     }
 };
 

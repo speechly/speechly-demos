@@ -9,7 +9,7 @@
   },
   "main": "index.js",
   "workspaces": [
-    "./common/*",
+    "./common/",
     "./demos/*"
   ],
   "scripts": {

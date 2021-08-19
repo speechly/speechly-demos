@@ -62,12 +62,10 @@ const SpeechlyApp: React.FC<{capture: any, sal: any, setCapture: any}> = (props)
       // Set current app state
       if (segment.isFinal) {
         // Remove focus after edit
-        console.log('Final state: ',alteredState)
         setTentativeAppState(alteredState)
         selectAllWidgetText()
         // Store the final app state as basis of next utterance
         setAppState(alteredState)
-  
       } else {
         // console.log('Tentative state: ',alteredState)
         setTentativeAppState(alteredState)

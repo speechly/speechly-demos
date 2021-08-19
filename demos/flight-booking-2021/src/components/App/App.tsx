@@ -21,7 +21,7 @@ import {
 import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
-import theme from '@speechly-demos/ui/constants/theme'
+import theme from '@speechly-demos/common/ui/constants/theme'
 import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer'
 import { startDemo, stopDemo } from '@speechly/browser-ui/demomode'
 import { useLocation } from 'react-router'
@@ -33,6 +33,8 @@ import FlightContextProvider, { defaultFlightInformation, FlightDataContext } fr
 
 
 import Form from '../Form/Form'
+import HttpsRedirect from '@speechly-demos/common/ui/components/HttpsRedirect'
+import AnalyticsWrapper from '@speechly-demos/common/utils/AnalyticsWrapper'
 import { useUpdateFlightData } from '../../hooks/useUpdateFlightData'
 import './App.css'
 
@@ -58,17 +60,21 @@ const DemoStrings = [
 const App: React.FC = (): JSX.Element => {
   const history = createBrowserHistory()
   return (
-    <Router {...{ history }}>
-      <FlightContextProvider>
-        <MuiPickersUtilsProvider utils={LuxonUtils}>
-          <ChakraProvider>
-            <SpeechProvider appId="1ea63538-f95c-4259-b8af-923994424137" language="en-US">
-              <SpeechlyApp />
-            </SpeechProvider>
-          </ChakraProvider>
-        </MuiPickersUtilsProvider>
-      </FlightContextProvider>
-    </Router>
+    <HttpsRedirect>
+      <Router {...{ history }}>
+        <FlightContextProvider>
+          <MuiPickersUtilsProvider utils={LuxonUtils}>
+            <ChakraProvider>
+              <SpeechProvider appId="1ea63538-f95c-4259-b8af-923994424137" language="en-US">
+                <AnalyticsWrapper appName='flight-booking' appVersion={100}>
+                  <SpeechlyApp />
+                </AnalyticsWrapper>
+              </SpeechProvider>
+            </ChakraProvider>
+          </MuiPickersUtilsProvider>
+        </FlightContextProvider>
+      </Router>
+    </HttpsRedirect>
   )
 }
 

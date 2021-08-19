@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, Box } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import theme from '@speechly-demos/ui/constants/theme'
+import theme from '@speechly-demos/common/ui/constants/theme'
 import './CircleCheckBox.css'
 
 interface Props {

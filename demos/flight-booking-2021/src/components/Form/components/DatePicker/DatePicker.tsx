@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMediaQuery } from '@chakra-ui/react'
 import { TDate } from '../../../../types/type'
-import CommonDatePicker from '@speechly-demos/ui/components/DatePicker/DatePicker'
+import CommonDatePicker from '@speechly-demos/common/ui/components/DatePicker/DatePicker'
 import './DatePicker.css'
 
 interface Props {

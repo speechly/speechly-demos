@@ -1,9 +1,9 @@
 import React from 'react'
 import { useMediaQuery } from '@chakra-ui/react'
 import { TDate } from '../../../../types/types'
-import CommonDatePicker from '@speechly-demos/ui/components/DatePicker/DatePicker'
+import CommonDatePicker from '@speechly-demos/common/ui/components/DatePicker/DatePicker'
 import './DatePicker.css'
-import theme from '@speechly-demos/ui/constants/theme'
+import theme from '@speechly-demos/common/ui/constants/theme'
 
 interface Props {
     onChange: (date: TDate) => void,

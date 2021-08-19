@@ -1,4 +1,4 @@
-import FuzzyStringMatching from '@speechly-demos/ui/utils/distanceUtils'
+import FuzzyStringMatching from '@speechly-demos/common/ui/utils/distanceUtils'
 import { IInventoryItemDefinition } from '../../buildconfig'
 
 function getArraySimilarity(a: string[], b: string[]): number {

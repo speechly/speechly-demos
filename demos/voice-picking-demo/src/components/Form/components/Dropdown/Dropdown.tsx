@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react'
-import CommonDropdown from '@speechly-demos/ui/components/Dropdown/Dropdown'
-import theme from '@speechly-demos/ui/constants/theme'
+import CommonDropdown from '@speechly-demos/common/ui/components/Dropdown/Dropdown'
+import theme from '@speechly-demos/common/ui/constants/theme'
 import './Dropdown.css'
 
 interface Props {
