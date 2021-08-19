@@ -13,7 +13,6 @@ import './SpeechlyApp.css'
 import countries from '../../countries.json'
 import Dropdown from '../Dropdown'
 import Button from '../Button'
-import { AnalyticsContext } from '@speechly-demos/common/utils/AnalyticsWrapper'
 
 const DEBUG_STATUSLINE = false
 
