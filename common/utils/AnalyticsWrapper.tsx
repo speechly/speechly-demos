@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, SyntheticEvent, useEffect, useRef, useState } from 'react'
 import { SpeechSegment, SpeechState, useSpeechContext } from '@speechly/react-client'
 import Analytics from './analytics'
 
@@ -22,6 +22,7 @@ const AnalyticsWrapper: React.FC<{appName: string, appVersion: number}> = (props
   const [launched, setLaunched] = useState(false)
   const [initializationAttempted, setInitializationAttempted] = useState(false)
   const { speechState, segment } = useSpeechContext()
+  const startAttempted = useRef<boolean>(false)
 
   useEffect(() => {
     if (!launched) {
@@ -31,11 +32,27 @@ const AnalyticsWrapper: React.FC<{appName: string, appVersion: number}> = (props
   }, [launched, props.appName, props.appVersion])
 
   useEffect(() => {
+    const handleHoldStartMessage = (e: any) => {
+      if (startAttempted.current === false) {
+        if (e.data.type === 'holdstart') {
+          Analytics.trackStarting(props.appName, props.appVersion)
+          startAttempted.current = true
+        }
+      }
+    }
+    window.addEventListener('message', handleHoldStartMessage)
+
+    return () => {
+      window.removeEventListener('message', handleHoldStartMessage)
+    }
+  }, [])  
+
+  useEffect(() => {
     if (!initializationAttempted) {
       switch(speechState) {
-        case SpeechState.Connecting:
-          Analytics.trackStarting(props.appName, props.appVersion)
-          break
+//        case SpeechState.Connecting:
+//          Analytics.trackStarting(props.appName, props.appVersion)
+//          break
         case SpeechState.NoBrowserSupport:
         case SpeechState.NoAudioConsent:
         case SpeechState.Failed:
