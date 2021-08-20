@@ -11,6 +11,8 @@ class Analytics {
       appVersion,
       appParams
     })
+
+    this.identify(`${appName} user`)
   }
 
   public static trackStarting(appName: string, appVersion: number): void {
@@ -47,6 +49,15 @@ class Analytics {
       appName,
       appVersion
     })
+  }
+
+  public static identify(uid: string): void {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const LogRocket = (window as any).LogRocket
+
+    if (LogRocket) {
+      LogRocket.identify(uid)
+    }
   }
 
   public static track(eventName: string, eventParams: any): void {
