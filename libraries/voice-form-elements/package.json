@@ -1,0 +1,22 @@
+{
+  "name": "@speechly/voice-form-elements",
+  "version": "1.0.0",
+  "description": "Speechly React form components ",
+  "license": "MIT",
+  "author": "Speechly",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "peerDependencies": {
+    "@speechly/react-client": "^0.0.21"
+  },
+  "devDependencies": {
+    "@types/react": "16.14.15",
+    "react": "^17.0.2",
+    "ts-loader": "^8.0.4",
+    "tsc-watch": "^4.2.9",
+    "typescript": "4.1.5"
+  },
+  "scripts": {
+    "build": "npx tsc"
+  }
+}

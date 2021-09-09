@@ -124,7 +124,7 @@
    * LTS schedule: https://nodejs.org/en/about/releases/
    * LTS versions: https://nodejs.org/en/download/releases/
    */
-  "nodeSupportedVersionRange": ">=12.13.0 <13.0.0 || >=14.15.0 <15.0.0",
+  "nodeSupportedVersionRange": ">=12.13.0 <13.0.0 || >=14.15.0", /* <15.0.0 */
 
   /**
    * Odd-numbered major versions of Node.js are experimental.  Even-numbered releases
@@ -459,28 +459,32 @@
     // }
 
     {
-      "packageName": "all-demos-app",
-      "projectFolder": "all-demos-app"
+      "packageName": "@speechly/voice-form-elements",
+      "projectFolder": "libraries/voice-form-elements"
     },
     {
       "packageName": "ecommerce-checkout",
       "projectFolder": "apps/ecommerce-checkout"
-    },
-    {
-      "packageName": "fast-food-demo",
-      "projectFolder": "apps/fast-food-demo"
-    },
-    {
-      "packageName": "flight-booking-demo",
-      "projectFolder": "apps/flight-booking-demo"
-    },
-    {
-      "packageName": "speech-to-text",
-      "projectFolder": "apps/speech-to-text"
-    },
-    {
-      "packageName": "voice-picking-demo",
-      "projectFolder": "apps/voice-picking-demo"
     }
+    // {
+    //   "packageName": "fast-food-demo",
+    //   "projectFolder": "apps/fast-food-demo"
+    // },
+    // {
+    //   "packageName": "flight-booking-demo",
+    //   "projectFolder": "apps/flight-booking-demo"
+    // },
+    // {
+    //   "packageName": "speech-to-text",
+    //   "projectFolder": "apps/speech-to-text"
+    // },
+    // {
+    //   "packageName": "voice-picking-demo",
+    //   "projectFolder": "apps/voice-picking-demo"
+    // },
+    // {
+    //   "packageName": "all-demos-app",
+    //   "projectFolder": "all-demos-app"
+    // }
   ]
 }
