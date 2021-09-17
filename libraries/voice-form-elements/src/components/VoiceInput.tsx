@@ -83,7 +83,7 @@ export const VoiceInput = ({ label, intent, entityName, initValue, onChange, onF
   }, [segment])
 
   return (
-    <div className="widgetGroup">
+    <div className="widgetGroup inputText">
       <label>{ label }</label>
       <input
         ref={inputEl}

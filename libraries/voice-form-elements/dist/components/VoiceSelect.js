@@ -88,10 +88,10 @@ var VoiceSelect = function (_a) {
             }
         }
     }, [segment]);
-    return (react_1.default.createElement("div", { ref: inputEl, className: "widgetGroup" },
+    return (react_1.default.createElement("div", { ref: inputEl, className: "widgetGroup select" },
         react_1.default.createElement("label", null, label),
-        react_1.default.createElement("select", { name: entityName, value: value, onChange: function (event) { setValue(event.target.value); }, onBlur: _onBlur, onFocus: _onFocus }, options.map(function (country) {
-            return react_1.default.createElement("option", { key: country, value: country }, country);
+        react_1.default.createElement("select", { name: entityName, value: value, onChange: function (event) { setValue(event.target.value); }, onBlur: _onBlur, onFocus: _onFocus }, options.map(function (optionValue) {
+            return react_1.default.createElement("option", { key: optionValue, value: optionValue }, optionValue);
         }))));
 };
 exports.VoiceSelect = VoiceSelect;

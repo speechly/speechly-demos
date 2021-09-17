@@ -89,15 +89,15 @@ export const VoiceSelect = ({ label, intent, options, entityName, initValue, onC
   }, [segment])
 
   return (
-    <div ref={inputEl} className="widgetGroup">
+    <div ref={inputEl} className="widgetGroup select">
       <label>{ label }</label>
       <select name={entityName} value={value}
               onChange={(event: any) => { setValue(event.target.value) }}
               onBlur={_onBlur}
               onFocus={_onFocus}>
         {
-          options.map((country: string): React.ReactNode =>
-            <option key={country} value={country}>{country}</option>)
+          options.map((optionValue: string): React.ReactNode =>
+            <option key={optionValue} value={optionValue}>{optionValue}</option>)
         }
       </select>
     </div>

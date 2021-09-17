@@ -84,7 +84,7 @@ var VoiceInput = function (_a) {
             }
         }
     }, [segment]);
-    return (react_1.default.createElement("div", { className: "widgetGroup" },
+    return (react_1.default.createElement("div", { className: "widgetGroup inputText" },
         react_1.default.createElement("label", null, label),
         react_1.default.createElement("input", { ref: inputEl, type: "text", name: entityName, value: value, onChange: function (event) { setValue(event.target.value); }, onBlur: _onBlur, onFocus: _onFocus })));
 };

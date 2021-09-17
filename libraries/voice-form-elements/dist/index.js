@@ -12,4 +12,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./components/VoiceInput"), exports);
 __exportStar(require("./components/VoiceSelect"), exports);
+__exportStar(require("./components/VoiceCheckbox"), exports);
+__exportStar(require("./components/VoiceDatePicker"), exports);
+__exportStar(require("./components/VoiceToggle"), exports);
 //# sourceMappingURL=index.js.map
