@@ -90,7 +90,9 @@ export const VoiceToggle = ({ intent, options, entityName, initValue, onChange, 
     <div ref={inputEl} className="widgetGroup toggle">
       {
         options.map((optionValue: string): React.ReactNode =>
-          <div className={value === optionValue ? 'active' : ''} key={optionValue} onClick={() => selectOption(optionValue)}>{optionValue}</div>)
+          <button key={optionValue} type="button" className={value === optionValue ? 'active' : ''} onClick={() => selectOption(optionValue)}>
+            {optionValue}
+          </button>)
       }
     </div>
   );
