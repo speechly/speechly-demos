@@ -86,7 +86,7 @@ var VoiceToggle = function (_a) {
         setValue(value);
     };
     return (react_1.default.createElement("div", { ref: inputEl, className: "widgetGroup toggle" }, options.map(function (optionValue) {
-        return react_1.default.createElement("button", { type: "button", className: value === optionValue ? 'active' : '', key: optionValue, onClick: function () { return selectOption(optionValue); } }, optionValue);
+        return react_1.default.createElement("button", { key: optionValue, type: "button", className: value === optionValue ? 'active' : '', onClick: function () { return selectOption(optionValue); } }, optionValue);
     })));
 };
 exports.VoiceToggle = VoiceToggle;

@@ -395,24 +395,24 @@
     },
     {
       "packageName": "ecommerce-checkout",
-      "projectFolder": "apps/ecommerce-checkout"
+      "projectFolder": "applications/ecommerce-checkout"
     },
     {
       "packageName": "flight-booking-demo",
-      "projectFolder": "apps/flight-booking-demo"
+      "projectFolder": "applications/flight-booking-demo"
     },
     {
       "packageName": "fast-food-demo",
-      "projectFolder": "apps/fast-food-demo"
+      "projectFolder": "applications/fast-food-demo"
     },
 
     {
       "packageName": "speech-to-text",
-      "projectFolder": "apps/speech-to-text"
+      "projectFolder": "applications/speech-to-text"
     },
     {
       "packageName": "voice-picking-demo",
-      "projectFolder": "apps/voice-picking-demo"
+      "projectFolder": "applications/voice-picking-demo"
     },
     {
       "packageName": "all-demos-app",
