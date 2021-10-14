@@ -33,6 +33,12 @@ cd applications/flight-booking-demo
 rushx start
 ```
 
+### Update/add a project dependency
+
+```
+rush add --package @speechly/react-ui@latest
+```
+
 ### Adding a project to the monorepo
 
 Edit the "projects" array in `rush.json`.

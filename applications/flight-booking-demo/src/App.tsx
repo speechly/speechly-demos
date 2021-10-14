@@ -1,19 +1,22 @@
 import React from 'react';
-import { PushToTalkButton, PushToTalkButtonContainer, ErrorPanel } from '@speechly/react-ui';
+import { PushToTalkButton, ErrorPanel } from '@speechly/react-ui';
+import { TranscriptDrawer } from '@speechly/react-ui/components/TranscriptDrawer';
 import BookingForm from './components/BookingForm';
+import './voice-form-component-calendar.css';
+import './voice-form-theme-capsule.css';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <div id="container">
+    <>
+      <TranscriptDrawer/>
+      <PushToTalkButton captureKey=" " placement="bottom" size="88px" />
+      <ErrorPanel placement="bottom" />
+
+      <div className="App">
         <BookingForm />
       </div>
-      <PushToTalkButtonContainer>
-        <PushToTalkButton captureKey=" " />
-        <ErrorPanel />
-      </PushToTalkButtonContainer>
-    </div>
+    </>
   );
 }
 
