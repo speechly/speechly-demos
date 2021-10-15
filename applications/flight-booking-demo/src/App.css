@@ -1,16 +1,27 @@
 body {
   background-color: transparent !important;
+  padding: 0;
+  margin: 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-size: 1.0rem;
+  overflow-x: hidden;
+
+  --color-light-bg: #f2f7fa;
+  --color-input-bg: #f2f7fa;
+  --color-active-bg: #316EAE;
+  --color-active-text: #ffffff;
+  --dropdown-handle-size: 6px;
+}
+
+select, button, input, label {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 select, input, button {
-  position: relative;
-  border-width: 0px;
-  background-color: transparent;
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 1.375rem;
-  text-transform: uppercase;
-  display: block;
-  outline: none;
+  font-size: 1.0rem;
+  line-height: 140%;
 }
 
 #root {
@@ -18,7 +29,6 @@ select, input, button {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  height: 100vh;
 }
 
 .App {
@@ -31,155 +41,34 @@ select, input, button {
   background-image: linear-gradient(
 150deg
 , rgb(83, 163, 249) 17.8%, rgb(117, 223, 255) 48.54%, rgb(219, 255, 246) 78.65%);
-  min-height: 100%;
-}
-
-.App .group {
-  width: 100%;
-}
-
-.App .multiFieldRow {
-  display: flex;
-  flex-direction: row;
-}
-
-.widgetGroup {
-  height: 4rem;
-  width: 100%;
-  margin: 1em;
-}
-
-#container {
-  width: 100%;
-  flex: 1 1 0%;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
+  min-height: 100vh;
 }
 
 form {
-  display: flex;
+  box-sizing: border-box;
   min-height: 100%;
+  padding: 10rem 0.4rem 10rem 0.4rem;
+
+  display: flex;
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
   align-content: center;
-  padding: 6.5rem 0.4rem 7rem;
 }
 
-.toggle button:first-child {
-  border-top-left-radius: 2.25rem;
-  border-bottom-left-radius: 2.25rem;
-}
-
-.toggle button:last-child {
-  border-top-right-radius: 2.25rem;
-  border-bottom-right-radius: 2.25rem;
-  margin: 0 1em 0 0;
-}
-
-.toggle button {
-  box-shadow: 0px 6px 12px 0px #388de95e;
-  background-color:white;
+.group {
+  box-sizing: border-box;
   width: 100%;
-  line-height: 1.2;
-  height: 4rem;
-  flex: 1 1 0%;
-}
-
-.toggle {
-  color: #4fa1f9;
   display: flex;
-  width: 100%;
+  justify-content: stretch;
+  align-items: stretch;
+  gap: 8px;
+  margin: 0.5rem 0;
+  min-height: 3.5rem;
 }
 
-.toggle .active {
-  background-color: rgb(83, 163, 249);
-  color: white;
-}
-
-.inputText, .select {
-  border-radius: 4rem;
-  background-color: white;
-  box-shadow: 0px 6px 12px 0px #388de95e;
-}
-
-select {
-  padding-left: 1.25rem;
-  width: 100%;
-  min-width: 0px;
-}
-
-.inputText label, .select label {
-  padding: 0.75rem 0px 0px 1.25rem;
-  color: #4fa1f9;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-}
-
-.inputText input {
-  padding-left: 1.25rem;
-  font-weight: bold;
-  color: #0f4e92;
-}
-
-/* .withCalendar {
-  display: flex;
-} */
-
-.calendar-button { 
-  border: 0;
-  margin-right: 1em;
-  background: transparent;
-}
-.calendar {
-  position: absolute;
-}
-
-.calendar table {
-  z-index: 1000;
-  background: #fff;
-  position: inline;
-  left: 0;
-  top: 0;
-  border-radius: 1em;
-  padding: 0.7em;
-  color: #0f4e92;
-  font-size: 1.2em;
-}
-
-.calendar .header {
-}
-
-.calendar .header button {
-  border: 1px #fff solid;
-  background: #fff;
-}
-
-.calendar td {
-  width: 1em;
-  height: 1em;
-  text-align: center;
-  cursor: pointer;
-}
-
-.calendar td:hover {
-  border-radius: 1em;
-  background: rgb(209, 251, 255);
-}
-
-.calendar .muted {
-  color: #ccc;
-}
-
-.calendar .selected {
-  font-weight: 500;
-  background: rgb(3, 201, 250);
-  color: #eee;
-  border-radius: 5em;
+label {
+  color: #4fa1f9 !important;
 }
 
 @media (max-width: 360px) {
@@ -187,7 +76,7 @@ select {
     font-size: 80%;
   }
 
-  main {
+  form {
     width: 100%;
   }
 }
@@ -197,7 +86,7 @@ select {
     font-size: 85%;
   }
 
-  main {
+  form {
     width: 100%;
   }
 }
@@ -207,37 +96,37 @@ select {
     font-size: 90%;
   }
 
-  main {
+  form {
     width: 100%;
   }
 }
 
 @media (min-width: 688px) and (max-width: 992px) {
   html {
-    font-size: 90%;
+    font-size: 100%;
   }
 
-  main {
+  form {
     width: 640px;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1312px) {
   html {
-    font-size: 90%;
+    font-size: 120%;
   }
 
-  main {
+  form {
     width: 720px;
   }
 }
 
 @media (min-width: 1312px) {
   html {
-    font-size: 100%;
+    font-size: 140%;
   }
 
-  main {
+  form {
     width: 800px;
   }
 }

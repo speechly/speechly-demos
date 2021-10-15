@@ -124,9 +124,7 @@ export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange,
       />
 
       <button className="calendar-button" onClick={toggleCalendar}>
-        <span className="">
-          <CalendarIcon />
-        </span>
+        <CalendarIcon />
       </button>
 
       { _showCalendar && <Calendar date={date} onDatePick={onDatePick} /> }

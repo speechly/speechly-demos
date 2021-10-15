@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SpeechProvider appId="your-app-id" language="en-US">
+    <SpeechProvider appId="YOUR_APP_ID_FROM_SPEECHLY_DASHBOARD">
       <App />
     </SpeechProvider>
   </React.StrictMode>,

@@ -11,22 +11,16 @@ const BookingForm = () => {
         <VoiceToggle intent="book" entityName="round_trip" initValue={tripOptions[0]} options={tripOptions} />
       </div>
       <div className="group">
-        <div className='multiFieldRow'>
-          <VoiceInput label="From" entityName="from" intent="book" />
-          <VoiceInput label="To" entityName="to" intent="book" />
-        </div>
+        <VoiceInput label="From" entityName="from" intent="book" />
+        <VoiceInput label="To" entityName="to" intent="book" />
       </div>
       <div className="group">
-        <div className='multiFieldRow'>
-          <VoiceDatePicker label="Departure" entityName="depart" intent="book" />
-          <VoiceDatePicker label="Return" entityName="return" intent="book" />
-        </div>
+        <VoiceDatePicker label="Departure" entityName="depart" intent="book" />
+        <VoiceDatePicker label="Return" entityName="return" intent="book" />
       </div>
       <div className="group">
-        <div className='multiFieldRow'>
-          <VoiceSelect label="Passengers" intent="book" entityName='passengers' initValue={passengersOptions[0]} options={passengersOptions} />
-          <VoiceSelect label="Class" intent="book" entityName='class' initValue={classOptions[0]} options={classOptions} />
-        </div>
+        <VoiceSelect label="Passengers" intent="book" entityName='passengers' initValue={passengersOptions[0]} options={passengersOptions} />
+        <VoiceSelect label="Class" intent="book" entityName='class' initValue={classOptions[0]} options={classOptions} />
       </div>
       <div className="group">
         <VoiceCheckbox label="DIRECT ONLY" intent="book" entityName='direct' initValue={false} />
