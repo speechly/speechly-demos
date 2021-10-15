@@ -65,7 +65,7 @@ export const VoiceSelect = ({ label, intent, options, displayNames, entityName, 
             let entities = formatEntities(segment.entities)
             if (entities[entityName] !== undefined) {
               const index = optionsInUpperCase.findIndex((option: string) => option === entities[entityName].toUpperCase())
-              if (index) {
+              if (index >= 0) {
                 setValue(options[index])
               }
             }
