@@ -18,7 +18,8 @@ label {
   position: relative;
   text-align: left;
   flex-grow: 1;
-  flex-basis: 8rem;
+  flex-basis: 100%;
+  min-width: 8rem;
   align-items: stretch;
 }
 
