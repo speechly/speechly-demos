@@ -3,11 +3,28 @@ import { useSpeechContext, Word } from "@speechly/react-client";
 import { formatEntities } from "../utils"
 
 type Props = {
+  /**
+   * Intent to react to.
+   */
   intent: string
+  /**
+   * Entity name to react to. Options should then be the entity values.
+   * If undefined, options should be entity names.
+   */
+  entityName?: string
+  /**
+   * Ids for options that should match entity values for entityName.
+   * If entityName is left undefined, options are an array for entity names.
+   */
   options: string[]
+  /**
+   * Array of human-fiendly display names for each options
+   */
   displayNames?: string[]
   focused?: boolean
-  entityName?: string
+  /**
+   * Initially selected option id
+   */
   initValue?: string
   handledAudioContext?: string
   onChange?: (value: string) => void
@@ -60,18 +77,25 @@ export const VoiceToggle = ({ intent, options, displayNames, entityName, initVal
     if (segment && segment.contextId !== handledAudioContext) {
       switch (segment?.intent.intent) {
         case intent:
-          if (entityName !== undefined) {
-            let entities = formatEntities(segment.entities)
-            if (entities[entityName] !== undefined) {
-              const index = optionsInUpperCase.findIndex((option: string) => option === entityName.toUpperCase())
-              if (index) {
+          let entities = formatEntities(segment.entities)
+          if (!entityName) {
+            // Match by entity name instead of value, if an array provided
+            Object.keys(entities).forEach(candidateName => {
+              const index = optionsInUpperCase.findIndex((option: string) => option === candidateName.toUpperCase())
+              if (index >= 0) {
                 setValue(options[index])
               }
+            })
+          } else if (entities[entityName] !== undefined) {
+            const index = optionsInUpperCase.findIndex((option: string) => option === (entityName as string).toUpperCase())
+            if (index >= 0) {
+              setValue(options[index])
             }
           }
           break
         default:
       }
+
       if (segment?.isFinal) {
         if (inputEl != null && inputEl.current != null) {
           inputEl.current.blur()
