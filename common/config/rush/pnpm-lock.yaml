@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@rush-temp/all-demos-app': file:./projects/all-demos-app.tgz
+  '@rush-temp/all-demos': file:./projects/all-demos.tgz
   '@rush-temp/ecommerce-checkout': file:./projects/ecommerce-checkout.tgz
   '@rush-temp/fast-food-demo': file:./projects/fast-food-demo.tgz
   '@rush-temp/flight-booking-demo': file:./projects/flight-booking-demo.tgz
@@ -9,7 +9,6 @@ specifiers:
   '@rush-temp/voice-form-elements': file:./projects/voice-form-elements.tgz
   '@rush-temp/voice-picking-demo': file:./projects/voice-picking-demo.tgz
   '@speechly/react-client': ^0.0.21
-  '@speechly/react-ui': ^2.0.1
   '@testing-library/jest-dom': ^4.2.4
   '@testing-library/react': ^9.3.2
   '@testing-library/user-event': ^7.1.2
@@ -24,7 +23,7 @@ specifiers:
   tsc-watch: ^4.2.9
 
 dependencies:
-  '@rush-temp/all-demos-app': file:projects/all-demos-app.tgz
+  '@rush-temp/all-demos': file:projects/all-demos.tgz
   '@rush-temp/ecommerce-checkout': file:projects/ecommerce-checkout.tgz
   '@rush-temp/fast-food-demo': file:projects/fast-food-demo.tgz
   '@rush-temp/flight-booking-demo': file:projects/flight-booking-demo.tgz
@@ -32,7 +31,6 @@ dependencies:
   '@rush-temp/voice-form-elements': file:projects/voice-form-elements.tgz
   '@rush-temp/voice-picking-demo': file:projects/voice-picking-demo.tgz
   '@speechly/react-client': 0.0.21_react@17.0.2
-  '@speechly/react-ui': 2.0.1_6eccc02bb3c6d937122019be1d89ab35
   '@testing-library/jest-dom': 4.2.4
   '@testing-library/react': 9.5.0_react-dom@17.0.2+react@17.0.2
   '@testing-library/user-event': 7.2.1
@@ -2013,6 +2011,10 @@ packages:
     resolution: {integrity: sha512-q9oio7cHLaqx8Z3mF7hZM6z4xCL0hvJMecq586WpW1Sg0tXUNuJovsSL6OARv09XO8f0zSyaLzDeTV+Rpl86XQ==}
     dev: false
 
+  /@speechly/browser-ui/4.0.3:
+    resolution: {integrity: sha512-6Y77lvH7ShJrB04OPuPhwhqEqNtPJYoGDwGklus/hg2y2jdyWceAwg5khkf/5HE3U8/2DCho/zaXBvHLTkjDng==}
+    dev: false
+
   /@speechly/react-client/0.0.21_react@17.0.2:
     resolution: {integrity: sha512-k7opWS2dnnHENGjn2NxEONA7iM46fZoIM86FsYgVJ4/1xXNvdgWo7FiuqyFMbPXgi7xCRArAqmF4ziLXZZHKTA==}
     peerDependencies:
@@ -2030,6 +2032,24 @@ packages:
       react-dom: '>=16.13.1'
     dependencies:
       '@speechly/browser-ui': 3.13.1
+      '@speechly/react-client': 0.0.21_react@17.0.2
+      pubsub-js: 1.9.3
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-spring: 8.0.27_react-dom@17.0.2+react@17.0.2
+      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  /@speechly/react-ui/2.1.2_6eccc02bb3c6d937122019be1d89ab35:
+    resolution: {integrity: sha512-Xb1U9pGWnVdcAdqyKNUIMcKiG5aR0suCuzOEPxZEGP0n26q2ZVVGp4JL5mrNWvTKB5LWCYysgdX0WRHJHO2bXA==}
+    peerDependencies:
+      '@speechly/react-client': '>=0.0.20'
+      react: '>=16.13.1'
+      react-dom: '>=16.13.1'
+    dependencies:
+      '@speechly/browser-ui': 4.0.3
       '@speechly/react-client': 0.0.21_react@17.0.2
       pubsub-js: 1.9.3
       react: 17.0.2
@@ -12592,9 +12612,9 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  file:projects/all-demos-app.tgz:
-    resolution: {integrity: sha512-/LhciLZKOz3zVW78xmvZ6kNyWede3uubyAnFx7ZMtImoBJ4+qPMYJN+14cTdbTYpMqJ9TDDRpRjz0mzlIv/5HQ==, tarball: file:projects/all-demos-app.tgz}
-    name: '@rush-temp/all-demos-app'
+  file:projects/all-demos.tgz:
+    resolution: {integrity: sha512-/OdxOHqaK3oxYF1iHwxH4rg23lmb9+fYQQ1RElkuliaSvLO9prepgHu1yITKpf1Zg9rJG8padEHqeJ+nCR8x3Q==, tarball: file:projects/all-demos.tgz}
+    name: '@rush-temp/all-demos'
     version: 0.0.0
     dependencies:
       '@speechly/react-client': 0.0.21_react@17.0.2
@@ -12708,12 +12728,12 @@ packages:
     dev: false
 
   file:projects/flight-booking-demo.tgz:
-    resolution: {integrity: sha512-4wZBIS54+PpHawCm7hSZWC5Mnpm43jBjRFEs4iy5dC3WmajLN6//suIN5uu/Q9aBNyVBZHXCUslvsRu48NApxw==, tarball: file:projects/flight-booking-demo.tgz}
+    resolution: {integrity: sha512-BC/TfWF2VsyNovW7Z/zpTZiQR9upBiVzFFU2bimP2InzZLkLoZ7geD/ZyBxf8w0I/TyUyJ123RyGl8pIul7dtQ==, tarball: file:projects/flight-booking-demo.tgz}
     name: '@rush-temp/flight-booking-demo'
     version: 0.0.0
     dependencies:
       '@speechly/react-client': 0.0.21_react@17.0.2
-      '@speechly/react-ui': 2.0.1_6eccc02bb3c6d937122019be1d89ab35
+      '@speechly/react-ui': 2.1.2_6eccc02bb3c6d937122019be1d89ab35
       '@testing-library/jest-dom': 4.2.4
       '@testing-library/react': 9.5.0_react-dom@17.0.2+react@17.0.2
       '@testing-library/user-event': 7.2.1
