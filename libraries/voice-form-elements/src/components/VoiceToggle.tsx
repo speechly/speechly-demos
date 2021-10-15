@@ -5,6 +5,7 @@ import { formatEntities } from "../utils"
 type Props = {
   intent: string
   options: string[]
+  displayNames?: string[]
   focused?: boolean
   entityName?: string
   initValue?: string
@@ -15,7 +16,7 @@ type Props = {
   onFinal?: () => void
 }
 
-export const VoiceToggle = ({ intent, options, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
+export const VoiceToggle = ({ intent, options, displayNames, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
@@ -89,9 +90,9 @@ export const VoiceToggle = ({ intent, options, entityName, initValue, onChange, 
   return (
     <div ref={inputEl} className="widgetGroup toggle">
       {
-        options.map((optionValue: string): React.ReactNode =>
+        options.map((optionValue: string, index: number): React.ReactNode =>
           <button key={optionValue} type="button" className={value === optionValue ? 'active' : ''} onClick={() => selectOption(optionValue)}>
-            {optionValue}
+            {displayNames && displayNames[index] ? displayNames[index] : optionValue}
           </button>)
       }
     </div>

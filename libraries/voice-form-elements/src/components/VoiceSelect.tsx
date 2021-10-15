@@ -6,6 +6,7 @@ type Props = {
   label: string
   intent: string
   options: string[]
+  displayNames?: string[]
   focused?: boolean
   entityName?: string
   initValue?: string
@@ -16,7 +17,7 @@ type Props = {
   onFinal?: () => void
 }
 
-export const VoiceSelect = ({ label, intent, options, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
+export const VoiceSelect = ({ label, intent, options, displayNames, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
@@ -96,8 +97,10 @@ export const VoiceSelect = ({ label, intent, options, entityName, initValue, onC
               onBlur={_onBlur}
               onFocus={_onFocus}>
         {
-          options.map((optionValue: string): React.ReactNode =>
-            <option key={optionValue} value={optionValue}>{optionValue}</option>)
+          options.map((optionValue: string, index: number): React.ReactNode =>
+            <option key={optionValue} value={optionValue}>
+              {displayNames && displayNames[index] ? displayNames[index] : optionValue}
+            </option>)
         }
       </select>
     </div>

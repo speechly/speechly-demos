@@ -3,12 +3,13 @@ import { VoiceDatePicker, VoiceCheckbox, VoiceInput, VoiceSelect, VoiceToggle } 
 const passengersOptions = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 const classOptions = ['Economy', 'Business', 'First']
 const tripOptions = ['one_way', 'round_trip']
+const tripDisplayNames = ['One way', 'Round trip']
 
 const BookingForm = () => {
   return (
     <form>
       <div className="group">
-        <VoiceToggle intent="book" entityName="round_trip" initValue={tripOptions[0]} options={tripOptions} />
+        <VoiceToggle intent="book" entityName="round_trip" initValue={tripOptions[0]} options={tripOptions} displayNames={tripDisplayNames}/>
       </div>
       <div className="group">
         <VoiceInput label="From" entityName="from" intent="book" />
