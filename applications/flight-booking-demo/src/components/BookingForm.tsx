@@ -9,7 +9,7 @@ const BookingForm = () => {
   return (
     <form>
       <div className="group">
-        <VoiceToggle intent="book" entityName="round_trip" initValue={tripOptions[0]} options={tripOptions} displayNames={tripDisplayNames}/>
+        <VoiceToggle intent="book" initValue={tripOptions[0]} options={tripOptions} displayNames={tripDisplayNames}/>
       </div>
       <div className="group">
         <VoiceInput label="From" entityName="from" intent="book" />
