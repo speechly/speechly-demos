@@ -47,5 +47,8 @@ Edit the "projects" array in `rush.json`.
 ### Creating a new demo
 
 ```
-npx create-react-app new-demo-app --template file:cra-template-speechly
+npx create-react-app applications/new-demo-app --template file:cra-template-speechly
+cd applications/new-demo-app
+rushx start
+# Remember to replace YOUR_APP_ID_FROM_SPEECHLY_DASHBOARD in App.tsx
 ```
