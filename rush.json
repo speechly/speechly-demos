@@ -415,8 +415,8 @@
       "projectFolder": "applications/voice-picking-demo"
     },
     {
-      "packageName": "all-demos-app",
-      "projectFolder": "all-demos-app"
+      "packageName": "all-demos",
+      "projectFolder": "all-demos"
     }
   ]
 }
