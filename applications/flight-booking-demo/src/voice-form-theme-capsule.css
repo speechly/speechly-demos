@@ -123,6 +123,30 @@ select {
   border-bottom-right-radius: 2.25rem;
 }
 
+.widgetGroup.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.widgetGroup.checkbox input {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.75rem;
+  box-shadow: none;
+}
+
+.widgetGroup.checkbox label {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  color: #000 !important;
+}
+
 button.calendar-button {
   right: 0.5rem;
 }
