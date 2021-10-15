@@ -9,11 +9,9 @@ function App() {
       <PushToTalkButton placement="bottom" captureKey=" " />
       <ErrorPanel placement="bottom" />
 
-      <div className="App">
-        <div className="block">
-          <h1>Speechly React App</h1>
-        </div>
-      </div>
+      <main>
+        <h1>Speechly React App</h1>
+      </main>
     </>
   );
 }

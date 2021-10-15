@@ -28,9 +28,14 @@ If necessary, install the build tools
 
 ```
 rush update
-rush build
 cd applications/flight-booking-demo
 rushx start
+```
+
+### Create release builds of all apps
+
+```
+rush build
 ```
 
 ### Update/add a project dependency
@@ -39,16 +44,63 @@ rushx start
 rush add --package @speechly/react-ui@latest
 ```
 
-### Adding a project to the monorepo
-
-Edit the "projects" array in `rush.json`.
-
-
 ### Creating a new demo
 
 ```
 npx create-react-app applications/new-demo-app --template file:cra-template-speechly
 cd applications/new-demo-app
 rushx start
-# Remember to replace YOUR_APP_ID_FROM_SPEECHLY_DASHBOARD in App.tsx
+```
+
+Remember to replace `YOUR_APP_ID_FROM_SPEECHLY_DASHBOARD` in `src/App.tsx` with your owm app id.
+
+To compile the new demo along with other project, add the following lines to "projects" array in `rush.json`:
+
+```
+{
+  "packageName": "new-demo-app",
+  "projectFolder": "applications/new-demo-app"
+},
+```
+
+### Using Voice form components
+
+Add `@speechly/voice-form-elements` dependency to the project:
+
+```
+rush add --package @speechly/voice-form-elements
+```
+
+Include the components:
+
+```
+import {
+  VoiceDatePicker,
+  VoiceCheckbox,
+  VoiceInput,
+  VoiceSelect,
+  VoiceToggle,
+} from '@speechly/voice-form-elements';
+```
+
+Place the form components inside your `SpeechProvider` block:
+
+```
+<SpeechProvider appId="YOUR_APP_ID_FROM_SPEECHLY_DASHBOARD">
+  <VoiceInput label="From" entityName="from" intent="book" />
+</SpeechProvider>
+```
+
+### Styling Voice form components
+
+Add a `voice-form-theme-mui.css` to your `src` folder, then include it in `index.tsx`:
+
+```
+import "voice-form-theme-mui.css";
+```
+
+Add a Voice form component in the `main` block of your `App.tsx`.
+
+```
+<VoiceInput label="From" entityName="from" intent="book" />
 ```
