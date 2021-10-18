@@ -1,5 +1,5 @@
 {
-  "name": "@speechly/voice-form-elements",
+  "name": "@speechly/react-voice-forms",
   "version": "1.0.0",
   "description": "Speechly voice form components for React",
   "license": "MIT",

@@ -5,8 +5,8 @@ specifiers:
   '@rush-temp/ecommerce-checkout': file:./projects/ecommerce-checkout.tgz
   '@rush-temp/fast-food-demo': file:./projects/fast-food-demo.tgz
   '@rush-temp/flight-booking-demo': file:./projects/flight-booking-demo.tgz
+  '@rush-temp/react-voice-forms': file:./projects/react-voice-forms.tgz
   '@rush-temp/speech-to-text': file:./projects/speech-to-text.tgz
-  '@rush-temp/voice-form-elements': file:./projects/voice-form-elements.tgz
   '@rush-temp/voice-picking-demo': file:./projects/voice-picking-demo.tgz
   '@speechly/react-client': ^0.0.21
   '@testing-library/jest-dom': ^4.2.4
@@ -21,15 +21,16 @@ specifiers:
   source-map-explorer: ^2.5.2
   ts-loader: ^8.0.4
   tsc-watch: ^4.2.9
-  typedoc: ~0.22.6
+  typedoc: ^0.22.6
+  typedoc-plugin-markdown: ^3.11.3
 
 dependencies:
   '@rush-temp/all-demos': file:projects/all-demos.tgz
   '@rush-temp/ecommerce-checkout': file:projects/ecommerce-checkout.tgz
   '@rush-temp/fast-food-demo': file:projects/fast-food-demo.tgz
   '@rush-temp/flight-booking-demo': file:projects/flight-booking-demo.tgz
+  '@rush-temp/react-voice-forms': file:projects/react-voice-forms.tgz
   '@rush-temp/speech-to-text': file:projects/speech-to-text.tgz
-  '@rush-temp/voice-form-elements': file:projects/voice-form-elements.tgz
   '@rush-temp/voice-picking-demo': file:projects/voice-picking-demo.tgz
   '@speechly/react-client': 0.0.21_react@17.0.2
   '@testing-library/jest-dom': 4.2.4
@@ -45,6 +46,7 @@ dependencies:
   ts-loader: 8.3.0
   tsc-watch: 4.5.0
   typedoc: 0.22.6
+  typedoc-plugin-markdown: 3.11.3_typedoc@0.22.6
 
 packages:
 
@@ -11829,7 +11831,7 @@ packages:
       typedoc: '>=0.22.0'
     dependencies:
       handlebars: 4.7.7
-      typedoc: 0.22.6_typescript@4.1.5
+      typedoc: 0.22.6
     dev: false
 
   /typedoc/0.22.6:
@@ -12736,7 +12738,7 @@ packages:
     dev: false
 
   file:projects/ecommerce-checkout.tgz:
-    resolution: {integrity: sha512-qq8/nsqfZEJDlSQeiIdQYhVLpf98FdiwIJwqKZ+Vk8KGCk7npfcK9Q3KxfOUjKtpIBm1xTpooC/uX4tWHn0gVA==, tarball: file:projects/ecommerce-checkout.tgz}
+    resolution: {integrity: sha512-S99Xah3e0OEZbvGQRSLq5ZS78OkSjxHB+XlD+bCQtty5XOI9TNCFFsPO9xQNYh+Dm31q6gl3rlz8MC7Dffy/4g==, tarball: file:projects/ecommerce-checkout.tgz}
     name: '@rush-temp/ecommerce-checkout'
     version: 0.0.0
     dependencies:
@@ -12813,7 +12815,7 @@ packages:
     dev: false
 
   file:projects/flight-booking-demo.tgz:
-    resolution: {integrity: sha512-BC/TfWF2VsyNovW7Z/zpTZiQR9upBiVzFFU2bimP2InzZLkLoZ7geD/ZyBxf8w0I/TyUyJ123RyGl8pIul7dtQ==, tarball: file:projects/flight-booking-demo.tgz}
+    resolution: {integrity: sha512-x1a5AaxhKZIHfNu9Exh9h6RieLCdm5OPJTfRjjwP+UYzU1K3SFLYen3bLpCDxxY2x4IbY+CJ4b4v996iPDUzUg==, tarball: file:projects/flight-booking-demo.tgz}
     name: '@rush-temp/flight-booking-demo'
     version: 0.0.0
     dependencies:
@@ -12849,6 +12851,23 @@ packages:
       - webpack-command
       - webpack-hot-middleware
       - webpack-plugin-serve
+    dev: false
+
+  file:projects/react-voice-forms.tgz:
+    resolution: {integrity: sha512-y0WQTVBM8J0uIMjFST0i9t7UOzJ5GGkEvzI8mKhdOPp01ACIswMa5H+Ap9ITxsssMiFUSioOITjd1g77tjWdLw==, tarball: file:projects/react-voice-forms.tgz}
+    name: '@rush-temp/react-voice-forms'
+    version: 0.0.0
+    dependencies:
+      '@speechly/react-client': 0.0.21_react@17.0.2
+      '@types/react': 16.14.15
+      react: 17.0.2
+      ts-loader: 8.3.0_typescript@4.1.5
+      tsc-watch: 4.5.0_typescript@4.1.5
+      typedoc: 0.22.6_typescript@4.1.5
+      typedoc-plugin-markdown: 3.11.3_typedoc@0.22.6
+      typescript: 4.1.5
+    transitivePeerDependencies:
+      - webpack
     dev: false
 
   file:projects/speech-to-text.tgz:
@@ -12887,23 +12906,6 @@ packages:
       - webpack-command
       - webpack-hot-middleware
       - webpack-plugin-serve
-    dev: false
-
-  file:projects/voice-form-elements.tgz:
-    resolution: {integrity: sha512-g3ebfiV0zV44mHBAhtFOWs8D5pGePzNFI221n+xs2QUHfuBte9yQ1QskZbLT/3WJuw37l+sOxzBvpkLeP1UUcw==, tarball: file:projects/voice-form-elements.tgz}
-    name: '@rush-temp/voice-form-elements'
-    version: 0.0.0
-    dependencies:
-      '@speechly/react-client': 0.0.21_react@17.0.2
-      '@types/react': 16.14.15
-      react: 17.0.2
-      ts-loader: 8.3.0_typescript@4.1.5
-      tsc-watch: 4.5.0_typescript@4.1.5
-      typedoc: 0.22.6_typescript@4.1.5
-      typedoc-plugin-markdown: 3.11.3_typedoc@0.22.6
-      typescript: 4.1.5
-    transitivePeerDependencies:
-      - webpack
     dev: false
 
   file:projects/voice-picking-demo.tgz:

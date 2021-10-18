@@ -1,4 +1,4 @@
-import { VoiceInput, VoiceSelect } from '@speechly/voice-form-elements';
+import { VoiceInput, VoiceSelect } from '@speechly/react-voice-forms';
 import countries from '../countries.json';
 
 const CheckoutForm = () => {

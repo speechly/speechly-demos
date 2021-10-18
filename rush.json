@@ -390,8 +390,8 @@
    */
   "projects": [
     {
-      "packageName": "@speechly/voice-form-elements",
-      "projectFolder": "libraries/voice-form-elements"
+      "packageName": "@speechly/react-voice-forms",
+      "projectFolder": "libraries/react-voice-forms"
     },
     {
       "packageName": "ecommerce-checkout",

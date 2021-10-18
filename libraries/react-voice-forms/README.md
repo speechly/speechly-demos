@@ -2,10 +2,10 @@
 
 ### Using Voice form components
 
-Add `@speechly/voice-form-elements` dependency to the project:
+Add `@speechly/react-voice-forms` dependency to the project:
 
 ```
-npm i @speechly/voice-form-elements
+npm i @speechly/react-voice-forms
 ```
 
 Include the components:
@@ -17,7 +17,7 @@ import {
   VoiceInput,
   VoiceSelect,
   VoiceToggle,
-} from '@speechly/voice-form-elements';
+} from '@speechly/react-voice-forms';
 ```
 
 Place the form components inside your `SpeechProvider` block:

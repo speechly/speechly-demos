@@ -64,10 +64,10 @@ To compile the new demo along with other project, add the following lines to "pr
 
 ### Using Voice form components
 
-Add `@speechly/voice-form-elements` dependency to the project:
+Add `@speechly/react-voice-forms` dependency to the project:
 
 ```
-rush add --package @speechly/voice-form-elements
+rush add --package @speechly/react-voice-forms
 ```
 
 Include the components:
@@ -79,14 +79,14 @@ import {
   VoiceInput,
   VoiceSelect,
   VoiceToggle,
-} from '@speechly/voice-form-elements';
+} from '@speechly/react-voice-forms';
 ```
 
 Place the form components inside your `SpeechProvider` block:
 
 ```
 <SpeechProvider appId="YOUR_APP_ID_FROM_SPEECHLY_DASHBOARD">
-  <VoiceInput label="From" changeOnEntityType="from" intent="book" />
+  <VoiceInput label="From" changeOnIntent="book" changeOnEntityType="from" />
 </SpeechProvider>
 ```
 
