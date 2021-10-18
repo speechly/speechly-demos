@@ -2,7 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSpeechContext, Word } from "@speechly/react-client";
 import { formatEntities } from "../utils"
 
-type Props = {
+/**
+ * Properties for VoiceSelect component.
+ *
+ * @public
+ */
+
+export type VoiceSelectProps = {
   label: string
   intent: string
   options: string[]
@@ -17,7 +23,7 @@ type Props = {
   onFinal?: () => void
 }
 
-export const VoiceSelect = ({ label, intent, options, displayNames, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
+export const VoiceSelect = ({ label, intent, options, displayNames, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceSelectProps) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 

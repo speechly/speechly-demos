@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSpeechContext, Word } from "@speechly/react-client";
 import { formatEntities } from "../utils"
 
-type Props = {
+export type VoiceToggleProps = {
   /**
    * Intent to react to.
    */
@@ -33,7 +33,7 @@ type Props = {
   onFinal?: () => void
 }
 
-export const VoiceToggle = ({ intent, options, displayNames, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
+export const VoiceToggle = ({ intent, options, displayNames, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceToggleProps) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
