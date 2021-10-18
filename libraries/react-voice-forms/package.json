@@ -2,7 +2,6 @@
   "name": "@speechly/react-voice-forms",
   "version": "1.0.4",
   "description": "Speechly voice form components for React",
-  "private": true,
   "license": "MIT",
   "author": "Speechly",
   "main": "./dist/index.js",
