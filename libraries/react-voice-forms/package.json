@@ -1,6 +1,6 @@
 {
   "name": "@speechly/react-voice-forms",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Speechly voice form components for React",
   "license": "MIT",
   "author": "Speechly",
@@ -22,5 +22,8 @@
     "build": "npx tsc",
     "docs": "npx typedoc --readme none --excludeExternals --excludePrivate --excludeProtected --out ./docs/ --plugin typedoc-plugin-markdown --entryPointStrategy expand ./src/",
     "test": "exit 0"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  }  
 }
