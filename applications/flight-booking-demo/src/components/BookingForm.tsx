@@ -9,22 +9,22 @@ const BookingForm = () => {
   return (
     <form>
       <div className="group">
-        <VoiceToggle intent="book" initValue={tripOptions[0]} options={tripOptions} displayNames={tripDisplayNames}/>
+        <VoiceToggle options={tripOptions} changeOnEntityType={tripOptions} displayNames={tripDisplayNames} />
       </div>
       <div className="group">
-        <VoiceInput label="From" entityName="from" intent="book" />
-        <VoiceInput label="To" entityName="to" intent="book" />
+        <VoiceInput label="From" changeOnEntityType="from" changeOnIntent="book" />
+        <VoiceInput label="To" changeOnEntityType="to" changeOnIntent="book" />
       </div>
       <div className="group">
-        <VoiceDatePicker label="Departure" entityName="depart" intent="book" />
-        <VoiceDatePicker label="Return" entityName="return" intent="book" />
+        <VoiceDatePicker label="Departure" changeOnEntityType="depart" changeOnIntent="book" />
+        <VoiceDatePicker label="Return" changeOnEntityType="return" changeOnIntent="book" />
       </div>
       <div className="group">
-        <VoiceSelect label="Passengers" intent="book" entityName='passengers' initValue={passengersOptions[0]} options={passengersOptions} />
-        <VoiceSelect label="Class" intent="book" entityName='class' initValue={classOptions[0]} options={classOptions} />
+        <VoiceSelect label="Passengers" changeOnIntent="book" changeOnEntityType='passengers' defaultValue={passengersOptions[0]} options={passengersOptions} />
+        <VoiceSelect label="Class" changeOnIntent="book" changeOnEntityType='class' defaultValue={classOptions[0]} options={classOptions} />
       </div>
       <div className="group">
-        <VoiceCheckbox label="DIRECT ONLY" intent="book" entityName='direct' initValue={false} />
+        <VoiceCheckbox label="DIRECT ONLY" changeOnIntent="book" changeOnEntityType='direct' defaultValue={false} />
       </div>
     </form>
   )
