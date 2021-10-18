@@ -1,53 +1,101 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSpeechContext, Word } from "@speechly/react-client";
-import { formatEntities } from "../utils"
 
-type Props = {
+export type VoiceToggleProps = {
   /**
-   * Intent to react to.
-   */
-  intent: string
-  /**
-   * Entity name to react to. Options should then be the entity values.
-   * If undefined, options should be entity names.
-   */
-  entityName?: string
-  /**
-   * Ids for options that should match entity values for entityName.
-   * If entityName is left undefined, options are an array for entity names.
+   * Array of option id strings. The selected id is returned by onChange.
+   * By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value.
    */
   options: string[]
+  
   /**
-   * Array of human-fiendly display names for each options
+   * Array of human-fiendly display names for each option
    */
   displayNames?: string[]
-  focused?: boolean
+  
   /**
-   * Initially selected option id
+   * The current option. Specifying the value controls the components's state so it makes sense to provide an onChange handler.
    */
-  initValue?: string
+  value?: string
+
+  /**
+    * Initially selected option. Has no effect if `value` is specified.
+    */
+  defaultValue?: string
+ 
+  /**
+   * Specifies how this component reacts to intents in SpeechSegments.
+   * Undefined value reacts to any intent.
+   * String value (intent name) reacts to the single specified intent, e.g. "book"
+   * Array of strings (intents), one for each option, enables changing this widget's value to the option matching the intent.
+   * If an undefined or string value is provided, changeOnEntityType or changeOnEntityValue must specify an array value for the component to react to speech input.
+   */
+  changeOnIntent?: string | string []
+
+  /**
+   * Specifies how this component reacts to entity types in SpeechSegments.
+   * Undefined value reacts to any entity type.
+   * Array of strings (entity types), one for each option, enables changing this widget's value to the option matching entity type.
+   * If an undefined or string value is provided changeOnEntityValue must specify an array value for the component to react to speech input.
+   */
+  changeOnEntityType?: string | string []
+
+  /**
+   * Specifies how this component reacts to entity values in SpeechSegments.
+   * Array of strings (entity values), one for each option, enables changing this widget's value to the option matching entity value.
+   * By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value.
+   */
+  changeOnEntityValue?: string []
+
+  /**
+   * @private
+   */
+  focused?: boolean
+
+  /**
+   * @private
+   */
   handledAudioContext?: string
+
+  /**
+   * @param value The option for the selected item. 
+   * Triggered upon GUI or voice manipulation of the widget.
+   */
+
   onChange?: (value: string) => void
+  /**
+   * @private
+   */
+
   onBlur?: () => void
+  /**
+   * @private
+   */
+
   onFocus?: () => void
+
+  /**
+   * @private
+   */
   onFinal?: () => void
 }
 
-export const VoiceToggle = ({ intent, options, displayNames, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
+export const VoiceToggle = ({ changeOnIntent, changeOnEntityType, changeOnEntityValue, options, displayNames, value, defaultValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceToggleProps) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
-  const optionsInUpperCase = options.map((option: string) => option.toUpperCase())
+  const [ matchesInUpperCase, setMatchesInUpperCase ] = useState<string[]>([]);
 
   const [ _focused, _setFocused ] = useState(focused)
-  const [ value, setValue ] = useState(initValue ?? '')
+  const [ _value, _setValue ] = useState(defaultValue ?? options[0])
   const { segment } = useSpeechContext()
 
-  useEffect(() => {
+  const _onChange = (newValue: string) => {
+    _setValue(newValue)
     if (onChange) {
-      onChange(value)
+      onChange(newValue)
     }
-  }, [value])
+  }
 
   const _onFocus = () => {
     _setFocused(true)
@@ -74,26 +122,46 @@ export const VoiceToggle = ({ intent, options, displayNames, entityName, initVal
   }, [focused])
 
   useEffect(() => {
+    var effectiveOptions;
+    if (Array.isArray(changeOnIntent)) {
+      effectiveOptions = changeOnIntent
+    }
+    else if (Array.isArray(changeOnEntityType)) {
+      effectiveOptions = changeOnEntityType
+    }
+    else if (Array.isArray(changeOnEntityValue)) {
+      effectiveOptions = changeOnEntityValue
+    }
+    else {
+      effectiveOptions = options
+    }
+    setMatchesInUpperCase(effectiveOptions.map((option: string) => option.toUpperCase()))
+  }, [options, changeOnIntent, changeOnEntityType, changeOnEntityValue])
+
+  useEffect(() => {
     if (segment && segment.contextId !== handledAudioContext) {
-      switch (segment?.intent.intent) {
-        case intent:
-          let entities = formatEntities(segment.entities)
-          if (!entityName) {
-            // Match by entity name instead of value, if an array provided
-            Object.keys(entities).forEach(candidateName => {
-              const index = optionsInUpperCase.findIndex((option: string) => option === candidateName.toUpperCase())
-              if (index >= 0) {
-                setValue(options[index])
-              }
-            })
-          } else if (entities[entityName] !== undefined) {
-            const index = optionsInUpperCase.findIndex((option: string) => option === (entityName as string).toUpperCase())
-            if (index >= 0) {
-              setValue(options[index])
-            }
+      var candidates;
+      if (Array.isArray(changeOnIntent)) {
+        candidates = [segment.intent.intent];
+      } else {
+        // React if no intent defined; or a specified intent is defined
+        if (!changeOnIntent || segment.intent.intent === changeOnIntent) {
+          if (Array.isArray(changeOnEntityType)) {
+            candidates = segment.entities.map(entity => entity.type);
+          } else {
+            candidates = segment.entities.filter(entity => entity.type === changeOnEntityType).map(entity => entity.value);
           }
-          break
-        default:
+        }
+      }
+
+      if (candidates && candidates.length > 0) {
+        // Match by each candidate against the match values
+        candidates.forEach(candidateName => {
+          const index = matchesInUpperCase.findIndex((option: string) => option === candidateName.toUpperCase())
+          if (index >= 0) {
+            _setValue(options[index])
+          }
+        })
       }
 
       if (segment?.isFinal) {
@@ -107,15 +175,11 @@ export const VoiceToggle = ({ intent, options, displayNames, entityName, initVal
     }
   }, [segment])
 
-  const selectOption = (value: string) => {
-    setValue(value)
-  }
-
   return (
     <div ref={inputEl} className="widgetGroup toggle">
       {
         options.map((optionValue: string, index: number): React.ReactNode =>
-          <button key={optionValue} type="button" className={value === optionValue ? 'active' : ''} onClick={() => selectOption(optionValue)}>
+          <button key={optionValue} type="button" className={(value || _value) === optionValue ? 'active' : ''} onClick={() => _onChange(optionValue)}>
             {displayNames && displayNames[index] ? displayNames[index] : optionValue}
           </button>)
       }

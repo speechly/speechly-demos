@@ -1,4 +1,5 @@
 import { VoiceDatePicker, VoiceCheckbox, VoiceInput, VoiceSelect, VoiceToggle } from '@speechly/voice-form-elements';
+import { useState } from 'react';
 
 const passengersOptions = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 const classOptions = ['Economy', 'Business', 'First']
@@ -9,22 +10,22 @@ const BookingForm = () => {
   return (
     <form>
       <div className="group">
-        <VoiceToggle intent="book" initValue={tripOptions[0]} options={tripOptions} displayNames={tripDisplayNames}/>
+        <VoiceToggle options={tripOptions} changeOnEntityType={tripOptions} displayNames={tripDisplayNames} />
       </div>
       <div className="group">
-        <VoiceInput label="From" entityName="from" intent="book" />
-        <VoiceInput label="To" entityName="to" intent="book" />
+        <VoiceInput label="From" changeOnEntityType="from" />
+        <VoiceInput label="To" changeOnEntityType="to" />
       </div>
       <div className="group">
-        <VoiceDatePicker label="Departure" entityName="depart" intent="book" />
-        <VoiceDatePicker label="Return" entityName="return" intent="book" />
+        <VoiceDatePicker label="Departure" changeOnEntityType="depart" />
+        <VoiceDatePicker label="Return" changeOnEntityType="return" />
       </div>
       <div className="group">
-        <VoiceSelect label="Passengers" intent="book" entityName='passengers' initValue={passengersOptions[0]} options={passengersOptions} />
-        <VoiceSelect label="Class" intent="book" entityName='class' initValue={classOptions[0]} options={classOptions} />
+        <VoiceSelect label="Passengers" options={passengersOptions} changeOnEntityType='passengers' />
+        <VoiceSelect label="Class" options={classOptions} changeOnEntityType='class' />
       </div>
       <div className="group">
-        <VoiceCheckbox label="DIRECT ONLY" intent="book" entityName='direct' initValue={false} />
+        <VoiceCheckbox label="DIRECT ONLY" changeOnEntityType='direct' defaultValue={false} />
       </div>
     </form>
   )

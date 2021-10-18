@@ -7,26 +7,26 @@ const CheckoutForm = () => {
       <h2>Speechly Express Checkout</h2>
       <h3>Recipient Details</h3>
       <div className="group">
-        <VoiceInput label="Name" entityName="name" intent="fill" />
-        <VoiceInput label="Phone" entityName="phone" intent="fill" />
-        <VoiceInput label="Email" entityName="email" intent="fill" />
+        <VoiceInput label="Name" changeOnEntityType="name" changeOnIntent="fill" />
+        <VoiceInput label="Phone" changeOnEntityType="phone" changeOnIntent="fill" />
+        <VoiceInput label="Email" changeOnEntityType="email" changeOnIntent="fill" />
       </div>
       <h3 className='headerTopGap'>Shipping Details</h3>
       <div className="group">
-        <VoiceInput label="Address" entityName="address" intent="fill" />
-        <VoiceInput label="City" entityName="city" intent="fill" />
+        <VoiceInput label="Address" changeOnEntityType="address" changeOnIntent="fill" />
+        <VoiceInput label="City" changeOnEntityType="city" changeOnIntent="fill" />
         <div className='multiFieldRow'>
-          <VoiceInput label="Zip" entityName="zip" intent="fill" />
-          <VoiceSelect label="Country" intent="fill" entityName='country' initValue="Finland" options={countries} />
+          <VoiceInput label="Zip" changeOnEntityType="zip" changeOnIntent="fill" />
+          <VoiceSelect label="Country" changeOnIntent="fill" changeOnEntityType='country' defaultValue="Finland" options={countries} />
         </div>
       </div>
       <h3 className='headerTopGap'>Payment Details</h3>
       <div className="group">
-        <VoiceInput label="Name on card" entityName="card_name" intent="fill" />
-        <VoiceInput label="Credit card number" entityName="card_number" intent="fill" />
+        <VoiceInput label="Name on card" changeOnEntityType="card_name" changeOnIntent="fill" />
+        <VoiceInput label="Credit card number" changeOnEntityType="card_number" changeOnIntent="fill" />
         <div className='multiFieldRow'>
-          <VoiceInput label="CVC" entityName="card_cvc" intent="fill" />
-          <VoiceInput label="Expiration date" entityName="card_expiration" intent="fill" />
+          <VoiceInput label="CVC" changeOnEntityType="card_cvc" changeOnIntent="fill" />
+          <VoiceInput label="Expiration date" changeOnEntityType="card_expiration" changeOnIntent="fill" />
         </div>
       </div>
       <div className="group headerTopGap">

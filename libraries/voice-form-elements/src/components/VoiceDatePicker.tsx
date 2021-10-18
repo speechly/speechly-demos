@@ -4,11 +4,65 @@ import { Calendar } from "./Calendar"
 import { CalendarIcon } from "./CalendarIcon"
 import { formatEntities } from "../utils"
 
+export type VoiceDatePickerProps = {
+  /**
+   * The label displayed on the component. For speech use, the label should match the keywords in the phrase used to control the widget:
+   * e.g. component with label "Passengers" should be configured to react to phrases like "3 passegers"
+   */
+  label: string
+  /**
+   * The current value. Specifying the value controls the components's state so it makes sense to provide an onChange handler.
+   */
+  value?: Date
+  /**
+   * Initially selected option. Has no effect if `value` is specified.
+   */
+  defaultValue?: Date
+   /**
+   * Specifies how this component reacts to intents in SpeechSegments.
+   * Undefined value reacts to any intent.
+   * String value (intent name) reacts to the single specified intent, e.g. "book"
+   */
+  changeOnIntent?: string
+   /**
+    * Specifies how this component reacts to entity types in SpeechSegments.
+    * Undefined value reacts to any entity type.
+    * Array of strings (entity types), one for each option, enables changing this widget's value to the option matching entity type.
+    */
+  changeOnEntityType: string
+  /**
+   * @private
+   */
+  focused?: boolean
+   /**
+    * @private
+    */
+  handledAudioContext?: string
+   /**
+   * @param value The selected date
+   * Triggered upon GUI or voice manipulation of the widget.
+   */
+  onChange?: (value: Date) => void
+   /**
+    * @private
+    */
+  onBlur?: () => void
+   /**
+    * @private
+    */
+  onFocus?: () => void
+   /**
+    * @private
+    */
+  onFinal?: () => void
+}
+
+
 type Props = {
   label: string
-  intent: string
+  changeOnIntent: string
   focused?: boolean
-  entityName?: string
+  changeOnEntityType?: string
   initDate?: string
   handledAudioContext?: string
   onChange?: (value: Date) => void
@@ -17,25 +71,39 @@ type Props = {
   onFinal?: () => void
 }
 
-export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
+export const VoiceDatePicker = ({ label, value, defaultValue, changeOnIntent, changeOnEntityType, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceDatePickerProps) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
   const [ _showCalendar, _setShowCalendar ] = useState(false)
   const [ _focused, _setFocused ] = useState(focused)
-  const [ date, setDate ] = useState(initDate ? new Date(Date.parse(initDate)) : undefined)
-  const [ value, setValue ] = useState('')
+  const [ _date, _setDate ] = useState(defaultValue)
+  const [ _value, _setValue ] = useState(defaultValue ? dateToString(defaultValue) : '')
   const { segment } = useSpeechContext()
 
-  useEffect(() => {
-    if (date) {
-      setValue(`${(date.getDate()).toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`)
+  const _onChange = (newValue: string) => {
+    _setValue(newValue)
+
+    const newDate = stringToDate(newValue)
+    if (newDate) {
+      _setDate(newDate)
       if (onChange) {
-        onChange(date)
+        onChange(newDate)
       }
     }
+  }
 
-  }, [date])
+  function dateToString(date: Date): string {
+    return `${(date.getDate()).toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`
+  }
+
+  function stringToDate(value: string): Date | null {
+    const regex = /([\d]+)\D([\d]+)\D(\d\d\d\d)/
+    const matches = value.match(regex)
+    if (!matches) return null
+    const [all, day, month, year] = matches;
+    return new Date(`${month} ${day} ${year}`)
+  }
   
   const _onFocus = () => {
     _setFocused(true)
@@ -56,6 +124,13 @@ export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange,
   }
 
   useEffect(() => {
+    if (value) {
+      _setValue(dateToString(value))
+      _setDate(value)
+    }
+  }, [value])
+
+  useEffect(() => {
     if (focused && !_focused && inputEl != null && inputEl.current != null) {
       inputEl.current.focus()
     }
@@ -63,17 +138,14 @@ export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange,
 
   useEffect(() => {
     if (segment && segment.contextId !== handledAudioContext) {
-      switch (segment?.intent.intent) {
-        case intent:
-          if (entityName !== undefined) {
-            let entities = formatEntities(segment.entities)
-            if (entities[entityName] !== undefined) {
-              setDate(new Date(Date.parse(entities[entityName])))
-            }
-          }
-          break
-        default:
+      // React if no intent defined; or a specified intent is defined
+      if (!changeOnIntent || segment.intent.intent === changeOnIntent) {
+        let entities = formatEntities(segment.entities)
+        if (entities[changeOnEntityType] !== undefined) {
+          _onChange(dateToString(new Date(Date.parse(entities[changeOnEntityType]))))
+        }
       }
+
       if (segment?.isFinal) {
         if (inputEl != null && inputEl.current != null) {
           inputEl.current.blur()
@@ -85,21 +157,6 @@ export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange,
     }
   }, [segment])
 
-  const onInputChange = (event: any) => {
-    const newValue = event.target.value
-    setValue(newValue)
-
-    if (newValue && newValue.length === 10) {
-      try {
-        const newDate = Date.parse(newValue)
-        console.log(newDate)
-        if (!isNaN(newDate)) {
-          setDate(new Date(newDate))
-        }
-      } catch (e) {}
-    }
-  }
-
   const toggleCalendar = (e: React.FormEvent) => {
     e.preventDefault()
     _setShowCalendar(!_showCalendar)
@@ -107,7 +164,7 @@ export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange,
 
   const onDatePick = (pickedDate: Date) => {
     _setShowCalendar(!_showCalendar)
-    setDate(pickedDate)
+    _onChange(dateToString(pickedDate))
   }
 
   return (
@@ -116,9 +173,9 @@ export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange,
       <input
         ref={inputEl}
         type="text"
-        name={entityName}
-        value={value}
-        onChange={onInputChange}
+        name={changeOnEntityType}
+        value={_value}
+        onChange={(event: any) => { _onChange(event.target.value) }}
         onBlur={_onBlur}
         onFocus={_onFocus}
       />
@@ -127,7 +184,7 @@ export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange,
         <CalendarIcon />
       </button>
 
-      { _showCalendar && <Calendar date={date} onDatePick={onDatePick} /> }
+      { _showCalendar && <Calendar date={_date} onDatePick={onDatePick} /> }
     </div>
   );
 }
