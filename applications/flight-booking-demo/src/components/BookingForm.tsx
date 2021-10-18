@@ -21,8 +21,8 @@ const BookingForm = () => {
         <VoiceDatePicker label="Return" changeOnEntityType="return" changeOnIntent="book" />
       </div>
       <div className="group">
-        <VoiceSelect label="Passengers" changeOnIntent="book" changeOnEntityType='passengers' defaultValue={passengersOptions[0]} options={passengersOptions} />
-        <VoiceSelect label="Class" changeOnIntent="book" changeOnEntityType='class' defaultValue={classOptions[0]} options={classOptions} />
+        <VoiceSelect label="Passengers" options={passengersOptions} changeOnEntityType='passengers' />
+        <VoiceSelect label="Class" options={classOptions} changeOnEntityType='class' />
       </div>
       <div className="group">
         <VoiceCheckbox label="DIRECT ONLY" changeOnIntent="book" changeOnEntityType='direct' defaultValue={false} />

@@ -3,6 +3,10 @@ import { useSpeechContext, Word } from "@speechly/react-client";
 import { formatEntities } from "../utils"
 
 type VoiceInputProps = {
+  /**
+   * The label displayed on the component. For speech use, the label should match the keywords in the phrase used to control the widget:
+   * e.g. component with label "Passengers" should be configured to react to phrases like "3 passegers"
+   */
   label: string
   /**
    * The current value. Specifying the value controls the components's state so it makes sense to provide an onChange handler.

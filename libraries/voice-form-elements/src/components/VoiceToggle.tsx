@@ -3,6 +3,27 @@ import { useSpeechContext, Word } from "@speechly/react-client";
 
 export type VoiceToggleProps = {
   /**
+   * Array of option id strings. The selected id is returned by onChange.
+   * By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value.
+   */
+  options: string[]
+  
+  /**
+   * Array of human-fiendly display names for each option
+   */
+  displayNames?: string[]
+  
+  /**
+   * The current option. Specifying the value controls the components's state so it makes sense to provide an onChange handler.
+   */
+  value?: string
+
+  /**
+    * Initially selected option. Has no effect if `value` is specified.
+    */
+  defaultValue?: string
+ 
+  /**
    * Specifies how this component reacts to intents in SpeechSegments.
    * Undefined value reacts to any intent.
    * String value (intent name) reacts to the single specified intent, e.g. "book"
@@ -10,6 +31,7 @@ export type VoiceToggleProps = {
    * If an undefined or string value is provided, changeOnEntityType or changeOnEntityValue must specify an array value for the component to react to speech input.
    */
   changeOnIntent?: string | string []
+
   /**
    * Specifies how this component reacts to entity types in SpeechSegments.
    * Undefined value reacts to any entity type.
@@ -17,50 +39,41 @@ export type VoiceToggleProps = {
    * If an undefined or string value is provided changeOnEntityValue must specify an array value for the component to react to speech input.
    */
   changeOnEntityType?: string | string []
+
   /**
    * Specifies how this component reacts to entity values in SpeechSegments.
    * Array of strings (entity values), one for each option, enables changing this widget's value to the option matching entity value.
    * By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value.
    */
   changeOnEntityValue?: string []
-   /**
-   * Array of option id strings. The selected id is returned by onChange.
-   * By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value.
-   */
-  options: string[]
-  /**
-   * Array of human-fiendly display names for each option
-   */
-  displayNames?: string[]
-  /**
-   * The current value. Specifying the value controls the components's state so it makes sense to provide an onChange handler.
-   */
-  value?: string
-  /**
-   * Initially selected option. Has no effect if `value` is specified.
-   */
-  defaultValue?: string
+
   /**
    * @private
    */
   focused?: boolean
+
   /**
    * @private
    */
   handledAudioContext?: string
+
   /**
    * @param value The option for the selected item. 
    * Triggered upon GUI or voice manipulation of the widget.
    */
+
   onChange?: (value: string) => void
   /**
    * @private
    */
+
   onBlur?: () => void
   /**
    * @private
    */
+
   onFocus?: () => void
+
   /**
    * @private
    */
