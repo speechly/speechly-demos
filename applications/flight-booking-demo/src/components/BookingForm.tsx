@@ -17,15 +17,15 @@ const BookingForm = () => {
         <VoiceInput label="To" changeOnEntityType="to" />
       </div>
       <div className="group">
-        <VoiceDatePicker label="Departure" changeOnEntityType="depart" changeOnIntent="book" />
-        <VoiceDatePicker label="Return" changeOnEntityType="return" changeOnIntent="book" />
+        <VoiceDatePicker label="Departure" changeOnEntityType="depart" />
+        <VoiceDatePicker label="Return" changeOnEntityType="return" />
       </div>
       <div className="group">
         <VoiceSelect label="Passengers" options={passengersOptions} changeOnEntityType='passengers' />
         <VoiceSelect label="Class" options={classOptions} changeOnEntityType='class' />
       </div>
       <div className="group">
-        <VoiceCheckbox label="DIRECT ONLY" changeOnIntent="book" changeOnEntityType='direct' defaultValue={false} />
+        <VoiceCheckbox label="DIRECT ONLY" changeOnEntityType='direct' defaultValue={false} />
       </div>
     </form>
   )
