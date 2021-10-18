@@ -4,10 +4,10 @@ import { formatEntities } from "../utils"
 
 type Props = {
   label: string
-  intent: string
+  changeOnIntent: string
   focused?: boolean
-  entityName?: string
-  initValue?: string
+  changeOnEntityType?: string
+  defaultValue?: string
   handledAudioContext?: string
   onChange?: (value: string) => void
   onBlur?: () => void
@@ -15,12 +15,12 @@ type Props = {
   onFinal?: () => void
 }
 
-export const VoiceInput = ({ label, intent, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
+export const VoiceInput = ({ label, changeOnIntent, changeOnEntityType, defaultValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
   const [ _focused, _setFocused ] = useState(focused)
-  const [ value, setValue ] = useState(initValue ?? '')
+  const [ value, setValue ] = useState(defaultValue ?? '')
   const { segment } = useSpeechContext()
 
   useEffect(() => {
@@ -56,11 +56,11 @@ export const VoiceInput = ({ label, intent, entityName, initValue, onChange, onF
   useEffect(() => {
     if (segment && segment.contextId !== handledAudioContext) {
       switch (segment?.intent.intent) {
-        case intent:
-          if (entityName !== undefined) {
+        case changeOnIntent:
+          if (changeOnEntityType !== undefined) {
             let entities = formatEntities(segment.entities)
-            if (entities[entityName] !== undefined) {
-              setValue(entities[entityName])
+            if (entities[changeOnEntityType] !== undefined) {
+              setValue(entities[changeOnEntityType])
             }
           } else {
             if (focused) {
@@ -88,7 +88,7 @@ export const VoiceInput = ({ label, intent, entityName, initValue, onChange, onF
       <input
         ref={inputEl}
         type="text"
-        name={entityName}
+        name={changeOnEntityType}
         value={value}
         onChange={(event: any) => { setValue(event.target.value) }}
         onBlur={_onBlur}

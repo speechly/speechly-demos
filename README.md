@@ -86,7 +86,7 @@ Place the form components inside your `SpeechProvider` block:
 
 ```
 <SpeechProvider appId="YOUR_APP_ID_FROM_SPEECHLY_DASHBOARD">
-  <VoiceInput label="From" entityName="from" intent="book" />
+  <VoiceInput label="From" changeOnEntityType="from" intent="book" />
 </SpeechProvider>
 ```
 
@@ -96,10 +96,4 @@ Add a `voice-form-theme-mui.css` to your `src` folder, then include it in `index
 
 ```
 import "voice-form-theme-mui.css";
-```
-
-Add a Voice form component in the `main` block of your `App.tsx`.
-
-```
-<VoiceInput label="From" entityName="from" intent="book" />
 ```

@@ -10,12 +10,12 @@ import { formatEntities } from "../utils"
 
 export type VoiceSelectProps = {
   label: string
-  intent: string
+  changeOnIntent: string
   options: string[]
   displayNames?: string[]
   focused?: boolean
-  entityName?: string
-  initValue?: string
+  changeOnEntityType?: string
+  defaultValue?: string
   handledAudioContext?: string
   onChange?: (value: string) => void
   onBlur?: () => void
@@ -23,14 +23,14 @@ export type VoiceSelectProps = {
   onFinal?: () => void
 }
 
-export const VoiceSelect = ({ label, intent, options, displayNames, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceSelectProps) => {
+export const VoiceSelect = ({ label, changeOnIntent, options, displayNames, changeOnEntityType, defaultValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceSelectProps) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
   const optionsInUpperCase = options.map((option: string) => option.toUpperCase())
 
   const [ _focused, _setFocused ] = useState(focused)
-  const [ value, setValue ] = useState(initValue ?? '')
+  const [ value, setValue ] = useState(defaultValue ?? '')
   const { segment } = useSpeechContext()
 
   useEffect(() => {
@@ -66,11 +66,11 @@ export const VoiceSelect = ({ label, intent, options, displayNames, entityName, 
   useEffect(() => {
     if (segment && segment.contextId !== handledAudioContext) {
       switch (segment?.intent.intent) {
-        case intent:
-          if (entityName !== undefined) {
+        case changeOnIntent:
+          if (changeOnEntityType !== undefined) {
             let entities = formatEntities(segment.entities)
-            if (entities[entityName] !== undefined) {
-              const index = optionsInUpperCase.findIndex((option: string) => option === entities[entityName].toUpperCase())
+            if (entities[changeOnEntityType] !== undefined) {
+              const index = optionsInUpperCase.findIndex((option: string) => option === entities[changeOnEntityType].toUpperCase())
               if (index >= 0) {
                 setValue(options[index])
               }
@@ -98,7 +98,7 @@ export const VoiceSelect = ({ label, intent, options, displayNames, entityName, 
   return (
     <div ref={inputEl} className="widgetGroup select">
       <label>{ label }</label>
-      <select name={entityName} value={value}
+      <select name={changeOnEntityType} value={value}
               onChange={(event: any) => { setValue(event.target.value) }}
               onBlur={_onBlur}
               onFocus={_onFocus}>

@@ -4,10 +4,10 @@ import { formatEntities } from "../utils"
 
 type Props = {
   label: string
-  intent: string
+  changeOnIntent: string
   focused?: boolean
-  entityName?: string
-  initValue?: boolean
+  changeOnEntityType?: string
+  defaultValue?: boolean
   handledAudioContext?: string
   onChange?: (value: boolean) => void
   onBlur?: () => void
@@ -15,12 +15,12 @@ type Props = {
   onFinal?: () => void
 }
 
-export const VoiceCheckbox = ({ label, intent, entityName, initValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
+export const VoiceCheckbox = ({ label, changeOnIntent, changeOnEntityType, defaultValue, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
   const [ _focused, _setFocused ] = useState(focused)
-  const [ value, setValue ] = useState(initValue ?? false)
+  const [ value, setValue ] = useState(defaultValue ?? false)
   const { segment } = useSpeechContext()
 
   useEffect(() => {
@@ -56,10 +56,10 @@ export const VoiceCheckbox = ({ label, intent, entityName, initValue, onChange, 
   useEffect(() => {
     if (segment && segment.contextId !== handledAudioContext) {
       switch (segment?.intent.intent) {
-        case intent:
-          if (entityName !== undefined) {
+        case changeOnIntent:
+          if (changeOnEntityType !== undefined) {
             let entities = formatEntities(segment.entities)
-            if (entities[entityName] !== undefined) {
+            if (entities[changeOnEntityType] !== undefined) {
               setValue(true)
             }
           }
@@ -80,7 +80,7 @@ export const VoiceCheckbox = ({ label, intent, entityName, initValue, onChange, 
   return (
     <div className="widgetGroup checkbox">
       <input
-          name={entityName}
+          name={changeOnEntityType}
           type="checkbox"
           checked={value}
           onChange={(event: any) => { setValue(event.target.checked) }} />

@@ -6,9 +6,9 @@ import { formatEntities } from "../utils"
 
 type Props = {
   label: string
-  intent: string
+  changeOnIntent: string
   focused?: boolean
-  entityName?: string
+  changeOnEntityType?: string
   initDate?: string
   handledAudioContext?: string
   onChange?: (value: Date) => void
@@ -17,7 +17,7 @@ type Props = {
   onFinal?: () => void
 }
 
-export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
+export const VoiceDatePicker = ({ label, changeOnIntent, changeOnEntityType, initDate, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: Props) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
@@ -64,11 +64,11 @@ export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange,
   useEffect(() => {
     if (segment && segment.contextId !== handledAudioContext) {
       switch (segment?.intent.intent) {
-        case intent:
-          if (entityName !== undefined) {
+        case changeOnIntent:
+          if (changeOnEntityType !== undefined) {
             let entities = formatEntities(segment.entities)
-            if (entities[entityName] !== undefined) {
-              setDate(new Date(Date.parse(entities[entityName])))
+            if (entities[changeOnEntityType] !== undefined) {
+              setDate(new Date(Date.parse(entities[changeOnEntityType])))
             }
           }
           break
@@ -116,7 +116,7 @@ export const VoiceDatePicker = ({ label, intent, entityName, initDate, onChange,
       <input
         ref={inputEl}
         type="text"
-        name={entityName}
+        name={changeOnEntityType}
         value={value}
         onChange={onInputChange}
         onBlur={_onBlur}
