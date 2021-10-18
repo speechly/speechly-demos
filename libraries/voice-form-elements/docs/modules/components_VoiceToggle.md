@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[components/VoiceToggle.tsx:4](https://github.com/speechly/speechly-demos/blob/c564abb/libraries/voice-form-elements/src/components/VoiceToggle.tsx#L4)
+[components/VoiceToggle.tsx:4](https://github.com/speechly/speechly-demos/blob/e3399ce/libraries/voice-form-elements/src/components/VoiceToggle.tsx#L4)
 
 ## Functions
 
@@ -53,4 +53,4 @@
 
 #### Defined in
 
-[components/VoiceToggle.tsx:83](https://github.com/speechly/speechly-demos/blob/c564abb/libraries/voice-form-elements/src/components/VoiceToggle.tsx#L83)
+[components/VoiceToggle.tsx:83](https://github.com/speechly/speechly-demos/blob/e3399ce/libraries/voice-form-elements/src/components/VoiceToggle.tsx#L83)

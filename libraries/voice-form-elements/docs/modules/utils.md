@@ -30,4 +30,4 @@ key value object.
 
 #### Defined in
 
-[utils.ts:12](https://github.com/speechly/speechly-demos/blob/c564abb/libraries/voice-form-elements/src/utils.ts#L12)
+[utils.ts:12](https://github.com/speechly/speechly-demos/blob/e3399ce/libraries/voice-form-elements/src/utils.ts#L12)

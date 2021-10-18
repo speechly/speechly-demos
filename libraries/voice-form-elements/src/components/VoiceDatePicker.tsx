@@ -164,7 +164,6 @@ export const VoiceDatePicker = ({ label, value, defaultValue, changeOnIntent, ch
 
   const onDatePick = (pickedDate: Date) => {
     _setShowCalendar(!_showCalendar)
-    console.log("Picked date", pickedDate)
     _onChange(dateToString(pickedDate))
   }
 
