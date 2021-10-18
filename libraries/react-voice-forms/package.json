@@ -20,6 +20,7 @@
   },
   "scripts": {
     "build": "npx tsc",
-    "docs": "npx typedoc --readme none --excludeExternals --excludePrivate --excludeProtected --out ./docs/ --plugin typedoc-plugin-markdown --entryPointStrategy expand ./src/"
+    "docs": "npx typedoc --readme none --excludeExternals --excludePrivate --excludeProtected --out ./docs/ --plugin typedoc-plugin-markdown --entryPointStrategy expand ./src/",
+    "test": "exit 0"
   }
 }
