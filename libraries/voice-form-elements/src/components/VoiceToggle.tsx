@@ -37,7 +37,7 @@ export type VoiceToggleProps = {
    */
   value?: string
   /**
-   * Initially selected option id
+   * Initially selected option. Has no effect if `value` is specified.
    */
   defaultValue?: string
   /**
@@ -71,7 +71,7 @@ export const VoiceToggle = ({ changeOnIntent, changeOnEntityType, changeOnEntity
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
-  const [ optionsInUpperCase, setOptionsInUpperCase ] = useState<string[]>([]);
+  const [ matchesInUpperCase, setMatchesInUpperCase ] = useState<string[]>([]);
 
   const [ _focused, _setFocused ] = useState(focused)
   const [ _value, _setValue ] = useState(defaultValue ?? options[0])
@@ -122,7 +122,7 @@ export const VoiceToggle = ({ changeOnIntent, changeOnEntityType, changeOnEntity
     else {
       effectiveOptions = options
     }
-    setOptionsInUpperCase(effectiveOptions.map((option: string) => option.toUpperCase()))
+    setMatchesInUpperCase(effectiveOptions.map((option: string) => option.toUpperCase()))
   }, [options, changeOnIntent, changeOnEntityType, changeOnEntityValue])
 
   useEffect(() => {
@@ -130,27 +130,26 @@ export const VoiceToggle = ({ changeOnIntent, changeOnEntityType, changeOnEntity
       var candidates;
       if (Array.isArray(changeOnIntent)) {
         candidates = [segment.intent.intent];
-      }
-      else if (Array.isArray(changeOnEntityType)) {
-        // Bail out if we've specified an intent which doesn't match
-        if (changeOnIntent && segment.intent.intent !== changeOnIntent) return;
-        candidates = segment.entities.map(entity => entity.type);
-      }
-      else {
-        // Bail out if we've specified an intent which doesn't match
-        if (changeOnIntent && segment.intent.intent !== changeOnIntent) return;
-        // Bail out if we've specified an entity type that doesn't match
-        candidates = segment.entities.filter(entity => entity.type === changeOnEntityType).map(entity => entity.value);
-        if (candidates.length === 0) return;
+      } else {
+        // React if no intent defined; or a specified intent is defined
+        if (!changeOnIntent || segment.intent.intent === changeOnIntent) {
+          if (Array.isArray(changeOnEntityType)) {
+            candidates = segment.entities.map(entity => entity.type);
+          } else {
+            candidates = segment.entities.filter(entity => entity.type === changeOnEntityType).map(entity => entity.value);
+          }
+        }
       }
 
-      // Match by entity name instead of value, if an array provided
-      candidates.forEach(candidateName => {
-        const index = optionsInUpperCase.findIndex((option: string) => option === candidateName.toUpperCase())
-        if (index >= 0) {
-          _setValue(options[index])
-        }
-      })
+      if (candidates && candidates.length > 0) {
+        // Match by each candidate against the match values
+        candidates.forEach(candidateName => {
+          const index = matchesInUpperCase.findIndex((option: string) => option === candidateName.toUpperCase())
+          if (index >= 0) {
+            _setValue(options[index])
+          }
+        })
+      }
 
       if (segment?.isFinal) {
         if (inputEl != null && inputEl.current != null) {
