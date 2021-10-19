@@ -22,9 +22,9 @@
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `changeOnEntityType?` | `string` \| `string`[] | Specifies how this component reacts to entity types in SpeechSegments. Undefined value reacts to any entity type. Array of strings (entity types), one for each option, enables changing this widget's value to the option matching entity type. If an undefined or string value is provided changeOnEntityValue must specify an array value for the component to react to speech input. |
-| `changeOnEntityValue?` | `string`[] | Specifies how this component reacts to entity values in SpeechSegments. Array of strings (entity values), one for each option, enables changing this widget's value to the option matching entity value. By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value. |
-| `changeOnIntent?` | `string` \| `string`[] | Specifies how this component reacts to intents in SpeechSegments. Undefined value reacts to any intent. String value (intent name) reacts to the single specified intent, e.g. "book" Array of strings (intents), one for each option, enables changing this widget's value to the option matching the intent. If an undefined or string value is provided, changeOnEntityType or changeOnEntityValue must specify an array value for the component to react to speech input. |
+| `changeOnEntityType?` | `string` \| `string`[] | Specifies how this component reacts to entity types in SpeechSegments. - Undefined value ignores the entity type (matches any value). - String value (entity type) reacts only to the single specified entity type, e.g. "passengers" - Array of strings (entity types), one for each option, enables changing this widget's value to the option matching entity type. |
+| `changeOnEntityValue?` | `string`[] | Specifies how this component reacts to entity values in SpeechSegments. - Array of strings (entity values), one for each option, enables changing this widget's value to the option matching entity value. |
+| `changeOnIntent?` | `string` \| `string`[] | Specifies how this component reacts to intents in SpeechSegments. - Undefined value ignores the intent (matches any value). - String value (intent) reacts to the single specified intent, e.g. "book" - Array of strings (intents), one for each option, enables changing this widget's value to the option matching the intent. If an undefined or string value is provided, changeOnEntityType or changeOnEntityValue must specify an array value for the component to react to speech input. |
 | `defaultValue?` | `string` | Initially selected option. Has no effect if `value` is specified. |
 | `displayNames?` | `string`[] | Array of human-fiendly display names for each option |
 | `options` | `string`[] | Array of option id strings. The selected id is returned by onChange. By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value. |
@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[components/VoiceToggle.tsx:4](https://github.com/speechly/speechly-demos/blob/3fcb1b7/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L4)
+[components/VoiceToggle.tsx:4](https://github.com/speechly/speechly-demos/blob/97beb04/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L4)
 
 ## Functions
 
@@ -53,4 +53,4 @@
 
 #### Defined in
 
-[components/VoiceToggle.tsx:83](https://github.com/speechly/speechly-demos/blob/3fcb1b7/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L83)
+[components/VoiceToggle.tsx:82](https://github.com/speechly/speechly-demos/blob/97beb04/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L82)
