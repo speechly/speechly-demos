@@ -13,19 +13,18 @@ export type VoiceInputProps = {
    */
   value?: string
   /**
-   * Initially selected option. Has no effect if `value` is specified.
+   * Initial value. Has no effect if `value` is specified.
    */
   defaultValue?: string
-   /**
-   * Specifies how this component reacts to intents in SpeechSegments.
-   * Undefined value reacts to any intent.
-   * String value (intent name) reacts to the single specified intent, e.g. "book"
+
+  /**
+   * `string` (intent) filters out all but the specified intent.
+   * `undefined` disables intent filtering.
    */
   changeOnIntent?: string
-   /**
-    * Specifies how this component reacts to entity types in SpeechSegments.
-    * Undefined value reacts to any entity type.
-    * Array of strings (entity types), one for each option, enables changing this widget's value to the option matching entity type.
+
+  /**
+    * `string` (entity type) specifies the entity type that changes this component's value. The new value will be the entity's value.
     */
   changeOnEntityType: string
   /**

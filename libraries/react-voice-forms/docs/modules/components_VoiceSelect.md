@@ -29,14 +29,14 @@ Properties for VoiceSelect component.
 | `displayNames?` | `string`[] | Array of human-fiendly display names for each option |
 | `value?` | `string` | The current option. Specifying the value controls the components's state so it makes sense to provide an onChange handler. |
 | `defaultValue?` | `string` | Initially selected option. Has no effect if `value` is specified. |
-| `changeOnIntent?` | `string` \| `string`[] | Specifies how this component reacts to intents in SpeechSegments. Undefined value reacts to any intent. String value (intent name) reacts to the single specified intent, e.g. "book" Array of strings (intents), one for each option, enables changing this widget's value to the option matching the intent. If an undefined or string value is provided, changeOnEntityType or changeOnEntityValue must specify an array value for the component to react to speech input. |
-| `changeOnEntityType?` | `string` \| `string`[] | Specifies how this component reacts to entity types in SpeechSegments. Undefined value reacts to any entity type. Array of strings (entity types), one for each option, enables changing this widget's value to the option matching entity type. If an undefined or string value is provided changeOnEntityValue must specify an array value for the component to react to speech input. |
-| `changeOnEntityValue?` | `string`[] | Specifies how this component reacts to entity values in SpeechSegments. Array of strings (entity values), one for each option, enables changing this widget's value to the option matching entity value. By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value. |
+| `changeOnIntent?` | `string` \| `string`[] | `string[]` (intents) changes this widget's option based on the intent of the SpeechSegment. The order must match that of `options`. `string` (intent) filters out all but the specified intent. Use `changeOnEntityType` or `changeOnEntityValue` to change the option. `undefined` disables intent filtering. |
+| `changeOnEntityType?` | `string` \| `string`[] | `string[]` (entity types) changes this widget's option if a matched entity type is found in the SpeechSegment. The order must match that of `options`. `string` (intent) filters out all but the specified entity type. Use `changeOnEntityValue` to change the option. `undefined` disables entity type filtering. |
+| `changeOnEntityValue?` | `string`[] | `string[]` (entity values) changes this widget's option if a matched entity value is found in the SpeechSegment. The order must match that of `options`. |
 | `onChange?` | (`value`: `string`) => `void` | - |
 
 #### Defined in
 
-[components/VoiceSelect.tsx:11](https://github.com/speechly/speechly-demos/blob/1339333/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L11)
+[components/VoiceSelect.tsx:11](https://github.com/speechly/speechly-demos/blob/a693162/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L11)
 
 ## Functions
 
@@ -56,4 +56,4 @@ Properties for VoiceSelect component.
 
 #### Defined in
 
-[components/VoiceSelect.tsx:96](https://github.com/speechly/speechly-demos/blob/1339333/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L96)
+[components/VoiceSelect.tsx:91](https://github.com/speechly/speechly-demos/blob/a693162/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L91)
