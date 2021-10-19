@@ -36,7 +36,7 @@ Properties for VoiceSelect component.
 
 #### Defined in
 
-[components/VoiceSelect.tsx:11](https://github.com/speechly/speechly-demos/blob/97beb04/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L11)
+[components/VoiceSelect.tsx:11](https://github.com/speechly/speechly-demos/blob/77bb0d9/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L11)
 
 ## Functions
 
@@ -56,4 +56,4 @@ Properties for VoiceSelect component.
 
 #### Defined in
 
-[components/VoiceSelect.tsx:96](https://github.com/speechly/speechly-demos/blob/97beb04/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L96)
+[components/VoiceSelect.tsx:96](https://github.com/speechly/speechly-demos/blob/77bb0d9/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L96)

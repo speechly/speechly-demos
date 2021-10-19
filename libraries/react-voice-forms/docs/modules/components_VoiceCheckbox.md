@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[components/VoiceCheckbox.tsx:5](https://github.com/speechly/speechly-demos/blob/97beb04/libraries/react-voice-forms/src/components/VoiceCheckbox.tsx#L5)
+[components/VoiceCheckbox.tsx:5](https://github.com/speechly/speechly-demos/blob/77bb0d9/libraries/react-voice-forms/src/components/VoiceCheckbox.tsx#L5)
 
 ## Functions
 
@@ -51,4 +51,4 @@
 
 #### Defined in
 
-[components/VoiceCheckbox.tsx:58](https://github.com/speechly/speechly-demos/blob/97beb04/libraries/react-voice-forms/src/components/VoiceCheckbox.tsx#L58)
+[components/VoiceCheckbox.tsx:58](https://github.com/speechly/speechly-demos/blob/77bb0d9/libraries/react-voice-forms/src/components/VoiceCheckbox.tsx#L58)
