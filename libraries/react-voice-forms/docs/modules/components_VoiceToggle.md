@@ -27,13 +27,13 @@
 | `changeOnIntent?` | `string` \| `string`[] | `string[]` (intents) changes this widget's option based on the intent of the SpeechSegment. The order must match that of `options`. `string` (intent) filters out all but the specified intents. Use `changeOnEntityType` or `changeOnEntityValue` to change the option. `undefined` disables intent filtering. |
 | `defaultValue?` | `string` | Initially selected option. Has no effect if `value` is specified. |
 | `displayNames?` | `string`[] | Human-fiendly display names for each option. |
-| `options` | `string`[] | The selected option is returned by onChange. By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value. |
+| `options` | `string`[] | Options presented by this widget. The selected option is returned by `onChange`. |
 | `value?` | `string` | The current option. Must match a `options` value. Provide an `onChange` handler to react to changes. |
 | `onChange?` | (`value`: `string`) => `void` | - |
 
 #### Defined in
 
-[components/VoiceToggle.tsx:4](https://github.com/speechly/speechly-demos/blob/ad20e0c/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L4)
+[components/VoiceToggle.tsx:4](https://github.com/speechly/speechly-demos/blob/7b0cf0e/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L4)
 
 ## Functions
 
@@ -53,4 +53,4 @@
 
 #### Defined in
 
-[components/VoiceToggle.tsx:78](https://github.com/speechly/speechly-demos/blob/ad20e0c/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L78)
+[components/VoiceToggle.tsx:77](https://github.com/speechly/speechly-demos/blob/7b0cf0e/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L77)

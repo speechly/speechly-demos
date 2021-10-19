@@ -3,8 +3,7 @@ import { useSpeechContext, Word } from "@speechly/react-client";
 
 export type VoiceToggleProps = {
   /**
-   * The selected option is returned by onChange.
-   * By default, the values of the options array is used as `changeOnEntityType` if not one of `changeOnIntent`, changeOnEntityType nor changeOnEntityValue specifies an array value.
+   * Options presented by this widget. The selected option is returned by `onChange`.
    */
   options: string[]
   

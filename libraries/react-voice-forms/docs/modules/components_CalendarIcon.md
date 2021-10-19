@@ -20,4 +20,4 @@
 
 #### Defined in
 
-[components/CalendarIcon.tsx:10](https://github.com/speechly/speechly-demos/blob/ad20e0c/libraries/react-voice-forms/src/components/CalendarIcon.tsx#L10)
+[components/CalendarIcon.tsx:10](https://github.com/speechly/speechly-demos/blob/7b0cf0e/libraries/react-voice-forms/src/components/CalendarIcon.tsx#L10)
