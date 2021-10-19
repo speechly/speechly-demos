@@ -9,12 +9,12 @@ export type VoiceToggleProps = {
   options: string[]
   
   /**
-   * Array of human-fiendly display names for each option
+   * Human-fiendly display names for each option.
    */
   displayNames?: string[]
   
   /**
-   * The current option. Specifying the value controls the components's state so it makes sense to provide an onChange handler.
+   * The current option. Must match a `options` value. Provide an `onChange` handler to react to changes.
    */
   value?: string
 
@@ -24,21 +24,21 @@ export type VoiceToggleProps = {
   defaultValue?: string
  
   /**
-   * `string[]` (intents) changes this widget's option based on the intent of the SpeechSegment.
+   * `string[]` (intents) changes this widget's option based on the intent of the SpeechSegment. The order must match that of `options`.
    * `string` (intent) filters out all but the specified intents. Use `changeOnEntityType` or `changeOnEntityValue` to change the option.
    * `undefined` disables intent filtering.
    */
   changeOnIntent?: string | string []
 
   /**
-   * `string[]` (entity types) changes this widget's option if a matched entity type is found in the SpeechSegment.
+   * `string[]` (entity types) changes this widget's option if a matched entity type is found in the SpeechSegment. The order must match that of `options`.
    * `string` (intent) filters out all but the specified entity type. Use `changeOnEntityValue` to change the option.
    * `undefined` disables entity type filtering.
    */
   changeOnEntityType?: string | string []
 
   /**
-   * `string[]` (entity values) changes this widget's option if a matched entity value is found in the SpeechSegment.
+   * `string[]` (entity values) changes this widget's option if a matched entity value is found in the SpeechSegment. The order must match that of `options`.
    */
   changeOnEntityValue?: string []
 

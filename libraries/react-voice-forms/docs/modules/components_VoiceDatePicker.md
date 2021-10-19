@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[components/VoiceDatePicker.tsx:7](https://github.com/speechly/speechly-demos/blob/77bb0d9/libraries/react-voice-forms/src/components/VoiceDatePicker.tsx#L7)
+[components/VoiceDatePicker.tsx:7](https://github.com/speechly/speechly-demos/blob/ad20e0c/libraries/react-voice-forms/src/components/VoiceDatePicker.tsx#L7)
 
 ## Functions
 
@@ -51,4 +51,4 @@
 
 #### Defined in
 
-[components/VoiceDatePicker.tsx:74](https://github.com/speechly/speechly-demos/blob/77bb0d9/libraries/react-voice-forms/src/components/VoiceDatePicker.tsx#L74)
+[components/VoiceDatePicker.tsx:74](https://github.com/speechly/speechly-demos/blob/ad20e0c/libraries/react-voice-forms/src/components/VoiceDatePicker.tsx#L74)
