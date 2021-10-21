@@ -1,11 +1,27 @@
-lang: en-US
+imports:
+  - name: class_as_spoken
+    source: travel_class.csv
+    field: 1
+  - name: class_normalised
+    source: travel_class.csv
+    field: 2
+entities:
+  - name: passengers
+    type: number
+  - name: return
+    type: date
+  - name: depart
+    type: date
+  - name: class
+    type: lookup
+    input_items: $class_as_spoken
+    output_items: $class_normalised
 templates: >
   carrier_phrases = [
       i'm interested in
       {[can you|will you|could you]} {please} [book|show|display|give|make it|change it to|search {for}] {me}
       [i want {to} | i'd like {to}|can i|i need {to}] {[book|see|view|browse|fly {to}]}
   ]
-
 
   direct = [direct|nonstop|non stop|[no|without] [{a} layover|layovers|{a}
   stopover|stopovers|{a} connecting|connecting]](direct)
@@ -557,7 +573,7 @@ templates: >
   ]
 
 
-  class = [economy|business|first](class)
+  class = $class_as_spoken(class)
 
   class_phrase = {in} $class {class}
 
@@ -610,29 +626,3 @@ templates: >
 
 
   $intents
-intents:
-  - name: book
-  - name: clear
-entities:
-  - name: from
-    type: string
-  - name: to
-    type: string
-  - name: passengers
-    type: number
-  - name: return
-    type: date
-  - name: depart
-    type: date
-  - name: direct
-    type: string
-  - name: class
-    type: string
-  - name: one_way
-    type: string
-  - name: round_trip
-    type: string
-  - name: from_prepo
-    type: string
-  - name: to_prepo
-    type: string
