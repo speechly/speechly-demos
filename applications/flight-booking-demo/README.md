@@ -7,11 +7,11 @@ Speechly voice booking demo
 
 ### Key npm packages used
 
-* [Speechly React Client](https://www.npmjs.com/package/@speechly/react-voice-forms/react-client)
-* [Speechly React UI](https://www.npmjs.com/package/@speechly/react-voice-forms/react-ui)
+* [Speechly React Client](https://www.npmjs.com/package/@speechly/react-client)
+* [Speechly React UI](https://www.npmjs.com/package/@speechly/react-ui)
 * [Speechly Voice Forms for React](https://www.npmjs.com/package/@speechly/react-voice-forms)
 
-Speechly React Client internally uses lower level [Speechly Broweser Client](https://www.npmjs.com/package/@speechly/react-voice-forms/browser-client) for connectivity and audio handling.
+Speechly React Client internally uses lower level [Speechly Browser Client](https://www.npmjs.com/package/@speechly/react-voice-forms/browser-client) for connectivity and audio handling.
 
 ### Installation And Running
 
