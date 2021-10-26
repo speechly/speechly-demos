@@ -32,10 +32,21 @@ cd applications/flight-booking-demo
 rushx start
 ```
 
-### Create release builds of all apps
+### Create builds of all apps
 
 ```
 rush build
+```
+
+### Develop a library in watch mode while testing it in a sample app
+
+```
+# Build @speechly/react-voice-forms library in watch mode
+rush build:watch --to @speechly/react-voice-forms &
+
+# Start a sample app using the library
+cd applications/flight-booking-demo
+rushx start
 ```
 
 ### Update/add a project dependency
