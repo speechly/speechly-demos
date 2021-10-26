@@ -18,20 +18,25 @@ export type VoiceCheckboxProps = {
   defaultValue?: boolean
 
   /**
-   * `string` (intent) filters out all but the specified intent. Use `checkOnEntityType` and `uncheckOnEntityType` to change the option.
-   * `undefined` disables intent filtering.
+   * `string` (intent) filters out all but the specified intent.
+   * `undefined` sets on any intent.
    */
   intent?: string
 
   /**
-   * `string[]` (entity types) checks this widget if a matched entity type is found in the SpeechSegment.
+   * `string` (intent) forces clearing values both on `setOnEntityType` and `clearOnEntityType`.
    */
-  checkOnEntityType: string[]
+  clearIntent?: string
 
   /**
-   * `string[]` (entity types) unchecks this widget if a matched entity type is found in the SpeechSegment.
+   * `string[]` (entity types) sets (checks) this widget if a matched entity type is found in the SpeechSegment.
    */
-  uncheckOnEntityType: string[]
+  setOnEntityType: string[]
+
+  /**
+   * `string[]` (entity types) clears (unchecks) this widget if a matched entity type is found in the SpeechSegment.
+   */
+  clearOnEntityType: string[]
 
   /**
    * @private
@@ -60,7 +65,7 @@ export type VoiceCheckboxProps = {
   onFinal?: () => void
 }
 
-export const VoiceCheckbox = ({ label, value, defaultValue, intent, checkOnEntityType = [], uncheckOnEntityType = [], onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceCheckboxProps) => {
+export const VoiceCheckbox = ({ label, value, defaultValue, intent, clearIntent, setOnEntityType = [], clearOnEntityType = [], onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceCheckboxProps) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
@@ -102,13 +107,23 @@ export const VoiceCheckbox = ({ label, value, defaultValue, intent, checkOnEntit
   useEffect(() => {
     if (segment && segment.contextId !== handledAudioContext) {
       // React if no intent defined; or a specified intent is defined
-      if (!intent || segment.intent.intent === intent) {
+      const clear = clearIntent && segment.intent.intent === clearIntent
+      const set = !clear && (!intent || segment.intent.intent === intent)
+      let matched = false
+      if (set || clear) {
         const entities = formatEntities(segment.entities)
-        if (checkOnEntityType.some(value => entities[value] !== undefined)) {
-          _onChange(true)
-        } else if (uncheckOnEntityType.some(value => entities[value] !== undefined)) {
+        if (setOnEntityType.some(value => entities[value] !== undefined)) {
+          _onChange(set)
+          matched = true
+        } else if (clearOnEntityType.some(value => entities[value] !== undefined)) {
           _onChange(false)
+          matched = true
         }
+      }
+
+      if (!matched) {
+        // @TODO restore original value
+        // _onChange(originalValue)
       }
   
       if (segment?.isFinal) {
