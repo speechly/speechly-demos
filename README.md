@@ -23,10 +23,11 @@ If necessary, install the build tools
 - Install node and npm from <https://nodejs.org/>
 - Install rush globally with npm: `npm install -g @microsoft/rush`
 
-### Run an app using Rush
+### Run an application locally using Rush
 
 ```
 rush update
+rush build
 cd applications/flight-booking-demo
 rushx start
 ```
