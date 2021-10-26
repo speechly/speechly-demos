@@ -21,7 +21,7 @@ rush -h
 If necessary, install the build tools
 
 - Install node and npm from <https://nodejs.org/>
-- Install rush: `npm install -g @microsoft/rush`
+- Install rush globally with npm: `npm install -g @microsoft/rush`
 
 ### Run an app using Rush
 
