@@ -23,15 +23,16 @@
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `label` | `string` | The label displayed on the component. For speech use, the label should match the keywords in the phrase used to control the widget: e.g. component with label "Passengers" should be configured to react to phrases like "3 passegers" |
-| `changeOnEntityType` | `string` | Specifies how this component reacts to entity types in SpeechSegments. Undefined value reacts to any entity type. Array of strings (entity types), one for each option, enables changing this widget's value to the option matching entity type. |
+| `checkOnEntityType` | `string`[] | `string[]` (entity types) checks this widget if a matched entity type is found in the SpeechSegment. |
+| `uncheckOnEntityType` | `string`[] | `string[]` (entity types) unchecks this widget if a matched entity type is found in the SpeechSegment. |
 | `value?` | `boolean` | The current value. Specifying the value controls the components's state so it makes sense to provide an onChange handler. |
 | `defaultValue?` | `boolean` | Initial checked state. Has no effect if `value` is specified. |
-| `changeOnIntent?` | `string` | Specifies how this component reacts to intents in SpeechSegments. Undefined value reacts to any intent. String value (intent name) reacts to the single specified intent, e.g. "book" |
+| `intent?` | `string` | `string` (intent) filters out all but the specified intent. Use `checkOnEntityType` and `uncheckOnEntityType` to change the option. `undefined` disables intent filtering. |
 | `onChange?` | (`value`: `boolean`) => `void` | - |
 
 #### Defined in
 
-[components/VoiceCheckbox.tsx:5](https://github.com/speechly/speechly-demos/blob/a693162/libraries/react-voice-forms/src/components/VoiceCheckbox.tsx#L5)
+[components/VoiceCheckbox.tsx:5](https://github.com/speechly/speechly-demos/blob/bedf1db/libraries/react-voice-forms/src/components/VoiceCheckbox.tsx#L5)
 
 ## Functions
 
@@ -51,4 +52,4 @@
 
 #### Defined in
 
-[components/VoiceCheckbox.tsx:58](https://github.com/speechly/speechly-demos/blob/a693162/libraries/react-voice-forms/src/components/VoiceCheckbox.tsx#L58)
+[components/VoiceCheckbox.tsx:63](https://github.com/speechly/speechly-demos/blob/bedf1db/libraries/react-voice-forms/src/components/VoiceCheckbox.tsx#L63)

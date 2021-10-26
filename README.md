@@ -41,10 +41,10 @@ rush build
 ### Develop a library in watch mode while testing it in a sample app
 
 ```
-# Build @speechly/react-voice-forms library in watch mode
+# Build dependency and stay in watch mode
 rush build:watch --to @speechly/react-voice-forms &
 
-# Start a sample app using the library
+# Start an app using the dependency
 cd applications/flight-booking-demo
 rushx start
 ```

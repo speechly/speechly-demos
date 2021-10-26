@@ -1,5 +1,4 @@
 import { VoiceDatePicker, VoiceCheckbox, VoiceInput, VoiceSelect, VoiceToggle } from '@speechly/react-voice-forms';
-import { useState } from 'react';
 
 const passengersOptions = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 const classOptions = ['Economy', 'Business', 'First']
@@ -25,7 +24,7 @@ const BookingForm = () => {
         <VoiceSelect label="Class" options={classOptions} changeOnEntityType='class' />
       </div>
       <div className="group">
-        <VoiceCheckbox label="DIRECT ONLY" changeOnEntityType='direct' defaultValue={false} />
+        <VoiceCheckbox label="DIRECT ONLY" checkOnEntityType={['direct']} uncheckOnEntityType={['nondirect']} defaultValue={false} />
       </div>
     </form>
   )

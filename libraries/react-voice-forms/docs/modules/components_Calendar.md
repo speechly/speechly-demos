@@ -26,4 +26,4 @@
 
 #### Defined in
 
-[components/Calendar.tsx:37](https://github.com/speechly/speechly-demos/blob/a693162/libraries/react-voice-forms/src/components/Calendar.tsx#L37)
+[components/Calendar.tsx:37](https://github.com/speechly/speechly-demos/blob/bedf1db/libraries/react-voice-forms/src/components/Calendar.tsx#L37)

@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[components/VoiceInput.tsx:5](https://github.com/speechly/speechly-demos/blob/a693162/libraries/react-voice-forms/src/components/VoiceInput.tsx#L5)
+[components/VoiceInput.tsx:5](https://github.com/speechly/speechly-demos/blob/bedf1db/libraries/react-voice-forms/src/components/VoiceInput.tsx#L5)
 
 ## Functions
 
@@ -51,4 +51,4 @@
 
 #### Defined in
 
-[components/VoiceInput.tsx:57](https://github.com/speechly/speechly-demos/blob/a693162/libraries/react-voice-forms/src/components/VoiceInput.tsx#L57)
+[components/VoiceInput.tsx:57](https://github.com/speechly/speechly-demos/blob/bedf1db/libraries/react-voice-forms/src/components/VoiceInput.tsx#L57)
