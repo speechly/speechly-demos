@@ -1,6 +1,6 @@
 {
   "name": "cra-template-speechly",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "format": "prettier --write ./template/src/**/*.{ts,tsx,css}",
     "lint": "eslint './template/src/**/*.{ts,tsx}'",
