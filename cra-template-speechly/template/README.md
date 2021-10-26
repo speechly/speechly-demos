@@ -1,5 +1,34 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Speechly](https://speechly.com/).
 
+### Requirements
+
+* [Node](https://nodejs.org/) (tested with v14.16.1)
+
+### Built With
+
+* [Speechly React Client](https://www.npmjs.com/package/@speechly/react-client)
+* [Speechly React UI](https://www.npmjs.com/package/@speechly/react-ui)
+* [Speechly Voice Forms for React](https://www.npmjs.com/package/@speechly/react-voice-forms)
+* [Typescript](https://www.typescriptlang.org/)
+
+Speechly React Client wraps [Speechly Browser Client](https://www.npmjs.com/package/@speechly/react-voice-forms/browser-client) that provides websocket connectivity and audio handling.
+
+## Installation And Running
+
+1. Install NPM packages
+
+```bash
+npm install
+```
+
+2. Start development server
+
+```bash
+npm start
+```
+
+Alternatively you can use `pnpm` instead of `npm`.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -42,3 +71,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+To learn Speechly, check out the [Speechly documentation](https://docs.speechly.com/client-libraries/usage/?platform=React).
