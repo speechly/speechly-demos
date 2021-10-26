@@ -24,7 +24,7 @@ const BookingForm = () => {
         <VoiceSelect label="Class" options={classOptions} changeOnEntityType="class" />
       </div>
       <div className="group">
-        <VoiceCheckbox label="Direct only" intent="book" clearIntent="clear" setOnEntityType={["direct"]} clearOnEntityType={["nondirect"]} defaultValue={false} />
+        <VoiceCheckbox label="Direct only" intent="book" clearIntent="clear" setOnEntityType="direct" clearOnEntityType="nondirect" defaultValue={false} />
       </div>
     </form>
   )

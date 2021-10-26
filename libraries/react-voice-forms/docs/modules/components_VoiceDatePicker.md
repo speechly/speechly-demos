@@ -29,10 +29,6 @@
 | `changeOnIntent?` | `string` | Specifies how this component reacts to intents in SpeechSegments. Undefined value reacts to any intent. String value (intent name) reacts to the single specified intent, e.g. "book" |
 | `onChange?` | (`value`: `Date`) => `void` | - |
 
-#### Defined in
-
-[components/VoiceDatePicker.tsx:7](https://github.com/speechly/speechly-demos/blob/80c3199/libraries/react-voice-forms/src/components/VoiceDatePicker.tsx#L7)
-
 ## Functions
 
 ### VoiceDatePicker
@@ -48,7 +44,3 @@
 #### Returns
 
 `Element`
-
-#### Defined in
-
-[components/VoiceDatePicker.tsx:74](https://github.com/speechly/speechly-demos/blob/80c3199/libraries/react-voice-forms/src/components/VoiceDatePicker.tsx#L74)

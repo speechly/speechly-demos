@@ -17,7 +17,3 @@
 #### Returns
 
 `Element`
-
-#### Defined in
-
-[components/CalendarIcon.tsx:10](https://github.com/speechly/speechly-demos/blob/80c3199/libraries/react-voice-forms/src/components/CalendarIcon.tsx#L10)

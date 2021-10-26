@@ -31,10 +31,6 @@
 | `changeOnEntityValue?` | `string`[] | `string[]` (entity values) changes this widget's option if a matched entity value is found in the SpeechSegment. The order must match that of `options`. |
 | `onChange?` | (`value`: `string`) => `void` | - |
 
-#### Defined in
-
-[components/VoiceToggle.tsx:4](https://github.com/speechly/speechly-demos/blob/80c3199/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L4)
-
 ## Functions
 
 ### VoiceToggle
@@ -50,7 +46,3 @@
 #### Returns
 
 `Element`
-
-#### Defined in
-
-[components/VoiceToggle.tsx:77](https://github.com/speechly/speechly-demos/blob/80c3199/libraries/react-voice-forms/src/components/VoiceToggle.tsx#L77)

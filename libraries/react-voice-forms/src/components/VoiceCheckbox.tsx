@@ -29,14 +29,14 @@ export type VoiceCheckboxProps = {
   clearIntent?: string
 
   /**
-   * `string[]` (entity types) sets (checks) this widget if a matched entity type is found in the SpeechSegment.
+   * `string` (entity type) sets (checks) this widget if a matched entity type is found in the SpeechSegment.
    */
-  setOnEntityType: string[]
+  setOnEntityType: string
 
   /**
-   * `string[]` (entity types) clears (unchecks) this widget if a matched entity type is found in the SpeechSegment.
+   * `string` (entity type) clears (unchecks) this widget if a matched entity type is found in the SpeechSegment.
    */
-  clearOnEntityType: string[]
+  clearOnEntityType?: string
 
   /**
    * @private
@@ -65,7 +65,7 @@ export type VoiceCheckboxProps = {
   onFinal?: () => void
 }
 
-export const VoiceCheckbox = ({ label, value, defaultValue, intent, clearIntent, setOnEntityType = [], clearOnEntityType = [], onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceCheckboxProps) => {
+export const VoiceCheckbox = ({ label, value, defaultValue, intent, clearIntent, setOnEntityType, clearOnEntityType, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceCheckboxProps) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
@@ -112,10 +112,10 @@ export const VoiceCheckbox = ({ label, value, defaultValue, intent, clearIntent,
       let matched = false
       if (set || clear) {
         const entities = formatEntities(segment.entities)
-        if (setOnEntityType.some(value => entities[value] !== undefined)) {
+        if (entities[setOnEntityType] !== undefined) {
           _onChange(set)
           matched = true
-        } else if (clearOnEntityType.some(value => entities[value] !== undefined)) {
+        } else if (clearOnEntityType && entities[clearOnEntityType] !== undefined) {
           _onChange(false)
           matched = true
         }
