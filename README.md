@@ -38,16 +38,16 @@ rushx start
 rush build
 ```
 
-### Check for mis-matching dependencies across projects
-
-```
-rush check
-```
-
 ### Update/add a project dependency
 
 ```
 rush add --package @speechly/react-ui@latest
+```
+
+#### Check for mis-matching dependencies across projects
+
+```
+rush check
 ```
 
 ### Creating a new demo
