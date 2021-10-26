@@ -37,6 +37,12 @@ rushx start
 rush build
 ```
 
+### Check for mis-matching dependencies across projects
+
+```
+rush check
+```
+
 ### Update/add a project dependency
 
 ```
