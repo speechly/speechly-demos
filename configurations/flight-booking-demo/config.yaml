@@ -36,6 +36,8 @@ templates: >
 
   fligth_type_phrase = [$trip|$direct|![$trip|$direct]]
 
+  nondirect_phrase = [[on check | disable | disabled | turn off | no | non | remove {selection from} | deselect | without] direct {0.75: [only | flights | box | checkbox]}](nondirect)
+
   from_phrase = [from](from_prepo) $city(from)
   to_phrase = [to](to_prepo) $city(to)
 
@@ -101,6 +103,7 @@ templates: >
     *book {$carrier_phrases} {[a flight|flights]} $from_phrase $class_phrase
     *book {$carrier_phrases} {[a flight|flights]} $return_phrase $class_phrase
     *book {$carrier_phrases} {{a} $fligth_type_phrase} {[{a} flight|flights]} $departing_phrase {{and} $return_phrase}
+    3: *book $nondirect_phrase
     *clear $clear_synonyms
   ]
 
