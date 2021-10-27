@@ -34,10 +34,6 @@ Properties for VoiceSelect component.
 | `changeOnEntityValue?` | `string`[] | `string[]` (entity values) changes this widget's option if a matched entity value is found in the SpeechSegment. The order must match that of `options`. |
 | `onChange?` | (`value`: `string`) => `void` | - |
 
-#### Defined in
-
-[components/VoiceSelect.tsx:11](https://github.com/speechly/speechly-demos/blob/a693162/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L11)
-
 ## Functions
 
 ### VoiceSelect
@@ -53,7 +49,3 @@ Properties for VoiceSelect component.
 #### Returns
 
 `Element`
-
-#### Defined in
-
-[components/VoiceSelect.tsx:91](https://github.com/speechly/speechly-demos/blob/a693162/libraries/react-voice-forms/src/components/VoiceSelect.tsx#L91)

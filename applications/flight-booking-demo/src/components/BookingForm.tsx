@@ -1,10 +1,9 @@
-import { VoiceDatePicker, VoiceCheckbox, VoiceInput, VoiceSelect, VoiceToggle } from '@speechly/react-voice-forms';
-import { useState } from 'react';
+import { VoiceDatePicker, VoiceCheckbox, VoiceInput, VoiceSelect, VoiceToggle } from "@speechly/react-voice-forms";
 
-const passengersOptions = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-const classOptions = ['Economy', 'Business', 'First']
-const tripOptions = ['one_way', 'round_trip']
-const tripDisplayNames = ['One way', 'Round trip']
+const passengersOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+const classOptions = ["Economy", "Business", "First"]
+const tripOptions = ["one_way", "round_trip"]
+const tripDisplayNames = ["One way", "Round trip"]
 
 const BookingForm = () => {
   return (
@@ -21,11 +20,11 @@ const BookingForm = () => {
         <VoiceDatePicker label="Return" changeOnEntityType="return" />
       </div>
       <div className="group">
-        <VoiceSelect label="Passengers" options={passengersOptions} changeOnEntityType='passengers' />
-        <VoiceSelect label="Class" options={classOptions} changeOnEntityType='class' />
+        <VoiceSelect label="Passengers" options={passengersOptions} changeOnEntityType="passengers" />
+        <VoiceSelect label="Class" options={classOptions} changeOnEntityType="class" />
       </div>
       <div className="group">
-        <VoiceCheckbox label="DIRECT ONLY" changeOnEntityType='direct' defaultValue={false} />
+        <VoiceCheckbox label="Direct only" intent="book" clearIntent="clear" setOnEntityType="direct" clearOnEntityType="nondirect" defaultValue={false} />
       </div>
     </form>
   )

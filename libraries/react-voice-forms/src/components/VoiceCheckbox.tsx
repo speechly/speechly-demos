@@ -16,18 +16,28 @@ export type VoiceCheckboxProps = {
    * Initial checked state. Has no effect if `value` is specified.
    */
   defaultValue?: boolean
-   /**
-   * Specifies how this component reacts to intents in SpeechSegments.
-   * Undefined value reacts to any intent.
-   * String value (intent name) reacts to the single specified intent, e.g. "book"
+
+  /**
+   * `string` (intent) filters out all but the specified intent.
+   * `undefined` sets on any intent.
    */
-  changeOnIntent?: string
-   /**
-    * Specifies how this component reacts to entity types in SpeechSegments.
-    * Undefined value reacts to any entity type.
-    * Array of strings (entity types), one for each option, enables changing this widget's value to the option matching entity type.
-    */
-  changeOnEntityType: string
+  intent?: string
+
+  /**
+   * `string` (intent) forces clearing values both on `setOnEntityType` and `clearOnEntityType`.
+   */
+  clearIntent?: string
+
+  /**
+   * `string` (entity type) sets (checks) this widget if a matched entity type is found in the SpeechSegment.
+   */
+  setOnEntityType: string
+
+  /**
+   * `string` (entity type) clears (unchecks) this widget if a matched entity type is found in the SpeechSegment.
+   */
+  clearOnEntityType?: string
+
   /**
    * @private
    */
@@ -55,7 +65,7 @@ export type VoiceCheckboxProps = {
   onFinal?: () => void
 }
 
-export const VoiceCheckbox = ({ label, value, defaultValue, changeOnIntent, changeOnEntityType, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceCheckboxProps) => {
+export const VoiceCheckbox = ({ label, value, defaultValue, intent, clearIntent, setOnEntityType, clearOnEntityType, onChange, onFinal, onBlur, onFocus, focused = true, handledAudioContext = '' }: VoiceCheckboxProps) => {
 
   const inputEl: React.RefObject<HTMLInputElement> = useRef(null)
 
@@ -97,11 +107,23 @@ export const VoiceCheckbox = ({ label, value, defaultValue, changeOnIntent, chan
   useEffect(() => {
     if (segment && segment.contextId !== handledAudioContext) {
       // React if no intent defined; or a specified intent is defined
-      if (!changeOnIntent || segment.intent.intent === changeOnIntent) {
-        let entities = formatEntities(segment.entities)
-        if (entities[changeOnEntityType] !== undefined) {
-          _onChange(true)
+      const clear = clearIntent && segment.intent.intent === clearIntent
+      const set = !clear && (!intent || segment.intent.intent === intent)
+      let matched = false
+      if (set || clear) {
+        const entities = formatEntities(segment.entities)
+        if (entities[setOnEntityType] !== undefined) {
+          _onChange(set)
+          matched = true
+        } else if (clearOnEntityType && entities[clearOnEntityType] !== undefined) {
+          _onChange(false)
+          matched = true
         }
+      }
+
+      if (!matched) {
+        // @TODO restore original value
+        // _onChange(originalValue)
       }
   
       if (segment?.isFinal) {
@@ -118,7 +140,6 @@ export const VoiceCheckbox = ({ label, value, defaultValue, changeOnIntent, chan
   return (
     <div className="widgetGroup checkbox">
       <input
-          name={changeOnEntityType}
           type="checkbox"
           checked={value !== undefined ? value : _value}
           onChange={(event: any) => { _onChange(event.target.checked) }} />

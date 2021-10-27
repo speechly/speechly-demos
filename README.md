@@ -21,26 +21,44 @@ rush -h
 If necessary, install the build tools
 
 - Install node and npm from <https://nodejs.org/>
-- Install rush: `npm install -g @microsoft/rush`
+- Install rush globally with npm: `npm install -g @microsoft/rush`
 
-### Run an app using Rush
+### Run an application locally using Rush
 
 ```
 rush update
+rush build
 cd applications/flight-booking-demo
 rushx start
 ```
 
-### Create release builds of all apps
+### Create builds of all apps
 
 ```
 rush build
+```
+
+### Develop a library in watch mode while testing it in a sample app
+
+```
+# Build dependency and stay in watch mode
+rush build:watch --to @speechly/react-voice-forms &
+
+# Start an app using the dependency
+cd applications/flight-booking-demo
+rushx start
 ```
 
 ### Update/add a project dependency
 
 ```
 rush add --package @speechly/react-ui@latest
+```
+
+#### Check for mis-matching dependencies across projects
+
+```
+rush check
 ```
 
 ### Creating a new demo
